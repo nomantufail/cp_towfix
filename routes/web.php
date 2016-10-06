@@ -10,7 +10,16 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+Route::group(['middleware' => 'auth'], function () {
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::get('/', [
+        'uses'=>'HomeController@index'
+    ]);
+
+    Route::get('/logout', function ()    {
+        Auth::logout();
+        return redirect('/');
+    });
+
 });
+Auth::routes();

@@ -51,7 +51,7 @@
             @if(Auth::check())
                 <div class="dropdown user-info">
                     <a class="dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">
-                        <span>John Thomas</span>
+                        <span>{{Auth::user()->f_name}} {{Auth::user()->l_name}}</span>
                         <figure><img src="{{url('/')}}/images/profile.jpg" alt=""></figure>
                         <i class="caret"></i>
                     </a>

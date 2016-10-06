@@ -8,7 +8,7 @@
 
                 <label class="half-field {{ $errors->has('fName') ? ' has-error' : '' }}">
                     <span>First Name</span>
-                    <input type="text" name="fName" placeholder="First Name">
+                    <input type="text" name="fName" placeholder="First Name" value="{{old('fName')}}">
                     @if ($errors->has('fName'))
                         <span class="help-block">
                             <strong>{{ $errors->first('fName') }}</strong>
@@ -17,7 +17,7 @@
                 </label>
                 <label class="half-field {{ $errors->has('lName') ? ' has-error' : '' }}">
                     <span>Last Name</span>
-                    <input type="text" name="lName" placeholder="Last Name">
+                    <input type="text" name="lName" placeholder="Last Name" value="{{old('lName')}}">
                     @if ($errors->has('lName'))
                         <span class="help-block">
                             <strong>{{ $errors->first('lName') }}</strong>
@@ -26,7 +26,7 @@
                 </label>
                 <label class="half-field {{ $errors->has('phoneNumber') ? ' has-error' : '' }}">
                     <span>Phone Number</span>
-                    <input type="text" name="phoneNumber" placeholder="Phone Number">
+                    <input type="text" name="phoneNumber" placeholder="Phone Number" value="{{old('phoneNumber')}}">
                     @if ($errors->has('fName'))
                         <span class="help-block">
                             <strong>{{ $errors->first('phoneNumber') }}</strong>
@@ -35,7 +35,7 @@
                 </label>
                 <label class="half-field {{ $errors->has('email') ? ' has-error' : '' }}">
                     <span>Email Address</span>
-                    <input type="email" name="email" placeholder="Email Address">
+                    <input type="email" name="email" placeholder="Email Address" value="{{old('email')}}">
                     @if ($errors->has('email'))
                         <span class="help-block">
                             <strong>{{ $errors->first('email') }}</strong>
@@ -62,7 +62,7 @@
                 </label>
                 <label class=" {{ $errors->has('address') ? ' has-error' : '' }}">
                     <span>Address</span>
-                    <input type="text" name="address" placeholder="Address">
+                    <input type="text" name="address" placeholder="Address" value="{{old('address')}}">
                     @if ($errors->has('address'))
                         <span class="help-block">
                             <strong>{{ $errors->first('address') }}</strong>

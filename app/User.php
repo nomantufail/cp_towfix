@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Traits\Authorization\ShouldBeAuthorized;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, ShouldBeAuthorized;
 
     /**
      * The attributes that are mass assignable.
@@ -26,4 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function isAdmin(){
+        return ($this->role == 1);
+    }
+    public function isFranchise(){
+        return ($this->role == 2);
+    }
+    public function isCustomer(){
+        return ($this->role == 3);
+    }
 }

@@ -229,6 +229,16 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 
+        /*
+         * Registering policies --------------------------------->
+         * */
+        'OnlineStorePolicy' => \App\Policies\OnlineStorePolicy::class,
+        'customerServicesRequestsPolicy' => \App\Policies\CustomerServicesRequestsPolicy::class,
+        'manualsPolicy' => \App\Policies\ManualsPolicy::class,
+        'messagesPolicy' => \App\Policies\MessagesPolicy::class,
+        'newslettersPolicy' => \App\Policies\NewsletterPolicy::class,
+        'ordersPolicy' => \App\Policies\OnlineStorePolicy::class,
+        'productsPolicy' => \App\Policies\ProductsPolicy::class,
     ],
 
 ];

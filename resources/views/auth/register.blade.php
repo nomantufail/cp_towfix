@@ -1,5 +1,4 @@
 @extends('app')
-
 @section('page')
     <section class="home-page login-page">
         <div class="add-vehicle-widget">

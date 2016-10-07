@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-class HomeController extends Controller
+class HomeController extends ParentController
 {
     public function __construct()
     {
- //       $this->middleware('auth');
+        parent::__construct();
     }
 
     /**

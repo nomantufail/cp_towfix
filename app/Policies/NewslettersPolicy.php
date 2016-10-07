@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\Models\Newsletter;
 use App\User;
 
-class NewsletterPolicy extends Policy
+class NewslettersPolicy extends Policy
 {
 
     public function __construct()

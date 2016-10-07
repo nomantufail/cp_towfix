@@ -233,12 +233,15 @@ return [
          * Registering policies --------------------------------->
          * */
         'OnlineStorePolicy' => \App\Policies\OnlineStorePolicy::class,
-        'customerServicesRequestsPolicy' => \App\Policies\CustomerServicesRequestsPolicy::class,
-        'manualsPolicy' => \App\Policies\ManualsPolicy::class,
-        'messagesPolicy' => \App\Policies\MessagesPolicy::class,
-        'newslettersPolicy' => \App\Policies\NewsletterPolicy::class,
-        'ordersPolicy' => \App\Policies\OnlineStorePolicy::class,
-        'productsPolicy' => \App\Policies\ProductsPolicy::class,
+        'CustomerServicesRequestsPolicy' => \App\Policies\CustomerServicesRequestsPolicy::class,
+        'ManualsPolicy' => \App\Policies\ManualsPolicy::class,
+        'MessagesPolicy' => \App\Policies\MessagesPolicy::class,
+        'NewslettersPolicy' => \App\Policies\NewslettersPolicy::class,
+        'OrdersPolicy' => \App\Policies\OrdersPolicy::class,
+        'ProductsPolicy' => \App\Policies\ProductsPolicy::class,
+        'VehiclesPolicy' => \App\Policies\VehiclesPolicy::class,
+        'CustomersPolicy' => \App\Policies\CustomersPolicy::class,
+        'FranchisesPolicy' => \App\Policies\FranchisesPolicy::class,
     ],
 
 ];

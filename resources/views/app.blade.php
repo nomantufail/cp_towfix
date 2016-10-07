@@ -20,12 +20,24 @@
         @if(Auth::check())
             <ul class="tab-list">
                 <li><a href="{{url('/')}}">Home </a></li>
-                <li class="active"><a href="vehicles-list.html">Vehicles </a></li>
+                @if($user->can('view','customers'))<li class=""><a href="vehicles-list.html">Customers </a></li> @endif
+                @if($user->can('view','franchises'))<li class=""><a href="vehicles-list.html">Franchises </a></li> @endif
+                @if($user->can('view','vehicles'))<li class="active"><a href="vehicles-list.html">Vehicles </a></li> @endif
                 @if($user->can('view','onlineStore')) <li><a href="store.html">Online Store </a></li> @endif
                 @if($user->can('view','products')) <li><a href="store.html">View Store</a></li> @endif
                 @if($user->can('view','orders')) <li><a href="store.html">View Orders</a></li> @endif
                 @if($user->can('view','newsletters')) <li><a href="store.html">Newsletters</a></li> @endif
-                @if($user->can('view','customerServicesRequests')) <li><a href="store.html">Customers Service Requests</a></li> @endif
+                @if($user->can('view','customerServicesRequests'))
+                    <li>
+                        <a href="store.html">
+                            @if($user->isFranchise())
+                                Customers Service Requests
+                            @elseif($user->isCustomer())
+                                My Service Requests
+                            @endif
+                        </a>
+                    </li>
+                @endif
                 @if($user->can('view','manuals')) <li><a href="store.html">Manuals</a></li> @endif
                 @if($user->can('view', 'messages'))
                 <li>
@@ -33,7 +45,7 @@
                         @if($user->isCustomer())
                             Contact a Franchise
                         @elseif($user->isFranchise())
-                            Contact a Customer
+                            Customer Messages
                         @endif
                     </a>
                     <ul>
@@ -42,14 +54,7 @@
                     </ul>
                 </li>
                 @endif
-                @if($user->can('view','newsletters')) <li><a href="store.html">Newsletters</a></li> @endif
-                <li>
-                    <a href="#">Request Form </a>
-                    <ul>
-                        <li><a href="request-form.html">Create New Request</a></li>
-                        <li><a href="old-request.html">View Older Service Requesr</a></li>
-                    </ul>
-                </li>
+                <li class=""><a href="vehicles-list.html">Logout</a></li>
             </ul>
         @endif
     </nav>

@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Traits\ExceptionHandler;
 
 use App\Http\Requests;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\View;
 
 class ParentController extends Controller
 {
+    use ExceptionHandler;
     public function __construct()
     {
 

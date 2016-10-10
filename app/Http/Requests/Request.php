@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Vehicle;
+namespace App\Http\Requests;
 
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Http\FormRequest;
 
-class AddVehicleFormRequest extends VehicleRequest
+class Request extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

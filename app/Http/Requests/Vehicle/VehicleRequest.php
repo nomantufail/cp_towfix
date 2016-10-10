@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Vehicle;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Request;
 
-class VehicleRequest extends FormRequest
+class VehicleRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.

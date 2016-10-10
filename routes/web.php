@@ -15,6 +15,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [
         'uses'=>'HomeController@index'
     ]);
+
+    Route::get('/vehicles', [
+        'uses'=>'VehiclesController@listVehicles'
+    ]);
     Route::get('/vehicle/add', [
         'uses'=>'VehiclesController@ShowAddVehicleForm'
     ]);
@@ -28,4 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 });
+Route::get('/internal-server-error', [
+    'uses'=>'PagesController@internalServerError'
+]);
+
 Auth::routes();

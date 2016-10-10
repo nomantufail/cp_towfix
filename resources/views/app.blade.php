@@ -22,7 +22,7 @@
                 <li><a href="{{url('/')}}">Home </a></li>
                 @if($user->can('view','customers'))<li class=""><a href="vehicles-list.html">Customers </a></li> @endif
                 @if($user->can('view','franchises'))<li class=""><a href="vehicles-list.html">Franchises </a></li> @endif
-                @if($user->can('view','vehicles'))<li class="active"><a href="vehicles-list.html">Vehicles </a></li> @endif
+                @if($user->can('view','vehicles'))<li class="active"><a href="{{url('/')}}/vehicles">Vehicles </a></li> @endif
                 @if($user->can('view','onlineStore')) <li><a href="store.html">Online Store </a></li> @endif
                 @if($user->can('view','products')) <li><a href="store.html">View Store</a></li> @endif
                 @if($user->can('view','orders')) <li><a href="store.html">View Orders</a></li> @endif

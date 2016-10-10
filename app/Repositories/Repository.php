@@ -35,4 +35,8 @@ class Repository
         return $this->getModel()->create($attrs);
     }
 
+    public function deleteById()
+    {
+
+    }
 }

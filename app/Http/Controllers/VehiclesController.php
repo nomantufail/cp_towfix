@@ -40,7 +40,16 @@ class VehiclesController extends ParentController
     public function listVehicles(Requests\Vehicle\ListVehiclesRequest $request)
     {
         try{
-           return view('vehicle.list', ['vehicles'=> $this->vehiclesRepo->all(), 'vehicle_types'=>$this->vehicleTypesRepo->getIndexed()]);
+            return view('vehicle.list', ['vehicles'=> $this->vehiclesRepo->all(), 'vehicle_types'=>$this->vehicleTypesRepo->getIndexed()]);
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
+    }
+    public function delete(Requests\Vehicle\DeleteVehicleRequest $request)
+    {
+        try{
+            $this->vehiclesRepo->delete($request->input('id'));
+            return redirect()->back()->with('success','Vehicle deleted successfully');
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());
         }

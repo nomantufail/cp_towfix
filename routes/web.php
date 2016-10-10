@@ -25,6 +25,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/vehicle/add', [
         'uses'=>'VehiclesController@StoreVehicle'
     ]);
+    Route::post('/vehicle/delete', [
+        'uses'=>'VehiclesController@delete'
+    ]);
 
     Route::get('/logout', function ()    {
         Auth::logout();

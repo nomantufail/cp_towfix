@@ -15,6 +15,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [
         'uses'=>'HomeController@index'
     ]);
+    Route::get('/vehicle/add', [
+        'uses'=>'VehiclesController@ShowAddVehicleForm'
+    ]);
+    Route::post('/vehicle/add', [
+        'uses'=>'VehiclesController@StoreVehicle'
+    ]);
 
     Route::get('/logout', function ()    {
         Auth::logout();

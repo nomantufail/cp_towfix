@@ -11,7 +11,7 @@
     <section class="vehicles-list">
         <div class="vehicles-head">
             <h3>Your Vehicles</h3>
-            <a href="add-vehicle.html" class="btn btn-primary pull-right">Add a Vehicles</a>
+            <a href="{{url('/')}}/vehicle/add" class="btn btn-primary pull-right">Add a Vehicles</a>
         </div>
         <div class="vehicles-list-content">
             <div class="vehicles-table">
@@ -42,7 +42,7 @@
                             <td><a href="vehicle-detail.html">View</a></td>
                             <td>
                                 <a href="add-vehicle.html"><i class="fa fa-edit fa-fw"></i></a>
-                                <a href="#"><i class="fa fa-trash fa-fw"></i></a>
+                                <form method="post" action="{{url('/')}}/vehicle/delete">{{csrf_field()}}<input type="hidden" value="{{$vehicle->id}}" name="id"><button><i class="fa fa-trash fa-fw"></i></button></form>
                             </td>
                         </tr>
                     @endforeach

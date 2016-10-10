@@ -37,6 +37,20 @@ class Repository
 
     public function deleteById($id)
     {
-        $this->getModel()->destroy($id);
+        return $this->getModel()->destroy($id);
+    }
+
+    public function findById($id)
+    {
+        return $this->getModel()->find($id);
+    }
+
+    public function updateWhere($where, $attrs)
+    {
+        $query = $this->getModel();
+        foreach($where as $key => $value){
+            $query = $query->where($key,'=',$value);
+        }
+        return $query->update($attrs);
     }
 }

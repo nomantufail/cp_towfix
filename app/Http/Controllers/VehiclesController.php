@@ -37,6 +37,29 @@ class VehiclesController extends ParentController
         }
     }
 
+    public function editVehicleForm(Requests\Vehicle\EditVehicleRequest $request, $vehicle_id)
+    {
+        try{
+            $data = [
+                'vehicleTypes' => $this->vehicleTypesRepo->all(),
+                'vehicle' => $this->vehiclesRepo->findById($vehicle_id)
+            ];
+            return view('vehicle.edit-vehicle-form', $data);
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
+    }
+
+    public function updateVehicle(Requests\Vehicle\UpdateVehicleRequest $request, $vehicle_id)
+    {
+        try{
+            $this->vehiclesRepo->updateWhere(['id' => $vehicle_id], $request->updateableAttrs());
+            return redirect()->back()->with('success','Vehicle#'.$vehicle_id.' updated Successfully');
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
+    }
+
     public function listVehicles(Requests\Vehicle\ListVehiclesRequest $request)
     {
         try{

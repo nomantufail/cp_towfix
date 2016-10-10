@@ -41,7 +41,7 @@
                             <td>10/3/16</td>
                             <td><a href="vehicle-detail.html">View</a></td>
                             <td>
-                                <a href="add-vehicle.html"><i class="fa fa-edit fa-fw"></i></a>
+                                <a href="{{url('/')}}/vehicle/update/{{$vehicle->id}}"><i class="fa fa-edit fa-fw"></i></a>
                                 <form method="post" action="{{url('/')}}/vehicle/delete">{{csrf_field()}}<input type="hidden" value="{{$vehicle->id}}" name="id"><button><i class="fa fa-trash fa-fw"></i></button></form>
                             </td>
                         </tr>

@@ -4,6 +4,13 @@ namespace App\Http\Requests\Vehicle;
 
 class UpdateVehicleRequest extends VehicleRequest
 {
+
+    public function updateableAttrs()
+    {
+        return [
+            'vehicle_type_id' => $this->input('vehicle_type_id')
+        ];
+    }
     /**
      * Determine if the user is authorized to make this request.
      *

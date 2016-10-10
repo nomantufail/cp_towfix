@@ -25,6 +25,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/vehicle/add', [
         'uses'=>'VehiclesController@StoreVehicle'
     ]);
+    Route::get('/vehicle/update/{vehicle_id}', [
+        'uses'=>'VehiclesController@editVehicleForm'
+    ]);
+    Route::post('/vehicle/update/{vehicle_id}', [
+        'uses'=>'VehiclesController@updateVehicle'
+    ]);
     Route::post('/vehicle/delete', [
         'uses'=>'VehiclesController@delete'
     ]);

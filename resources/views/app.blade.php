@@ -12,7 +12,7 @@
 <body>
 <aside class="sidebar">
     <div class="logo">
-        <a href="index.html">
+        <a href="{{url('/')}}">
             <img src="{{url('/')}}/images/logo.png" alt="" width="150">
         </a>
     </div>

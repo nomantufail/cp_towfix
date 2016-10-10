@@ -48,7 +48,7 @@ class VehiclesController extends ParentController
     public function delete(Requests\Vehicle\DeleteVehicleRequest $request)
     {
         try{
-            $this->vehiclesRepo->delete($request->input('id'));
+            $this->vehiclesRepo->deleteById($request->input('id'));
             return redirect()->back()->with('success','Vehicle deleted successfully');
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());

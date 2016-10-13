@@ -15,6 +15,6 @@ class CustomerServicesRequestsPolicy extends Policy
 
     public function view(User $user , CustomerServiceRequest $customerServiceRequest=null)
     {
-        return ($user->isFranchise());
+        return ($user->isFranchise() || $user->isCustomer());
     }
 }

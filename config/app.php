@@ -242,6 +242,7 @@ return [
         'VehiclesPolicy' => \App\Policies\VehiclesPolicy::class,
         'CustomersPolicy' => \App\Policies\CustomersPolicy::class,
         'FranchisesPolicy' => \App\Policies\FranchisesPolicy::class,
+        'UsersPolicy' => \App\Policies\UsersPolicy::class,
     ],
 
 ];

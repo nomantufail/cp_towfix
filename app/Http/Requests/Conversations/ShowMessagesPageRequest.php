@@ -1,15 +1,9 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Conversations;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class Request extends FormRequest
+class ShowMessagesPageRequest extends ConversationsRequest
 {
-    public function forbiddenResponse()
-    {
-        return parent::forbiddenResponse();
-    }
 
     /**
      * Determine if the user is authorized to make this request.

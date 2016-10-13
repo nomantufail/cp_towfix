@@ -35,6 +35,20 @@ Route::group(['middleware' => 'auth'], function () {
         'uses'=>'VehiclesController@delete'
     ]);
 
+
+    Route::get('/messages', [
+        'uses'=>'ConversationsController@users'
+    ]);
+    Route::get('/create-new-message', [
+        'uses'=>'ConversationsController@create'
+    ]);
+    Route::post('/message/send', [
+        'uses'=>'ConversationsController@send'
+    ]);
+    Route::get('/messages/{user_id}', [
+        'uses'=>'ConversationsController@userMessages'
+    ]);
+
     Route::get('/logout', function ()    {
         Auth::logout();
         return redirect('/');

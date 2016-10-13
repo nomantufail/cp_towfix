@@ -8,6 +8,8 @@
     <link type="text/css" href="{{url('/')}}/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/css/jquery.dataTables.css" />
     <link type="text/css" href="{{url('/')}}/css/theme.css" rel="stylesheet" />
+
+    <script type="text/javascript" language="javascript" src="{{url('/')}}/js/jquery.min.js"></script>
 </head>
 <body>
 <aside class="sidebar">
@@ -29,7 +31,7 @@
                 @if($user->can('view','newsletters')) <li><a href="store.html">Newsletters</a></li> @endif
                 @if($user->can('view','customerServicesRequests'))
                     <li>
-                        <a href="store.html">
+                        <a href="{{url('/')}}/service-requests">
                             @if($user->isFranchise())
                                 Customers Service Requests
                             @elseif($user->isCustomer())
@@ -49,12 +51,12 @@
                         @endif
                     </a>
                     <ul>
-                        <li><a href="store.html">Older Messages</a></li>
-                        <li><a href="frenchise.html">Create New Messages</a></li>
+                        <li><a href="{{url('/')}}/messages">Older Messages</a></li>
+                        <li><a href="{{url('/')}}/create-new-message">Create New Messages</a></li>
                     </ul>
                 </li>
                 @endif
-                <li class=""><a href="vehicles-list.html">Logout</a></li>
+                <li class=""><a href="{{url('/')}}/logout">Logout</a></li>
             </ul>
         @endif
     </nav>
@@ -92,7 +94,6 @@
     @yield('page')
 </main>
 <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>-->
-<script type="text/javascript" language="javascript" src="{{url('/')}}/js/jquery.min.js"></script>
 <script src="{{url('/')}}/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="{{url('/')}}/js/jquery.dataTables.js"></script>
 <script>

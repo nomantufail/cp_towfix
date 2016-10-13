@@ -25,7 +25,11 @@ class SendMessageRequest extends ConversationsRequest
      */
     public function authorize()
     {
-        return Auth::user()->can("sendMessageTo", 'users', (new UsersRepository(new User()))->findById($this->input('receiver')));
+        try{
+            return Auth::user()->can("sendMessageTo", 'users', (new UsersRepository(new User()))->findById($this->input('receiver')));
+        }catch (\Exception $e){
+            return false;
+        }
     }
 
     /**

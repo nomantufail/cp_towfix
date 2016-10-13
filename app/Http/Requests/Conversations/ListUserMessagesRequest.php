@@ -16,7 +16,11 @@ class ListUserMessagesRequest extends ConversationsRequest
      */
     public function authorize()
     {
-        return Auth::user()->can("sendMessageTo", 'users', (new UsersRepository(new User()))->findById($this->route()->parameter('user_id')));
+        try{
+            return Auth::user()->can("sendMessageTo", 'users', (new UsersRepository(new User()))->findById($this->route()->parameter('user_id')));
+        }catch (\Exception $e){
+            return false;
+        }
     }
 
     /**
@@ -27,7 +31,7 @@ class ListUserMessagesRequest extends ConversationsRequest
     public function rules()
     {
         return [
-            'user_id' => 'required'
+            'user_id' => 'required|exists:users,id'
         ];
     }
 

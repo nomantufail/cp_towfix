@@ -49,6 +49,11 @@ Route::group(['middleware' => 'auth'], function () {
         'uses'=>'ConversationsController@userMessages'
     ]);
 
+
+    Route::get('/products', [
+        'uses'=>'ProductsController@showProducts'
+    ]);
+
     Route::get('/logout', function ()    {
         Auth::logout();
         return redirect('/');

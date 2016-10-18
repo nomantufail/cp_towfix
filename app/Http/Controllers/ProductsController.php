@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Repositories\ProductImagesRepository;
 use App\Repositories\ProductsRepository;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends ParentController
 {
@@ -20,7 +21,7 @@ class ProductsController extends ParentController
     public function showProducts(Requests\Product\ViewProductsRequest $request)
     {
         $products = $this->products->getWithDetails();
-        if($request->user()->isCustomer()){
+        if(Auth::user()->isCustomer()){
             return view('products.online-store', ['products'=>$products]);
         }else{
             return view('products.list-products', ['products'=>$products]);

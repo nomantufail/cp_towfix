@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Product;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Request;
 
-class ViewProductsRequest extends FormRequest
+class ShowProductDetailRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,15 @@ class ViewProductsRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'product_id' => 'required|exists:products,id'
         ];
+    }
+
+    public function all()
+    {
+        return array_replace_recursive(
+            parent::all(),
+            $this->route()->parameters()
+        );
     }
 }

@@ -53,6 +53,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/products', [
         'uses'=>'ProductsController@showProducts'
     ]);
+    Route::get('/product/add', [
+        'uses'=>'ProductsController@showAddProductForm'
+    ]);
+    Route::post('/product/add', [
+        'uses'=>'ProductsController@addProduct'
+    ]);
+    Route::get('/product/{product_id}', [
+        'uses'=>'ProductsController@productDetail'
+    ]);
 
     Route::get('/logout', function ()    {
         Auth::logout();

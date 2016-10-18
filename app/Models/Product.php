@@ -8,6 +8,7 @@ class Product extends Model
 {
     protected $table = "products";
 
+    protected $fillable = ['name', 'price', 'detail'];
     /**
      * Get the images for the product.
      */

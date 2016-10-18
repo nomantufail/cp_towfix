@@ -9,6 +9,8 @@
 namespace App\Repositories;
 
 
+use Illuminate\Support\Facades\DB;
+
 class Repository
 {
     protected $model = null;
@@ -33,6 +35,11 @@ class Repository
     public function store($attrs = [])
     {
         return $this->getModel()->create($attrs);
+    }
+
+    public function insertMultiple($records = [])
+    {
+        return DB::table($this->getModel()->getTable())->insert($records);
     }
 
     public function deleteById($id)

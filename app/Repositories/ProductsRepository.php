@@ -20,6 +20,11 @@ class ProductsRepository extends Repository
 
     public function getWithDetails()
     {
+        return $this->getModel()->with('images')->get();
+    }
 
+    public function findFullById($productId)
+    {
+        return $this->getModel()->with('images')->where('id',$productId)->first();
     }
 }

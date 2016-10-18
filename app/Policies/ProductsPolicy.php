@@ -15,6 +15,6 @@ class ProductsPolicy extends Policy
 
     public function view(User $user , Product $product=null)
     {
-        return ($user->isAdmin());
+        return ($user->isAdmin() || $user->isCustomer());
     }
 }

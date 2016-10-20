@@ -32,7 +32,7 @@ class NewslettersController extends ParentController
 
     public function newsletterDetail(Requests\Newsletter\ShowNewsletterDetailRequest $request)
     {
-        return view('products.newsletter-detail', ['Newsletter'=>$this->newsletters->findById($request->route()->parameter('newsletter_id'))]);
+        return view('newsletters.newsletter-detail', ['newsletter'=>$this->newsletters->findById($request->route()->parameter('newsletter_id'))]);
     }
 
     public function addNewsletter(Requests\Newsletter\AddNewsletterRequest $request)
@@ -52,10 +52,32 @@ class NewslettersController extends ParentController
         }
     }
 
+    public function showEditNewsletterForm(Requests\Newsletter\ShowEditNewsletterFormRequest $request)
+    {
+        return view('newsletters.edit-newsletter',['newsletter' => $this->newsletters->findById($request->route()->parameter('newsletter_id'))]);
+    }
+
+    public function updateNewsletter(Requests\Newsletter\UpdateNewsletterRequest $request)
+    {
+        try{
+            $public_path = '/images/newsletters/';
+            $filename = $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path($public_path), $filename);
+            $this->newsletters->updateWhere(['id'=>$request->route()->parameter('newsletter_id')],[
+                'name' => $request->input('name'),
+                'detail' => $request->input('detail'),
+                'image' => $public_path.$filename
+            ]);
+            return redirect()->back()->with('success','Newsletter Updated Successfully');
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
+    }
+
     public function delete(Requests\Newsletter\DeleteNewsletterRequest $request)
     {
         try{
-            $this->newsletters->deleteById($request->input('id'));
+            $this->newsletters->deleteById($request->route()->parameter('newsletter_id'));
             return redirect()->back()->with('success','Newsletter deleted successfully');
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());

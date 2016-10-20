@@ -20,7 +20,7 @@
                             </figure>
                             <div class="store-content">
                                 <h4>{{$newsletter->name}}</h4>
-                                <p>{{$newsletter->detail}}</p>
+                                <p>{{str_limit($newsletter->detail, 150)}}</p>
                                 <a href="{{url('/')}}/newsletter/{{$newsletter->id}}">Read More</a>
                             </div>
                         </div>

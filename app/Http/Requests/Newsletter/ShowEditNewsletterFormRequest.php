@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Newsletter;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Request;
 
 class ShowEditNewsletterFormRequest extends Request
 {
@@ -24,7 +24,7 @@ class ShowEditNewsletterFormRequest extends Request
     public function rules()
     {
         return [
-            //
+            'newsletter_id' => 'required|exists:newsletters,id'
         ];
     }
 }

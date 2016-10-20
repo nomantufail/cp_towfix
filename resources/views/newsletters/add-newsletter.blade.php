@@ -22,7 +22,7 @@
 
                     <label>
                         <span>Newsletter Title</span>
-                        <input type="text" name="name" placeholder="Product Name">
+                        <input type="text" name="name" placeholder="Newsletter title">
                     </label>
 
 

@@ -34,7 +34,7 @@
                     @foreach($newsletters as $newsletter)
                     <tr>
                         <td>{{$newsletter->name}}</td>
-                        <td>{{$newsletter->detail}}</td>
+                        <td>{{str_limit($newsletter->detail, 150)}}</td>
                         <td><a href="{{url('/')}}/newsletter/{{$newsletter->id}}">View</a></td>
                         <td>
                             <a href="{{url('/')}}/newsletter/edit/{{$newsletter->id}}"><i class="fa fa-edit fa-fw"></i></a>

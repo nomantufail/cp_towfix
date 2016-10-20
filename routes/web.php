@@ -63,6 +63,15 @@ Route::group(['middleware' => 'auth'], function () {
         'uses'=>'ProductsController@productDetail'
     ]);
 
+
+    Route::get('/orders', [
+        'uses'=>'OrdersController@showOrders'
+    ]);
+    Route::post('/order/delete/{order_id}', [
+        'uses'=>'OrdersController@delete'
+    ]);
+
+
     Route::get('/logout', function ()    {
         Auth::logout();
         return redirect('/');

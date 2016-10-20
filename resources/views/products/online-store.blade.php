@@ -23,7 +23,7 @@
                         </figure>
                         <div class="store-content">
                             <p>{{$product->detail}}</p>
-                            <a href="vehicle-detail.html" class="btn btn-primary">View Product</a>
+                            <a href="{{url('/')}}/product/{{$product->id}}" class="btn btn-primary">View Product</a>
                         </div>
                     </div>
                 </li>

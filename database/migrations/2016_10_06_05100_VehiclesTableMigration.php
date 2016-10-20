@@ -25,6 +25,18 @@ class VehiclesTableMigration extends Migration
             $table->foreign('vehicle_type_id')
                 ->references('id')->on('vehicle_types')
                 ->onDelete('cascade');
+            $table->string('make');
+            $table->string('model');
+            $table->string('year');
+            $table->string('year_purchased');
+            $table->string('last_service');
+            $table->string('next_service');
+            $table->string('registration_number');
+            $table->string('registration_expiry');
+            $table->string('engine_capacity');
+            $table->integer('number_axles');
+            $table->text('details');
+
         });
     }
 

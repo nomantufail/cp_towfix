@@ -14,11 +14,18 @@ class ProdutsTableMigration extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
+
             $table->increments('id');
             $table->string('name');
-            $table->string('price');
+            $table->integer('price')->default(0);
             $table->string('detail');
             $table->timestamps();
+            $table->string('contact')->default('');
+            $table->string('email')->default('');
+            $table->string('address')->default('');
+            $table->integer('is_poster')->default(0);
+
+
         });
     }
 

@@ -64,6 +64,29 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
 
 
+    Route::get('/newsletters', [
+        'uses'=>'NewslettersController@showNewsletters'
+    ]);
+    Route::get('/newsletter/add', [
+        'uses'=>'NewslettersController@showAddNewsletterForm'
+    ]);
+    Route::post('/newsletter/add', [
+        'uses'=>'NewslettersController@addNewsletter'
+    ]);
+    Route::get('/newsletter/edit/{newsletter_id}', [
+        'uses'=>'NewslettersController@showEditNewsletterForm'
+    ]);
+    Route::post('/newsletter/edit/{newsletter_id}', [
+        'uses'=>'NewslettersController@updateNewsletter'
+    ]);
+    Route::get('/newsletter/{newsletter_id}', [
+        'uses'=>'NewslettersController@newsletterDetail'
+    ]);
+    Route::post('/newsletter/delete/{newsletter_id}', [
+        'uses'=>'NewslettersController@delete'
+    ]);
+
+
     Route::get('/orders', [
         'uses'=>'OrdersController@showOrders'
     ]);

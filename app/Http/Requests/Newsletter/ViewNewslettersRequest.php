@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Product;
+namespace App\Http\Requests\Newsletter;
 
 use App\Http\Requests\Request;
 
-class ShowProductDetailRequest extends Request
+class ViewNewslettersRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class ShowProductDetailRequest extends Request
     public function rules()
     {
         return [
-            'product_id' => 'required|exists:products,id'
+            //
         ];
     }
 }

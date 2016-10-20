@@ -42,8 +42,14 @@
                     </a>
                     </li>
                 @endif
-                @if($user->can('view','orders')) <li><a href="store.html">View Orders</a></li> @endif
-                @if($user->can('view','newsletters')) <li><a href="store.html">Newsletters</a></li> @endif
+                @if($user->can('view','orders')) <li><a href="{{url('/')}}/orders">View Orders</a></li> @endif
+                @if($user->can('view','newsletters'))
+                    <li>
+                        <a href="{{url('/')}}/newsletters">
+                            Newsletters
+                        </a>
+                    </li>
+                @endif
                 @if($user->can('view','customerServicesRequests'))
                     <li>
                         <a href="{{url('/')}}/service-requests">

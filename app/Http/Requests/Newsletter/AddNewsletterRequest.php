@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Product;
+namespace App\Http\Requests\NewsLetter;
 
 use App\Http\Requests\Request;
 
-class ShowProductDetailRequest extends Request
+class AddNewsletterRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class ShowProductDetailRequest extends Request
     public function rules()
     {
         return [
-            'product_id' => 'required|exists:products,id'
+            'name' => 'required',
+            'image'=>'image|max:2000'
         ];
     }
 }

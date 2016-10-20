@@ -32,4 +32,13 @@ class Request extends FormRequest
             //
         ];
     }
+
+
+    public function all()
+    {
+        return array_replace_recursive(
+            parent::all(),
+            $this->route()->parameters()
+        );
+    }
 }

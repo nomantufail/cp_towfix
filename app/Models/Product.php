@@ -16,4 +16,13 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\ProductImage');
     }
+
+
+    /**
+     * Get the orders that has this product.
+     */
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
 }

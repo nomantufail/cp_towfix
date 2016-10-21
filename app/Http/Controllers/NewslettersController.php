@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Repositories\NewslettersRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 
 class NewslettersController extends ParentController
 {
@@ -72,6 +74,34 @@ class NewslettersController extends ParentController
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());
         }
+    }
+
+    public function deleteImage(\Illuminate\Http\Request $request)
+    {
+        $imagePath = $request->input('path');
+
+        File::delete($imagePath);
+        $id = $request->input('id');
+        //$this->newsletters->updateWhere(['id'=>$id],['image'=>'']);
+        if($this->newsletters->updateWhere(['id'=>$id],['image'=>'']))
+        {
+            return Response::json(array(
+                'status' => 'success',
+
+
+            ), 200);
+        }
+        else{
+            return Response::json(array(
+                'status' => 'failure',
+
+
+            ), 200);
+
+        }
+
+
+
     }
 
     public function delete(Requests\Newsletter\DeleteNewsletterRequest $request)

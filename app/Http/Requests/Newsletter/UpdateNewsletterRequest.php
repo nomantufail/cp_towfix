@@ -26,7 +26,8 @@ class UpdateNewsletterRequest extends Request
         return [
             'newsletter_id' => 'required|exists:newsletters,id',
             'name' => 'required',
-            'image'=>'image|max:2000'
+            'image'=>'image|max:2000',
+            'detail' => 'required'
         ];
     }
 }

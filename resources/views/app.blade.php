@@ -8,10 +8,14 @@
     <link type="text/css" href="{{url('/')}}/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/css/jquery.dataTables.css" />
     <link type="text/css" href="{{url('/')}}/css/theme.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <script type="text/javascript" language="javascript" src="{{url('/')}}/js/jquery.min.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.bxslider.min.js"></script>
+
+    {{--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--}}
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
 <aside class="sidebar">
@@ -112,6 +116,7 @@
 </main>
 <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>-->
 <script src="{{url('/')}}/js/bootstrap.min.js"></script>
+<script src="<?php echo asset('js/jquery.datetimepicker.js') ?>"> </script>
 <script>
     $(document).ready(function(){
         $('#tableStyle').DataTable( {
@@ -132,5 +137,6 @@
         });
     });
 </script>
+<script src="<?php echo asset('js/towfix.js') ?>"> </script>
 </body>
 </html>

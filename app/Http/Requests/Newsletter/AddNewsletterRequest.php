@@ -25,7 +25,8 @@ class AddNewsletterRequest extends Request
     {
         return [
             'name' => 'required',
-            'image'=>'image|max:2000'
+            'image'=>'image|max:2000',
+            'detail' => 'required'
         ];
     }
 }

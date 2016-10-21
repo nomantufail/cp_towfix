@@ -810,6 +810,18 @@ ul.tabs li.current{
 	float: left;
 }
 
+.add-vehicle-widget label.full-field {
+	clear: both;
+}
+.add-vehicle-widget label .alert-danger{
+	padding: 2px 0 0;
+	background: transparent;
+	border: 0px;
+	border-radius: 0;
+	margin-bottom: 0px;
+}
+
+
 .add-vehicle-widget label span{
 	display: block;
 	margin-bottom: 5px;

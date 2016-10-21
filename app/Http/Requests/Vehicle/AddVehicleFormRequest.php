@@ -24,7 +24,8 @@ class AddVehicleFormRequest extends VehicleRequest
     public function rules()
     {
         return [
-            //
+
+
         ];
     }
 }

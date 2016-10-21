@@ -22,7 +22,7 @@
                             <h4>{{$product->title}}</h4>
                         </figure>
                         <div class="store-content">
-                            <p>{{$product->detail}}</p>
+                            <p>{{str_limit($product->detail, 150)}}</p>
                             <a href="{{url('/')}}/product/{{$product->id}}" class="btn btn-primary">View Product</a>
                         </div>
                     </div>

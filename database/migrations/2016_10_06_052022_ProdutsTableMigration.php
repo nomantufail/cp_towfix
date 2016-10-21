@@ -18,7 +18,7 @@ class ProdutsTableMigration extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('price')->default(0);
-            $table->string('detail');
+            $table->text('detail');
             $table->timestamps();
             $table->string('contact')->default('');
             $table->string('email')->default('');

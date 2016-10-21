@@ -9,6 +9,9 @@
 @extends('app')
 
 @section('page')
+    <?php
+    //dd($errors);
+    ?>
     <section class="add-vehicle">
         @if(\Session::has('success'))
             <h4>
@@ -17,7 +20,7 @@
         @endif
         <h2 class="main-heading">Edit A Newsletter</h2>
         <div class="add-vehicle-widget">
-            <form class="add-vehicle-form" method="post" action="{{url('/')}}/newsletter/edit/{{$newsletter->id}}">
+            <form class="add-vehicle-form" method="post" action="{{url('/')}}/newsletter/edit/{{$newsletter->id}}" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <label>
                     <span>Newsletter Title</span>
@@ -44,10 +47,11 @@
                     @endif
                 </label>
                 <input type="hidden" id="record_id" value="{{$newsletter->id}}">
-                <img id="image_path" src="{{ url('/').$newsletter->image }}" />
-
-                <input type="button" class="btn btn btn-primary" id="delete_image" value="Delete">
-                <label  style="clear: both">
+                @if($newsletter->image != "")
+                    <img id="image_path" src="{{ url('/').$newsletter->image }}" />
+                    <input type="button" class="btn btn btn-primary" id="delete_image" value="Delete">
+                @endif
+                <label  style="clear: both" id="file_chooser">
                     <input id="image" type="file" name="image">
                 </label>
                 <label class="submit">
@@ -61,13 +65,8 @@
 
 
         $(function() {
-
-            var path1 = $('#image_path').attr('src');
-            console.log(path1);
-            if(path1 != '')
-            {
-
-                $("#image").hide();
+            if($('#image_path').length){
+                $('#file_chooser').hide();
             }
         } );
 
@@ -75,16 +74,11 @@
 
             var path = $('#image_path').attr('src');
             var id = $("#record_id").val();
-            $("#image_path").hide();
-            $("#delete_image").hide();
             deleteImage(path , id);
-
         });
 
         function deleteImage(path , id)
         {
-            console.log(path);
-
             $.ajax({
 
                 type: 'POST' ,
@@ -92,7 +86,9 @@
                 url: base_url + 'deleteImage' ,
                 success: function (data)
                 {
-                    console.log(data.status);
+                    $('#file_chooser').show();
+                    $("#delete_image").hide();
+                    $("#image_path").hide();
                 }
             });
 

@@ -62,14 +62,17 @@ class NewslettersController extends ParentController
     public function updateNewsletter(Requests\Newsletter\UpdateNewsletterRequest $request)
     {
         try{
-            $public_path = '/images/newsletters/';
-            $filename = $request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path($public_path), $filename);
-            $this->newsletters->updateWhere(['id'=>$request->route()->parameter('newsletter_id')],[
+            $updateable_attrs = [
                 'name' => $request->input('name'),
                 'detail' => $request->input('detail'),
-                'image' => $public_path.$filename
-            ]);
+            ];
+            if($request->file('image') != null){
+                $public_path = '/images/newsletters/';
+                $filename = $request->file('image')->getClientOriginalName();
+                $request->file('image')->move(public_path($public_path), $filename);
+                $updateable_attrs['image'] = $public_path.$filename;
+            }
+            $this->newsletters->updateWhere(['id'=>$request->route()->parameter('newsletter_id')],$updateable_attrs);
             return redirect()->back()->with('success','Newsletter Updated Successfully');
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());

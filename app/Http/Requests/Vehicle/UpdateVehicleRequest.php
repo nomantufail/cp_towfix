@@ -29,7 +29,18 @@ class UpdateVehicleRequest extends VehicleRequest
     public function rules()
     {
         return [
-            //
+            'vehicle_type_id' => 'required',
+            'make' => 'required',
+            'model' => 'required',
+            'year' => 'required',
+            'year_purchased' => 'required',
+            'last_service' => 'required',
+            'next_service' => 'required',
+            'registration_number' => 'required',
+            'registration_expiry' => 'required',
+            'engine_capacity' => 'required',
+            'number_axles' => 'required',
+            'details' => 'required'
         ];
     }
 }

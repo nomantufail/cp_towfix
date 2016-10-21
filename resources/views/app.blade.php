@@ -52,7 +52,7 @@
                 @endif
                 @if($user->can('view','customerServicesRequests'))
                     <li>
-                        <a href="{{url('/')}}/service-requests">
+                        <a href="#">
                             @if($user->isFranchise())
                                 Customers Service Requests
                             @elseif($user->isCustomer())
@@ -61,7 +61,7 @@
                         </a>
                     </li>
                 @endif
-                @if($user->can('view','manuals')) <li><a href="store.html">Manuals</a></li> @endif
+                @if($user->can('view','manuals')) <li><a href="#">Manuals</a></li> @endif
                 @if($user->can('view', 'messages'))
                 <li>
                     <a href="">
@@ -100,7 +100,9 @@
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                         <li><a href="#">Edit Profile</a></li>
-                        <li><a href="#">Messages <span>22</span></a></li>
+                        @if($user->can('view', 'messages'))
+                        <li><a href="{{url('/')}}/messages">Messages <span>22</span></a></li>
+                        @endif
                         <li><a href="{{url('/')}}/logout">Logout</a></li>
                     </ul>
                 </div>

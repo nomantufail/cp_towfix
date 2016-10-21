@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Vehicle;
+namespace App\Http\Requests\Users;
 
 
-class EditVehicleRequest extends VehicleRequest
+use App\Http\Requests\Request;
+
+class DeleteUserRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +25,7 @@ class EditVehicleRequest extends VehicleRequest
     public function rules()
     {
         return [
-            //
+            "user_id" => 'required|exits:users,id'
         ];
     }
 }

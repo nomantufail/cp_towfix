@@ -37,9 +37,9 @@
                         <td>{{$product->name}}</td>
                         <td>EF457R</td>
                         <td>{{$product->price}}</td>
-                        <td><a href="product-detail.html">View</a></td>
+                        <td><a href="#">View</a></td>
                         <td>
-                            <a href="add-product.html"><i class="fa fa-edit fa-fw"></i></a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i></a>
                             <a href="#"><i class="fa fa-trash fa-fw"></i></a>
                         </td>
                     </tr>

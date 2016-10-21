@@ -47,8 +47,8 @@
                 <img id="image_path" src="{{ url('/').$newsletter->image }}" />
 
                 <input type="button" class="btn btn btn-primary" id="delete_image" value="Delete">
-                <label style="clear: both">
-                    <input type="file" name="image">
+                <label  style="clear: both">
+                    <input id="image" type="file" name="image">
                 </label>
                 <label class="submit">
                     <input type="submit" class="btn btn btn-primary" name="submit" value="Submit">
@@ -59,6 +59,17 @@
     </section>
     <script>
 
+
+        $(function() {
+
+            var path1 = $('#image_path').attr('src');
+            console.log(path1);
+            if(path1 != '')
+            {
+
+                $("#image").hide();
+            }
+        } );
 
         $(document).on("click", "#delete_image", function () {
 

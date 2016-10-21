@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Repositories\ConversationsRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class ConversationsController extends ParentController
 {
@@ -45,7 +46,7 @@ class ConversationsController extends ParentController
     {
         try{
             $this->conversationsRepo->sendMessage($request->messageAttrs());
-            return redirect()->back()->with('success','Message sent successfully');
+        return redirect()->route('user_messages', array('user_id' => $request->messageAttrs()['receiver_id']))->with('success','Message sent successfully');
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());
         }

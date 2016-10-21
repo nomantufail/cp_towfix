@@ -46,7 +46,8 @@ Route::group(['middleware' => 'auth'], function () {
         'uses'=>'ConversationsController@send'
     ]);
     Route::get('/messages/{user_id}', [
-        'uses'=>'ConversationsController@userMessages'
+        'uses'=>'ConversationsController@userMessages',
+        'as' => 'user_messages'
     ]);
 
 
@@ -86,6 +87,13 @@ Route::group(['middleware' => 'auth'], function () {
         'uses'=>'NewslettersController@delete'
     ]);
 
+
+    Route::get('/customers', [
+        'uses'=>'UsersController@listCustomers'
+    ]);
+    Route::get('/customer/services', [
+        'uses'=>'ServicesController@showNewsletters'
+    ]);
 
     Route::get('/orders', [
         'uses'=>'OrdersController@showOrders'

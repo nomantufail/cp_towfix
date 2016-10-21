@@ -22,16 +22,37 @@
 
                     <label>
                         <span>Newsletter Title</span>
-                        <input type="text" name="name" placeholder="Newsletter title">
+                        <input type="text" name="name" placeholder="Newsletter title" value="{{old('name')}}">
+                        @if ($errors->has('name'))
+                            <div class="alert alert-danger">
+                                @foreach ($errors->get('name') as $message)
+                                    {{ $message }}<br>
+                                @endforeach
+                            </div>
+                        @endif
                     </label>
 
 
                     <label style="clear: both">
                         <span>Detail</span>
-                        <textarea name="detail" placeholder="Detail"></textarea>
+                        <textarea name="detail" placeholder="Detail">{{old('detail')}}</textarea>
+                        @if ($errors->has('detail'))
+                            <div class="alert alert-danger">
+                                @foreach ($errors->get('detail') as $message)
+                                    {{ $message }}<br>
+                                @endforeach
+                            </div>
+                        @endif
                     </label>
                     <label style="clear: both">
                         <input type="file" name="image">
+                        @if ($errors->has('image'))
+                            <div class="alert alert-danger">
+                                @foreach ($errors->get('image') as $message)
+                                    {{ $message }}<br>
+                                @endforeach
+                            </div>
+                        @endif
                     </label>
                     <label class="submit">
                         <input type="submit" class="btn btn btn-primary" name="submit" value="Submit">

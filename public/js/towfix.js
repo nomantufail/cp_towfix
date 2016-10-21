@@ -1,20 +1,6 @@
-/**
- * Created by Mobeen on 10/19/2016.
- */
-//$(document).ready(function(){
-//
-//    var check_poster = $("#ad").val();
-//    if(ad == 1)
-//    {
-//        console.log('yo');
-//        $("#ad_form").show();
-//    }
-//
-//});
 
 
-
-
+var base_url = "http://localhost/cp_towfix/public/";
 $(function() {
     $(".datetimepicker").datepicker();
     $('#ad').trigger('change');
@@ -39,3 +25,7 @@ $(document).on("change", "#ad", function () {
     }
     console.log('asd');
 });
+
+
+
+

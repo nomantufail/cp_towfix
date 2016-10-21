@@ -39,8 +39,8 @@ class UpdateVehicleRequest extends VehicleRequest
             'registration_number' => 'required',
             'registration_expiry' => 'required',
             'engine_capacity' => 'required',
-            'number_axles' => 'required',
-            'details' => 'required'
+            'number_axles' => 'required'
+
         ];
     }
 }

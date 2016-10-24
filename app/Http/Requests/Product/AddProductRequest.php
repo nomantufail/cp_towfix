@@ -6,7 +6,7 @@ use App\Http\Requests\Request;
 
 class AddProductRequest extends Request
 {
-    protected $maxImages = 2;
+    protected $maxImages = 10;
     public function storableAttrs()
     {
         $storableAttrs = [

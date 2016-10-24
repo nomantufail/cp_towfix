@@ -101,9 +101,10 @@
                 </label>
 
                 @foreach($productImages as $img)
-                    <img id="image_path" src="{{ url('/').$img->path }}" />
-                    <input type="button" class="btn btn btn-primary" id="delete_image" value="Delete">
-                    <input type="hidden" id="record_id" value="{{$img->id}}">
+                    <div class="image-packet">
+                        <img class="image_path" src="{{ url('/').$img->path }}" data-id="{{$img->id}}"/>
+                        <a class="del-img-btn" style="font-size: 25px;">X</a>
+                    </div>
                 @endforeach
 
                 <label style="clear: both">
@@ -133,30 +134,14 @@
             }
         } );
 
-        $(document).on("click", "#delete_image", function () {
-
-            var path = $('#image_path').attr('src');
-            var id = $("#record_id").val();
-            deleteImage(path , id);
-
-        });
-
-        function deleteImage(path , id)
-        {
-            console.log('yes');
-            $.ajax({
-
-                type: 'POST' ,
-                data: {path: path , id: id, _token:"<?= csrf_token() ?>" },
-                url: base_url + 'productDeleteImage' ,
+        $(document).on('click', '.del-img-btn', function(){
+            let image_id = $(this).siblings('img').attr('data-id');
+            $.ajax({type: 'POST' , data: {}, url: base_url + 'api/product_image/delete' ,
                 success: function (data)
                 {
-                    $('#file_chooser').show();
-                    $("#delete_image").hide();
-                    $("#image_path").hide();
+                    console.log(data);
                 }
             });
-
-        }
+        });
     </script>
 @endsection

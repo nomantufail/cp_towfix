@@ -86,8 +86,9 @@ class ProductsController extends ParentController
         }
     }
 
-    public function productDeleteImage(\Illuminate\Http\Request $request)
+    public function deleteImageById(\Illuminate\Http\Request $request)
     {
+        dd('hi');
         $imagePath = $request->input('path');
 
         //File::delete($imagePath);

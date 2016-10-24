@@ -108,7 +108,7 @@
                 @endforeach
 
                 <label style="clear: both">
-                    <input type="file" name="images[]" multiple>
+                    <input type="file" name="images[]" multiple id="file_chooser">
                     @if ($errors->has('images'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('images') as $message)
@@ -129,17 +129,25 @@
 
 
         $(function() {
-            if($('#image_path').length){
-                $('#file_chooser').hide();
-            }
+            hide_show_add_img_btn();
         } );
 
+        function hide_show_add_img_btn()
+        {
+            if($('.image-packet').length >= 10){
+                $('#file_chooser').hide();
+            }else{
+                $('#file_chooser').show();
+            }
+        }
+
         $(document).on('click', '.del-img-btn', function(){
-            let image_id = $(this).siblings('img').attr('data-id');
-            $.ajax({type: 'POST' , data: {}, url: base_url + 'api/product_image/delete' ,
-                success: function (data)
-                {
-                    console.log(data);
+            let btn = $(this);
+            let image_id = btn.siblings('img').attr('data-id');
+            $.ajax({type: 'POST' , data: {'_token':"<?=csrf_token()?>" }, url: base_url + 'product_image/delete/'+image_id ,
+                success: function (data){
+                    btn.closest('.image-packet').remove();
+                    hide_show_add_img_btn();
                 }
             });
         });

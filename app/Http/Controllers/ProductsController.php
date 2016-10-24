@@ -88,30 +88,7 @@ class ProductsController extends ParentController
 
     public function deleteImageById(\Illuminate\Http\Request $request)
     {
-        dd('hi');
-        $imagePath = $request->input('path');
-
-        //File::delete($imagePath);
-        $id = $request->input('id');
-        //$this->newsletters->updateWhere(['id'=>$id],['image'=>'']);
-        //$this->productImages->updateWhere(['id'=>$id],['path'=>''])
-
-        if($this->productImages->deleteById($id))
-        {
-            return Response::json(array(
-                'status' => 'success',
-
-
-            ), 200);
-        }
-        else{
-            return Response::json(array(
-                'status' => 'failure',
-
-
-            ), 200);
-
-        }
+        return ($this->productImages->deleteById($request->route()->parameter('image_id')))? Response::json(array('status' => 'success'), 200): Response::json(array('status' => 'success'), 200);
     }
 
 }

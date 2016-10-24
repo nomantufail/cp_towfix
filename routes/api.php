@@ -16,10 +16,6 @@ use Illuminate\Http\Request;
 
 
 
-Route::post('product_image/delete', [
-    'uses' => 'ProductsController@deleteImageById',
-])->middleware('auth:api');
-
 Route::get('/user', function (Request $request) {
     return 'yahooooooo!';
 });

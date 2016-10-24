@@ -118,6 +118,15 @@ Route::group(['middleware' => 'auth'], function () {
         'uses'=>'ServicesController@showEditRequest'
     ]);
 
+
+    /****
+     * API ROUTES...
+     ****/
+    Route::post('product_image/delete/{image_id}', [
+        'uses' => 'ProductsController@deleteImageById',
+    ]);
+
+
     Route::get('/logout', function ()    {
         Auth::logout();
         return redirect('/');
@@ -129,6 +138,5 @@ Route::get('/internal-server-error', [
 ]);
 
 Route::post('/deleteImage', 'NewslettersController@deleteImage');
-Route::post('/productDeleteImage', 'ProductsController@productDeleteImage');
 
 Auth::routes();

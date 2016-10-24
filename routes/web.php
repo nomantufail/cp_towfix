@@ -63,6 +63,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/product/{product_id}', [
         'uses'=>'ProductsController@productDetail'
     ]);
+    Route::get('/product/update/{product_id}', [
+        'uses'=>'ProductsController@editProductForm'
+    ]);
+    Route::post('/product/update/{product_id}', [
+        'uses'=>'ProductsController@updateProduct'
+    ]);
 
 
     Route::get('/newsletters', [
@@ -123,5 +129,6 @@ Route::get('/internal-server-error', [
 ]);
 
 Route::post('/deleteImage', 'NewslettersController@deleteImage');
+Route::post('/productDeleteImage', 'ProductsController@productDeleteImage');
 
 Auth::routes();

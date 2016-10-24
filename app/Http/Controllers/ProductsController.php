@@ -6,11 +6,13 @@ use App\Http\Requests;
 use App\Repositories\ProductImagesRepository;
 use App\Repositories\ProductsRepository;
 use Illuminate\Support\Facades\Auth;
+use Response;
 
 class ProductsController extends ParentController
 {
     private $products = null;
     private $productImages = null;
+
     public function __construct(ProductsRepository $productsRepo, ProductImagesRepository $productImagesRepo)
     {
         parent::__construct();
@@ -60,4 +62,55 @@ class ProductsController extends ParentController
 //            return $this->handleInternalServerError($e->getMessage());
 //        }
     }
+
+    public function editProductForm(Requests\Product\ShowEditProductFormRequest $request, $product_id)
+    {
+//        try{
+            $data = [
+                'productImages' => $this->productImages->all(),
+                'product' => $this->products->findById($product_id)
+            ];
+            return view('products.edit-product', $data);
+//        }catch (\Exception $e){
+//            return $this->handleInternalServerError($e->getMessage());
+//        }
+    }
+
+    public function updateProduct(Requests\Vehicle\UpdateVehicleRequest $request, $vehicle_id)
+    {
+        try{
+            $this->vehiclesRepo->updateWhere(['id' => $vehicle_id], $request->updateableAttrs());
+            return redirect()->back()->with('success','Vehicle#'.$vehicle_id.' updated Successfully');
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
+    }
+
+    public function productDeleteImage(\Illuminate\Http\Request $request)
+    {
+        $imagePath = $request->input('path');
+
+        //File::delete($imagePath);
+        $id = $request->input('id');
+        //$this->newsletters->updateWhere(['id'=>$id],['image'=>'']);
+        //$this->productImages->updateWhere(['id'=>$id],['path'=>''])
+
+        if($this->productImages->deleteById($id))
+        {
+            return Response::json(array(
+                'status' => 'success',
+
+
+            ), 200);
+        }
+        else{
+            return Response::json(array(
+                'status' => 'failure',
+
+
+            ), 200);
+
+        }
+    }
+
 }

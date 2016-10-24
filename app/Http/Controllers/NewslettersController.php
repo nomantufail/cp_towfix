@@ -102,9 +102,6 @@ class NewslettersController extends ParentController
             ), 200);
 
         }
-
-
-
     }
 
     public function delete(Requests\Newsletter\DeleteNewsletterRequest $request)

@@ -17,4 +17,9 @@ class VehiclesRepository extends Repository
     {
         $this->setModel($vehicle);
     }
+
+    public function getByCustomerId($customerId)
+    {
+        return $this->getModel()->where('customer_id',$customerId)->get();
+    }
 }

@@ -30,12 +30,12 @@ class VehiclesController extends ParentController
 
     public function storeVehicle(Requests\Vehicle\AddVehicleRequest $request)
     {
-//        try{
-        $this->vehiclesRepo->store($request->storableAttrs());
-        return redirect()->back()->with('success', 'Vehicle Stored Successfully');
-//        }catch (\Exception $e){
-        return $this->handleInternalServerError($e->getMessage());
-//    }
+        try{
+            $this->vehiclesRepo->store($request->storableAttrs());
+            return redirect()->back()->with('success', 'Vehicle Stored Successfully');
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
     }
 
     public function editVehicleForm(Requests\Vehicle\EditVehicleRequest $request, $vehicle_id)

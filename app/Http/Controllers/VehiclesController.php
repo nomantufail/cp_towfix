@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Requests\Vehicle\AddVehicleFormRequest;
 use App\Repositories\VehiclesRepository;
 use App\Repositories\VehicleTypesRepository;
 
@@ -20,7 +19,7 @@ class VehiclesController extends ParentController
         $this->vehiclesRepo = $vehiclesRepo;
     }
 
-    public function showAddVehicleForm(AddVehicleFormRequest $request)
+    public function showAddVehicleForm(Requests\Vehicle\AddVehicleFormRequest $request)
     {
         $data = [
             'vehicleTypes' => $this->vehicleTypesRepo->all()

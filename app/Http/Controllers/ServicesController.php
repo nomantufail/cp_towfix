@@ -26,7 +26,7 @@ class ServicesController extends ParentController
         $this->workTypesRepo = $workTypesRepository;
     }
 
-    public function showCreateRequestForm(AddVehicleFormRequest $request)
+    public function showCreateRequestForm(Requests\Service\CreateServiceFormRequest $request)
     {
         $data = [
             'vehicles' => $this->vehiclesRepo->getByCustomerId(Auth::user()->id),
@@ -34,6 +34,12 @@ class ServicesController extends ParentController
             'franchises' => $this->usersRepo->franchises(),
         ];
         return view('services.create-service-form', $data);
+    }
+
+    public function sendRequest(Requests\Service\AddServiceRequest $request)
+    {
+        $this->serviceRequestsRepo->store($request->getStorableAttrs());
+        return redirect()->back()->with(['success'=>'request added successfully']);
     }
 
 

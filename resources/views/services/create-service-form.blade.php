@@ -11,6 +11,11 @@
 
 @section('page')
     <section class="add-vehicle">
+        @if(\Session::has('success'))
+            <h4>
+                {{\Session::get('success')}}
+            </h4>
+        @endif
         <h2 class="main-heading">Request a Service</h2>
         <div class="add-vehicle-widget">
             <form class="add-vehicle-form" method="post" action="{{url('/')}}/service_request/create">

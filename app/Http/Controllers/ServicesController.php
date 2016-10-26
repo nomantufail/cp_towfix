@@ -36,6 +36,11 @@ class ServicesController extends ParentController
         return view('services.create-service-form', $data);
     }
 
+    public function listServices()
+    {
+
+    }
+
     public function sendRequest(Requests\Service\AddServiceRequest $request)
     {
         $this->serviceRequestsRepo->store($request->getStorableAttrs());

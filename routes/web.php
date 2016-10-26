@@ -108,14 +108,20 @@ Route::group(['middleware' => 'auth'], function () {
         'uses'=>'OrdersController@delete'
     ]);
 
+    Route::get('/service_requests', [
+        'uses'=>'ServicesController@listServices'
+    ]);
     Route::get('/service_request/create', [
         'uses'=>'ServicesController@showCreateRequestForm'
     ]);
     Route::post('/service_request/create', [
         'uses'=>'ServicesController@sendRequest'
     ]);
-    Route::get('/service_request/edit', [
-        'uses'=>'ServicesController@showEditRequest'
+    Route::get('/service_request/edit/{request_id}', [
+        'uses'=>'ServicesController@showEditRequestForm'
+    ]);
+    Route::post('/service_request/edit/{request_id}', [
+        'uses'=>'ServicesController@updateRequest'
     ]);
 
 

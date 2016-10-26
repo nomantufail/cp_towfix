@@ -36,9 +36,12 @@ class ServicesController extends ParentController
         return view('services.create-service-form', $data);
     }
 
-    public function listServices()
+    public function listServices(Requests\Service\ListServiceRequests $request)
     {
-
+        $data = [
+            'requests' => ($request->user()->isCustomer())?$this->serviceRequestsRepo->getCustomerRequests($request->user()->id):$this->serviceRequestsRepo->getFranchiseRequests($request->user()->id)
+        ];
+        return view('services.list-services',$data);
     }
 
     public function sendRequest(Requests\Service\AddServiceRequest $request)
@@ -47,5 +50,15 @@ class ServicesController extends ParentController
         return redirect()->back()->with(['success'=>'request added successfully']);
     }
 
+    public function showEditRequestForm(Requests\Service\ShowEditRequestFormRequest $request)
+    {
+        return view('services.edit-request', ['request'=>$this->serviceRequestsRepo->findById($request->route()->parameter('request_id'))]);
+    }
+
+    public function updateRequest(Requests\Service\UpdateServiceRequest $request)
+    {
+        $this->serviceRequestsRepo->updateWhere(['id'=>$request->route()->parameter('request_id')], $request->getUpdateableAttrs());
+        return redirect()->back()->with(['success'=>'request updated successfully']);
+    }
 
 }

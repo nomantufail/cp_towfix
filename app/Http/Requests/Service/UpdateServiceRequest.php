@@ -3,20 +3,18 @@
 namespace App\Http\Requests\Service;
 
 
-class AddServiceRequest extends ServiceRequest
+class UpdateServiceRequest extends ServiceRequest
 {
 
-    public function getStorableAttrs()
+    public function getUpdateableAttrs()
     {
         return [
-            'customer_id' => $this->user()->id,
-            'vehicle_id' => $this->input('vehicle_id'),
-            'franchise_id' => $this->input('franchise_id'),
-            'work_type_id' => $this->input('work_type_id'),
             'suggested_date' => $this->input('suggested_date'),
+            'message' => $this->input('message'),
             'suggested_by' => $this->user()->id
         ];
     }
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -35,7 +33,7 @@ class AddServiceRequest extends ServiceRequest
     public function rules()
     {
         return [
-
+            'request_id' => 'required|exists:cust_vehicle_srv_reqs,id'
         ];
     }
 }

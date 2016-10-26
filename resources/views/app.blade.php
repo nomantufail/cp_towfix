@@ -53,7 +53,7 @@
                 @endif
                 @if($user->can('view','customerServicesRequests'))
                     <li>
-                        <a href="{{url('/')}}/service_request/create">
+                        <a href="{{url('/')}}/service_requests">
                             @if($user->isFranchise())
                                 Customers Service Requests
                             @elseif($user->isCustomer())

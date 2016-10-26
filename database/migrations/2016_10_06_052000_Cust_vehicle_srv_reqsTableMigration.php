@@ -20,6 +20,7 @@ class CustVehicleSrvReqsTableMigration extends Migration
             $table->integer('franchise_id')->unsigned()->index();
             $table->integer('work_type_id')->unsigned()->index();
             $table->dateTime('suggested_date');
+            $table->text('message');
             $table->integer('suggested_by')->unsigned();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();

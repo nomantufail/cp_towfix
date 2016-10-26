@@ -55,7 +55,7 @@
 
                 <label class="half-field">
                     <span>Service Date</span>
-                    <input type="datetime" name="suggested_date" placeholder="date">
+                    <input type="datetime" name="suggested_date" placeholder="date" value="2014-02-02">
                 </label>
                 <label class="submit">
                     <input type="submit" class="btn btn btn-primary" name="submit" value="Send">

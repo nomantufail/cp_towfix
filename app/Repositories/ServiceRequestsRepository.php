@@ -17,4 +17,24 @@ class ServiceRequestsRepository extends Repository
     {
         $this->setModel($vehicle);
     }
+
+    public function getCustomerRequests($customerId)
+    {
+        return $this->getModel()
+            ->with('customer')
+            ->with('franchise')
+            ->with('suggestedUser')
+            ->with('workType')
+            ->with('vehicle')->where('customer_id',$customerId)->get();
+    }
+
+    public function getFranchiseRequests($franchiseId)
+    {
+        return $this->getModel()
+            ->with('customer')
+            ->with('franchise')
+            ->with('suggestedUser')
+            ->with('workType')
+            ->with('vehicle')->where('franchise_id',$franchiseId)->get();
+    }
 }

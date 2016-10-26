@@ -27,14 +27,14 @@ class VehiclesTableMigration extends Migration
                 ->onDelete('cascade');
             $table->string('make');
             $table->string('model');
-            $table->string('year');
-            $table->string('year_purchased');
-            $table->string('last_service');
-            $table->string('next_service');
-            $table->string('registration_number');
-            $table->string('registration_expiry');
-            $table->string('engine_capacity');
-            $table->integer('number_axles');
+            $table->string('year')->default('');
+            $table->string('year_purchased')->default('');
+            $table->string('last_service')->default('');
+            $table->string('next_service')->default('');
+            $table->string('registration_number')->default('');
+            $table->string('registration_expiry')->default('');
+            $table->string('engine_capacity')->default('');
+            $table->integer('number_axles')->default(0);
             $table->text('details');
 
         });

@@ -82,7 +82,7 @@
                         <td>
                             @if($user->can('accept','serviceRequest', $request))<form method="post" action="{{url('/')}}/service_request/accept/{{$request->id}}">{{csrf_field()}}<button><i class="fa fa-check fa-fw"></i></button></form>@endif
                                 @if($user->can('delete','serviceRequest', $request))<form method="post" action="{{url('/')}}/service_request/delete/{{$request->id}}">{{csrf_field()}}<button><i class="fa fa-close fa-fw"></i></button></form>@endif
-                            @if($user->can('edit','serviceRequest', $request))<a href="{{url('/')}}/service_request/edit/{{$request->id}}"><i class="fa fa-edit fa-fw"></i></a>@endif
+                            @if($user->can('edit','serviceRequest', $request))<a class="edit-link" data-req-id="{{$request->id}}" href="{{url('/')}}/service_request/edit/{{$request->id}}"><i class="fa fa-edit fa-fw"></i></a>@endif
                         </td>
                     </tr>
                     @endforeach
@@ -91,4 +91,24 @@
             </div>
         </div>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.5.1/socket.io.min.js"></script>
+    <script>
+        var socket = io('http://localhost:3000');
+        socket.on('request-locked', function (data) {
+            if(data.editing != "<?= $user->id ?>"){
+                $('.edit-link').each(function () {
+                    if($(this).attr('data-req-id') == data.request_id){
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+        socket.on('request-released', function (data) {
+            $('.edit-link').each(function () {
+                if($(this).attr('data-req-id') == data.request_id){
+                    $(this).show();
+                }
+            });
+        });
+    </script>
 @endsection

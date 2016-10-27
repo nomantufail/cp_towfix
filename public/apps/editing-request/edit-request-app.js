@@ -13,18 +13,30 @@ app.get('/', function(req, res){
 var sockets = [];
 io.on('connection', function(socket){
     socket.on('request_editing', function (data) {
-        sockets[socket] = data.user_id;
-        var editingUserId = mydb.editing(data.request_id);
-        if(editingUserId == 0){
-            mydb.lockRequest(data.user_id, data.request_id);
-        }else if(editingUserId != data.user_id){
-            io.emit('request-locked', {
-                'editing':"ss"+editingUserId
-            });
-        }
+        sockets[socket.id] = {user_id: data.user_id, request_id: data.request_id};
+        var getEditingUserId = mydb.editing(data.request_id);
+        getEditingUserId.then(function (editingUserId) {
+            if(editingUserId == 0){
+                mydb.lockRequest(data.user_id, data.request_id);
+            }else if(editingUserId != data.user_id){
+                io.emit('request-locked', {
+                    'editing':editingUserId,
+                    'request_id':data.request_id
+                });
+            }
+        }, function (err) {
+            console.log('error');
+        });
+
     });
     socket.on('disconnect', function(){
-        //mydb.releaseRequest(sockets[socket]);
+        if(sockets[socket.id] != undefined){
+            mydb.releaseRequest(sockets[socket.id].user_id).then(function (result) {
+                io.emit('request-released',{
+                    'request_id':sockets[socket.id].request_id
+                });
+            });
+        }
     });
 });
 

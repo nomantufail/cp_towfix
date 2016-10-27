@@ -42,8 +42,10 @@
         });
 
         socket.on('request-locked', function (data) {
-            console.log(data);
-            alert('user# '+data.editing+' has control over this request');
+            if(data.editing != "<?= $user->id ?>"){
+                alert('user# '+data.editing+' has control over this request');
+                window.location.href=base_url+"service_requests";
+            }
         });
     </script>
 @endsection

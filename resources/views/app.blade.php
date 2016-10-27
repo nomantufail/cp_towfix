@@ -30,7 +30,7 @@
             <ul class="tab-list">
                 <li><a href="{{url('/')}}">Home </a></li>
                 @if($user->can('view','customers'))<li class=""><a href="{{url('/')}}/customers">Customers </a></li> @endif
-                @if($user->can('view','franchises'))<li class=""><a href="#">Franchises </a></li> @endif
+                @if($user->can('view','franchises'))<li class=""><a href="{{url('/')}}/franchises">Franchises </a></li> @endif
                 @if($user->can('view','vehicles'))<li class="active"><a href="{{url('/')}}/vehicles">Vehicles </a></li> @endif
                 @if($user->can('view','products'))
                     <li>

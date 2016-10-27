@@ -128,6 +128,20 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
 
 
+    Route::get('/franchises', [
+        'uses'=>'FranchisesController@showFranchises'
+    ]);
+    Route::get('/franchise/add', [
+        'uses'=>'FranchisesController@showAddFranchiseForm'
+    ]);
+    Route::post('/franchise/add', [
+        'uses'=>'FranchisesController@storeFranchise'
+    ]);
+
+
+
+
+
     /****
      * API ROUTES...
      ****/

@@ -12,7 +12,8 @@
 @section('page')
     <section class="vehicles-list">
         <div class="vehicles-head">
-            <h3>@if($user->isCustomer()))My @else Customer @endif Service Requests</h3>
+            <h3>@if($user->isCustomer())My @else Customer @endif Service Requests</h3>
+            <a href="{{url('/')}}/service_request/create" class="btn btn-primary pull-right">Add a New Service</a>
         </div>
         <div class="vehicles-list-content">
             <div class="vehicles-table">

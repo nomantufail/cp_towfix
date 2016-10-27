@@ -33,6 +33,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Order');
     }
 
+    public function vehicles()
+    {
+        return $this->hasMany('App\Models\Vehicle','customer_id');
+    }
     public function isAdmin(){
         return ($this->role == 1);
     }

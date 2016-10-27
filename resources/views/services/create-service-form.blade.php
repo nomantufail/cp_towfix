@@ -11,9 +11,15 @@
 
 @section('page')
     <section class="add-vehicle">
+        @if(\Session::has('success'))
+            <h4>
+                {{\Session::get('success')}}
+            </h4>
+        @endif
         <h2 class="main-heading">Request a Service</h2>
         <div class="add-vehicle-widget">
-            <form class="add-vehicle-form">
+            <form class="add-vehicle-form" method="post" action="{{url('/')}}/service_request/create">
+                {{csrf_field()}}
                 <label class="half-field">
                     <span>Select Vehicle</span>
                     <select name="vehicle_id">
@@ -49,7 +55,7 @@
 
                 <label class="half-field">
                     <span>Service Date</span>
-                    <input type="datetime" name="suggested_date" placeholder="date">
+                    <input type="datetime" name="suggested_date" placeholder="date" value="2014-02-02">
                 </label>
                 <label class="submit">
                     <input type="submit" class="btn btn btn-primary" name="submit" value="Send">

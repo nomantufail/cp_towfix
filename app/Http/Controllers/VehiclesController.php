@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Requests\Vehicle\AddVehicleFormRequest;
+use App\Models\Vehicle;
 use App\Repositories\VehiclesRepository;
 use App\Repositories\VehicleTypesRepository;
 
@@ -20,7 +20,7 @@ class VehiclesController extends ParentController
         $this->vehiclesRepo = $vehiclesRepo;
     }
 
-    public function showAddVehicleForm(AddVehicleFormRequest $request)
+    public function showAddVehicleForm(Requests\Vehicle\AddVehicleFormRequest $request)
     {
         $data = [
             'vehicleTypes' => $this->vehicleTypesRepo->all()
@@ -69,6 +69,7 @@ class VehiclesController extends ParentController
             return $this->handleInternalServerError($e->getMessage());
         }
     }
+
     public function delete(Requests\Vehicle\DeleteVehicleRequest $request)
     {
         try{

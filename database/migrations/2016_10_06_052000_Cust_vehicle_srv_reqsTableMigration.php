@@ -15,13 +15,19 @@ class CustVehicleSrvReqsTableMigration extends Migration
     {
         Schema::create('cust_vehicle_srv_reqs', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('customer_id')->unsigned()->index();
             $table->integer('vehicle_id')->unsigned()->index();
             $table->integer('franchise_id')->unsigned()->index();
             $table->integer('work_type_id')->unsigned()->index();
             $table->dateTime('suggested_date');
+            $table->text('message');
             $table->integer('suggested_by')->unsigned();
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
+
+            $table->foreign('customer_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
 
             $table->foreign('vehicle_id')
                 ->references('id')->on('vehicles')

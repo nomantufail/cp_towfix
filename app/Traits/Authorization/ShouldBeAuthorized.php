@@ -17,6 +17,7 @@ trait ShouldBeAuthorized
         else
             return false;
     }
+
     public function cannot($action, $policy, $model = null){
         return !$this->can($action, $policy, $model);
     }

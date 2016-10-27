@@ -89,6 +89,7 @@
                     $('#file_chooser').show();
                     $("#delete_image").hide();
                     $("#image_path").hide();
+                    console.log(path);
                 }
             });
 

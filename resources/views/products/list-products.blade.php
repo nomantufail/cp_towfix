@@ -40,7 +40,7 @@
                         <td><a href="#">View</a></td>
                         <td>
                             <a href={{url('/')}}/product/update/{{$product->id}}><i class="fa fa-edit fa-fw"></i></a>
-                            <a href="#"><i class="fa fa-trash fa-fw"></i></a>
+                            <form method="post" action="{{url('/')}}/product/delete/{{$product->id}}">{{csrf_field()}}<button><i class="fa fa-trash fa-fw"></i></button></form>
                         </td>
                     </tr>
                     @endforeach

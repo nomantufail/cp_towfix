@@ -17,7 +17,7 @@
         @endif
         <h2 class="main-heading">Edit A Product</h2>
         <div class="add-vehicle-widget">
-            <form class="add-vehicle-form" method="post" action="{{url('/')}}/product/update/{{$product->id}}">
+            <form class="add-vehicle-form" method="post" action="{{url('/')}}/product/update/{{$product->id}}" enctype="multipart/form-data">
                 {{csrf_field()}}
 
 
@@ -100,7 +100,7 @@
                     @endif
                 </label>
 
-                @foreach($productImages as $img)
+                @foreach($product->images as $img)
                     <div class="image-packet">
                         <img class="image_path" src="{{ url('/').$img->path }}" data-id="{{$img->id}}"/>
                         <a class="del-img-btn" style="font-size: 25px;">X</a>

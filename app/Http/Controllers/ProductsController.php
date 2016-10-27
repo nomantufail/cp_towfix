@@ -42,9 +42,10 @@ class ProductsController extends ParentController
 
     public function addProduct(Requests\Product\AddProductRequest $request)
     {
-//        try{
+        try{
+
             $product_images = [];
-            $productId = $this->products->store($request->storableAttrs())->id;
+                $productId = $this->products->store($request->storableAttrs())->id;
             foreach($request->file('images') as $file)
             {
                 $public_path = '/images/products/'.$productId;
@@ -58,17 +59,17 @@ class ProductsController extends ParentController
             }
             $this->productImages->insertMultiple($product_images);
             return redirect()->back()->with('success','Product Added Successfully');
-//        }catch (\Exception $e){
-//            return $this->handleInternalServerError($e->getMessage());
-//        }
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
     }
 
     public function editProductForm(Requests\Product\ShowEditProductFormRequest $request, $product_id)
     {
 //        try{
             $data = [
-                'productImages' => $this->productImages->all(),
-                'product' => $this->products->findById($product_id)
+//                'productImages' => $this->productImages->all(),
+                'product' => $this->products->findFullById($product_id)
             ];
             return view('products.edit-product', $data);
 //        }catch (\Exception $e){
@@ -76,24 +77,30 @@ class ProductsController extends ParentController
 //        }
     }
 
-    public function updateProduct(Requests\Vehicle\UpdateVehicleRequest $request, $vehicle_id)
+    public function updateProduct(Requests\Product\UpdateProductRequest $request, $product_id)
     {
 //        try{
+        //dd($request->file('images'));
+
             $product_images = [];
-            $productId = $this->products->store($request->storableAttrs())->id;
-            foreach($request->file('images') as $file)
-            {
-                $public_path = '/images/products/'.$productId;
+            $this->products->updateWhere(['id' => $product_id], $request->updateableAttrs());
+
+        if($request->file('images') != null) {
+
+            foreach ($request->file('images') as $file) {
+                $public_path = '/images/products/'.$product_id;
                 $destinationPath = public_path($public_path);
                 $filename = $file->getClientOriginalName();
                 $file->move($destinationPath, $filename);
-                $product_images[]=[
-                    'product_id' => $productId,
-                    'path' => $public_path.'/'.$filename
+                $product_images[] = [
+                    'product_id' => $product_id,
+                    'path' => $public_path . '/'.$filename
                 ];
             }
             $this->productImages->insertMultiple($product_images);
-            return redirect()->back()->with('success','Product Added Successfully');
+        }
+
+            return redirect()->back()->with('success','Product Updated Successfully');
 //        }catch (\Exception $e){
 //            return $this->handleInternalServerError($e->getMessage());
 //        }
@@ -103,6 +110,16 @@ class ProductsController extends ParentController
     public function deleteImageById(\Illuminate\Http\Request $request)
     {
         return ($this->productImages->deleteById($request->route()->parameter('image_id')))? Response::json(array('status' => 'success'), 200): Response::json(array('status' => 'success'), 200);
+    }
+
+    public function delete(Requests\Product\DeleteProductRequest $request)
+    {
+//        try{
+            $this->products->deleteById($request->route()->parameter('product_id'));
+            return redirect()->back()->with('success','Product deleted successfully');
+//        }catch (\Exception $e){
+//            return $this->handleInternalServerError($e->getMessage());
+//        }
     }
 
 }

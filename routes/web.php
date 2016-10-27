@@ -69,6 +69,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/product/update/{product_id}', [
         'uses'=>'ProductsController@updateProduct'
     ]);
+    Route::post('/product/delete/{product_id}', [
+        'uses'=>'ProductsController@delete'
+    ]);
 
 
     Route::get('/newsletters', [

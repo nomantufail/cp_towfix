@@ -83,11 +83,14 @@ class NewslettersController extends ParentController
     {
         $imagePath = $request->input('path');
 
-        File::delete($imagePath);
+        //File::delete($imagePath);
+        //dd($imagePath);
+       // unlink($imagePath);
         $id = $request->input('id');
         //$this->newsletters->updateWhere(['id'=>$id],['image'=>'']);
         if($this->newsletters->updateWhere(['id'=>$id],['image'=>'']))
         {
+
             return Response::json(array(
                 'status' => 'success',
 

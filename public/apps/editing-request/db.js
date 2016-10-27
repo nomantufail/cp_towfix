@@ -28,14 +28,17 @@ var db = function (){
         );
     };
     self.lockRequest = function (userId, requestId){
-        var connection = self.mysql().createConnection(config);
-        connection.connect();
-
-        connection.query("UPDATE cust_vehicle_srv_reqs SET editing='"+userId+"' WHERE id="+requestId , function(err, rows, fields) {
-            if (err) throw err;
-        });
-
-        connection.end();
+        return new Promise(
+            function(resolve, reject) {
+                var connection = self.mysql().createConnection(config);
+                connection.connect();
+                connection.query("UPDATE cust_vehicle_srv_reqs SET editing='"+userId+"' WHERE id="+requestId , function(err, rows, fields) {
+                    connection.end();
+                    if (err) reject(err);
+                    resolve(true);
+                });
+            }
+        );
     };
     self.releaseRequest = function (userId){
         return new Promise(

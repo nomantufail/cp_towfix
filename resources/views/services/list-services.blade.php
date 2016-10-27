@@ -97,7 +97,7 @@
         socket.on('request-locked', function (data) {
             if(data.editing != "<?= $user->id ?>"){
                 $('.edit-link').each(function () {
-                    if($(this).attr('data-req-id') == data.request_id){
+                    if(parseInt($(this).attr('data-req-id')) == parseInt(data.request_id)){
                         $(this).hide();
                     }
                 });
@@ -105,7 +105,7 @@
         });
         socket.on('request-released', function (data) {
             $('.edit-link').each(function () {
-                if($(this).attr('data-req-id') == data.request_id){
+                if(parseInt($(this).attr('data-req-id')) == parseInt(data.request_id)){
                     $(this).show();
                 }
             });

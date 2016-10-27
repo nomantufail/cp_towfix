@@ -17,9 +17,14 @@ io.on('connection', function(socket){
         var getEditingUserId = mydb.editing(data.request_id);
         getEditingUserId.then(function (editingUserId) {
             if(editingUserId == 0){
-                mydb.lockRequest(data.user_id, data.request_id);
+                mydb.lockRequest(data.user_id, data.request_id).then(function (result) {
+                    io.emit('request-locked', {
+                        'editing':editingUserId,
+                        'request_id':data.request_id
+                    });
+                });
             }else if(editingUserId != data.user_id){
-                io.emit('request-locked', {
+                io.emit('request-already-locked', {
                     'editing':editingUserId,
                     'request_id':data.request_id
                 });
@@ -32,9 +37,11 @@ io.on('connection', function(socket){
     socket.on('disconnect', function(){
         if(sockets[socket.id] != undefined){
             mydb.releaseRequest(sockets[socket.id].user_id).then(function (result) {
+                console.log('disconected: '+sockets[socket.id].request_id);
                 io.emit('request-released',{
                     'request_id':sockets[socket.id].request_id
                 });
+                delete sockets[socket.id];
             });
         }
     });

@@ -51,7 +51,7 @@
                         </a>
                     </li>
                 @endif
-                @if($user->can('view','customerServicesRequests'))
+                @if($user->can('view','serviceRequest'))
                     <li>
                         <a href="{{url('/')}}/service_requests">
                             @if($user->isFranchise())

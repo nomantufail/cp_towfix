@@ -32,4 +32,18 @@
             </form>
         </div>
     </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.5.1/socket.io.min.js"></script>
+    <script>
+        var socket = io('http://localhost:3000');
+        socket.emit('request_editing', {
+            request_id:"<?= $request->id ?>",
+            user_id: "<?= $user->id ?>"
+        });
+
+        socket.on('request-locked', function (data) {
+            console.log(data);
+            alert('user# '+data.editing+' has control over this request');
+        });
+    </script>
 @endsection

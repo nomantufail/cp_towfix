@@ -10,6 +10,31 @@
 @extends('app')
 
 @section('page')
+    <style>
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+
+            /* Position the tooltip */
+            position: absolute;
+            z-index: 1;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+    </style>
     <section class="vehicles-list">
         <div class="vehicles-head">
             <h3>@if($user->isCustomer()))My @else Customer @endif Service Requests</h3>
@@ -37,25 +62,27 @@
                         @if($user->isCustomer())<th>{{$request->franchise->f_name}} {{$request->franchise->l_name}}</th>@endif
                         @if($user->isCustomer())<th>Area</th>@endif
                         <td>{{\Carbon\Carbon::createFromFormat('Y-m-d h:i:s',$request->suggested_date)->toFormattedDateString()}}
-                            <span style="color:@if($request->suggestedUser->id && $user->id) green @else red @endif; font-weight: bold;">
+                            @if($request->isPending())
+                            <span style="color:@if($request->suggestedUser->id == $user->id) green @else red @endif; font-weight: bold;">
                                 By
-                                @if($request->suggestedUser->id && $user->id)
-                                    You
+                                @if($request->suggestedUser->id == $user->id)
+                                    <span data-toggle="tooltip" title="{{$request->message}}">You</span>
                                 @else
                                     @if($request->suggestedUser->isFranchise())
-                                        Franchise
+                                        <span data-toggle="tooltip" title="{{$request->message}}">Franchise</span>
                                     @else
-                                        Customer
+                                        <span data-toggle="tooltip" title="{{$request->message}}">Customer</span>
                                     @endif
                                 @endif
                             </span>
+                            @endif
                         </td>
                         <td><a href="#">View</a></td>
                         <td>{{$request->getStatus()}}</td>
                         <td>
-                            @if($request->suggestedUser->id != $user->id)<a href="#"><i class="fa fa-check fa-fw"></i></a>@endif
-                            <a href="#"><i class="fa fa-close fa-fw"></i></a>
-                            <a href="status-request.html"><i class="fa fa-edit fa-fw"></i></a>
+                            @if($user->can('accept','serviceRequest', $request))<form method="post" action="{{url('/')}}/service_request/accept/{{$request->id}}">{{csrf_field()}}<button><i class="fa fa-check fa-fw"></i></button></form>@endif
+                                @if($user->can('delete','serviceRequest', $request))<form method="post" action="{{url('/')}}/service_request/delete/{{$request->id}}">{{csrf_field()}}<button><i class="fa fa-close fa-fw"></i></button></form>@endif
+                            @if($user->can('edit','serviceRequest', $request))<a href="{{url('/')}}/service_request/edit/{{$request->id}}"><i class="fa fa-edit fa-fw"></i></a>@endif
                         </td>
                     </tr>
                     @endforeach

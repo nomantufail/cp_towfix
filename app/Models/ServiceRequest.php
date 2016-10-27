@@ -8,7 +8,7 @@ class ServiceRequest extends Model
 {
     protected $table = 'cust_vehicle_srv_reqs';
 
-    protected $fillable = ['customer_id', 'vehicle_id', 'franchise_id', 'work_type_id','suggested_date', 'suggested_by', 'message'];
+    protected $fillable = ['customer_id', 'vehicle_id', 'franchise_id', 'work_type_id','suggested_date', 'suggested_by', 'message', 'status'];
 
     public function vehicle()
     {
@@ -32,9 +32,23 @@ class ServiceRequest extends Model
     {
         return $this->belongsTo('App\User','suggested_by');
     }
+    public function editing()
+    {
+        return $this->belongsTo('App\User','editing');
+    }
 
     public function getStatus()
     {
-        return $this->status == 0 ? 'pending' : 'active';
+        return $this->status == 0 ? 'pending' : 'accepted';
+    }
+
+    public function isPending()
+    {
+        return ($this->status == 0);
+    }
+
+    public function isAccepted()
+    {
+        return ($this->satatus == 1);
     }
 }

@@ -14,7 +14,8 @@ class AddServiceRequest extends ServiceRequest
             'franchise_id' => $this->input('franchise_id'),
             'work_type_id' => $this->input('work_type_id'),
             'suggested_date' => $this->input('suggested_date'),
-            'suggested_by' => $this->user()->id
+            'suggested_by' => $this->user()->id,
+            'message' => ''
         ];
     }
     /**

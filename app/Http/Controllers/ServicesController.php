@@ -61,4 +61,16 @@ class ServicesController extends ParentController
         return redirect()->back()->with(['success'=>'request updated successfully']);
     }
 
+    public function AcceptRequest(Requests\Service\AcceptServiceRequest $request)
+    {
+        $this->serviceRequestsRepo->updateWhere(['id'=>$request->route()->parameter('request_id')], $request->getUpdateableAttrs());
+        return redirect()->back()->with(['success'=>'request Accepted successfully']);
+    }
+
+    public function DeleteRequest(Requests\Service\DeleteServiceRequest $request)
+    {
+        $this->serviceRequestsRepo->deleteById($request->route()->parameter('request_id'));
+        return redirect()->back()->with(['success'=>'request Deleted successfully']);
+    }
+
 }

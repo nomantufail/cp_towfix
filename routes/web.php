@@ -123,6 +123,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/service_request/edit/{request_id}', [
         'uses'=>'ServicesController@updateRequest'
     ]);
+    Route::post('/service_request/accept/{request_id}', [
+        'uses'=>'ServicesController@acceptRequest'
+    ]);
+    Route::post('/service_request/delete/{request_id}', [
+        'uses'=>'ServicesController@deleteRequest'
+    ]);
 
 
     /****

@@ -10,8 +10,13 @@ var mydb = new db();
 app.get('/', function(req, res){
     res.sendfile('index.html');
 });
-var sockets = [];
+var sockets = {};
+var arr = [];
 io.on('connection', function(socket){
+    socket.on('load-test', function(data){
+        console.log(sockets);
+        io.emit('request-under-updating', {'sockets':sockets});
+    });
     socket.on('request_editing', function (data) {
         sockets[socket.id] = {user_id: data.user_id, request_id: data.request_id};
         var getEditingUserId = mydb.editing(data.request_id);

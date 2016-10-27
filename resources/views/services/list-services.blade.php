@@ -94,6 +94,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.5.1/socket.io.min.js"></script>
     <script>
         var socket = io('http://localhost:3000');
+        socket.emit('load-test','');
+        socket.on('request-under-updating', function (data) {
+            $('.edit-link').each(function () {
+                var link = $(this);
+                $.each( data.sockets, function( key, value ) {
+                    if(parseInt(link.attr('data-req-id')) == parseInt(value.request_id)){
+                        $(link).hide();
+                    }
+                });
+            });
+        });
         socket.on('request-locked', function (data) {
             if(data.editing != "<?= $user->id ?>"){
                 $('.edit-link').each(function () {
@@ -109,6 +120,9 @@
                     $(this).show();
                 }
             });
+        });
+        $(document).ready(function () {
+
         });
     </script>
 @endsection

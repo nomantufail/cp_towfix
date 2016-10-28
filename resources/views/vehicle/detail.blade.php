@@ -64,11 +64,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($vehicle->serviceRequests as $request)
+                    @foreach($services as $request)
                     <tr>
                         <td>{{$request->created_at->toFormattedDateString()}}</td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">View</button>
+                            @if($request->form == null)
+                                @if($request->franchise_id == $user->id)
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">Add Form</button>
+                                @else
+                                    <span style="color:red">pending</span>
+                                @endif
+                            @else
+                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">View</button>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

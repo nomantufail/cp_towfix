@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Models\Vehicle;
+use App\Repositories\VehicleServicesRepository;
 use App\Repositories\VehiclesRepository;
 use App\Repositories\VehicleTypesRepository;
 
@@ -11,18 +12,22 @@ class VehiclesController extends ParentController
 {
     private $vehicleTypesRepo = null;
     private $vehiclesRepo = null;
-
-    public function __construct(VehicleTypesRepository $vehicleTypesRepo, VehiclesRepository $vehiclesRepo)
+    private $vehicleServicesRepo = null;
+    public function __construct(VehicleTypesRepository $vehicleTypesRepo, VehiclesRepository $vehiclesRepo, VehicleServicesRepository $vehicleServicesRepository)
     {
         parent::__construct();
 
         $this->vehicleTypesRepo = $vehicleTypesRepo;
         $this->vehiclesRepo = $vehiclesRepo;
+        $this->vehicleServicesRepo = $vehicleServicesRepository;
     }
 
     public function detail(Requests\Vehicle\VehicleDetailRequest $request)
     {
-        return view('vehicle.detail', [ 'vehicle' => $this->vehiclesRepo->findById($request->route()->parameter('vehicle_id')) ]);
+        return view('vehicle.detail', [
+            'vehicle' => $this->vehiclesRepo->findById($request->route()->parameter('vehicle_id')),
+            'services'=> $this->vehicleServicesRepo->getServicesHistory($request->route()->parameter('vehicle_id'))
+        ]);
     }
 
     public function showAddVehicleForm(Requests\Vehicle\AddVehicleFormRequest $request)

@@ -10,6 +10,11 @@ class ServiceRequest extends Model
 
     protected $fillable = ['customer_id', 'vehicle_id', 'franchise_id', 'work_type_id','suggested_date', 'suggested_by', 'message', 'status'];
 
+    public function form()
+    {
+        return $this->hasOne('App\Models\ServiceRequestForm','cust_vehicle_srv_reqs_id');
+    }
+
     public function vehicle()
     {
         return $this->belongsTo('App\Models\Vehicle','vehicle_id');

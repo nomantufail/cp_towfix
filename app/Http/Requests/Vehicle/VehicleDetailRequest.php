@@ -24,7 +24,7 @@ class VehicleDetailRequest extends VehicleRequest
     public function rules()
     {
         return [
-            //
+            'vehicle_id'=>'required|exists:vehicles,id'
         ];
     }
 }

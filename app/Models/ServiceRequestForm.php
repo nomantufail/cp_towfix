@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ServiceRequest extends Model
+class ServiceRequestForm extends Model
 {
-    protected $table = 'cust_vehicle_srv_reqs';
+    protected $table = 'cust_vehicle_srv_reqs_id';
 
     protected $fillable = ['customer_id', 'vehicle_id', 'franchise_id', 'work_type_id','suggested_date', 'suggested_by', 'message', 'status'];
 

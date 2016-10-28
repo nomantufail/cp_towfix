@@ -22,4 +22,8 @@ class VehiclesRepository extends Repository
     {
         return $this->getModel()->where('customer_id',$customerId)->get();
     }
+
+    public function getServiceHistory($vehicleId){
+        return $this->getModel()->where('id',$vehicleId)->with('serviceRequests')->first();
+    }
 }

@@ -20,6 +20,11 @@ class VehiclesController extends ParentController
         $this->vehiclesRepo = $vehiclesRepo;
     }
 
+    public function detail(Requests\Vehicle\VehicleDetailRequest $request)
+    {
+        return view('vehicle.detail', [ 'vehicle' => $this->vehiclesRepo->findById($request->route()->parameter('vehicle_id')) ]);
+    }
+
     public function showAddVehicleForm(Requests\Vehicle\AddVehicleFormRequest $request)
     {
         $data = [

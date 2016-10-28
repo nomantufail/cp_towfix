@@ -34,6 +34,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/vehicle/delete', [
         'uses'=>'VehiclesController@delete'
     ]);
+    Route::get('/vehicle/{vehicle_id}', [
+        'uses'=>'VehiclesController@detail'
+    ]);
 
 
     Route::get('/messages', [

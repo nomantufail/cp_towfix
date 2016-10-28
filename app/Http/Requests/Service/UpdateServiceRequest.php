@@ -11,7 +11,8 @@ class UpdateServiceRequest extends ServiceRequest
         return [
             'suggested_date' => $this->input('suggested_date'),
             'message' => $this->input('message'),
-            'suggested_by' => $this->user()->id
+            'suggested_by' => $this->user()->id,
+            'status' => 0
         ];
     }
 

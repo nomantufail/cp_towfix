@@ -58,7 +58,7 @@ class ServicesController extends ParentController
     public function updateRequest(Requests\Service\UpdateServiceRequest $request)
     {
         $this->serviceRequestsRepo->updateWhere(['id'=>$request->route()->parameter('request_id')], $request->getUpdateableAttrs());
-        return redirect()->back()->with(['success'=>'request updated successfully']);
+        return redirect()->route('service_requests')->with(['success'=>'request updated successfully']);
     }
 
     public function AcceptRequest(Requests\Service\AcceptServiceRequest $request)

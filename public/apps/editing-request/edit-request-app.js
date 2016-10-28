@@ -8,7 +8,7 @@ var db = require('./db.js');
 var mydb = new db();
 
 app.get('/', function(req, res){
-    res.sendfile('index.html');
+    res.send('dfdf');
 });
 var sockets = {};
 var arr = [];

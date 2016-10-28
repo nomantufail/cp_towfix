@@ -109,7 +109,7 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
 
     Route::get('/service_requests', [
-        'uses'=>'ServicesController@listServices'
+        'uses'=>'ServicesController@listServices', 'as'=>'service_requests'
     ]);
     Route::get('/service_request/create', [
         'uses'=>'ServicesController@showCreateRequestForm'

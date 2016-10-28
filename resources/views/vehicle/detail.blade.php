@@ -94,15 +94,16 @@
                     <h3>Vecicle Service Form</h3>
                 </div>
                 <div class="add-vehicle-widget">
-                    <form class="add-vehicle-form">
+                    <form class="add-vehicle-form" method="post" action="{{url('/test/')}}">
+                        {{csrf_field()}}
                         <label>
                             <span>Name</span>
-                            <input type="text" name="Name" placeholder="Name">
+                            <input type="text" name="simpleInformation[name]" placeholder="Name">
                         </label>
 
                         <label class="half-field">
                             <span>Make/Year</span>
-                            <input type="text" class="datetimepicker" name="Make/Year" placeholder="Make/Year">
+                            <input type="text" class="datetimepicker" name="simpleInformation[make_year]" placeholder="Make/Year">
                         </label>
 
                         <label class="half-field">
@@ -118,7 +119,6 @@
                             <span>Date</span>
                             <input type="text" class="datetimepicker" name="Date" placeholder="Date">
                         </label>
-                    </form>
                 </div>
                 <div class="vehicles-service-list">
                     <table class="customer-table" cellspacing="0" width="100%">
@@ -308,6 +308,7 @@
                     </label>
                     <input type="submit" name="submit" value="Submit" class="btn btn-primary">
                 </div>
+                </form>
             </div>
 
         </div>

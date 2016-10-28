@@ -30,6 +30,11 @@ class VehiclesController extends ParentController
         ]);
     }
 
+    public function addDocument(Requests\Vehicle\AddVehicleServiceDocument $request)
+    {
+        dd('hi');
+    }
+
     public function showAddVehicleForm(Requests\Vehicle\AddVehicleFormRequest $request)
     {
         $data = [

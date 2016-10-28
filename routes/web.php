@@ -38,6 +38,10 @@ Route::group(['middleware' => 'auth'], function () {
         'uses'=>'VehiclesController@detail'
     ]);
 
+    Route::post('/vehicle/{vehicle_id}/add_document', [
+        'uses'=>'VehiclesController@addDocument'
+    ]);
+
 
     Route::get('/messages', [
         'uses'=>'ConversationsController@users'

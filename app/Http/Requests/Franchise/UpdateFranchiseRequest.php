@@ -9,9 +9,9 @@ class UpdateFranchiseRequest extends Request
 
     public function updateableAttrs()
     {
+
         $names = explode(" ", $this->input('name'));
         $role = 2;
-
         $storableAttrs = [
             'f_name' => $names[0],
             'phone_number' => $this->input('phone_number'),
@@ -23,7 +23,9 @@ class UpdateFranchiseRequest extends Request
         ];
         if(count($names) > 1)
         {
-            $storableAttrs['l_name'] = $names[1];
+            (array_shift($names));
+            $names = implode(" " , $names);
+            $storableAttrs['l_name'] = $names;
         }
         return $storableAttrs;
     }

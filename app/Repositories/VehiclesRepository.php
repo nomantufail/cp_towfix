@@ -23,4 +23,8 @@ class VehiclesRepository extends Repository
         return $this->getModel()->where('customer_id',$customerId)->get();
     }
 
+    public function findWithDetails($vehicleId)
+    {
+        return $this->getModel()->with('type')->where('id',$vehicleId)->first();
+    }
 }

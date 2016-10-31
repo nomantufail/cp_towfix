@@ -13,9 +13,9 @@ use App\Models\ServiceRequest;
 
 class ServiceRequestsRepository extends Repository
 {
-    public function __construct(ServiceRequest $vehicle)
+    public function __construct(ServiceRequest $model)
     {
-        $this->setModel($vehicle);
+        $this->setModel($model);
     }
 
     public function getCustomerRequests($customerId)
@@ -25,7 +25,8 @@ class ServiceRequestsRepository extends Repository
             ->with('franchise')
             ->with('suggestedUser')
             ->with('workType')
-            ->with('vehicle')->where('customer_id',$customerId)->get();
+            ->with('vehicle')
+            ->with('document')->where('customer_id',$customerId)->get();
     }
 
     public function getFranchiseRequests($franchiseId)
@@ -35,6 +36,7 @@ class ServiceRequestsRepository extends Repository
             ->with('franchise')
             ->with('suggestedUser')
             ->with('workType')
-            ->with('vehicle')->where('franchise_id',$franchiseId)->get();
+            ->with('vehicle')
+            ->with('document')->where('franchise_id',$franchiseId)->get();
     }
 }

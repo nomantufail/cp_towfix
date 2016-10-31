@@ -19,4 +19,9 @@ class Vehicle extends Model
     {
         return $this->hasMany('App\Models\ServiceRequest');
     }
+
+    public function type()
+    {
+        return $this->belongsTo('App\Models\VehicleType','vehicle_type_id');
+    }
 }

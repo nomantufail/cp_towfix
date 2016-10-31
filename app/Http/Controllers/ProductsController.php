@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Repositories\ProductImagesRepository;
 use App\Repositories\ProductsRepository;
+use App\Repositories\VehiclesRepository;
 use Illuminate\Support\Facades\Auth;
 use Response;
 
@@ -12,12 +13,14 @@ class ProductsController extends ParentController
 {
     private $products = null;
     private $productImages = null;
-
-    public function __construct(ProductsRepository $productsRepo, ProductImagesRepository $productImagesRepo)
+    private $vehiclesRepo = null;
+    public function __construct(ProductsRepository $productsRepo,
+                                ProductImagesRepository $productImagesRepo, VehiclesRepository $vehiclesRepository)
     {
         parent::__construct();
         $this->products = $productsRepo;
         $this->productImages = $productImagesRepo;
+        $this->vehiclesRepo = $vehiclesRepository;
     }
 
     public function showProducts(Requests\Product\ViewProductsRequest $request)
@@ -42,7 +45,7 @@ class ProductsController extends ParentController
 
     public function addProduct(Requests\Product\AddProductRequest $request)
     {
-//        try{
+        try{
             $product_images = [];
             $productId = $this->products->store($request->storableAttrs())->id;
             foreach($request->file('images') as $file)
@@ -58,25 +61,25 @@ class ProductsController extends ParentController
             }
             $this->productImages->insertMultiple($product_images);
             return redirect()->back()->with('success','Product Added Successfully');
-//        }catch (\Exception $e){
-//            return $this->handleInternalServerError($e->getMessage());
-//        }
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
     }
 
     public function editProductForm(Requests\Product\ShowEditProductFormRequest $request, $product_id)
     {
-//        try{
+        try{
             $data = [
                 'productImages' => $this->productImages->all(),
                 'product' => $this->products->findById($product_id)
             ];
             return view('products.edit-product', $data);
-//        }catch (\Exception $e){
-//            return $this->handleInternalServerError($e->getMessage());
-//        }
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
     }
 
-    public function updateProduct(Requests\Vehicle\UpdateVehicleRequest $request, $vehicle_id)
+    public function updateProduct(Requests\Vehicle\UpdateProductRequest $request, $vehicle_id)
     {
         try{
             $this->vehiclesRepo->updateWhere(['id' => $vehicle_id], $request->updateableAttrs());

@@ -56,4 +56,9 @@ class ServiceRequest extends Model
     {
         return ($this->satatus == 1);
     }
+
+    public function document()
+    {
+        return $this->hasOne('App\Models\ServiceRequestForm','cust_vehicle_srv_reqs_id');
+    }
 }

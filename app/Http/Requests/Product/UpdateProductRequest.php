@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Vehicle;
 
-class UpdateVehicleRequest extends VehicleRequest
+class UpdateProductRequest extends VehicleRequest
 {
 
     public function updateableAttrs()

@@ -16,7 +16,7 @@
             </h4>
         @endif
         <h2 class="main-heading">Edit A Product</h2>
-        <div class="add-vehicle-widget">
+        <li class="add-vehicle-widget">
             <form class="add-vehicle-form" method="post" action="{{url('/')}}/product/update/{{$product->id}}" enctype="multipart/form-data">
                 {{csrf_field()}}
 
@@ -100,12 +100,17 @@
                     @endif
                 </label>
 
-                @foreach($product->images as $img)
-                    <div class="image-packet">
-                        <img class="image_path" src="{{ url('/').$img->path }}" data-id="{{$img->id}}"/>
-                        <a class="del-img-btn" style="font-size: 25px;">X</a>
-                    </div>
-                @endforeach
+                <ul class="attach-list">
+                    @foreach($product->images as $img)
+                        <li style="background-image: url('{{ url('/').$img->path }}')" data-id="{{$img->id}}">
+                            <div class="attach-hover">
+                                <a class="fancybox" href="{{ url('/').$img->path }}"><i class="fa fa-search fa-fw"></i></a>
+                                {{--<img class="image_path" src="{{ url('/').$img->path }}" data-id="{{$img->id}}"/>--}}
+                                <a class="del-img-btn" style="font-size: 25px;"><i class="fa fa-trash fa-fw"></i> </a>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
 
                 <label style="clear: both">
                     <input type="file" name="images[]" multiple id="file_chooser">
@@ -143,13 +148,16 @@
 
         $(document).on('click', '.del-img-btn', function(){
             let btn = $(this);
-            let image_id = btn.siblings('img').attr('data-id');
+            let image_id = btn.closest('img').attr('data-id');
             $.ajax({type: 'POST' , data: {'_token':"<?=csrf_token()?>" }, url: base_url + 'product_image/delete/'+image_id ,
                 success: function (data){
-                    btn.closest('.image-packet').remove();
+                    btn.closest('li').remove();
                     hide_show_add_img_btn();
                 }
             });
+        });
+        $(document).ready(function() {
+            $(".fancybox").fancybox();
         });
     </script>
 @endsection

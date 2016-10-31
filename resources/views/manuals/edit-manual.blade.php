@@ -46,11 +46,11 @@
                 </label>
                 <ul class="attach-list">
                 @foreach($manual->images as $img)
-                    <li style="background-image: url('{{ url('/').$img->image }}')">
+                    <li style="background-image: url('{{ url('/').$img->image }}')" data-id="{{$img->id}}">
                         <div class="attach-hover">
-                            <a id="single_image" href="{{ url('/').$img->image }}"><i class="fa fa-mi"></i></a>
+                            <a class="fancybox" href="{{ url('/').$img->image }}"><i class="fa fa-search fa-fw"></i></a>
                             {{--<img class="image_path" src="{{ url('/').$img->image }}" data-id="{{$img->id}}"/>--}}
-                            <a class="del-img-btn" style="font-size: 25px;">X</a>
+                            <a class="del-img-btn" style="font-size: 25px;"><i class="fa fa-trash fa-fw"></i> </a>
                         </div>
                     </li>
                 @endforeach
@@ -92,13 +92,16 @@
 
         $(document).on('click', '.del-img-btn', function(){
             let btn = $(this);
-            let image_id = btn.siblings('img').attr('data-id');
+            let image_id = btn.closest('li').attr('data-id');
             $.ajax({type: 'POST' , data: {'_token':"<?=csrf_token()?>" }, url: base_url + 'manual_image/delete/'+image_id ,
                 success: function (data){
-                    btn.closest('.image-packet').remove();
+                    btn.closest('li').remove();
                     hide_show_add_img_btn();
                 }
             });
+        });
+        $(document).ready(function() {
+            $(".fancybox").fancybox();
         });
     </script>
 @endsection

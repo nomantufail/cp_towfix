@@ -14,12 +14,15 @@
     ?>
     <section class="add-vehicle">
         @if(\Session::has('success'))
-            <h4>
-                {{\Session::get('success')}}
-            </h4>
+            <div class="alert alert-success fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <h4>
+                    {{\Session::get('success')}}
+                </h4>
+            </div>
         @endif
         <h2 class="main-heading">Edit A Newsletter</h2>
-        <div class="add-vehicle-widget">
+        <ul class="add-vehicle-widget">
             <form class="add-vehicle-form" method="post" action="{{url('/')}}/newsletter/edit/{{$newsletter->id}}" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <label>
@@ -48,8 +51,16 @@
                 </label>
                 <input type="hidden" id="record_id" value="{{$newsletter->id}}">
                 @if($newsletter->image != "")
-                    <img id="image_path" src="{{ url('/').$newsletter->image }}" />
-                    <input type="button" class="btn btn btn-primary" id="delete_image" value="Delete">
+                    <ul class="attach-list">
+                        <li style="background-image: url('{{ url('/').$newsletter->image }}')" id="image_path">
+                            <div class="attach-hover">
+                                <a class="fancybox" href="{{ url('/').$newsletter->image }}"><i class="fa fa-search fa-fw"></i></a>
+                                <a id="delete_image" style="font-size: 25px;"><i class="fa fa-trash fa-fw"></i> </a
+                                {{--<img id="image_path" src="{{ url('/').$newsletter->image }}" />--}}
+                            </div>
+                        </li>
+                    </ul>
+                    {{--<input type="button" class="btn btn btn-primary" id="delete_image" value="Delete">--}}
                 @endif
                 <label  style="clear: both" id="file_chooser">
                     <input id="image" type="file" name="image">
@@ -94,5 +105,8 @@
             });
 
         }
+        $(document).ready(function() {
+            $(".fancybox").fancybox();
+        });
     </script>
 @endsection

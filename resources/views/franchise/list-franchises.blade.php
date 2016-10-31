@@ -34,7 +34,7 @@
 
                     @foreach($franchises as $franchise)
                         <tr>
-                            <td>{{$franchise->f_name}}.{{$franchise->l_name}}</td>
+                            <td>{{$franchise->f_name}} {{$franchise->l_name}}</td>
                             <td>{{$franchise->address}}</td>
                             <td>{{$franchise->phone_number}}</td>
                             <td>{{$franchise->email}}</td>

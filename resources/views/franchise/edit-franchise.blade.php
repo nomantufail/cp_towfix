@@ -13,7 +13,7 @@
 
                 <label class="half-field {{ $errors->has('name') ? ' has-error' : '' }}">
                     <span>Name</span>
-                    <input type="text" name="name" placeholder="Franchise Name" value="{{$franchise->f_name}}.{{$franchise->l_name}}">
+                    <input type="text" name="name" placeholder="Franchise Name" value="{{$franchise->f_name}} {{$franchise->l_name}}">
                     @if ($errors->has('name'))
                         <span class="help-block">
                             <strong>{{ $errors->first('name') }}</strong>

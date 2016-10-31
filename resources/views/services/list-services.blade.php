@@ -20,6 +20,7 @@
                     <thead>
                     <tr>
                         @if($user->isFranchise())<th>Customer Name</th>@endif
+                        <th>Vehicle</th>
                         <th>Membership Number</th>
                         @if($user->isCustomer())<th>Franchise Name</th>@endif
                         @if($user->isCustomer())<th>Franchise Area</th>@endif
@@ -33,7 +34,8 @@
                     @foreach($requests as $request)
                     <tr data-req-id="{{$request->id}}">
                         @if($user->isFranchise())<th>{{$request->customer->f_name}} {{$request->customer->l_name}}</th>@endif
-                        <td>24574</td>
+                        <td>{{$request->vehicle->make}} {{$request->vehicle->model}}</td>
+                            <td>24574</td>
                         @if($user->isCustomer())<th>{{$request->franchise->f_name}} {{$request->franchise->l_name}}</th>@endif
                         @if($user->isCustomer())<th>Area</th>@endif
                         <td>{{\Carbon\Carbon::createFromFormat('Y-m-d h:i:s',$request->suggested_date)->toFormattedDateString()}}
@@ -52,7 +54,7 @@
                             </span>
                             @endif
                         </td>
-                        <td><a href="#">View</a></td>
+                        <td><a href="{{url('/vehicle/')}}/{{$request->vehicle->id}}">View</a></td>
                         <td>{{$request->getStatus()}}</td>
                         <td>
                             <span class="whats-happening"></span>

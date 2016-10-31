@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests\Vehicle;
 
-use App\Http\Requests\Vehicle\VehicleRequest;
 
-class AddVehicleServiceDocument extends VehicleRequest
+class AddVehicleServiceDocumentRequest extends VehicleRequest
 {
+    public function document()
+    {
+        return collect($this->input('document'))->toJson();
+    }
     /**
      * Determine if the user is authorized to make this request.
      *

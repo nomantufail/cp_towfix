@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Models\Vehicle;
+use App\Repositories\ServiceRequestFormsRepository;
 use App\Repositories\VehicleServicesRepository;
 use App\Repositories\VehiclesRepository;
 use App\Repositories\VehicleTypesRepository;
@@ -13,13 +14,16 @@ class VehiclesController extends ParentController
     private $vehicleTypesRepo = null;
     private $vehiclesRepo = null;
     private $vehicleServicesRepo = null;
-    public function __construct(VehicleTypesRepository $vehicleTypesRepo, VehiclesRepository $vehiclesRepo, VehicleServicesRepository $vehicleServicesRepository)
+    private $serviceRequestFormsRepo = null;
+    public function __construct(VehicleTypesRepository $vehicleTypesRepo, VehiclesRepository $vehiclesRepo,
+                                VehicleServicesRepository $vehicleServicesRepository, ServiceRequestFormsRepository $serviceRequestFormsRepository)
     {
         parent::__construct();
 
         $this->vehicleTypesRepo = $vehicleTypesRepo;
         $this->vehiclesRepo = $vehiclesRepo;
         $this->vehicleServicesRepo = $vehicleServicesRepository;
+        $this->serviceRequestFormsRepo = $serviceRequestFormsRepository;
     }
 
     public function detail(Requests\Vehicle\VehicleDetailRequest $request)
@@ -30,9 +34,13 @@ class VehiclesController extends ParentController
         ]);
     }
 
-    public function addDocument(Requests\Vehicle\AddVehicleServiceDocument $request)
+    public function addDocument(Requests\Vehicle\AddVehicleServiceDocumentRequest $request)
     {
-        dd('hi');
+        $this->serviceRequestFormsRepo->store([
+            'cust_vehicle_srv_reqs_id'=>$request->input('cust_vehicle_srv_reqs_id'),
+            'document'=>$request->document()
+        ]);
+        return redirect()->back()->with(['success'=>'Document added successfully !']);
     }
 
     public function showAddVehicleForm(Requests\Vehicle\AddVehicleFormRequest $request)

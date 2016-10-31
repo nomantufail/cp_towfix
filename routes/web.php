@@ -25,6 +25,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/vehicle/add', [
         'uses'=>'VehiclesController@StoreVehicle'
     ]);
+    Route::post('/vehicle/{vehicle_id}/add_document', [
+        'uses'=>'VehiclesController@addDocument'
+    ]);
     Route::get('/vehicle/update/{vehicle_id}', [
         'uses'=>'VehiclesController@editVehicleForm'
     ]);

@@ -21,6 +21,7 @@
                     <thead>
                     <tr>
                         @if($user->isFranchise())<th>Customer Name</th>@endif
+                        <th>Vehicle</th>
                         <th>Membership Number</th>
                         @if($user->isCustomer())<th>Franchise Name</th>@endif
                         @if($user->isCustomer())<th>Franchise Area</th>@endif
@@ -30,33 +31,37 @@
                         <th>Actions</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="requests">
                     @foreach($requests as $request)
-                    <tr>
+                    <tr data-req-id="{{$request->id}}">
                         @if($user->isFranchise())<th>{{$request->customer->f_name}} {{$request->customer->l_name}}</th>@endif
-                        <td>24574</td>
+                        <td>{{$request->vehicle->make}} {{$request->vehicle->model}}</td>
+                            <td>24574</td>
                         @if($user->isCustomer())<th>{{$request->franchise->f_name}} {{$request->franchise->l_name}}</th>@endif
                         @if($user->isCustomer())<th>Area</th>@endif
                         <td>{{\Carbon\Carbon::createFromFormat('Y-m-d h:i:s',$request->suggested_date)->toFormattedDateString()}}
-                            <span style="color:@if($request->suggestedUser->id && $user->id) green @else red @endif; font-weight: bold;">
+                            @if($request->isPending())
+                            <span style="color:@if($request->suggestedUser->id == $user->id) green @else red @endif; font-weight: bold;">
                                 By
-                                @if($request->suggestedUser->id && $user->id)
-                                    You
+                                @if($request->suggestedUser->id == $user->id)
+                                    <span data-toggle="tooltip" title="{{$request->message}}">You</span>
                                 @else
                                     @if($request->suggestedUser->isFranchise())
-                                        Franchise
+                                        <span data-toggle="tooltip" title="{{$request->message}}">Franchise</span>
                                     @else
-                                        Customer
+                                        <span data-toggle="tooltip" title="{{$request->message}}">Customer</span>
                                     @endif
                                 @endif
                             </span>
+                            @endif
                         </td>
-                        <td><a href="#">View</a></td>
+                        <td><a href="{{url('/vehicle/')}}/{{$request->vehicle->id}}">View</a></td>
                         <td>{{$request->getStatus()}}</td>
                         <td>
-                            @if($request->suggestedUser->id != $user->id)<a href="#"><i class="fa fa-check fa-fw"></i></a>@endif
-                            <a href="#"><i class="fa fa-close fa-fw"></i></a>
-                            <a href="status-request.html"><i class="fa fa-edit fa-fw"></i></a>
+                            <span class="whats-happening"></span>
+                            @if($user->can('accept','serviceRequest', $request))<form class="accept-request" method="post" action="{{url('/')}}/service_request/accept/{{$request->id}}">{{csrf_field()}}<button><i class="fa fa-check fa-fw"></i></button></form>@endif
+                                @if($user->can('delete','serviceRequest', $request))<form class="delete-request" data-req-id="{{$request->id}}"  method="post" action="{{url('/')}}/service_request/delete/{{$request->id}}">{{csrf_field()}}<button><i class="fa fa-close fa-fw"></i></button></form>@endif
+                            @if($user->can('edit','serviceRequest', $request))<a class="edit-link" href="{{url('/')}}/service_request/edit/{{$request->id}}"><i class="fa fa-edit fa-fw"></i></a>@endif
                         </td>
                     </tr>
                     @endforeach
@@ -65,4 +70,37 @@
             </div>
         </div>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.5.1/socket.io.min.js"></script>
+    <script>
+        var socket = io('http://localhost:3000');
+        socket.emit('load-test','');
+        socket.on('request-under-updating', function (data) {
+            $.each( data.sockets, function( key, value ) {
+                var request = $("#requests tr[data-req-id='"+value.request_id+"']");
+                request.find('.edit-link').hide();
+                request.find('.delete-request').hide();
+                request.find('.accept-request').hide();
+                request.find('.whats-happening').text('editing...');
+            });
+        });
+        socket.on('request-locked', function (data) {
+            if(data.editing != "<?= $user->id ?>"){
+                var request = $("#requests tr[data-req-id='"+data.request_id+"']");
+                request.find('.edit-link').hide();
+                request.find('.delete-request').hide();
+                request.find('.accept-request').hide();
+                request.find('.whats-happening').text('editing...');
+            }
+        });
+        socket.on('request-released', function (data) {
+            var request = $("#requests tr[data-req-id='"+data.request_id+"']");
+            request.find('.edit-link').show();
+            request.find('.delete-request').show();
+            request.find('.accept-request').show();
+            request.find('.whats-happening').text('');
+        });
+        $(document).ready(function () {
+
+        });
+    </script>
 @endsection

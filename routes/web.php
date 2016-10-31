@@ -25,6 +25,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/vehicle/add', [
         'uses'=>'VehiclesController@StoreVehicle'
     ]);
+    Route::post('/vehicle/{vehicle_id}/add_document', [
+        'uses'=>'VehiclesController@addDocument'
+    ]);
     Route::get('/vehicle/update/{vehicle_id}', [
         'uses'=>'VehiclesController@editVehicleForm'
     ]);
@@ -33,6 +36,13 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
     Route::post('/vehicle/delete', [
         'uses'=>'VehiclesController@delete'
+    ]);
+    Route::get('/vehicle/{vehicle_id}', [
+        'uses'=>'VehiclesController@detail'
+    ]);
+
+    Route::post('/vehicle/{vehicle_id}/add_document', [
+        'uses'=>'VehiclesController@addDocument'
     ]);
 
 
@@ -112,7 +122,7 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
 
     Route::get('/service_requests', [
-        'uses'=>'ServicesController@listServices'
+        'uses'=>'ServicesController@listServices', 'as'=>'service_requests'
     ]);
     Route::get('/service_request/create', [
         'uses'=>'ServicesController@showCreateRequestForm'
@@ -125,6 +135,12 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
     Route::post('/service_request/edit/{request_id}', [
         'uses'=>'ServicesController@updateRequest'
+    ]);
+    Route::post('/service_request/accept/{request_id}', [
+        'uses'=>'ServicesController@acceptRequest'
+    ]);
+    Route::post('/service_request/delete/{request_id}', [
+        'uses'=>'ServicesController@deleteRequest'
     ]);
 
 

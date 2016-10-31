@@ -14,4 +14,9 @@ class Vehicle extends Model
     {
         return $this->belongsTo('App\User','customer_id');
     }
+
+    public function serviceRequests()
+    {
+        return $this->hasMany('App\Models\ServiceRequest');
+    }
 }

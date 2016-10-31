@@ -22,4 +22,5 @@ class VehiclesRepository extends Repository
     {
         return $this->getModel()->where('customer_id',$customerId)->get();
     }
+
 }

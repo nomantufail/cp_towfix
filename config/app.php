@@ -233,7 +233,7 @@ return [
          * Registering policies --------------------------------->
          * */
         'OnlineStorePolicy' => \App\Policies\OnlineStorePolicy::class,
-        'CustomerServicesRequestsPolicy' => \App\Policies\CustomerServicesRequestsPolicy::class,
+        'ServiceRequestPolicy' => \App\Policies\ServiceRequestPolicy::class,
         'ManualsPolicy' => \App\Policies\ManualsPolicy::class,
         'MessagesPolicy' => \App\Policies\MessagesPolicy::class,
         'NewslettersPolicy' => \App\Policies\NewslettersPolicy::class,

@@ -16,7 +16,7 @@ class VehicleSrvReqFormsTableMigration extends Migration
         Schema::create('vehicle_srv_req_forms', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('cust_vehicle_srv_reqs_id')->unsigned();
-            $table->text('json');
+            $table->text('document');
             $table->timestamps();
 
             $table->foreign('cust_vehicle_srv_reqs_id')

@@ -13,8 +13,7 @@
         <h2 class="main-heading">Vehicle Detail</h2>
         <div class="vehicle-widget">
             <div class="vehicle-edit-btns">
-                @if($user->can('edit','vehicles',$vehicle))<a href="add-vehicle.html"><i class="fa fa-edit fa-fw"></i></a>@endif
-                @if($user->can('delete','vehicles',$vehicle))<a href="#"><i class="fa fa-trash fa-fw"></i></a>@endif
+                @if($user->can('edit','vehicles',$vehicle))<a href="{{url('/')}}/vehicle/update/{{$vehicle->id}}"><i class="fa fa-edit fa-fw"></i></a>@endif
             </div>
             <ul class="vehicle-info">
                 <li>
@@ -97,7 +96,7 @@
                     <div class="vehicles-head">
                         <h3>Vehicle Service Form</h3>
                     </div>
-                    <form class="add-vehicle-form" method="post" action="@if($request->franchise_id == $user->id){{url('/vehicle')}}/{{$request->vehicle->id}}/add_document @else # @endif">
+                    <form class="add-vehicle-form" method="post" @if($request->franchise_id == $user->id)action="{{url('/vehicle')}}/{{$request->vehicle->id}}/add_document" @else onsubmit="return false" @endif >
                         {{csrf_field()}}
                         <input type="hidden" name="cust_vehicle_srv_reqs_id" value="{{$request->id}}">
                         <div class="add-vehicle-widget">
@@ -139,105 +138,105 @@
                                 <tbody>
                                 <tr>
                                     <td>Lh indicator</td>
-                                    <td><input type="radio" name="document[condition][lh_indicator]" value="1" @if($document != null && $document->condition->lh_indicator == "1") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][lh_indicator]" value="2" @if($document != null && $document->condition->lh_indicator == "2") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][lh_indicator]" value="3" @if($document != null && $document->condition->lh_indicator == "3") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][lh_indicator]" value="1" @if($document != null && isset($document->condition->lh_indicator) && $document->condition->lh_indicator == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][lh_indicator]" value="2" @if($document != null && isset($document->condition->lh_indicator) && $document->condition->lh_indicator == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][lh_indicator]" value="3" @if($document != null && isset($document->condition->lh_indicator) && $document->condition->lh_indicator == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Rh indicator</td>
-                                    <td><input type="radio" name="document[condition][rh_indicator]" value="1" @if($document != null && $document->condition->rh_indicator == "1") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][rh_indicator]" value="2" @if($document != null && $document->condition->rh_indicator == "2") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][rh_indicator]" value="3" @if($document != null && $document->condition->rh_indicator == "3") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][rh_indicator]" value="1" @if($document != null && isset($document->condition->rh_indicator) && $document->condition->rh_indicator == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][rh_indicator]" value="2" @if($document != null && isset($document->condition->rh_indicator) && $document->condition->rh_indicator == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][rh_indicator]" value="3" @if($document != null && isset($document->condition->rh_indicator) && $document->condition->rh_indicator == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>No plate light</td>
-                                    <td><input type="radio" name="document[condition][no_plate_light]" value="1" @if($document != null && $document->condition->no_plate_light == "1") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][no_plate_light]" value="2" @if($document != null && $document->condition->no_plate_light == "2") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][no_plate_light]" value="3" @if($document != null && $document->condition->no_plate_light == "3") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][no_plate_light]" value="1" @if($document != null && isset($document->condition->no_plate_light) && $document->condition->no_plate_light == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][no_plate_light]" value="2" @if($document != null && isset($document->condition->no_plate_light) && $document->condition->no_plate_light == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][no_plate_light]" value="3" @if($document != null && isset($document->condition->no_plate_light) && $document->condition->no_plate_light == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Water tank mounts</td>
-                                    <td><input type="radio" name="document[condition][water_tank_mounts]" value="1" @if($document != null && $document->condition->water_tank_mounts == "1") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][water_tank_mounts]" value="2" @if($document != null && $document->condition->water_tank_mounts == "2") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][water_tank_mounts]" value="3" @if($document != null && $document->condition->water_tank_mounts == "3") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][water_tank_mounts]" value="1" @if($document != null && isset($document->condition->water_tank_mounts) && $document->condition->water_tank_mounts == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][water_tank_mounts]" value="2" @if($document != null && isset($document->condition->water_tank_mounts) && $document->condition->water_tank_mounts == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][water_tank_mounts]" value="3" @if($document != null && isset($document->condition->water_tank_mounts) && $document->condition->water_tank_mounts == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Hand brake </td>
-                                    <td><input type="radio" name="document[condition][hand_brake]" value="1" @if($document != null && $document->condition->hand_brake == "1") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][hand_brake]" value="2" @if($document != null && $document->condition->hand_brake == "2") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][hand_brake]" value="3" @if($document != null && $document->condition->hand_brake == "3") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][hand_brake]" value="1" @if($document != null && isset($document->condition->hand_brake) && $document->condition->hand_brake == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][hand_brake]" value="2" @if($document != null && isset($document->condition->hand_brake) && $document->condition->hand_brake == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][hand_brake]" value="3" @if($document != null && isset($document->condition->hand_brake) && $document->condition->hand_brake == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Trailer plug</td>
-                                    <td><input type="radio" name="document[condition][trailer_plug]" value="1" @if($document != null && $document->condition->trailer_plug == "1") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][trailer_plug]" value="2" @if($document != null && $document->condition->trailer_plug == "2") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][trailer_plug]" value="3" @if($document != null && $document->condition->trailer_plug == "3") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][trailer_plug]" value="1" @if($document != null && isset($document->condition->trailer_plug) && $document->condition->trailer_plug == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][trailer_plug]" value="2" @if($document != null && isset($document->condition->trailer_plug) && $document->condition->trailer_plug == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][trailer_plug]" value="3" @if($document != null && isset($document->condition->trailer_plug) && $document->condition->trailer_plug == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Wiring loom</td>
-                                    <td><input type="radio" name="document[condition][wiring_loom]" value="1" @if($document != null && $document->condition->wiring_loom == "1") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][wiring_loom]" value="2" @if($document != null && $document->condition->wiring_loom == "2") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][wiring_loom]" value="3" @if($document != null && $document->condition->wiring_loom == "3") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][wiring_loom]" value="1" @if($document != null && isset($document->condition->wiring_loom) && $document->condition->wiring_loom == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][wiring_loom]" value="2" @if($document != null && isset($document->condition->wiring_loom) && $document->condition->wiring_loom == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][wiring_loom]" value="3" @if($document != null && isset($document->condition->wiring_loom) && $document->condition->wiring_loom == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Springs/hangers</td>
-                                    <td><input type="radio" name="document[condition][springs_hangers]" value="1" @if($document != null && $document->condition->springs_hangers == "1") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][springs_hangers]" value="2" @if($document != null && $document->condition->springs_hangers == "2") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][springs_hangers]" value="3" @if($document != null && $document->condition->springs_hangers == "3") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][springs_hangers]" value="1" @if($document != null && isset($document->condition->springs_hangers) && $document->condition->springs_hangers == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][springs_hangers]" value="2" @if($document != null && isset($document->condition->springs_hangers) && $document->condition->springs_hangers == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][springs_hangers]" value="3" @if($document != null && isset($document->condition->springs_hangers) && $document->condition->springs_hangers == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>U-bolts</td>
-                                    <td><input type="radio" name="document[condition][u_bolts]" value="1" @if($document != null && $document->condition->u_bolts == "1") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][u_bolts]" value="2" @if($document != null && $document->condition->u_bolts == "2") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][u_bolts]" value="3" @if($document != null && $document->condition->u_bolts == "3") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][u_bolts]" value="1" @if($document != null && isset($document->condition->u_bolts) && $document->condition->u_bolts == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][u_bolts]" value="2" @if($document != null && isset($document->condition->u_bolts) && $document->condition->u_bolts == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][u_bolts]" value="3" @if($document != null && isset($document->condition->u_bolts) && $document->condition->u_bolts == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>A-frame</td>
-                                    <td><input type="radio" name="document[condition][a_frame]" value="1" @if($document != null && $document->condition->u_bolts == "1") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][a_frame]" value="2" @if($document != null && $document->condition->u_bolts == "2") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][a_frame]" value="3" @if($document != null && $document->condition->u_bolts == "3") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][a_frame]" value="1" @if($document != null && isset($document->condition->a_frame) && $document->condition->u_bolts == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][a_frame]" value="2" @if($document != null && isset($document->condition->a_frame) && $document->condition->u_bolts == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][a_frame]" value="3" @if($document != null && isset($document->condition->a_frame) && $document->condition->u_bolts == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Stabiliser Jacks</td>
-                                    <td><input type="radio" name="document[condition][stabiliser_jacks]" value="1" @if($document != null && $document->condition->stabiliser_jacks == "1") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][stabiliser_jacks]" value="2" @if($document != null && $document->condition->stabiliser_jacks == "2") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][stabiliser_jacks]" value="3" @if($document != null && $document->condition->stabiliser_jacks == "3") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][stabiliser_jacks]" value="1" @if($document != null && isset($document->condition->stabiliser_jacks) && $document->condition->stabiliser_jacks == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][stabiliser_jacks]" value="2" @if($document != null && isset($document->condition->stabiliser_jacks) && $document->condition->stabiliser_jacks == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][stabiliser_jacks]" value="3" @if($document != null && isset($document->condition->stabiliser_jacks) && $document->condition->stabiliser_jacks == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Chassis Welds</td>
-                                    <td><input type="radio" name="document[condition][chassis_welds]" value="1" @if($document != null && $document->condition->chassis_welds == "1") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][chassis_welds]" value="2" @if($document != null && $document->condition->chassis_welds == "2") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][chassis_welds]" value="3" @if($document != null && $document->condition->chassis_welds == "3") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][chassis_welds]" value="1" @if($document != null && isset($document->condition->chassis_welds) && $document->condition->chassis_welds == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][chassis_welds]" value="2" @if($document != null && isset($document->condition->chassis_welds) && $document->condition->chassis_welds == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][chassis_welds]" value="3" @if($document != null && isset($document->condition->chassis_welds) && $document->condition->chassis_welds == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Safety chains</td>
-                                    <td><input type="radio" name="document[condition][safety_chains]" value="1" @if($document != null && $document->condition->safety_chains == "1") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][safety_chains]" value="2" @if($document != null && $document->condition->safety_chains == "2") checked="checked" @endif > </td>
-                                    <td><input type="radio" name="document[condition][safety_chains]" value="3" @if($document != null && $document->condition->safety_chains == "3") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][safety_chains]" value="1" @if($document != null && isset($document->condition->safety_chains) && $document->condition->safety_chains == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][safety_chains]" value="2" @if($document != null && isset($document->condition->safety_chains) && $document->condition->safety_chains == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][safety_chains]" value="3" @if($document != null && isset($document->condition->safety_chains) && $document->condition->safety_chains == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
                                 </tbody>
@@ -311,7 +310,7 @@
                                 <span>Other observations to be advised to owner:</span>
                                 <textarea placeholder="Observations" name="document[observations]"> @if($document != null) {{$document->observations}} @endif </textarea>
                             </label>
-                            <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+                            @if($request->franchise_id == $user->id)<input type="submit" name="submit" value="Submit" class="btn btn-primary">@endif
                         </div>
                     </form>
                 </div>

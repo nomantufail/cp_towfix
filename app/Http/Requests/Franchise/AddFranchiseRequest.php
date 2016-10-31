@@ -22,7 +22,9 @@ class AddFranchiseRequest extends Request
         ];
         if(count($names) > 1)
         {
-            $storableAttrs['l_name'] = $names[1];
+            (array_shift($names));
+            $names = implode(" " , $names);
+            $storableAttrs['l_name'] = $names;
         }
         return $storableAttrs;
     }

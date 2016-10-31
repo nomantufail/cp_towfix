@@ -79,9 +79,7 @@ class ProductsController extends ParentController
 
     public function updateProduct(Requests\Product\UpdateProductRequest $request, $product_id)
     {
-//        try{
-        //dd($request->file('images'));
-
+        try{
             $product_images = [];
             $this->products->updateWhere(['id' => $product_id], $request->updateableAttrs());
 
@@ -101,9 +99,9 @@ class ProductsController extends ParentController
         }
 
             return redirect()->back()->with('success','Product Updated Successfully');
-//        }catch (\Exception $e){
-//            return $this->handleInternalServerError($e->getMessage());
-//        }
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
     }
 
 

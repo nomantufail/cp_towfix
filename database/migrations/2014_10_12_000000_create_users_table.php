@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('f_name')->default('');
             $table->string('l_name')->default('');
             $table->string('address')->default('');
-            $table->string('phone_number')->default('');
+            $table->string('phone_number')->default('444');
             $table->string('email')->unique();
             $table->string('password');
             $table->tinyInteger('role')->default(3); //1: admin, 2: frenchise 3: customer

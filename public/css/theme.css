@@ -975,3 +975,35 @@ ul.tabs li.current{
 .vehicle-detail-popup input[type="text"]{
 	width: 100%;	
 }
+
+.attach-list{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	display: block;
+	width: 100%;
+}
+
+.attach-list li {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	width: 33%;
+	height: 200px;
+	background-repeat: no-repeat;
+}
+
+.attach-list li img {
+	max-width: 100%;
+}
+
+.attach-list li a {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	background: #FFF;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	text-align: center;
+}

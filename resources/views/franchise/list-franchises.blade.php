@@ -10,7 +10,12 @@
 @section('page')
     <section class="vehicles-list">
         <div class="vehicles-head">
-            <h3>Your Vehicles</h3>
+            @if(\Session::has('success'))
+                <h4>
+                    {{\Session::get('success')}}
+                </h4>
+            @endif
+            <h3>Franchises</h3>
             <a href="{{url('/')}}/franchise/add" class="btn btn-primary pull-right">Add a Franchise</a>
         </div>
         <div class="vehicles-list-content">
@@ -18,35 +23,30 @@
                 <table id="tableStyle" class="display" cellspacing="0" width="100%">
                     <thead>
                     <tr>
-                        <th>Make</th>
-                        <th>Model</th>
-                        <th>Year</th>
-                        <th>Vehicle Type</th>
-                        <th>Next Service</th>
-                        <th>Registration Number</th>
-                        <th>Registration Expiry</th>
-                        <th>Detail</th>
+                        <th>Franchise Name</th>
+                        <th>Address</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
 
+                    @foreach($franchises as $franchise)
                         <tr>
-                            <td>Toyota</td>
-                            <td>Corolla</td>
-                            <td>2015</td>
-                            <td></td>
-                            <td>09/28/16</td>
-                            <td>125264</td>
-                            <td>10/3/16</td>
-                            <td><a href="#">View</a></td>
+                            <td>{{$franchise->f_name}}.{{$franchise->l_name}}</td>
+                            <td>{{$franchise->address}}</td>
+                            <td>{{$franchise->phone_number}}</td>
+                            <td>{{$franchise->email}}</td>
+
                             <td>
-                                <a href="{{url('/')}}/vehicle/update/"><i class="fa fa-edit fa-fw"></i></a>
-                                <form method="post" action="{{url('/')}}/vehicle/delete">{{csrf_field()}}<input type="hidden" value="" name="id"><button><i class="fa fa-trash fa-fw"></i></button></form>
+                                <a href="{{url('/')}}/franchise/update/{{$franchise->id}}"><i class="fa fa-edit fa-fw"></i></a>
+                                <form method="post" action="{{url('/')}}/franchise/delete/{{$franchise->id}}">{{csrf_field()}}<input type="hidden" value="" name="id"><button><i class="fa fa-trash fa-fw"></i></button></form>
                             </td>
                         </tr>
 
                     </tbody>
+                    @endforeach
                 </table>
             </div>
         </div>

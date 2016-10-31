@@ -7,8 +7,9 @@
     <link type="text/css" href="{{url('/')}}/css/bootstrap.min.css" rel="stylesheet" />
     <link type="text/css" href="{{url('/')}}/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{url('/')}}/css/jquery.dataTables.css" />
-    <link type="text/css" href="{{url('/')}}/css/theme.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{{url('/')}}/css/jquery.fancybox.css">
+    <link type="text/css" href="{{url('/')}}/css/theme.css" rel="stylesheet" />
 
     <script type="text/javascript" language="javascript" src="{{url('/')}}/js/jquery.min.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.dataTables.js"></script>
@@ -43,7 +44,7 @@
                     </a>
                     </li>
                 @endif
-                @if($user->can('view','orders')) <li><a href="{{url('/')}}/orders">View Orders</a></li> @endif
+                @if($user->can('view','orders')) <li><a href="{{url('/')}}/manuals">View Orders</a></li> @endif
                 @if($user->can('view','newsletters'))
                     <li>
                         <a href="{{url('/')}}/newsletters">
@@ -62,7 +63,7 @@
                         </a>
                     </li>
                 @endif
-                @if($user->can('view','manuals')) <li><a href="#">Manuals</a></li> @endif
+                @if($user->can('view','manuals')) <li><a href="{{url('/')}}/manuals">Manuals</a></li> @endif
                 @if($user->can('view', 'messages'))
                 <li>
                     <a href="">
@@ -120,6 +121,7 @@
 <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>-->
 <script src="{{url('/')}}/js/bootstrap.min.js"></script>
 <script src="<?php echo asset('js/jquery.datetimepicker.js') ?>"> </script>
+<script type="text/javascript" language="javascript" src="{{url('/')}}/js/jquery.fancybox.js"></script>
 <script>
     $(document).ready(function(){
         $('#tableStyle').DataTable( {

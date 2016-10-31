@@ -137,6 +137,35 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/franchise/add', [
         'uses'=>'FranchisesController@storeFranchise'
     ]);
+    Route::get('/franchise/update/{franchise_id}', [
+        'uses'=>'FranchisesController@editFranchiseForm'
+    ]);
+    Route::post('/franchise/update/{franchise_id}', [
+        'uses'=>'FranchisesController@updateFranchise'
+    ]);
+    Route::post('/franchise/delete/{franchise_id}', [
+        'uses'=>'FranchisesController@delete'
+    ]);
+
+
+    Route::get('/manuals', [
+        'uses'=>'ManualsControllers@showManuals'
+    ]);
+    Route::get('/manual/add', [
+        'uses'=>'ManualsControllers@showAddManualForm'
+    ]);
+    Route::post('/manual/add', [
+        'uses'=>'ManualsControllers@addManual'
+    ]);
+    Route::get('/manual/update/{manual_id}', [
+        'uses'=>'ManualsControllers@editManualForm'
+    ]);
+    Route::post('/manual/update/{manual_id}', [
+        'uses'=>'ManualsControllers@updateManual'
+    ]);
+    Route::post('/manual/delete/{manual_id}', [
+        'uses'=>'ManualsControllers@delete'
+    ]);
 
 
 
@@ -147,6 +176,9 @@ Route::group(['middleware' => 'auth'], function () {
      ****/
     Route::post('product_image/delete/{image_id}', [
         'uses' => 'ProductsController@deleteImageById',
+    ]);
+    Route::post('manual_image/delete/{image_id}', [
+        'uses' => 'ManualsControllers@deleteImageById',
     ]);
 
 

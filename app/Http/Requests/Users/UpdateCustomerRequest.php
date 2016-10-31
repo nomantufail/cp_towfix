@@ -16,7 +16,7 @@ class UpdateCustomerRequest extends Request
             'l_name' => $this->input('lName'),
             'email' => $this->input('email'),
             'phone_number' => $this->input('phoneNumber'),
-            'password' => $this->input('password'),
+            'password' => bcrypt($this->input('password')),
             'address' => $this->input('address')
         ];
     }

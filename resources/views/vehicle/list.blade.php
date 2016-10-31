@@ -11,7 +11,7 @@
     <section class="vehicles-list">
         <div class="vehicles-head">
             <h3>Your Vehicles</h3>
-            <a href="{{url('/')}}/vehicle/add" class="btn btn-primary pull-right">Add a Vehicles</a>
+            @if($user->can('add', 'vehicles'))<a href="{{url('/')}}/vehicle/add" class="btn btn-primary pull-right">Add a Vehicles</a>@endif
         </div>
         <div class="vehicles-list-content">
             <div class="vehicles-table">

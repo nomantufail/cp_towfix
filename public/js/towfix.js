@@ -34,9 +34,12 @@ $(document).on("change", "#ad", function () {
         $("#ad_form").hide();
         $("#product_price").show();
     }
-    console.log('asd');
 });
 
 
 
-
+$(document).ready(function(){
+    $(".nav-btn").click(function(){
+        $(".sidebar").toggle('slide');
+    });
+});

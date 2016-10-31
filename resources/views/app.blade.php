@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="{{url('/')}}/css/jquery.fancybox.css">
     <link type="text/css" href="{{url('/')}}/css/theme.css" rel="stylesheet" />
+    <link type="text/css" href="{{url('/')}}/css/responsive.css" rel="stylesheet" />
 
     <script type="text/javascript" language="javascript" src="{{url('/')}}/js/jquery.min.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.dataTables.js"></script>
@@ -21,7 +22,8 @@
 </head>
 <body>
 <aside class="sidebar">
-    <div class="logo">
+    <div class="logo mobile-nav">
+        <span class="nav-btn"><i class="fa fa-navicon"></i></span>
         <a href="{{url('/')}}">
             <img src="{{url('/')}}/images/logo.png" alt="" width="150">
         </a>
@@ -87,12 +89,18 @@
 <main class="main-content">
     <div class="user-widget">
         <div class="user-bg">
-            <ul class="ul-items">
+            <ul class="ul-items tablet-hide">
                 <li><a href="#"><i class="fa fa-facebook fa-fw"></i></a></li>
                 <li><a href="#"><i class="fa fa-twitter fa-fw"></i></a></li>
                 <li><a href="#"><i class="fa fa-linkedin fa-fw"></i></a></li>
                 <li><a href="#"><i class="fa fa-google-plus fa-fw"></i></a></li>
             </ul>
+            <div class="tablet-logo mobile-nav">
+                <span class="nav-btn"><i class="fa fa-navicon"></i></span>
+                <a href="{{url('/')}}">
+                    <img src="{{url('/')}}/images/logo.png" alt="" width="150">
+                </a>
+            </div>
             @if(Auth::check())
                 <div class="dropdown user-info">
                     <a class="dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">

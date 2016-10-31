@@ -54,7 +54,7 @@ class ServiceRequest extends Model
 
     public function isAccepted()
     {
-        return ($this->satatus == 1);
+        return !$this->isPending();
     }
 
     public function document()

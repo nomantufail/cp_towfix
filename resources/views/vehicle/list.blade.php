@@ -41,8 +41,8 @@
                             <td>{{$vehicle->registration_expiry}}</td>
                             <td><a href="{{url('/vehicle/')}}/{{$vehicle->id}}">View</a></td>
                             <td>
-                                <a href="{{url('/')}}/vehicle/update/{{$vehicle->id}}"><i class="fa fa-edit fa-fw"></i></a>
-                                <form method="post" action="{{url('/')}}/vehicle/delete">{{csrf_field()}}<input type="hidden" value="{{$vehicle->id}}" name="id"><button><i class="fa fa-trash fa-fw"></i></button></form>
+                                @if($user->can('edit','vehicles',$vehicle))<a href="{{url('/')}}/vehicle/update/{{$vehicle->id}}"><i class="fa fa-edit fa-fw"></i></a>@endif
+                                    @if($user->can('delete','vehicles',$vehicle))<form method="post" action="{{url('/')}}/vehicle/delete">{{csrf_field()}}<input type="hidden" value="{{$vehicle->id}}" name="id"><button><i class="fa fa-trash fa-fw"></i></button></form>@endif
                             </td>
                         </tr>
                     @endforeach

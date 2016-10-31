@@ -122,7 +122,7 @@
                             </label>
                             <label class="half-field">
                                 <span>Date</span>
-                                <input type="text" class="datetimepicker" placeholder="Date" name="document[simpleInformation][date]" value="@if($document != null)  @endif">
+                                <input type="text" class="datetimepicker" placeholder="Date" name="document[simpleInformation][date]" value="@if($document != null){{$document->simpleInformation->date}} @endif">
                             </label>
                         </div>
                         <div class="vehicles-service-list">

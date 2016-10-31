@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests\Service;
+use DateTime;
 
 
 class AddServiceRequest extends ServiceRequest
@@ -8,6 +9,10 @@ class AddServiceRequest extends ServiceRequest
 
     public function getStorableAttrs()
     {
+        $date = ($this->input('suggested_date'));
+        $date = strtotime($date);
+        $date = date('Y-m-d',$date);
+
         return [
             'customer_id' => $this->user()->id,
             'vehicle_id' => $this->input('vehicle_id'),
@@ -37,6 +42,10 @@ class AddServiceRequest extends ServiceRequest
     {
         return [
 
+            'vehicle_id' => 'required',
+            'franchise_id' => 'required',
+            'work_type_id' => 'required',
+            'suggested_date' => 'required',
         ];
     }
 }

@@ -792,6 +792,7 @@ ul.tabs li.current{
 
 .add-vehicle-widget{
 	max-width: 800px;
+	padding: 0px;
 	overflow: hidden;
 }
 
@@ -974,4 +975,58 @@ ul.tabs li.current{
 
 .vehicle-detail-popup input[type="text"]{
 	width: 100%;	
+}
+
+.attach-list{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	display: block;
+	width: 100%;
+}
+
+.attach-list li {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	width: 33%;
+	margin-bottom: 10px;
+	overflow: hidden;
+	height: 180px;
+	background-repeat: no-repeat;
+}
+
+.attach-list li:hover:after {
+	background: rgba(000, 000, 000, .8);
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	content: '';
+	width: 100%;
+	height: 100%;
+}
+
+.attach-list li img {
+	max-width: 100%;
+}
+
+.attach-list li .attach-hover{
+	position: absolute;
+	left: 50%;
+	display: none;
+	top: 50%;
+	z-index: 20px;
+	z-index: 100;
+	transform: translate(-50%, -50%);
+}
+
+.attach-list li:hover .attach-hover{
+	display: block;
+}
+
+.attach-list li .attach-hover a{
+	display: inline-block;
+	font-size: 16px;
+	color: #ffffff;
+	cursor: pointer;
 }

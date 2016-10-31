@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: nomantufail
+ * user: nomantufail
  * Date: 10/24/2016
  * Time: 1:06 PM
  */
@@ -12,7 +12,8 @@
 @section('page')
     <section class="vehicles-list">
         <div class="vehicles-head">
-            <h3>@if($user->isCustomer()))My @else Customer @endif Service Requests</h3>
+            <h3>@if($user->isCustomer())My @else Customer @endif Service Requests</h3>
+            <a href="{{url('/')}}/service_request/create" class="btn btn-primary pull-right">Add a New Service</a>
         </div>
         <div class="vehicles-list-content">
             <div class="vehicles-table">

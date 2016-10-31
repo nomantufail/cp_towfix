@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: nomantufail
+ * user: nomantufail
  * Date: 10/24/2016
  * Time: 1:06 PM
  */
@@ -29,6 +29,13 @@
                             </option>
                         @endforeach
                     </select>
+                    @if ($errors->has('vehicle_id'))
+                        <div class="alert alert-danger">
+                            @foreach ($errors->get('vehicle_id') as $message)
+                                {{ $message }}<br>
+                            @endforeach
+                        </div>
+                    @endif
                 </label>
 
                 <label class="half-field">
@@ -40,6 +47,13 @@
                         </option>
                     @endforeach
                     </select>
+                    @if ($errors->has('franchise_id'))
+                        <div class="alert alert-danger">
+                            @foreach ($errors->get('franchise_id') as $message)
+                                {{ $message }}<br>
+                            @endforeach
+                        </div>
+                    @endif
                 </label>
 
                 <label class="half-field">
@@ -51,11 +65,25 @@
                             </option>
                         @endforeach
                     </select>
+                    @if ($errors->has('work_type_id'))
+                        <div class="alert alert-danger">
+                            @foreach ($errors->get('work_type_id') as $message)
+                                {{ $message }}<br>
+                            @endforeach
+                        </div>
+                    @endif
                 </label>
 
                 <label class="half-field">
                     <span>Service Date</span>
-                    <input type="datetime" name="suggested_date" placeholder="date" value="2014-02-02">
+                    <input type="datetime" class="datetimepicker" name="suggested_date" placeholder="date">
+                    @if ($errors->has('suggested_date'))
+                        <div class="alert alert-danger">
+                            @foreach ($errors->get('suggested_date') as $message)
+                                {{ $message }}<br>
+                            @endforeach
+                        </div>
+                    @endif
                 </label>
                 <label class="submit">
                     <input type="submit" class="btn btn btn-primary" name="submit" value="Send">

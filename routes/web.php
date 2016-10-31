@@ -79,6 +79,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/product/update/{product_id}', [
         'uses'=>'ProductsController@updateProduct'
     ]);
+    Route::post('/product/delete/{product_id}', [
+        'uses'=>'ProductsController@delete'
+    ]);
 
 
     Route::get('/newsletters', [
@@ -109,6 +112,15 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
     Route::get('/customer/services', [
         'uses'=>'ServicesController@showNewsletters'
+    ]);
+    Route::get('/customer/edit/{user_id}', [
+        'uses'=>'UsersController@editCustomer'
+    ]);
+    Route::post('/customer/update/{customer_id}', [
+        'uses'=>'UsersController@updateCustomer'
+    ]);
+    Route::post('/customer/delete/{user_id}', [
+        'uses'=>'UsersController@delete'
     ]);
 
     Route::get('/orders', [
@@ -141,11 +153,57 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
 
 
+    Route::get('/franchises', [
+        'uses'=>'FranchisesController@showFranchises'
+    ]);
+    Route::get('/franchise/add', [
+        'uses'=>'FranchisesController@showAddFranchiseForm'
+    ]);
+    Route::post('/franchise/add', [
+        'uses'=>'FranchisesController@storeFranchise'
+    ]);
+    Route::get('/franchise/update/{franchise_id}', [
+        'uses'=>'FranchisesController@editFranchiseForm'
+    ]);
+    Route::post('/franchise/update/{franchise_id}', [
+        'uses'=>'FranchisesController@updateFranchise'
+    ]);
+    Route::post('/franchise/delete/{franchise_id}', [
+        'uses'=>'FranchisesController@delete'
+    ]);
+
+
+    Route::get('/manuals', [
+        'uses'=>'ManualsControllers@showManuals'
+    ]);
+    Route::get('/manual/add', [
+        'uses'=>'ManualsControllers@showAddManualForm'
+    ]);
+    Route::post('/manual/add', [
+        'uses'=>'ManualsControllers@addManual'
+    ]);
+    Route::get('/manual/update/{manual_id}', [
+        'uses'=>'ManualsControllers@editManualForm'
+    ]);
+    Route::post('/manual/update/{manual_id}', [
+        'uses'=>'ManualsControllers@updateManual'
+    ]);
+    Route::post('/manual/delete/{manual_id}', [
+        'uses'=>'ManualsControllers@delete'
+    ]);
+
+
+
+
+
     /****
      * API ROUTES...
      ****/
     Route::post('product_image/delete/{image_id}', [
         'uses' => 'ProductsController@deleteImageById',
+    ]);
+    Route::post('manual_image/delete/{image_id}', [
+        'uses' => 'ManualsControllers@deleteImageById',
     ]);
 
 

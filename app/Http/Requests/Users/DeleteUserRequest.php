@@ -4,6 +4,8 @@ namespace App\Http\Requests\Users;
 
 
 use App\Http\Requests\Request;
+use App\Repositories\UsersRepository;
+use App\User;
 
 class DeleteUserRequest extends Request
 {
@@ -14,7 +16,8 @@ class DeleteUserRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        $user = (new UsersRepository(new User()))->findById($this->route()->parameter('user_id'));
+        return ($this->user()->can('delete','users',$user));
     }
 
     /**
@@ -25,7 +28,7 @@ class DeleteUserRequest extends Request
     public function rules()
     {
         return [
-            "user_id" => 'required|exits:users,id'
+            "user_id" => 'required|exists:users,id'
         ];
     }
 }

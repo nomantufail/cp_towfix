@@ -15,7 +15,7 @@ class ManualsTableMigration extends Migration
     {
         Schema::create('manuals', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->string('title')->default('1');
             $table->text('description');
             $table->timestamps();
         });

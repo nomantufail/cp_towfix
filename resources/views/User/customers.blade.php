@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: nomantufail
+ * user: nomantufail
  * Date: 10/20/2016
  * Time: 10:07 AM
  */
@@ -23,7 +23,6 @@
                         <th>Membership Number</th>
                         <th>Email Address</th>
                         <th>Contact Number</th>
-                        <th>Details</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -31,14 +30,11 @@
                     @foreach($customers as $customer)
                         <tr>
                             <td>{{$customer->f_name}} {{$customer->l_name}}</td>
-                            <td>15487</td>
+                            <td>{{$customer->id}}</td>
                             <td>{{$customer->email}}</td>
                             <td>{{$customer->phone_number}}</td>
-
-
-                            <td><a href="#">View</a></td>
                             <td>
-                                <a href="#"><i class="fa fa-trash fa-fw"></i></a>
+                                @if($user->can('delete','users',$customer))<form method="post" action="{{url('/')}}/customer/delete/{{$customer->id}}">{{csrf_field()}}<button><i class="fa fa-trash fa-fw"></i></button></form>@endif
                             </td>
                         </tr>
                     @endforeach

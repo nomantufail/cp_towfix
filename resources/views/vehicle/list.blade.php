@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: nomantufail
+ * user: nomantufail
  * Date: 10/6/2016
  * Time: 3:25 PM
  */
@@ -42,7 +42,7 @@
                             <td><a href="{{url('/vehicle/')}}/{{$vehicle->id}}">View</a></td>
                             <td>
                                 @if($user->can('edit','vehicles',$vehicle))<a href="{{url('/')}}/vehicle/update/{{$vehicle->id}}"><i class="fa fa-edit fa-fw"></i></a>@endif
-                                    @if($user->can('delete','vehicles',$vehicle))<form method="post" action="{{url('/')}}/vehicle/delete">{{csrf_field()}}<input type="hidden" value="{{$vehicle->id}}" name="id"><button><i class="fa fa-trash fa-fw"></i></button></form>@endif
+                                @if($user->can('delete','vehicles',$vehicle))<form method="post" action="{{url('/')}}/vehicle/delete">{{csrf_field()}}<input type="hidden" value="{{$vehicle->id}}" name="id"><button><i class="fa fa-trash fa-fw"></i></button></form>@endif
                             </td>
                         </tr>
                     @endforeach

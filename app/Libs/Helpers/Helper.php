@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: JR Tech
+ * user: JR Tech
  * Date: 4/14/2016
  * Time: 12:27 PM
  */

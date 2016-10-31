@@ -19,4 +19,17 @@ class UsersPolicy extends Policy
             return true;
         else return false;
     }
+
+    public function delete(User $user , User $subject)
+    {
+        return $user->isAdmin();
+    }
+
+    public function edit(User $user , User $subject)
+    {
+        if($user->isAdmin())
+            return true;
+
+        return ($user->id == $subject->id);
+    }
 }

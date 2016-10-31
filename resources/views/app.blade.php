@@ -101,7 +101,7 @@
                         <i class="caret"></i>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                        <li><a href="#">Edit Profile</a></li>
+                        <li><a href="{{url('/')}}/customer/edit/{{$user->id}}">Edit Profile</a></li>
                         @if($user->can('view', 'messages'))
                         <li><a href="{{url('/')}}/messages">Messages <span>22</span></a></li>
                         @endif

@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: nomantufail
+ * user: nomantufail
  * Date: 10/6/2016
  * Time: 3:25 PM
  */
@@ -13,45 +13,45 @@
         <h2 class="main-heading">Vehicle Detail</h2>
         <div class="vehicle-widget">
             <div class="vehicle-edit-btns">
-                <a href="add-vehicle.html"><i class="fa fa-edit fa-fw"></i></a>
-                <a href="#"><i class="fa fa-trash fa-fw"></i></a>
+                @if($user->can('edit','vehicles',$vehicle))<a href="add-vehicle.html"><i class="fa fa-edit fa-fw"></i></a>@endif
+                @if($user->can('delete','vehicles',$vehicle))<a href="#"><i class="fa fa-trash fa-fw"></i></a>@endif
             </div>
             <ul class="vehicle-info">
                 <li>
                     <strong>Make</strong>
-                    <span>Toyota</span>
+                    <span>{{$vehicle->make}}</span>
                 </li>
                 <li>
                     <strong>Model</strong>
-                    <span>Corrola</span>
+                    <span>{{$vehicle->model}}</span>
                 </li>
                 <li>
                     <strong>Year</strong>
-                    <span>2007</span>
+                    <span>{{$vehicle->year}}</span>
                 </li>
                 <li>
                     <strong>Vehicle Type</strong>
-                    <span>Trailer</span>
+                    <span>{{$vehicle->type->vehicle_type}}</span>
                 </li>
                 <li>
                     <strong>Next Service</strong>
-                    <span>Dec/09/16</span>
+                    <span>{{$vehicle->next_service}}</span>
                 </li>
                 <li>
                     <strong>Registration Number</strong>
-                    <span>12453</span>
+                    <span>{{$vehicle->registration_number}}</span>
                 </li>
                 <li>
                     <strong>Registration</strong>
-                    <span>EFD65F</span>
+                    <span>{{$vehicle->registration}}</span>
                 </li>
                 <li>
                     <strong>Registration Expiry</strong>
-                    <span>Dec/12/16</span>
+                    <span>{{$vehicle->registration_expiry}}</span>
                 </li>
                 <li>
                     <strong>Details</strong>
-                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old</p>
+                    <p>{{$vehicle->details}}</p>
                 </li>
             </ul>
             <div class="vehicle-history">
@@ -69,7 +69,7 @@
                         <td>{{$request->created_at->toFormattedDateString()}}</td>
                         <td>
                             @if($request->form == null)
-                                @if($request->franchise_id == $user->id)
+                                @if($request->franchise_id == $user->id && $request->isAccepted())
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#request_form_model_{{$request->id}}">Add Form</button>
                                 @else
                                     <span style="color:red">pending</span>
@@ -86,6 +86,10 @@
         </div>
     </section>
     @foreach($services as $request)
+        <?php
+            $document = ($request->document != null)?json_decode($request->document->document):null;
+                //dd($document);
+        ?>
         <div id="request_form_model_{{$request->id}}" class="modal fade" role="dialog">
             <div class="modal-dialog vehicle-detail-popup">
                 <!-- Modal content-->
@@ -99,26 +103,26 @@
                         <div class="add-vehicle-widget">
                             <label>
                                 <span>Name</span>
-                                <input type="text" name="document[simpleInformation][name]" placeholder="Name">
+                                <input type="text" name="document[simpleInformation][name]" placeholder="Name" value="@if($document != null) {{$document->simpleInformation->name}} @endif">
                             </label>
 
                             <label class="half-field">
                                 <span>Make/Year</span>
-                                <input type="text" class="datetimepicker" name="document[simpleInformation][make_year]" placeholder="Make/Year">
+                                <input type="text" class="datetimepicker" name="document[simpleInformation][make_year]" placeholder="Make/Year" value="@if($document != null) {{$document->simpleInformation->make_year}} @endif">
                             </label>
 
                             <label class="half-field">
                                 <span>Tandem/Single</span>
-                                <input type="text" name="document[simpleInformation][tendem_single]" placeholder="Tandem/Single">
+                                <input type="text" name="document[simpleInformation][tendem_single]" placeholder="Tandem/Single" value="@if($document != null) {{$document->simpleInformation->tendem_single}} @endif">
                             </label>
 
                             <label class="half-field">
                                 <span>Rego</span>
-                                <input type="tel" name="document[simpleInformation][rego]" placeholder="Rego">
+                                <input type="tel" name="document[simpleInformation][rego]" placeholder="Rego" value="@if($document != null) {{$document->simpleInformation->rego}} @endif">
                             </label>
                             <label class="half-field">
                                 <span>Date</span>
-                                <input type="text" class="datetimepicker" name="Date" placeholder="Date" name="document[simpleInformation][date]">
+                                <input type="text" class="datetimepicker" placeholder="Date" name="document[simpleInformation][date]" value="@if($document != null){{$document->simpleInformation->date}} @endif">
                             </label>
                         </div>
                         <div class="vehicles-service-list">
@@ -135,105 +139,105 @@
                                 <tbody>
                                 <tr>
                                     <td>Lh indicator</td>
-                                    <td><input type="radio" name="document[condition][lh_indicator]"> </td>
-                                    <td><input type="radio" name="document[condition][lh_indicator]"> </td>
-                                    <td><input type="radio" name="document[condition][lh_indicator]"> </td>
+                                    <td><input type="radio" name="document[condition][lh_indicator]" value="1" @if($document != null && $document->condition->lh_indicator == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][lh_indicator]" value="2" @if($document != null && $document->condition->lh_indicator == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][lh_indicator]" value="3" @if($document != null && $document->condition->lh_indicator == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Rh indicator</td>
-                                    <td><input type="radio" name="document[condition][rh_indicator]"> </td>
-                                    <td><input type="radio" name="document[condition][rh_indicator]"> </td>
-                                    <td><input type="radio" name="document[condition][rh_indicator]"> </td>
+                                    <td><input type="radio" name="document[condition][rh_indicator]" value="1" @if($document != null && $document->condition->rh_indicator == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][rh_indicator]" value="2" @if($document != null && $document->condition->rh_indicator == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][rh_indicator]" value="3" @if($document != null && $document->condition->rh_indicator == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>No plate light</td>
-                                    <td><input type="radio" name="document[condition][no_plate_light]"> </td>
-                                    <td><input type="radio" name="document[condition][no_plate_light]"> </td>
-                                    <td><input type="radio" name="document[condition][no_plate_light]"> </td>
+                                    <td><input type="radio" name="document[condition][no_plate_light]" value="1" @if($document != null && $document->condition->no_plate_light == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][no_plate_light]" value="2" @if($document != null && $document->condition->no_plate_light == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][no_plate_light]" value="3" @if($document != null && $document->condition->no_plate_light == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Water tank mounts</td>
-                                    <td><input type="radio" name="document[condition][water_tank_mounts]"> </td>
-                                    <td><input type="radio" name="document[condition][water_tank_mounts]"> </td>
-                                    <td><input type="radio" name="document[condition][water_tank_mounts]"> </td>
+                                    <td><input type="radio" name="document[condition][water_tank_mounts]" value="1" @if($document != null && $document->condition->water_tank_mounts == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][water_tank_mounts]" value="2" @if($document != null && $document->condition->water_tank_mounts == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][water_tank_mounts]" value="3" @if($document != null && $document->condition->water_tank_mounts == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Hand brake </td>
-                                    <td><input type="radio" name="document[condition][hand_brake]"> </td>
-                                    <td><input type="radio" name="document[condition][hand_brake]"> </td>
-                                    <td><input type="radio" name="document[condition][hand_brake]"> </td>
+                                    <td><input type="radio" name="document[condition][hand_brake]" value="1" @if($document != null && $document->condition->hand_brake == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][hand_brake]" value="2" @if($document != null && $document->condition->hand_brake == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][hand_brake]" value="3" @if($document != null && $document->condition->hand_brake == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Trailer plug</td>
-                                    <td><input type="radio" name="document[condition][trailer_plug]"> </td>
-                                    <td><input type="radio" name="document[condition][trailer_plug]"> </td>
-                                    <td><input type="radio" name="document[condition][trailer_plug]"> </td>
+                                    <td><input type="radio" name="document[condition][trailer_plug]" value="1" @if($document != null && $document->condition->trailer_plug == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][trailer_plug]" value="2" @if($document != null && $document->condition->trailer_plug == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][trailer_plug]" value="3" @if($document != null && $document->condition->trailer_plug == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Wiring loom</td>
-                                    <td><input type="radio" name="document[condition][wiring_loom]"> </td>
-                                    <td><input type="radio" name="document[condition][wiring_loom]"> </td>
-                                    <td><input type="radio" name="document[condition][wiring_loom]"> </td>
+                                    <td><input type="radio" name="document[condition][wiring_loom]" value="1" @if($document != null && $document->condition->wiring_loom == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][wiring_loom]" value="2" @if($document != null && $document->condition->wiring_loom == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][wiring_loom]" value="3" @if($document != null && $document->condition->wiring_loom == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Springs/hangers</td>
-                                    <td><input type="radio" name="document[condition][springs_hangers]"> </td>
-                                    <td><input type="radio" name="document[condition][springs_hangers]"> </td>
-                                    <td><input type="radio" name="document[condition][springs_hangers]"> </td>
+                                    <td><input type="radio" name="document[condition][springs_hangers]" value="1" @if($document != null && $document->condition->springs_hangers == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][springs_hangers]" value="2" @if($document != null && $document->condition->springs_hangers == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][springs_hangers]" value="3" @if($document != null && $document->condition->springs_hangers == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>U-bolts</td>
-                                    <td><input type="radio" name="document[condition][u_bolts]"> </td>
-                                    <td><input type="radio" name="document[condition][u_bolts]"> </td>
-                                    <td><input type="radio" name="document[condition][u_bolts]"> </td>
+                                    <td><input type="radio" name="document[condition][u_bolts]" value="1" @if($document != null && $document->condition->u_bolts == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][u_bolts]" value="2" @if($document != null && $document->condition->u_bolts == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][u_bolts]" value="3" @if($document != null && $document->condition->u_bolts == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>A-frame</td>
-                                    <td><input type="radio" name="document[condition][a_frame]"> </td>
-                                    <td><input type="radio" name="document[condition][a_frame]"> </td>
-                                    <td><input type="radio" name="document[condition][a_frame]"> </td>
+                                    <td><input type="radio" name="document[condition][a_frame]" value="1" @if($document != null && $document->condition->u_bolts == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][a_frame]" value="2" @if($document != null && $document->condition->u_bolts == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][a_frame]" value="3" @if($document != null && $document->condition->u_bolts == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Stabiliser Jacks</td>
-                                    <td><input type="radio" name="document[condition][stabiliser_jacks]"> </td>
-                                    <td><input type="radio" name="document[condition][stabiliser_jacks]"> </td>
-                                    <td><input type="radio" name="document[condition][stabiliser_jacks]"> </td>
+                                    <td><input type="radio" name="document[condition][stabiliser_jacks]" value="1" @if($document != null && $document->condition->stabiliser_jacks == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][stabiliser_jacks]" value="2" @if($document != null && $document->condition->stabiliser_jacks == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][stabiliser_jacks]" value="3" @if($document != null && $document->condition->stabiliser_jacks == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Chassis Welds</td>
-                                    <td><input type="radio" name="document[condition][chassis_welds]"> </td>
-                                    <td><input type="radio" name="document[condition][chassis_welds]"> </td>
-                                    <td><input type="radio" name="document[condition][chassis_welds]"> </td>
+                                    <td><input type="radio" name="document[condition][chassis_welds]" value="1" @if($document != null && $document->condition->chassis_welds == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][chassis_welds]" value="2" @if($document != null && $document->condition->chassis_welds == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][chassis_welds]" value="3" @if($document != null && $document->condition->chassis_welds == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
 
                                 <tr>
                                     <td>Safety chains</td>
-                                    <td><input type="radio" name="document[condition][safety_chains]"> </td>
-                                    <td><input type="radio" name="document[condition][safety_chains]"> </td>
-                                    <td><input type="radio" name="document[condition][safety_chains]"> </td>
+                                    <td><input type="radio" name="document[condition][safety_chains]" value="1" @if($document != null && $document->condition->safety_chains == "1") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][safety_chains]" value="2" @if($document != null && $document->condition->safety_chains == "2") checked="checked" @endif > </td>
+                                    <td><input type="radio" name="document[condition][safety_chains]" value="3" @if($document != null && $document->condition->safety_chains == "3") checked="checked" @endif > </td>
                                     <td>Check operation</td>
                                 </tr>
                                 </tbody>
@@ -257,46 +261,46 @@
                                 <tbody>
                                 <tr>
                                     <td>RHR</td>
-                                    <td><input type="text" name="document[detail][rhr][wheel_cylinders]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][rhr][wheel_bearings]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][rhr][break_shoes]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][rhr][brake_magnet]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][rhr][hub_wear]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][rhr][tyre_wear]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][rhr][tyre_psi]" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][rhr][wheel_cylinders]" value="@if($document != null) {{$document->detail->rhr->wheel_cylinders}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][rhr][wheel_bearings]" value="@if($document != null) {{$document->detail->rhr->wheel_bearings}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][rhr][break_shoes]" value="@if($document != null) {{$document->detail->rhr->break_shoes}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][rhr][brake_magnet]" value="@if($document != null) {{$document->detail->rhr->brake_magnet}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][rhr][hub_wear]" value="@if($document != null) {{$document->detail->rhr->hub_wear}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][rhr][tyre_wear]" value="@if($document != null) {{$document->detail->rhr->tyre_wear}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][rhr][tyre_psi]" value="@if($document != null) {{$document->detail->rhr->tyre_psi}} @endif" placeholder="Details"> </td>
                                 </tr>
 
                                 <tr>
                                     <td>RHF</td>
-                                    <td><input type="text" name="document[detail][rhf][wheel_cylinders]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][rhf][wheel_bearings]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][rhf][break_shoes]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][rhf][brake_magnet]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][rhf][hub_wear]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][rhf][tyre_wear]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][rhf][tyre_psi]" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][rhf][wheel_cylinders]" value="@if($document != null) {{$document->detail->rhf->wheel_cylinders}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][rhf][wheel_bearings]" value="@if($document != null) {{$document->detail->rhf->wheel_bearings}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][rhf][break_shoes]" value="@if($document != null) {{$document->detail->rhf->break_shoes}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][rhf][brake_magnet]" value="@if($document != null) {{$document->detail->rhf->brake_magnet}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][rhf][hub_wear]" value="@if($document != null) {{$document->detail->rhf->hub_wear}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][rhf][tyre_wear]" value="@if($document != null) {{$document->detail->rhf->tyre_wear}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][rhf][tyre_psi]" value="@if($document != null) {{$document->detail->rhf->tyre_psi}} @endif" placeholder="Details"> </td>
                                 </tr>
 
                                 <tr>
                                     <td>LHR</td>
-                                    <td><input type="text" name="document[detail][lhr][wheel_cylinders]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][lhr][wheel_bearings]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][lhr][break_shoes]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][lhr][brake_magnet]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][lhr][hub_wear]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][lhr][tyre_wear]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][lhr][tyre_psi]" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][lhr][wheel_cylinders]" value="@if($document != null) {{$document->detail->lhr->wheel_cylinders}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][lhr][wheel_bearings]" value="@if($document != null) {{$document->detail->lhr->wheel_bearings}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][lhr][break_shoes]" value="@if($document != null) {{$document->detail->lhr->break_shoes}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][lhr][brake_magnet]" value="@if($document != null) {{$document->detail->lhr->brake_magnet}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][lhr][hub_wear]" value="@if($document != null) {{$document->detail->lhr->hub_wear}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][lhr][tyre_wear]" value="@if($document != null) {{$document->detail->lhr->tyre_wear}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][lhr][tyre_psi]" value="@if($document != null) {{$document->detail->lhr->tyre_psi}} @endif" placeholder="Details"> </td>
                                 </tr>
 
                                 <tr>
                                     <td>LHF</td>
-                                    <td><input type="text" name="document[detail][lhf][wheel_cylinders]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][lhf][wheel_bearings]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][lhf][break_shoes]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][lhf][brake_magnet]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][lhf][hub_wear]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][lhf][tyre_wear]" placeholder="Details"> </td>
-                                    <td><input type="text" name="document[detail][lhf][tyre_psi]" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][lhf][wheel_cylinders]" value="@if($document != null) {{$document->detail->lhf->wheel_cylinders}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][lhf][wheel_bearings]" value="@if($document != null) {{$document->detail->lhf->wheel_bearings}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][lhf][break_shoes]" value="@if($document != null) {{$document->detail->lhf->break_shoes}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][lhf][brake_magnet]" value="@if($document != null) {{$document->detail->lhf->brake_magnet}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][lhf][hub_wear]" value="@if($document != null) {{$document->detail->lhf->hub_wear}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][lhf][tyre_wear]" value="@if($document != null) {{$document->detail->lhf->tyre_wear}} @endif" placeholder="Details"> </td>
+                                    <td><input type="text" name="document[detail][lhf][tyre_psi]" value="@if($document != null) {{$document->detail->lhf->tyre_psi}} @endif" placeholder="Details"> </td>
                                 </tr>
 
                                 </tbody>
@@ -305,7 +309,7 @@
                         <div class="vehicles-service-detail">
                             <label>
                                 <span>Other observations to be advised to owner:</span>
-                                <textarea placeholder="Observations" name="document[observations]"></textarea>
+                                <textarea placeholder="Observations" name="document[observations]"> @if($document != null) {{$document->observations}} @endif </textarea>
                             </label>
                             <input type="submit" name="submit" value="Submit" class="btn btn-primary">
                         </div>

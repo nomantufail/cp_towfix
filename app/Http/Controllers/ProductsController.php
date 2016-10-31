@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Repositories\ProductImagesRepository;
 use App\Repositories\ProductsRepository;
+use App\Repositories\VehiclesRepository;
 use Illuminate\Support\Facades\Auth;
 use Response;
 
@@ -12,12 +13,14 @@ class ProductsController extends ParentController
 {
     private $products = null;
     private $productImages = null;
-
-    public function __construct(ProductsRepository $productsRepo, ProductImagesRepository $productImagesRepo)
+    private $vehiclesRepo = null;
+    public function __construct(ProductsRepository $productsRepo,
+                                ProductImagesRepository $productImagesRepo, VehiclesRepository $vehiclesRepository)
     {
         parent::__construct();
         $this->products = $productsRepo;
         $this->productImages = $productImagesRepo;
+        $this->vehiclesRepo = $vehiclesRepository;
     }
 
     public function showProducts(Requests\Product\ViewProductsRequest $request)
@@ -43,7 +46,6 @@ class ProductsController extends ParentController
     public function addProduct(Requests\Product\AddProductRequest $request)
     {
         try{
-
             $product_images = [];
                 $productId = $this->products->store($request->storableAttrs())->id;
             foreach($request->file('images') as $file)
@@ -66,17 +68,15 @@ class ProductsController extends ParentController
 
     public function editProductForm(Requests\Product\ShowEditProductFormRequest $request, $product_id)
     {
-//        try{
+        try{
             $data = [
-//                'productImages' => $this->productImages->all(),
                 'product' => $this->products->findFullById($product_id)
             ];
             return view('products.edit-product', $data);
-//        }catch (\Exception $e){
-//            return $this->handleInternalServerError($e->getMessage());
-//        }
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
     }
-
     public function updateProduct(Requests\Product\UpdateProductRequest $request, $product_id)
     {
         try{
@@ -112,12 +112,12 @@ class ProductsController extends ParentController
 
     public function delete(Requests\Product\DeleteProductRequest $request)
     {
-//        try{
+        try{
             $this->products->deleteById($request->route()->parameter('product_id'));
             return redirect()->back()->with('success','Product deleted successfully');
-//        }catch (\Exception $e){
-//            return $this->handleInternalServerError($e->getMessage());
-//        }
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
     }
 
 }

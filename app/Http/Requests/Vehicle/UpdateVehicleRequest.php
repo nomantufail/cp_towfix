@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests\Vehicle;
 
+use App\Models\Vehicle;
+use App\Repositories\VehiclesRepository;
+
 class UpdateVehicleRequest extends VehicleRequest
 {
 
@@ -30,7 +33,8 @@ class UpdateVehicleRequest extends VehicleRequest
      */
     public function authorize()
     {
-        return true;
+        $vehicle = (new VehiclesRepository(new Vehicle()))->findById($this->route()->parameter('vehicle_id'));
+        return ($this->user()->can('edit','vehicles',$vehicle));
     }
 
     /**

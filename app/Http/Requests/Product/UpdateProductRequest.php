@@ -15,7 +15,6 @@ class UpdateProductRequest extends Request
 
 
         ];
-        // dd($this->input('contact_poster'));
 
 
         if($this->input('contact_poster') == 1){

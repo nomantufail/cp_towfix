@@ -54,6 +54,11 @@ class ServiceRequest extends Model
 
     public function isAccepted()
     {
-        return ($this->satatus == 1);
+        return !$this->isPending();
+    }
+
+    public function document()
+    {
+        return $this->hasOne('App\Models\ServiceRequestForm','cust_vehicle_srv_reqs_id');
     }
 }

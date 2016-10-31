@@ -30,4 +30,24 @@ class UsersController extends ParentController
             return $this->handleInternalServerError();
         }
     }
+    public function editCustomer(Requests\Users\editUserRequest $request)
+    {
+        try{
+            $data = [
+                'customer' => $this->usersRepo->findById($request->route()->parameter('user_id')),
+            ];
+            return view('user.edit-customer-form', $data);
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
+    }
+    public function updateCustomer(Requests\Users\updateCustomerRequest $request)
+    {
+        try{
+            $this->usersRepo->updateWhere(['id'=>$request->route()->parameter('customer_id')], $request->updateableAttrs());
+            return redirect()->back()->with(['success'=> 'Profile updated successfully']);
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
+    }
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Requests\Service;
 
 
+use App\Repositories\ServiceRequestsRepository;
+use App\Models\ServiceRequest as RequestModel;
+
 class UpdateServiceRequest extends ServiceRequest
 {
 
@@ -23,7 +26,8 @@ class UpdateServiceRequest extends ServiceRequest
      */
     public function authorize()
     {
-        return true;
+        $request = (new ServiceRequestsRepository(new RequestModel()))->findById($this->route()->parameter('request_id'));
+        return ($this->user()->can('edit','serviceRequest',$request));
     }
 
     /**

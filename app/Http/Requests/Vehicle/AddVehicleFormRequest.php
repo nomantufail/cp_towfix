@@ -13,7 +13,7 @@ class AddVehicleFormRequest extends VehicleRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('add','vehicles');
     }
 
     /**

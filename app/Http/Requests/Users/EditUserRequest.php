@@ -7,7 +7,7 @@ use App\Http\Requests\Request;
 use App\Repositories\UsersRepository;
 use App\User;
 
-class DeleteUserRequest extends Request
+class EditUserRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,8 +16,12 @@ class DeleteUserRequest extends Request
      */
     public function authorize()
     {
-        $user = (new UsersRepository(new User()))->findById($this->route()->parameter('user_id'));
-        return ($this->user()->can('delete','users',$user));
+        try{
+            $user = (new UsersRepository(new User()))->findById($this->route()->parameter('user_id'));
+            return ($this->user()->can('edit','users',$user));
+        }catch(\Exception $e){
+            return false;
+        }
     }
 
     /**

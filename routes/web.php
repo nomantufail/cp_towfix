@@ -113,6 +113,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/customer/services', [
         'uses'=>'ServicesController@showNewsletters'
     ]);
+    Route::get('/customer/edit/{user_id}', [
+        'uses'=>'UsersController@editCustomer'
+    ]);
+    Route::post('/customer/update/{customer_id}', [
+        'uses'=>'UsersController@updateCustomer'
+    ]);
+    Route::post('/customer/delete/{user_id}', [
+        'uses'=>'UsersController@delete'
+    ]);
 
     Route::get('/orders', [
         'uses'=>'OrdersController@showOrders'

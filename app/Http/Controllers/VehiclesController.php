@@ -29,7 +29,7 @@ class VehiclesController extends ParentController
     public function detail(Requests\Vehicle\VehicleDetailRequest $request)
     {
         return view('vehicle.detail', [
-            'vehicle' => $this->vehiclesRepo->findById($request->route()->parameter('vehicle_id')),
+            'vehicle' => $this->vehiclesRepo->findWithDetails($request->route()->parameter('vehicle_id')),
             'services'=> $this->vehicleServicesRepo->getServicesHistory($request->route()->parameter('vehicle_id'))
         ]);
     }

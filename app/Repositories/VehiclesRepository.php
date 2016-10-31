@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: nomantufail
+ * user: nomantufail
  * Date: 10/10/2016
  * Time: 10:13 AM
  */
@@ -23,4 +23,8 @@ class VehiclesRepository extends Repository
         return $this->getModel()->where('customer_id',$customerId)->get();
     }
 
+    public function findWithDetails($vehicleId)
+    {
+        return $this->getModel()->with('type')->where('id',$vehicleId)->first();
+    }
 }

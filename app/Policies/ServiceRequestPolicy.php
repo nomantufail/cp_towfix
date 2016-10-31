@@ -30,6 +30,6 @@ class ServiceRequestPolicy extends Policy
 
     public function edit(User $user , ServiceRequest $serviceRequest=null)
     {
-        return ($serviceRequest->customer_id == $user->id || $serviceRequest->franchise_id == $user->id);
+        return ($serviceRequest->suggested_by != $user->id);
     }
 }

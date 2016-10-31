@@ -17,4 +17,18 @@ class VehiclesPolicy extends Policy
     {
         return true;
     }
+
+    public function add(User $user , Vehicle $vehicle = null)
+    {
+        return ($user->isCustomer() || $user->isAdmin());
+    }
+    public function edit(User $user , Vehicle $vehicle)
+    {
+        return ($user->id == $vehicle->customer_id || $user->isAdmin());
+    }
+
+    public function delete(User $user , Vehicle $vehicle)
+    {
+        return ($user->id == $vehicle->customer_id || $user->isAdmin());
+    }
 }

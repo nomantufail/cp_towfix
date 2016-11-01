@@ -46,7 +46,7 @@
                     </a>
                     </li>
                 @endif
-                @if($user->can('view','orders')) <li><a href="{{url('/')}}/manuals">View Orders</a></li> @endif
+                @if($user->can('view','orders')) <li><a href="{{url('/')}}/orders">View Orders</a></li> @endif
                 @if($user->can('view','newsletters'))
                     <li>
                         <a href="{{url('/')}}/newsletters">

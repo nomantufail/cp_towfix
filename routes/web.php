@@ -193,6 +193,22 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
 
 
+    /**
+     * Cart routes ------------------------------>
+     */
+    Route::get('/cart', [
+        'uses'=>'cartController@myCart'
+    ]);
+    Route::post('/cart/remove/{product_id}', [
+        'uses' => 'cartController@removeItem'
+    ]);
+    Route::post('/cart/confirm', [
+        'uses'=>'cartController@confirmCart'
+    ]);
+    Route::get('/cart/checkout', [
+        'uses'=>'cartController@myCart'
+    ]);
+    /* ----------------------------------------------- */
 
 
 

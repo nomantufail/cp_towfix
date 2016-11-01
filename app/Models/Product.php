@@ -17,6 +17,13 @@ class Product extends Model
         return $this->hasMany('App\Models\ProductImage');
     }
 
+    /**
+     * Get Cart of the product
+     */
+    public function cart()
+    {
+        return $this->hasMany('App\Models\Cart','product_id');
+    }
 
     /**
      * Get the orders that has this product.

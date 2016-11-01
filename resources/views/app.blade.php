@@ -11,9 +11,12 @@
     <link rel="stylesheet" href="{{url('/')}}/css/jquery.fancybox.css">
     <link type="text/css" href="{{url('/')}}/css/theme.css" rel="stylesheet" />
 
+    <link type="text/css" href="{{url('/')}}/css/jquery.datetimepicker1.css" rel="stylesheet" />
+
     <script type="text/javascript" language="javascript" src="{{url('/')}}/js/jquery.min.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.bxslider.min.js"></script>
+
 
     {{--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--}}
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -143,5 +146,7 @@
     });
 </script>
 <script src="<?php echo asset('js/towfix.js') ?>"> </script>
+
 </body>
+<script type="text/javascript" src="{{url('/')}}/js/jquery.datetimepicker.min.js"></script>
 </html>

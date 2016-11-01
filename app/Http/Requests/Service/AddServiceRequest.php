@@ -12,13 +12,14 @@ class AddServiceRequest extends ServiceRequest
         $date = ($this->input('suggested_date'));
         $date = strtotime($date);
         $date = date('Y-m-d',$date);
+        //dd($date);
 
         return [
             'customer_id' => $this->user()->id,
             'vehicle_id' => $this->input('vehicle_id'),
             'franchise_id' => $this->input('franchise_id'),
             'work_type_id' => $this->input('work_type_id'),
-            'suggested_date' => $this->input('suggested_date'),
+            'suggested_date' => $date,
             'suggested_by' => $this->user()->id,
             'message' => ''
         ];

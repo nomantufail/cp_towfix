@@ -22,7 +22,7 @@
                 {{csrf_field()}}
                 <label>
                     <span>Date/Time</span>
-                    <input type="date" placeholder="Date/Time" name="suggested_date" value="{{$request->suggested_date}}">
+                    <input type="datetime"  id="datetimepicker" placeholder="Date/Time" name="suggested_date" value="{{$request->suggested_date}}">
                 </label>
                 <label>
                     <span>Message</span>

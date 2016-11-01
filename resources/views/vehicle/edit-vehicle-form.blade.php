@@ -56,7 +56,7 @@
 
                 <label class="half-field">
                     <span>Year</span>
-                    {{--<input type="text" class="datetimepicker" name="year" placeholder="Year"/>--}}
+                    {{--<input type="text" id="datetimepicker" name="year" placeholder="Year"/>--}}
                     <?php
                     $startdate = 1960;
                     $enddate = date("Y");
@@ -81,7 +81,7 @@
 
                 <label class="half-field">
                     <span>Year Purchased</span>
-                    {{--<input type="text" class="datetimepicker" name="yearPurchased" placeholder="Year Purchased"/>--}}
+                    {{--<input type="text" id="datetimepicker" name="yearPurchased" placeholder="Year Purchased"/>--}}
 
                     <?php
                     $startdate = 1960;
@@ -106,7 +106,7 @@
 
                 <label class="half-field">
                     <span>Last Service</span>
-                    <input type="text" class="datetimepicker" name="last_service" placeholder="Last Service" value="{{$vehicle->last_service}}">
+                    <input type="text" class="date1" name="last_service" placeholder="Last Service" value="{{$vehicle->last_service}}">
                     @if ($errors->has('last_service'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('last_service') as $message)
@@ -118,7 +118,7 @@
 
                 <label class="half-field">
                     <span>Next Service</span>
-                    <input type="text" class="datetimepicker" name="next_service" placeholder="Next Service" value="{{$vehicle->next_service}}">
+                    <input type="text" class="date1" name="next_service" placeholder="Next Service" value="{{$vehicle->next_service}}">
                     @if ($errors->has('next_service'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('next_service') as $message)
@@ -142,7 +142,7 @@
 
                 <label class="half-field">
                     <span>Registration Expiry</span>
-                    <input type="text" class="datetimepicker" name="registration_expiry" placeholder="Registration Expiry" value="{{$vehicle->registration_expiry}}">
+                    <input type="text" class="date1" name="registration_expiry" placeholder="Registration Expiry" value="{{$vehicle->registration_expiry}}">
                     @if ($errors->has('registration_expiry'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('registration_expiry') as $message)
@@ -186,4 +186,12 @@
             </form>
         </div>
     </section>
+    <script>
+        $(function() {
+            $(".date1").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        });
+    </script>
+
 @endsection

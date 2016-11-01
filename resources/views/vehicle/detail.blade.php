@@ -108,7 +108,7 @@
 
                             <label class="half-field">
                                 <span>Make/Year</span>
-                                <input type="text" class="datetimepicker" name="document[simpleInformation][make_year]" placeholder="Make/Year" value="@if($document != null) {{$document->simpleInformation->make_year}} @endif">
+                                <input type="text" id="datetimepicker" name="document[simpleInformation][make_year]" placeholder="Make/Year" value="@if($document != null) {{$document->simpleInformation->make_year}} @endif">
                             </label>
 
                             <label class="half-field">
@@ -122,7 +122,7 @@
                             </label>
                             <label class="half-field">
                                 <span>Date</span>
-                                <input type="text" class="datetimepicker" placeholder="Date" name="document[simpleInformation][date]" value="@if($document != null){{$document->simpleInformation->date}} @endif">
+                                <input type="text" id="datetimepicker" placeholder="Date" name="document[simpleInformation][date]" value="@if($document != null){{$document->simpleInformation->date}} @endif">
                             </label>
                         </div>
                         <div class="vehicles-service-list">

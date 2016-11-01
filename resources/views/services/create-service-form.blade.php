@@ -76,7 +76,7 @@
 
                 <label class="half-field">
                     <span>Service Date</span>
-                    <input type="datetime" class="datetimepicker" name="suggested_date" placeholder="date">
+                    <input type="datetime" id="date" name="suggested_date" placeholder="date">
                     @if ($errors->has('suggested_date'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('suggested_date') as $message)
@@ -91,4 +91,16 @@
             </form>
         </div>
     </section>
+    <script>
+//        $(function() {
+//            $("#date").datetimepicker({
+////                dateFormat: 'yy-mm-dd'
+//            });
+//        });
+        $(function() {
+            alert();
+            $("#date").datetimepicker();
+        });
+
+    </script>
 @endsection

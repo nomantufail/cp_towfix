@@ -32,4 +32,9 @@ class ServiceRequestPolicy extends Policy
     {
         return ($serviceRequest->suggested_by != $user->id);
     }
+
+    public function add(User $user , ServiceRequest $serviceRequest=null)
+    {
+        return $user->isCustomer();
+    }
 }

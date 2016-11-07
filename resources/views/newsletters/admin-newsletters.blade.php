@@ -12,7 +12,7 @@
 @section('page')
     <section class="vehicles-list">
         <div class="vehicles-head">
-            <h3>Store</h3>
+            <h3>Newsletters</h3>
             <a href="{{url('/')}}/newsletter/add" class="btn btn-primary pull-right">Add a Newsletter</a>
         </div>
         <div class="vehicles-list-content">

@@ -32,6 +32,13 @@
                         @endif
                     </label>
 
+                    <label>
+                        <select name="is_poster" class="half-field" id="product_type">
+                            <option value="0">Direct Product</option>
+                            <option value="1">Contact Ad Poster</option>
+                        </select>
+                    </label>
+
                     <label id="product_price"  class="half-field">
                         <span>Product Price/Product Ad</span>
                         <input type="number" name="price" placeholder="Price" class="product-price" value="{{old('price')}}">
@@ -42,10 +49,6 @@
                                 @endforeach
                             </div>
                         @endif
-                    </label>
-
-                    <label class="half-field select-ad-field">
-                        <span><input id="ad" value="1"  type="checkbox" name="contact_poster" @if (old('contact_poster') == "1") checked @endif>Contact Ad Poster</span>
                     </label>
 
                     <div id="ad_form" class="select-field" style="display:none;">
@@ -111,4 +114,16 @@
                 </form>
             </div>
     </section>
+    <script>
+        $(document).on("change","#product_type", function () {
+            val = $("#product_type option:selected").val();
+            if(val == 1){
+                $("#ad_form").show();
+                $("#product_price").hide();
+            }else{
+                $("#ad_form").hide();
+                $("#product_price").show();
+            }
+        })
+    </script>
 @endsection

@@ -32,8 +32,13 @@
                         </div>
                     @endif
                 </label>
+                <label>
+                    <select name="is_poster" class="half-field" id="product_type">
+                        <option value="0" @if($product->is_poster == 0) selected @endif>Direct Product</option>
+                        <option value="1" @if($product->is_poster == 1) selected @endif>Contact Ad Poster</option>
+                    </select>
+                </label>
 
-                @if($product->is_poster == 0)
                 <label id="product_price"  class="half-field">
                     <span>Product Price/Product Ad</span>
                     <input type="number" name="price" placeholder="Price" class="product-price" value="{{$product->price}}">
@@ -45,13 +50,7 @@
                         </div>
                     @endif
                 </label>
-                @endif
 
-                <label class="half-field select-ad-field">
-                    <span><input id="ad" value="1"  type="checkbox" name="contact_poster" @if ($product->is_poster == 1) checked @endif>Contact Ad Poster</span>
-                </label>
-
-                @if($product->is_poster == 1)
                 <div id="ad_form" class="select-field" style="display:none;">
                     <label class="half-field">
                         <span>Contact Number</span>
@@ -87,7 +86,7 @@
                         @endif
                     </label>
                 </div>
-                @endif
+
                 <label style="clear: both">
                     <span>Detail</span>
                     <textarea name="detail" placeholder="Detail">{{$product->detail}}</textarea>
@@ -132,9 +131,20 @@
 
     <script>
 
+        $(document).on("change","#product_type", function () {
+            val = $("#product_type option:selected").val();
+            if(val == 1){
+                $("#ad_form").show();
+                $("#product_price").hide();
+            }else{
+                $("#ad_form").hide();
+                $("#product_price").show();
+            }
+        })
 
         $(function() {
             hide_show_add_img_btn();
+            $("#product_type").trigger('change');
         } );
 
         function hide_show_add_img_btn()

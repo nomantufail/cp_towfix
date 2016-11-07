@@ -20,7 +20,7 @@ class FranchisesController extends ParentController
     public function showFranchises(Requests\Franchise\ViewFranchisesRequest $request)
     {
         try{
-            return view('franchise.list-franchises', ['franchises'=> $this->franchises->all()]);
+            return view('franchise.list-franchises', ['franchises'=> $this->franchises->franchises()]);
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());
         }

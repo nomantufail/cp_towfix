@@ -221,6 +221,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('manual_image/delete/{image_id}', [
         'uses' => 'ManualsControllers@deleteImageById',
     ]);
+    Route::post('cart/add/{product_id}', [
+        'uses' => 'CartController@addProduct',
+    ]);
 
 
     Route::get('/logout', function ()    {

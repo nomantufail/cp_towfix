@@ -12,18 +12,19 @@ class UpdateProductRequest extends Request
         $storableAttrs = [
             'name' => $this->input('name'),
             'detail' => $this->input('detail'),
-
-
         ];
-
-
-        if($this->input('contact_poster') == 1){
+        if($this->input('is_poster') == 1){
             $storableAttrs['contact'] = $this->input('contact');
             $storableAttrs['email'] = $this->input('email');
             $storableAttrs['address'] = $this->input('address');
-            $storableAttrs['is_poster'] = $this->input('contact_poster');
+            $storableAttrs['is_poster'] = $this->input('is_poster');
+            $storableAttrs['price'] = 0;
 
         }else{
+            $storableAttrs['contact'] = '';
+            $storableAttrs['email'] = '';
+            $storableAttrs['address'] = '';
+            $storableAttrs['is_poster'] = 0;
             $storableAttrs['price'] = $this->input('price');
         }
 
@@ -58,7 +59,7 @@ class UpdateProductRequest extends Request
             'detail'=>'required'
         ];
 
-        if($this->input('contact_poster') == 1)
+        if($this->input('is_poster') == 1)
         {
 
             $rules['contact'] = 'required';
@@ -66,7 +67,6 @@ class UpdateProductRequest extends Request
             $rules['address'] = 'required';
         }
         else{
-
             $rules['price'] = 'required';
         }
 

@@ -41,6 +41,11 @@ class CartController extends ParentController
         dd($request->all());
     }
 
+    public function addProduct(Requests\Cart\AddToCartRequest $request)
+    {
+        return $this->cart->addProduct($request->user()->id, $request->route()->parameter('product_id'));
+    }
+
     public function removeItem($product_id)
     {
         return $this->cart->removeProduct(request()->user()->id, $product_id);

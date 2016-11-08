@@ -81,6 +81,13 @@
                     </ul>
                 </li>
                 @endif
+                @if($user->can('view','cart'))
+                    <li>
+                        <a href="{{url('/')}}/cart">
+                            Cart
+                        </a>
+                    </li>
+                @endif
                 <li class=""><a href="{{url('/')}}/logout">Logout</a></li>
             </ul>
         @endif

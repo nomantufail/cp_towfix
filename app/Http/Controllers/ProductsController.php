@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Repositories\CartRepository;
 use App\Repositories\ProductImagesRepository;
 use App\Repositories\ProductsRepository;
 use App\Repositories\VehiclesRepository;
@@ -14,20 +15,27 @@ class ProductsController extends ParentController
     private $products = null;
     private $productImages = null;
     private $vehiclesRepo = null;
+    private $cart = null;
     public function __construct(ProductsRepository $productsRepo,
-                                ProductImagesRepository $productImagesRepo, VehiclesRepository $vehiclesRepository)
+                                ProductImagesRepository $productImagesRepo, VehiclesRepository $vehiclesRepository,
+                                CartRepository $cartRepository
+                                )
     {
         parent::__construct();
         $this->products = $productsRepo;
         $this->productImages = $productImagesRepo;
         $this->vehiclesRepo = $vehiclesRepository;
+        $this->cart = $cartRepository;
     }
 
     public function showProducts(Requests\Product\ViewProductsRequest $request)
     {
         $products = $this->products->getWithDetails();
         if(Auth::user()->isCustomer()){
-            return view('products.online-store', ['products'=>$products]);
+            return view('products.online-store', [
+                'products'=>$products,
+                'productsInCart' => $this->cart->userProductIds(Auth::user()->id)
+            ]);
         }else{
             return view('products.list-products', ['products'=>$products]);
         }

@@ -28,6 +28,7 @@
                         <th>Name</th>
                         <th>Details</th>
                         <th>Actions</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>

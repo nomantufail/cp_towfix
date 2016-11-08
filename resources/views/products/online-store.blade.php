@@ -8,6 +8,14 @@
 ?>
 @extends('app')
 @section('page')
+    <style>
+        .adding_to_cart{
+            background-color: orange;
+        }
+        .added_to_cart{
+            background-color: green;
+        }
+    </style>
     <section class="store-panel">
         <h2 class="main-heading">Online Store</h2>
         <div class="store-listing">
@@ -24,6 +32,7 @@
                         <div class="store-content">
                             <p>{{str_limit($product->detail, 150)}}</p>
                             <a href="{{url('/')}}/product/{{$product->id}}" class="btn btn-primary">View Product</a>
+                            @if(!$product->is_poster)<span data-id="{{$product->id}}" class="btn btn-primary @if(in_array($product->id,$productsInCart)) added_to_cart @else add_to_cart @endif">Add To Cart</span>@endif
                         </div>
                     </div>
                 </li>
@@ -31,4 +40,20 @@
             </ul>
         </div>
     </section>
+    <script>
+        $(document).on("click",'.add_to_cart', function () {
+            var product_id = $(this).attr('data-id');
+            var btn = $(this);
+            btn.removeClass('add_to_cart');
+            btn.addClass('adding_to_cart');
+            btn.html('adding to cart...');
+            $.ajax({type: 'POST' , data: {'_token':"<?=csrf_token()?>" }, url: base_url + 'cart/add/'+product_id ,
+                success: function (data){
+                    btn.removeClass('adding_to_cart');
+                    btn.addClass('added_to_cart');
+                    btn.html('Added To Cart');
+                }
+            });
+        })
+    </script>
 @endsection

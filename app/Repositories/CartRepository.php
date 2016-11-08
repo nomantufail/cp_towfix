@@ -8,6 +8,7 @@
 
 namespace App\Repositories;
 
+use App\Libs\Helpers\Helper;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
@@ -25,6 +26,25 @@ class CartRepository extends Repository
             $query->with('images');
         }])->where('user_id',$userId)->get();
     }
+
+    public function userProductIds($userId)
+    {
+        return Helper::propertyToArray($this->getModel()->where('user_id',$userId)->get()->all(), 'product_id');
+    }
+
+    public function addProduct($userId, $productId)
+    {
+        $alreadyAdded = $this->getModel()->where('user_id',$userId)->where('product_id',$productId)->count();
+        if($alreadyAdded){
+            return $this->getModel()->where('user_id',$userId)->where('product_id',$productId)->first()->increment('quantity');
+        }else{
+            return $this->getModel()->create([
+                'product_id' => $productId,
+                'user_id' => $userId
+            ]);
+        }
+    }
+
     public function removeProduct($userId, $productId)
     {
         return $this->getModel()->where([

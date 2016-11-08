@@ -19,11 +19,11 @@
 
 
     <script type="text/javascript" language="javascript" src="{{url('/')}}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.bxslider.min.js"></script>
 
     <!-- datetimepicker js  -->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.ui.timepicker.addon.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.ui.timepicker.addon.i18n.min.js"></script>
@@ -56,13 +56,13 @@
                 @if($user->can('view','vehicles'))<li class="active"><a href="{{url('/')}}/vehicles">Vehicles </a></li> @endif
                 @if($user->can('view','products'))
                     <li>
-                    <a href="{{url('/')}}/products">
-                        @if($user->isCustomer())
-                            Online Store
-                        @else
-                            Store
-                        @endif
-                    </a>
+                        <a href="{{url('/')}}/products">
+                            @if($user->isCustomer())
+                                Online Store
+                            @else
+                                Store
+                            @endif
+                        </a>
                     </li>
                 @endif
                 @if($user->can('view','orders')) <li><a href="{{url('/')}}/orders">View Orders</a></li> @endif
@@ -86,19 +86,19 @@
                 @endif
                 @if($user->can('view','manuals')) <li><a href="{{url('/')}}/manuals">Manuals</a></li> @endif
                 @if($user->can('view', 'messages'))
-                <li>
-                    <a href="">
-                        @if($user->isCustomer())
-                            Contact a Franchise
-                        @elseif($user->isFranchise())
-                            Customer Messages
-                        @endif
-                    </a>
-                    <ul>
-                        <li><a href="{{url('/')}}/messages">Older Messages</a></li>
-                        <li><a href="{{url('/')}}/create-new-message">Create New Messages</a></li>
-                    </ul>
-                </li>
+                    <li>
+                        <a href="">
+                            @if($user->isCustomer())
+                                Contact a Franchise
+                            @elseif($user->isFranchise())
+                                Customer Messages
+                            @endif
+                        </a>
+                        <ul>
+                            <li><a href="{{url('/')}}/messages">Older Messages</a></li>
+                            <li><a href="{{url('/')}}/create-new-message">Create New Messages</a></li>
+                        </ul>
+                    </li>
                 @endif
                 @if($user->can('view','cart'))
                     <li>
@@ -137,7 +137,7 @@
                     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                         <li><a href="{{url('/')}}/customer/edit/{{$user->id}}">Edit Profile</a></li>
                         @if($user->can('view', 'messages'))
-                        <li><a href="{{url('/')}}/messages">Messages <span>22</span></a></li>
+                            <li><a href="{{url('/')}}/messages">Messages <span>22</span></a></li>
                         @endif
                         <li><a href="{{url('/')}}/logout">Logout</a></li>
                     </ul>

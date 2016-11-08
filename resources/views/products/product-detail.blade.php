@@ -37,12 +37,28 @@
                 <h4>{{$product->name}}</h4>
                 <label>Product Price: <span>${{$product->price}}</span></label>
                 <p>{{$product->detail}}</p>
-                <a href="#" class="btn btn-primary">Buy Product</a>
+                @if(!$product->is_poster)<span data-id="{{$product->id}}" class="btn btn-primary @if(in_array($product->id,$productsInCart)) added_to_cart @else add_to_cart @endif">Add To Cart</span>@endif
                 <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Contact to Frenchise</a>
             </div>
         </div>
     </section>
 <script>
+
+    $(document).on("click",'.add_to_cart', function () {
+        var product_id = $(this).attr('data-id');
+        var btn = $(this);
+        btn.removeClass('add_to_cart');
+        btn.addClass('adding_to_cart');
+        btn.html('adding to cart...');
+        $.ajax({type: 'POST' , data: {'_token':"<?=csrf_token()?>" }, url: base_url + 'cart/add/'+product_id ,
+            success: function (data){
+                btn.removeClass('adding_to_cart');
+                btn.addClass('added_to_cart');
+                btn.html('Added To Cart');
+            }
+        });
+    })
+
     $('.bxslider').bxSlider({
         pagerCustom: '#bx-pager'
     });

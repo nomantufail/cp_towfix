@@ -70,37 +70,7 @@
             </div>
         </div>
     </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.5.1/socket.io.min.js"></script>
     <script>
-        var socket = io('http://localhost:3000');
-        socket.emit('load-test','');
-        socket.on('request-under-updating', function (data) {
-            $.each( data.sockets, function( key, value ) {
-                var request = $("#requests tr[data-req-id='"+value.request_id+"']");
-                request.find('.edit-link').hide();
-                request.find('.delete-request').hide();
-                request.find('.accept-request').hide();
-                request.find('.whats-happening').text('editing...');
-            });
-        });
-        socket.on('request-locked', function (data) {
-            if(data.editing != "<?= $user->id ?>"){
-                var request = $("#requests tr[data-req-id='"+data.request_id+"']");
-                request.find('.edit-link').hide();
-                request.find('.delete-request').hide();
-                request.find('.accept-request').hide();
-                request.find('.whats-happening').text('editing...');
-            }
-        });
-        socket.on('request-released', function (data) {
-            var request = $("#requests tr[data-req-id='"+data.request_id+"']");
-            request.find('.edit-link').show();
-            request.find('.delete-request').show();
-            request.find('.accept-request').show();
-            request.find('.whats-happening').text('');
-        });
-        $(document).ready(function () {
 
-        });
     </script>
 @endsection

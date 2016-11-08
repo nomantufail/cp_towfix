@@ -1,6 +1,4 @@
 
-
-var base_url = "http://localhost/cp_towfix/public/";
 $(function() {
     $(".datetimepicker").datepicker();
     $('#ad').trigger('change');

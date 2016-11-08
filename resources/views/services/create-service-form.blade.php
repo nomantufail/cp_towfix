@@ -10,6 +10,7 @@
 @extends('app')
 
 @section('page')
+
     <section class="add-vehicle">
         @if(\Session::has('success'))
             <h4>

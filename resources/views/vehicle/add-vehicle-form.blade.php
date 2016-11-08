@@ -397,7 +397,7 @@
 
                 <label>
                     <span>Details</span>
-                    <textarea name="details" placeholder="Details">{{old('details')}}"</textarea>
+                    <textarea name="details" placeholder="Details">{{old('details')}}</textarea>
                     @if ($errors->has('details'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('details') as $message)

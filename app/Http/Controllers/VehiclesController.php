@@ -8,6 +8,7 @@ use App\Repositories\ServiceRequestFormsRepository;
 use App\Repositories\VehicleServicesRepository;
 use App\Repositories\VehiclesRepository;
 use App\Repositories\VehicleTypesRepository;
+use Illuminate\Support\Facades\Auth;
 
 class VehiclesController extends ParentController
 {
@@ -87,7 +88,7 @@ class VehiclesController extends ParentController
     public function listVehicles(Requests\Vehicle\ListVehiclesRequest $request)
     {
         try{
-            return view('vehicle.list', ['vehicles'=> $this->vehiclesRepo->all(), 'vehicle_types'=>$this->vehicleTypesRepo->getIndexed()]);
+            return view('vehicle.list', ['vehicles'=> $this->vehiclesRepo->getByCustomerId(Auth::user()->id), 'vehicle_types'=>$this->vehicleTypesRepo->getIndexed()]);
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());
         }

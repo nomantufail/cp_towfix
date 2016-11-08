@@ -87,7 +87,6 @@ class NewslettersController extends ParentController
         //dd($imagePath);
        // unlink($imagePath);
         $id = $request->input('id');
-        //$this->newsletters->updateWhere(['id'=>$id],['image'=>'']);
         if($this->newsletters->updateWhere(['id'=>$id],['image'=>'']))
         {
 

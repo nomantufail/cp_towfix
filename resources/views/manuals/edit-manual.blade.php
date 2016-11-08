@@ -16,11 +16,9 @@
             </h4>
         @endif
         <h2 class="main-heading">Edit A Manual</h2>
-        <li class="add-vehicle-widget">
+        <div class="add-vehicle-widget">
             <form class="add-vehicle-form" method="post" action="{{url('/')}}/manual/update/{{$manual->id}}" enctype="multipart/form-data">
                 {{csrf_field()}}
-
-
                 <label>
                     <span>Manual Name</span>
                     <input type="text" name="name" placeholder="Manual Name" value="{{$manual->title}}">

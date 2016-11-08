@@ -21,7 +21,7 @@
                 {{csrf_field()}}
                 <label class="half-field">
                     <span>Make</span>
-                    <input type="text" name="make" placeholder="Make">
+                    <input type="text" name="make" placeholder="Make" value="{{old('make')}}">
                     @if ($errors->has('make'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('make') as $message)
@@ -34,7 +34,7 @@
 
                 <label class="half-field">
                     <span>Model</span>
-                    <input type="text" name="model" placeholder="Model">
+                    <input type="text" name="model" placeholder="Model" value="{{old('model')}}">
                     @if ($errors->has('model'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('model') as $message)
@@ -63,7 +63,7 @@
 
                 <label class="half-field">
                     <span>Year</span>
-                    <select  id="year" name="year">
+                    <select  id="year" name="year" value="{{old('year')}}">
                         <option value="">Select Year</option>
                         <option value="2007">2016</option>
                         <option value="2006">2015</option>
@@ -194,7 +194,7 @@
 
                 <label class="half-field">
                     <span>Year Purchased</span>
-                    <select  id="year_purchased" name="year_purchased">
+                    <select  id="year_purchased" name="year_purchased" value="{{old('year_purchased')}}">
                         <option value="">Select Purchased Year</option>
                         <option value="2007">2016</option>
                         <option value="2006">2015</option>
@@ -325,7 +325,7 @@
 
                 <label class="half-field">
                     <span>Last Service</span>
-                    <input type="text" class="date" name="last_service" placeholder="Last Service">
+                    <input type="text" class="date" name="last_service" placeholder="Last Service" value="{{old('last_service')}}">
                     @if ($errors->has('last_service'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('last_service') as $message)
@@ -337,7 +337,7 @@
 
                 <label class="half-field">
                     <span>Next Service</span>
-                    <input type="text" class="date" name="next_service" placeholder="Next Service">
+                    <input type="text" class="date" name="next_service" placeholder="Next Service" value="{{old('next_service')}}">
                     @if ($errors->has('next_service'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('next_service') as $message)
@@ -349,7 +349,7 @@
 
                 <label class="half-field">
                     <span>Registration Number</span>
-                    <input type="text" name="registration_number" placeholder="Registration Number">
+                    <input type="text" name="registration_number" placeholder="Registration Number" value="{{old('registration_number')}}">
                     @if ($errors->has('registration_number'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('registration_number') as $message)
@@ -361,7 +361,7 @@
 
                 <label class="half-field">
                     <span>Registration Expiry</span>
-                    <input type="text" class="date" name="registration_expiry" placeholder="Registration Expiry">
+                    <input type="text" class="date" name="registration_expiry" placeholder="Registration Expiry" value="{{old('registration_expiry')}}">
                     @if ($errors->has('registration_expiry'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('registration_expiry') as $message)
@@ -373,7 +373,7 @@
 
                 <label class="half-field">
                     <span>Engine Capacity</span>
-                    <input type="text" name="engine_capacity" placeholder="Engine Capacity">
+                    <input type="text" name="engine_capacity" placeholder="Engine Capacity" value="{{old('engine_capacity')}}">
                     @if ($errors->has('engine_capacity'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('engine_capacity') as $message)
@@ -385,7 +385,7 @@
 
                 <label class="half-field">
                     <span>Number of Axles</span>
-                    <input type="number" name="number_axles" placeholder="Number of Axles">
+                    <input type="number" name="number_axles" placeholder="Number of Axles" value="{{old('number_axles')}}">
                     @if ($errors->has('number_axles'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('number_axles') as $message)
@@ -397,7 +397,7 @@
 
                 <label>
                     <span>Details</span>
-                    <textarea name="details" placeholder="Details"></textarea>
+                    <textarea name="details" placeholder="Details">{{old('details')}}"</textarea>
                     @if ($errors->has('details'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('details') as $message)

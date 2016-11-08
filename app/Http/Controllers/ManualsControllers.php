@@ -32,9 +32,13 @@ class ManualsControllers extends ParentController
     {
         return view('manuals.add-manual');
     }
+    public function manualDetail(Requests\Manual\ShowManualDetailRequest $request)
+    {
+        return view('manuals.manual-detail', ['manual'=>$this->manuals->findFullById($request->route()->parameter('manual_id'))]);
+    }
     public function addManual(Requests\Manual\AddManualRequest $request)
     {
-//        try{
+        try{
 
             $manual_images = [];
             $manualId = $this->manuals->store($request->storableAttrs())->id;
@@ -51,25 +55,24 @@ class ManualsControllers extends ParentController
             }
             $this->manualImages->insertMultiple($manual_images);
             return redirect()->back()->with('success','Manual Added Successfully');
-//        }catch (\Exception $e){
-//            return $this->handleInternalServerError($e->getMessage());
-//        }
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
     }
     public function editManualForm(Requests\Manual\ShowEditManualFormRequest $request, $manual_id)
     {
-//        try{
+        try{
         $data = [
             'manual' => $this->manuals->findFullById($manual_id)
         ];
         return view('manuals.edit-manual', $data);
-//        }catch (\Exception $e){
-//            return $this->handleInternalServerError($e->getMessage());
-//        }
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
     }
     public function updateManual(Requests\Manual\UpdateManualRequest $request, $manual_id)
     {
-//        dd($request->file('images'));
-//        try{
+        try{
             $manual_images = [];
             $this->manuals->updateWhere(['id' => $manual_id], $request->updateableAttrs());
 
@@ -89,9 +92,9 @@ class ManualsControllers extends ParentController
             }
 
             return redirect()->back()->with('success','Manual Updated Successfully');
-//        }catch (\Exception $e){
-//            return $this->handleInternalServerError($e->getMessage());
-//        }
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
     }
 
     public function delete(Requests\Manual\DeleteManualRequest $request)

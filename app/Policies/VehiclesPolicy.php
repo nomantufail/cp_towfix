@@ -20,7 +20,7 @@ class VehiclesPolicy extends Policy
 
     public function add(User $user , Vehicle $vehicle = null)
     {
-        return ($user->isCustomer() || $user->isAdmin());
+        return ($user->isCustomer());
     }
     public function edit(User $user , Vehicle $vehicle)
     {

@@ -200,16 +200,16 @@ Route::group(['middleware' => 'auth'], function () {
      * Cart routes ------------------------------>
      */
     Route::get('/cart', [
-        'uses'=>'cartController@myCart'
+        'uses'=>'CartController@myCart'
     ]);
     Route::post('/cart/remove/{product_id}', [
-        'uses' => 'cartController@removeItem'
+        'uses' => 'CartController@removeItem'
     ]);
     Route::post('/cart/confirm', [
-        'uses'=>'cartController@confirmCart'
+        'uses'=>'CartController@confirmCart'
     ]);
     Route::get('/cart/checkout', [
-        'uses'=>'cartController@myCart'
+        'uses'=>'CartController@myCart'
     ]);
     /* ----------------------------------------------- */
 

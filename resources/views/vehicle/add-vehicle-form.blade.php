@@ -17,13 +17,6 @@
         @endif
         <h2 class="main-heading">Add A Vehicle</h2>
         <div class="add-vehicle-widget">
-            {{--@if (sizeof($errors) > 0)--}}
-                {{--<div class="alert alert-danger">--}}
-                    {{--@foreach ($errors->all() as $error)--}}
-                        {{--{{ $error }}<br>--}}
-                    {{--@endforeach--}}
-                {{--</div>--}}
-            {{--@endif--}}
             <form class="add-vehicle-form" method="post" action="{{url('/')}}/vehicle/add">
                 {{csrf_field()}}
                 <label class="half-field">
@@ -53,7 +46,7 @@
 
                 <label class="full-field">
                     <span>Vehicle Type</span>
-                    <select name="vehicle_type_id">
+                    <select name="vehicle_type_id" id="vehicle_type">
                         <option value="">Select Vehicle Type</option>
                         @foreach($vehicleTypes as $vehicleType)
                             <option value="{{$vehicleType->id}}">{{$vehicleType->vehicle_type}}</option>
@@ -70,8 +63,8 @@
 
                 <label class="half-field">
                     <span>Year</span>
-                    {{--<input type="text" class="datetimepicker" name="year" placeholder="Year"/>--}}
-                    <select id="birthyear" name="year">
+                    <select  id="year" name="year">
+                        <option value="">Select Year</option>
                         <option value="2007">2016</option>
                         <option value="2006">2015</option>
                         <option value="2005">2014</option>
@@ -201,8 +194,8 @@
 
                 <label class="half-field">
                     <span>Year Purchased</span>
-                    {{--<input type="text"  name="year_purchased" placeholder="Year Purchased"/>--}}
-                    <select id="birthyear" name="year_purchased">
+                    <select  id="year_purchased" name="year_purchased">
+                        <option value="">Select Purchased Year</option>
                         <option value="2007">2016</option>
                         <option value="2006">2015</option>
                         <option value="2005">2014</option>
@@ -332,7 +325,7 @@
 
                 <label class="half-field">
                     <span>Last Service</span>
-                    <input type="text" class="datetimepicker" name="last_service" placeholder="Last Service">
+                    <input type="text" class="date" name="last_service" placeholder="Last Service">
                     @if ($errors->has('last_service'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('last_service') as $message)
@@ -344,7 +337,7 @@
 
                 <label class="half-field">
                     <span>Next Service</span>
-                    <input type="text" class="datetimepicker" name="next_service" placeholder="Next Service">
+                    <input type="text" class="date" name="next_service" placeholder="Next Service">
                     @if ($errors->has('next_service'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('next_service') as $message)
@@ -368,7 +361,7 @@
 
                 <label class="half-field">
                     <span>Registration Expiry</span>
-                    <input type="text" class="datetimepicker" name="registration_expiry" placeholder="Registration Expiry">
+                    <input type="text" class="date" name="registration_expiry" placeholder="Registration Expiry">
                     @if ($errors->has('registration_expiry'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('registration_expiry') as $message)
@@ -419,4 +412,28 @@
             </form>
         </div>
     </section>
+
+    <script>
+        $(function() {
+            $(".date").datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+        });
+
+        $("#vehicle_type").select2({
+            allowClear: true,
+            placeholder: "Select Vehicle Type"
+
+        });
+        $("#year").select2({
+            allowClear: true,
+            placeholder: "Select Year"
+
+        });
+        $("#year_purchased").select2({
+            allowClear: true,
+            placeholder: "Select Purchased Year"
+
+        });
+    </script>
 @endsection

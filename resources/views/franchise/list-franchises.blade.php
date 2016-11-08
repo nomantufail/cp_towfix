@@ -34,13 +34,14 @@
 
                     @foreach($franchises as $franchise)
                         <tr>
-                            <td>{{$franchise->f_name}}.{{$franchise->l_name}}</td>
+                            <td>{{$franchise->f_name}} {{$franchise->l_name}}</td>
                             <td>{{$franchise->address}}</td>
                             <td>{{$franchise->phone_number}}</td>
                             <td>{{$franchise->email}}</td>
 
                             <td>
                                 <a href="{{url('/')}}/franchise/update/{{$franchise->id}}"><i class="fa fa-edit fa-fw"></i></a>
+                                <form class="accept-request" method="post" action="">{{csrf_field()}}<button><i class="fa fa-check fa-fw"></i></button></form>
                                 <form method="post" action="{{url('/')}}/franchise/delete/{{$franchise->id}}">{{csrf_field()}}<input type="hidden" value="" name="id"><button><i class="fa fa-trash fa-fw"></i></button></form>
                             </td>
                         </tr>

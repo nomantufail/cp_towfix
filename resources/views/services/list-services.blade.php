@@ -59,7 +59,7 @@
                         <td>{{$request->getStatus()}}</td>
                         <td>
                             <span class="whats-happening"></span>
-                            @if($user->can('accept','serviceRequest', $request))<form class="accept-request" method="post" action="{{url('/')}}/service_request/accept/{{$request->id}}">{{csrf_field()}}<button><i class="fa fa-check fa-fw"></i></button></form>@endif
+                                @if($user->can('accept','serviceRequest', $request))<form class="accept-request" method="post" action="{{url('/')}}/service_request/accept/{{$request->id}}">{{csrf_field()}}<button><i class="fa fa-check fa-fw"></i></button></form>@endif
                                 @if($user->can('delete','serviceRequest', $request))<form class="delete-request" data-req-id="{{$request->id}}"  method="post" action="{{url('/')}}/service_request/delete/{{$request->id}}">{{csrf_field()}}<button><i class="fa fa-close fa-fw"></i></button></form>@endif
                             @if($user->can('edit','serviceRequest', $request))<a class="edit-link" href="{{url('/')}}/service_request/edit/{{$request->id}}"><i class="fa fa-edit fa-fw"></i></a>@endif
                         </td>

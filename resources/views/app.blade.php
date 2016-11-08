@@ -12,12 +12,30 @@
     <link type="text/css" href="{{url('/')}}/css/theme.css" rel="stylesheet" />
     <link type="text/css" href="{{url('/')}}/css/responsive.css" rel="stylesheet" />
 
+    <!-- datetimepicker cs  -->
+    <link type="text/css" href="{{url('/')}}/css/datepicker.css" rel="stylesheet" />
+    <link type="text/css" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+
+
+
     <script type="text/javascript" language="javascript" src="{{url('/')}}/js/jquery.min.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.bxslider.min.js"></script>
 
-    {{--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>--}}
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- datetimepicker js  -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{url('/')}}/js/jquery.ui.timepicker.addon.js"></script>
+    <script type="text/javascript" src="{{url('/')}}/js/jquery.ui.timepicker.addon.i18n.min.js"></script>
+    <script type="text/javascript" src="{{url('/')}}/js/jquery.ui.sliderAccess.js"></script>
+
+    <!-- Select2 Links  -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+
+
+    {{--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>--}}
     <script src="{{url('/')}}/js/env.js"></script>
 </head>
 <body>
@@ -32,6 +50,7 @@
         @if(Auth::check())
             <ul class="tab-list">
                 <li><a href="{{url('/')}}">Home </a></li>
+
                 @if($user->can('view','customers'))<li class=""><a href="{{url('/')}}/customers">Customers </a></li> @endif
                 @if($user->can('view','franchises'))<li class=""><a href="{{url('/')}}/franchises">Franchises </a></li> @endif
                 @if($user->can('view','vehicles'))<li class="active"><a href="{{url('/')}}/vehicles">Vehicles </a></li> @endif
@@ -135,7 +154,7 @@
 </main>
 <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>-->
 <script src="{{url('/')}}/js/bootstrap.min.js"></script>
-<script src="<?php echo asset('js/jquery.datetimepicker.js') ?>"> </script>
+
 <script type="text/javascript" language="javascript" src="{{url('/')}}/js/jquery.fancybox.js"></script>
 <script>
     $(document).ready(function(){
@@ -158,5 +177,6 @@
     });
 </script>
 <script src="<?php echo asset('js/towfix.js') ?>"> </script>
+
 </body>
 </html>

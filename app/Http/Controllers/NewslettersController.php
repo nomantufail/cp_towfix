@@ -40,13 +40,18 @@ class NewslettersController extends ParentController
     public function addNewsletter(Requests\Newsletter\AddNewsletterRequest $request)
     {
         try{
-            $public_path = '/images/newsletters/';
-            $filename = $request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path($public_path), $filename);
+            $imageFinalPath = "";
+            if($request->file('image') != null){
+                $public_path = '/images/newsletters/';
+                $filename = $request->file('image')->getClientOriginalName();
+                $request->file('image')->move(public_path($public_path), $filename);
+                $imageFinalPath = $public_path.$filename;
+            }
+
             $this->newsletters->store([
                 'name' => $request->input('name'),
                 'detail' => $request->input('detail'),
-                'image' => $public_path.$filename
+                'image' => $imageFinalPath
             ]);
             return redirect()->back()->with('success','Newsletter Added Successfully');
         }catch (\Exception $e){

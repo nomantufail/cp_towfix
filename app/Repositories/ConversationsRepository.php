@@ -37,7 +37,7 @@ class ConversationsRepository extends Repository
                     ->where('receiver_id', '=', $userId1);
             })
             ->orderBy('id', 'asc')
-            ->paginate();
+            ->get();
     }
 
     public function getEngagedUserIds($userId)

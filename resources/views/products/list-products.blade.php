@@ -7,8 +7,8 @@
  */
 ?>
 @extends('app')
-
 @section('page')
+
     <section class="vehicles-list">
         <div class="vehicles-head">
             <h3>Store</h3>
@@ -36,7 +36,7 @@
                     <tr>
                         <td>{{$product->name}}</td>
                         <td>{{$product->id}}</td>
-                        <td>@if($product->is_poster) See Detail @else {{$product->price}} @endif</td>
+                        <td>@if($product->is_poster) <a href="{{url('/')}}/product/{{$product->id}}">See Details</a> @else {{$product->price}} @endif</td>
                         <td><a href="{{url('/')}}/product/{{$product->id}}">View</a></td>
                         <td>
                             <a href={{url('/')}}/product/update/{{$product->id}}><i class="fa fa-edit fa-fw"></i></a>

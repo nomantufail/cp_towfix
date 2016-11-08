@@ -87,7 +87,7 @@
                 @if($user->can('view','manuals')) <li><a href="{{url('/')}}/manuals">Manuals</a></li> @endif
                 @if($user->can('view', 'messages'))
                     <li>
-                        <a href="">
+                        <a href="#">
                             @if($user->isCustomer())
                                 Contact a Franchise
                             @elseif($user->isFranchise())

@@ -39,21 +39,21 @@ class ManualsControllers extends ParentController
     public function addManual(Requests\Manual\AddManualRequest $request)
     {
         try{
-
             $manual_images = [];
             $manualId = $this->manuals->store($request->storableAttrs())->id;
-            foreach($request->file('images') as $file)
-            {
-                $public_path = '/images/manuals/'.$manualId;
-                $destinationPath = public_path($public_path);
-                $filename = $file->getClientOriginalName();
-                $file->move($destinationPath, $filename);
-                $manual_images[]=[
-                    'manual_id' => $manualId,
-                    'image' => $public_path.'/'.$filename
-                ];
+            if($request->file('images') != null) {
+                foreach ($request->file('images') as $file) {
+                    $public_path = '/images/manuals/' . $manualId;
+                    $destinationPath = public_path($public_path);
+                    $filename = $file->getClientOriginalName();
+                    $file->move($destinationPath, $filename);
+                    $manual_images[] = [
+                        'manual_id' => $manualId,
+                        'image' => $public_path . '/' . $filename
+                    ];
+                }
+                $this->manualImages->insertMultiple($manual_images);
             }
-            $this->manualImages->insertMultiple($manual_images);
             return redirect()->back()->with('success','Manual Added Successfully');
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());

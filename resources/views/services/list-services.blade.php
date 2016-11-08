@@ -39,7 +39,7 @@
                             <td>24574</td>
                         @if($user->isCustomer())<th>{{$request->franchise->f_name}} {{$request->franchise->l_name}}</th>@endif
                         @if($user->isCustomer())<th>Area</th>@endif
-                        <td>{{\Carbon\Carbon::createFromFormat('Y-m-d h:i:s',$request->suggested_date)->toFormattedDateString()}}
+                        <td>{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$request->suggested_date)->toFormattedDateString()}}
                             @if($request->isPending())
                             <span style="color:@if($request->suggestedUser->id == $user->id) green @else red @endif; font-weight: bold;">
                                 By

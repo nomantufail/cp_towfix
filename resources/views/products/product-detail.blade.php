@@ -9,6 +9,14 @@
 
 @extends('app')
 @section('page')
+    <style>
+        .adding_to_cart{
+            background-color: orange;
+        }
+        .added_to_cart{
+            background-color: green;
+        }
+    </style>
     <section class="product-detail">
         <div class="product-widget">
 
@@ -35,10 +43,18 @@
             @endif
             <div class="product-info">
                 <h4>{{$product->name}}</h4>
-                <label>Product Price: <span>${{$product->price}}</span></label>
+                @if($product->is_poster)
+                    <label>Contact: <span>{{$product->contact}}</span></label><br>
+                    <label>Email: <span>{{$product->email}}</span></label><br>
+                    <label>Address: <span>{{$product->address}}</span></label><br><br>
+                @else
+                    <label>Product Price: <span>${{$product->price}}</span></label>
+                @endif
                 <p>{{$product->detail}}</p>
-                @if(!$product->is_poster)<span data-id="{{$product->id}}" class="btn btn-primary @if(in_array($product->id,$productsInCart)) added_to_cart @else add_to_cart @endif">Add To Cart</span>@endif
-                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Contact to Frenchise</a>
+
+                @if(!$product->is_poster)
+                    <span data-id="{{$product->id}}" class="btn btn-primary @if(in_array($product->id,$productsInCart)) added_to_cart @else add_to_cart @endif">@if(in_array($product->id,$productsInCart)) Added To Cart @else Add To Cart @endif</span>
+                @endif
             </div>
         </div>
     </section>

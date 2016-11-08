@@ -59,18 +59,19 @@ class ProductsController extends ParentController
         try{
             $product_images = [];
                 $productId = $this->products->store($request->storableAttrs())->id;
-            foreach($request->file('images') as $file)
-            {
-                $public_path = '/images/products/'.$productId;
-                $destinationPath = public_path($public_path);
-                $filename = $file->getClientOriginalName();
-                $file->move($destinationPath, $filename);
-                $product_images[]=[
-                    'product_id' => $productId,
-                    'path' => $public_path.'/'.$filename
-                ];
+            if($request->file('images') != null) {
+                foreach ($request->file('images') as $file) {
+                    $public_path = '/images/products/' . $productId;
+                    $destinationPath = public_path($public_path);
+                    $filename = $file->getClientOriginalName();
+                    $file->move($destinationPath, $filename);
+                    $product_images[] = [
+                        'product_id' => $productId,
+                        'path' => $public_path . '/' . $filename
+                    ];
+                }
+                $this->productImages->insertMultiple($product_images);
             }
-            $this->productImages->insertMultiple($product_images);
             return redirect()->back()->with('success','Product Added Successfully');
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());

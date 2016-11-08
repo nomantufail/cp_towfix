@@ -7,7 +7,6 @@
  */
 ?>
 @extends('app')
-
 @section('page')
     <section class="vehicle-detail">
         <h2 class="main-heading">Vehicle Detail</h2>
@@ -39,10 +38,6 @@
                 <li>
                     <strong>Registration Number</strong>
                     <span>{{$vehicle->registration_number}}</span>
-                </li>
-                <li>
-                    <strong>Registration</strong>
-                    <span>{{$vehicle->registration}}</span>
                 </li>
                 <li>
                     <strong>Registration Expiry</strong>

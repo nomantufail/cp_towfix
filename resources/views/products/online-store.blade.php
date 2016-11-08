@@ -32,7 +32,7 @@
                         <div class="store-content">
                             <p>{{str_limit($product->detail, 150)}}</p>
                             <a href="{{url('/')}}/product/{{$product->id}}" class="btn btn-primary">View Product</a>
-                            @if(!$product->is_poster)<span data-id="{{$product->id}}" class="btn btn-primary @if(in_array($product->id,$productsInCart)) added_to_cart @else add_to_cart @endif">Add To Cart</span>@endif
+                            @if(!$product->is_poster)<span data-id="{{$product->id}}" class="btn btn-primary @if(in_array($product->id,$productsInCart)) added_to_cart @else add_to_cart @endif">@if(in_array($product->id,$productsInCart)) Added To Cart @else Add To Cart @endif</span>@endif
                         </div>
                     </div>
                 </li>

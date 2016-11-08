@@ -35,9 +35,9 @@
                     @foreach($products as $product)
                     <tr>
                         <td>{{$product->name}}</td>
-                        <td>EF457R</td>
-                        <td>{{$product->price}}</td>
-                        <td><a href="#">View</a></td>
+                        <td>{{$product->id}}</td>
+                        <td>@if($product->is_poster) See Detail @else {{$product->price}} @endif</td>
+                        <td><a href="{{url('/')}}/product/{{$product->id}}">View</a></td>
                         <td>
                             <a href={{url('/')}}/product/update/{{$product->id}}><i class="fa fa-edit fa-fw"></i></a>
                             <form method="post" action="{{url('/')}}/product/delete/{{$product->id}}">{{csrf_field()}}<button><i class="fa fa-trash fa-fw"></i></button></form>

@@ -16,4 +16,16 @@ class FranchisesPolicy extends Policy
     {
         return ($user->isAdmin());
     }
+    public function add(User $user , User $franchise=null)
+    {
+        return ($user->isAdmin());
+    }
+    public function edit(User $user , User $franchise=null)
+    {
+        return ($user->isAdmin());
+    }
+    public function delete(User $user , User $franchise=null)
+    {
+        return ($user->isAdmin());
+    }
 }

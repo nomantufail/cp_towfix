@@ -56,13 +56,13 @@ class FranchisesController extends ParentController
     public function storeFranchise(Requests\Franchise\AddFranchiseRequest $request)
     {
 
-        try{
+//        try{
             $this->franchises->store($request->storableAttrs());
 
             return redirect()->back()->with('success', 'Franchise Stored Successfully');
-        }catch (\Exception $e){
-            return $this->handleInternalServerError($e->getMessage());
-        }
+//        }catch (\Exception $e){
+//            return $this->handleInternalServerError($e->getMessage());
+//        }
     }
     public function delete(Requests\Franchise\DeleteFranchiseRequest $request , $franchise_id)
     {

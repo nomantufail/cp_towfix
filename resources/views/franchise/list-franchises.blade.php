@@ -31,7 +31,6 @@
                     </tr>
                     </thead>
                     <tbody>
-
                     @foreach($franchises as $franchise)
                         <tr>
                             <td>{{$franchise->f_name}} {{$franchise->l_name}}</td>

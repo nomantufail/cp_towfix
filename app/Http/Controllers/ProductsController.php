@@ -48,7 +48,10 @@ class ProductsController extends ParentController
 
     public function productDetail(Requests\Product\ShowProductDetailRequest $request)
     {
-        return view('products.product-detail', ['product'=>$this->products->findFullById($request->route()->parameter('product_id'))]);
+        return view('products.product-detail', [
+            'product'=>$this->products->findFullById($request->route()->parameter('product_id')),
+            'productsInCart' => $this->cart->userProductIds(Auth::user()->id)
+        ]);
     }
 
     public function addProduct(Requests\Product\AddProductRequest $request)

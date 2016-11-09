@@ -1,6 +1,3 @@
-
-
-
 $(function() {
     $(".datetimepicker").datepicker();
     $('#ad').trigger('change');

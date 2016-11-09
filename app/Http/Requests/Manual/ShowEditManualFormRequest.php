@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Manual;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\Request;
 
 class ShowEditManualFormRequest extends Request
 {
@@ -13,7 +13,7 @@ class ShowEditManualFormRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('edit','manuals');
     }
 
     /**

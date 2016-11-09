@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Repositories\NewsletterImagesRepository;
 use App\Repositories\NewslettersRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -11,10 +12,12 @@ use Illuminate\Support\Facades\Response;
 class NewslettersController extends ParentController
 {
     private $newsletters = null;
-    public function __construct(NewslettersRepository $newslettersRepository)
+    private $newsletterImages = null;
+    public function __construct(NewslettersRepository $newslettersRepository, NewsletterImagesRepository $newsletterImagesRepository)
     {
         parent::__construct();
         $this->newsletters = $newslettersRepository;
+        $this->newsletterImages = $newsletterImagesRepository;
     }
 
     public function showNewsletters(Requests\Newsletter\ViewNewslettersRequest $request)
@@ -39,24 +42,29 @@ class NewslettersController extends ParentController
 
     public function addNewsletter(Requests\Newsletter\AddNewsletterRequest $request)
     {
-        try{
-            $imageFinalPath = "";
-            if($request->file('image') != null){
-                $public_path = '/images/newsletters/';
-                $filename = $request->file('image')->getClientOriginalName();
-                $request->file('image')->move(public_path($public_path), $filename);
-                $imageFinalPath = $public_path.$filename;
-            }
-
-            $this->newsletters->store([
+//        try{
+            $newsletter_images = [];
+            $newsletterId = $this->newsletters->store([
                 'name' => $request->input('name'),
                 'detail' => $request->input('detail'),
-                'image' => $imageFinalPath
-            ]);
+            ])->id;
+            if($request->file('images') != null) {
+                foreach ($request->file('images') as $file) {
+                    $public_path = '/images/newsletters/' . $newsletterId;
+                    $destinationPath = public_path($public_path);
+                    $filename = $file->getClientOriginalName();
+                    $file->move($destinationPath, $filename);
+                    $newsletter_images[] = [
+                        'newsletter_id' => $newsletterId,
+                        'path' => $public_path . '/' . $filename
+                    ];
+                }
+                $this->newsletterImages->insertMultiple($newsletter_images);
+            }
             return redirect()->back()->with('success','Newsletter Added Successfully');
-        }catch (\Exception $e){
-            return $this->handleInternalServerError($e->getMessage());
-        }
+//        }catch (\Exception $e){
+//            return $this->handleInternalServerError($e->getMessage());
+//        }
     }
 
     public function showEditNewsletterForm(Requests\Newsletter\ShowEditNewsletterFormRequest $request)
@@ -67,18 +75,27 @@ class NewslettersController extends ParentController
     public function updateNewsletter(Requests\Newsletter\UpdateNewsletterRequest $request)
     {
         try{
-            $updateable_attrs = [
+            $newsletter_images = [];
+            $this->newsletters->updateWhere(['id' => $request->route()->parameter('newsletter_id')], [
                 'name' => $request->input('name'),
-                'detail' => $request->input('detail'),
-            ];
-            if($request->file('image') != null){
-                $public_path = '/images/newsletters/';
-                $filename = $request->file('image')->getClientOriginalName();
-                $request->file('image')->move(public_path($public_path), $filename);
-                $updateable_attrs['image'] = $public_path.$filename;
+                'detail' => $request->input('detail')
+            ]);
+
+            if($request->file('images') != null) {
+                foreach ($request->file('images') as $file) {
+                    $public_path = '/images/newsletters/'.$request->route()->parameter('newsletter_id');
+                    $destinationPath = public_path($public_path);
+                    $filename = $file->getClientOriginalName();
+                    $file->move($destinationPath, $filename);
+                    $newsletter_images[] = [
+                        'newsletter_id' => $request->route()->parameter('newsletter_id'),
+                        'path' => $public_path . '/'.$filename
+                    ];
+                }
+                $this->newsletterImages->insertMultiple($newsletter_images);
             }
-            $this->newsletters->updateWhere(['id'=>$request->route()->parameter('newsletter_id')],$updateable_attrs);
-            return redirect()->back()->with('success','Newsletter Updated Successfully');
+
+            return redirect()->back()->with('success','newsletter Updated Successfully');
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());
         }
@@ -109,6 +126,12 @@ class NewslettersController extends ParentController
             ), 200);
 
         }
+    }
+
+
+    public function deleteImageById(\Illuminate\Http\Request $request)
+    {
+        return ($this->newsletterImages->deleteById($request->route()->parameter('image_id')))? Response::json(array('status' => 'success'), 200): Response::json(array('status' => 'success'), 200);
     }
 
     public function delete(Requests\Newsletter\DeleteNewsletterRequest $request)

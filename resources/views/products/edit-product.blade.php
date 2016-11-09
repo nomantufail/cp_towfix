@@ -158,7 +158,7 @@
 
         $(document).on('click', '.del-img-btn', function(){
             let btn = $(this);
-            let image_id = btn.closest('img').attr('data-id');
+            let image_id = btn.closest('li').attr('data-id');
             $.ajax({type: 'POST' , data: {'_token':"<?=csrf_token()?>" }, url: base_url + 'product_image/delete/'+image_id ,
                 success: function (data){
                     btn.closest('li').remove();

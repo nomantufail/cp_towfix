@@ -45,10 +45,10 @@
                         @endif
                     </label>
                     <label style="clear: both">
-                        <input type="file" name="image">
-                        @if ($errors->has('image'))
+                        <input type="file" name="images[]" multiple>
+                        @if ($errors->has('images'))
                             <div class="alert alert-danger">
-                                @foreach ($errors->get('image') as $message)
+                                @foreach ($errors->get('images') as $message)
                                     {{ $message }}<br>
                                 @endforeach
                             </div>

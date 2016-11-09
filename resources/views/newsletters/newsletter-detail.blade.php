@@ -9,17 +9,38 @@
 
 @extends('app')
 @section('page')
-    <section class="news-panel">
-        <div class="news-detail">
-            @if($newsletter->image != "")
-            <div class="news-img">
-                <figure><img src="{{url('/')}}/{{$newsletter->image}}" alt=""></figure>
-            </div>
+    <section class="product-detail">
+        <div class="product-widget">
+            @if(count($newsletter->images))
+                <div class="product-slider">
+                    <ul class="bxslider">
+                        @foreach($newsletter->images as $image)
+                            <li><img src="{{url('/')}}/{{$image->path}}" /></li>
+                        @endforeach
+                    </ul>
+
+                    <div id="bx-pager">
+                        <?php
+                        $count = 0;
+                        foreach($newsletter->images as $image){
+                        ?>
+                        <a data-slide-index="{{$count}}" href=""><img src="{{url('/')}}/{{$image->path}}" /></a>
+                        <?php
+                        $count++;
+                        }
+                        ?>
+                    </div>
+                </div>
             @endif
             <div class="news-text">
-                <h4>{{$newsletter->name}}</h4>
+                <h3>{{$newsletter->name}}</h3>
                 <p>{{$newsletter->detail}}</p>
             </div>
         </div>
     </section>
+    <script>
+        $('.bxslider').bxSlider({
+            pagerCustom: '#bx-pager'
+        });
+    </script>
 @endsection

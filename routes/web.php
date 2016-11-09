@@ -222,6 +222,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('product_image/delete/{image_id}', [
         'uses' => 'ProductsController@deleteImageById',
     ]);
+    Route::post('newsletter_image/delete/{image_id}', [
+        'uses' => 'NewslettersController@deleteImageById',
+    ]);
     Route::post('manual_image/delete/{image_id}', [
         'uses' => 'ManualsControllers@deleteImageById',
     ]);

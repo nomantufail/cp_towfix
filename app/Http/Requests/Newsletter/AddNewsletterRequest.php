@@ -23,10 +23,16 @@ class AddNewsletterRequest extends Request
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'required',
-            'image'=>'image|max:2000',
+            'images'=>'max:10',
             'detail' => 'required'
         ];
+
+
+        foreach(range(0, (count($this->file('images')) - 1)) as $index) {
+            $rules['images.' . $index] = 'image|max:2000';
+        }
+        return $rules;
     }
 }

@@ -22,7 +22,7 @@ class AddManualRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('add','manuals');
     }
 
     public function messages()

@@ -17,7 +17,6 @@ class NewslettersTableMigration extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('detail');
-            $table->text('image');
             $table->timestamps();
         });
     }

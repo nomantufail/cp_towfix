@@ -13,7 +13,7 @@
     <section class="vehicles-list">
         <div class="vehicles-head">
             <h3>Manuals</h3>
-            <a href="{{url('/')}}/manual/add" class="btn btn-primary pull-right">Add a Manual</a>
+            @if($user->can('add','manuals'))<a href="{{url('/')}}/manual/add" class="btn btn-primary pull-right">Add a Manual</a>@endif
         </div>
         <div class="vehicles-list-content">
             <div class="vehicles-table">
@@ -39,8 +39,8 @@
                             <td>{{$manual->description}}</td>
                             <td><a href="{{url('/')}}/manual/{{$manual->id}}">View</a></td>
                             <td>
-                                <a href="{{url('/')}}/manual/update/{{$manual->id}}"><i class="fa fa-edit fa-fw"></i></a>
-                                <form method="post" action="{{url('/')}}/manual/delete/{{$manual->id}}">{{csrf_field()}}<button><i class="fa fa-trash fa-fw"></i></button></form>
+                                @if($user->can('edit','manuals', $manual))<a href="{{url('/')}}/manual/update/{{$manual->id}}"><i class="fa fa-edit fa-fw"></i></a>@endif
+                                @if($user->can('delete','manuals', $manual))<form method="post" action="{{url('/')}}/manual/delete/{{$manual->id}}">{{csrf_field()}}<button><i class="fa fa-trash fa-fw"></i></button></form>@endif
                             </td>
                             <td></td>
                         </tr>

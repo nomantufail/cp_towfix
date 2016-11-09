@@ -50,20 +50,27 @@
                     @endif
                 </label>
                 <input type="hidden" id="record_id" value="{{$newsletter->id}}">
-                @if($newsletter->image != "")
-                    <ul class="attach-list">
-                        <li style="background-image: url('{{ url('/').$newsletter->image }}')" id="image_path">
+                <ul class="attach-list">
+                    @foreach($newsletter->images as $img)
+                        <li style="background-image: url('{{ url('/').$img->path }}')" data-id="{{$img->id}}">
                             <div class="attach-hover">
-                                <a class="fancybox" href="{{ url('/').$newsletter->image }}"><i class="fa fa-search fa-fw"></i></a>
-                                <a id="delete_image" style="font-size: 25px;"><i class="fa fa-trash fa-fw"></i> </a
-                                {{--<img id="image_path" src="{{ url('/').$newsletter->image }}" />--}}
+                                <a class="fancybox" href="{{ url('/').$img->path }}"><i class="fa fa-search fa-fw"></i></a>
+                                {{--<img class="image_path" src="{{ url('/').$img->path }}" data-id="{{$img->id}}"/>--}}
+                                <a class="del-img-btn" style="font-size: 25px;"><i class="fa fa-trash fa-fw"></i> </a>
                             </div>
                         </li>
-                    </ul>
-                    {{--<input type="button" class="btn btn btn-primary" id="delete_image" value="Delete">--}}
-                @endif
-                <label  style="clear: both" id="file_chooser">
-                    <input id="image" type="file" name="image">
+                    @endforeach
+                </ul>
+
+                <label style="clear: both">
+                    <input type="file" name="images[]" multiple id="file_chooser">
+                    @if ($errors->has('images'))
+                        <div class="alert alert-danger">
+                            @foreach ($errors->get('images') as $message)
+                                {{ $message }}<br>
+                            @endforeach
+                        </div>
+                    @endif
                 </label>
                 <label class="submit">
                     <input type="submit" class="btn btn btn-primary" name="submit" value="Submit">
@@ -74,37 +81,29 @@
     </section>
     <script>
 
-
         $(function() {
-            if($('#image_path').length){
-                $('#file_chooser').hide();
-            }
+            hide_show_add_img_btn();
         } );
 
-        $(document).on("click", "#delete_image", function () {
-
-            var path = $('#image_path').attr('src');
-            var id = $("#record_id").val();
-            deleteImage(path , id);
-        });
-
-        function deleteImage(path , id)
+        function hide_show_add_img_btn()
         {
-            $.ajax({
+            if($('.image-packet').length >= 10){
+                $('#file_chooser').hide();
+            }else{
+                $('#file_chooser').show();
+            }
+        }
 
-                type: 'POST' ,
-                data: {path: path , id: id, _token:"<?= csrf_token() ?>" },
-                url: base_url + 'deleteImage' ,
-                success: function (data)
-                {
-                    $('#file_chooser').show();
-                    $("#delete_image").hide();
-                    $("#image_path").hide();
-                    console.log(path);
+        $(document).on('click', '.del-img-btn', function(){
+            let btn = $(this);
+            let image_id = btn.closest('li').attr('data-id');
+            $.ajax({type: 'POST' , data: {'_token':"<?=csrf_token()?>" }, url: base_url + 'newsletter_image/delete/'+image_id ,
+                success: function (data){
+                    btn.closest('li').remove();
+                    hide_show_add_img_btn();
                 }
             });
-
-        }
+        });
         $(document).ready(function() {
             $(".fancybox").fancybox();
         });

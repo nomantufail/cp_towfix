@@ -16,7 +16,7 @@ class NewsletterImagesTableMigration extends Migration
         Schema::create('newsletter_images', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('newsletter_id')->unsigned();
-            $table->string('image');
+            $table->string('path');
             $table->timestamps();
 
             $table->foreign('newsletter_id')

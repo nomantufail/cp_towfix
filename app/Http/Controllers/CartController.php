@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Repositories\CartRepository;
+use App\Repositories\OrdersRepository;
 use App\Repositories\ProductImagesRepository;
 use App\Repositories\ProductsRepository;
 use App\Repositories\UsersRepository;
@@ -20,13 +21,15 @@ class CartController extends ParentController
     private $products = null;
     private $productImages = null;
     private $cart = null;
+    private $orders = null;
     public function __construct(ProductsRepository $productsRepo,
-                                ProductImagesRepository $productImagesRepo, CartRepository $cartRepository)
+                                ProductImagesRepository $productImagesRepo, CartRepository $cartRepository, OrdersRepository $ordersRepository)
     {
         parent::__construct();
         $this->products = $productsRepo;
         $this->productImages = $productImagesRepo;
         $this->cart = $cartRepository;
+        $this->orders = $ordersRepository;
     }
 
     public function myCart(Requests\Cart\ListMyCartRequest $request)
@@ -61,6 +64,7 @@ class CartController extends ParentController
             }
             Auth::user()->charge($amount*100, ['source' => $request->Input('stripeToken')]);
             $this->cart->flush(Auth::user()->id);
+
             return view('cart.success',['data'=>[
                 'amount' => $amount
             ]]);

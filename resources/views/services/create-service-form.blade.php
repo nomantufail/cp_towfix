@@ -103,19 +103,19 @@
         });
 
         $("#vehicle_type").select2({
-            theme:"classic",
+
             allowClear: true,
             placeholder: "Select Vehicle Type"
 
         });
         $("#franchise").select2({
-            theme:"classic",
+
             allowClear: true,
             placeholder: "Select Franchise"
 
         });
         $("#work_type").select2({
-            theme:"classic",
+
             allowClear: true,
             placeholder: "Select Work Type"
 

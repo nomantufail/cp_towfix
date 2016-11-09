@@ -193,19 +193,16 @@
             });
         });
         $("#vehicle_type").select2({
-            theme:"classic",
             allowClear: true,
             placeholder: "Select Vehicle Type"
 
         });
         $("#year").select2({
-            theme:"classic",
             allowClear: true,
             placeholder: "Select Year"
 
         });
         $("#year_purchased").select2({
-            theme:"classic",
             allowClear: true,
             placeholder: "Select Purchased Year"
 

@@ -1,20 +1,10 @@
 
 
-
-
+var base_url = "http://localhost/cp_towfix/public/";
 $(function() {
-    //$(".datetimepicker").datepicker({
-    //    dateFormat: 'yy-mm-dd'
-    //});
-    $("#datetimepicker").datepicker({
-        dateFormat: 'yy-mm-dd'
-    });
+    $(".datetimepicker").datepicker();
     $('#ad').trigger('change');
 } );
-
-
-
-
 
 $(document).on("change", "#ad", function () {
 

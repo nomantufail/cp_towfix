@@ -46,7 +46,7 @@
 
                 <label class="full-field">
                     <span>Vehicle Type</span>
-                    <select name="vehicle_type_id">
+                    <select name="vehicle_type_id" id="vehicle_type">
                         <option value="">Select Vehicle Type</option>
                         @foreach($vehicleTypes as $vehicleType)
                             <option value="{{$vehicleType->id}}" @if($vehicleType->id == $vehicle->vehicle_type_id) selected @endif>{{$vehicleType->vehicle_type}}</option>
@@ -62,7 +62,7 @@
                     $enddate = date("Y");
                     $years = range ($startdate,$enddate);
                     ?>
-                    <select name="year">
+                    <select name="year" id="year">
                         @foreach($years as $year)
                             {
                             <option value="{{$year}}" @if($year == $vehicle->year) selected @endif> {{$year}} </option>
@@ -88,7 +88,7 @@
                     $enddate = date("Y");
                     $years = range ($startdate,$enddate);
                     ?>
-                    <select name="year_purchased">
+                    <select name="year_purchased" id="year_purchased">
                     @foreach($years as $year)
                     {
                             <option value="{{$year}}" @if($year == $vehicle->year) selected @endif> {{$year}} </option>
@@ -191,6 +191,24 @@
             $(".date1").datepicker({
                 dateFormat: 'yy-mm-dd'
             });
+        });
+        $("#vehicle_type").select2({
+            theme:"classic",
+            allowClear: true,
+            placeholder: "Select Vehicle Type"
+
+        });
+        $("#year").select2({
+            theme:"classic",
+            allowClear: true,
+            placeholder: "Select Year"
+
+        });
+        $("#year_purchased").select2({
+            theme:"classic",
+            allowClear: true,
+            placeholder: "Select Purchased Year"
+
         });
     </script>
 

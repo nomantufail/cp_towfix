@@ -22,7 +22,7 @@
                 {{csrf_field()}}
                 <label class="half-field">
                     <span>Select Vehicle</span>
-                    <select name="vehicle_id">
+                    <select name="vehicle_id" id="vehicle_type">
                         @foreach($vehicles as $vehicle)
                             <option value="{{$vehicle->id}}">
                                 {{$vehicle->make}} {{$vehicle->model}}
@@ -40,7 +40,7 @@
 
                 <label class="half-field">
                     <span>Select Franchise</span>
-                    <select name="franchise_id">
+                    <select name="franchise_id" id="franchise">
                     @foreach($franchises as $franchise)
                         <option value="{{$franchise->id}}">
                             {{$franchise->f_name}} {{$franchise->l_name}}
@@ -58,7 +58,7 @@
 
                 <label class="half-field">
                     <span>Type Of Work Required</span>
-                    <select name="work_type_id">
+                    <select name="work_type_id" id="work_type">
                         @foreach($work_types as $work_type)
                             <option value="{{$work_type->id}}">
                                 {{$work_type->work_type}}
@@ -97,9 +97,28 @@
 ////                dateFormat: 'yy-mm-dd'
 //            });
 //        });
-        $(function() {
-            alert();
-            $("#date").datetimepicker();
+
+        $('#date').datetimepicker({
+            dateFormat:'yy-m-d'
+        });
+
+        $("#vehicle_type").select2({
+            theme:"classic",
+            allowClear: true,
+            placeholder: "Select Vehicle Type"
+
+        });
+        $("#franchise").select2({
+            theme:"classic",
+            allowClear: true,
+            placeholder: "Select Franchise"
+
+        });
+        $("#work_type").select2({
+            theme:"classic",
+            allowClear: true,
+            placeholder: "Select Work Type"
+
         });
 
     </script>

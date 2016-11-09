@@ -22,7 +22,7 @@
                 {{csrf_field()}}
                 <label>
                     <span>Date/Time</span>
-                    <input type="datetime"  id="datetimepicker" placeholder="Date/Time" name="suggested_date" value="{{$request->suggested_date}}">
+                    <input type="datetime"  id="date" placeholder="Date/Time" name="suggested_date" value="{{$request->suggested_date}}">
                 </label>
                 <label>
                     <span>Message</span>
@@ -47,5 +47,9 @@
                 window.location.href=base_url+"service_requests";
             }
         });
+        $('#date').datetimepicker({
+            dateFormat:'yy-m-d'
+        });
     </script>
+
 @endsection

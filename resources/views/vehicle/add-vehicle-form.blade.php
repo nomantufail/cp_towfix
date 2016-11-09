@@ -46,7 +46,7 @@
 
                 <label class="full-field">
                     <span>Vehicle Type</span>
-                    <select name="vehicle_type_id">
+                    <select name="vehicle_type_id" id="vehicle_type">
                         <option value="">Select Vehicle Type</option>
                         @foreach($vehicleTypes as $vehicleType)
                             <option value="{{$vehicleType->id}}">{{$vehicleType->vehicle_type}}</option>
@@ -63,7 +63,8 @@
 
                 <label class="half-field">
                     <span>Year</span>
-                    <select id="birthyear" name="year">
+                    <select  id="year" name="year">
+                        <option value="">Select Year</option>
                         <option value="2007">2016</option>
                         <option value="2006">2015</option>
                         <option value="2005">2014</option>
@@ -193,7 +194,8 @@
 
                 <label class="half-field">
                     <span>Year Purchased</span>
-                    <select id="birthyear" name="year_purchased">
+                    <select  id="year_purchased" name="year_purchased">
+                        <option value="">Select Purchased Year</option>
                         <option value="2007">2016</option>
                         <option value="2006">2015</option>
                         <option value="2005">2014</option>
@@ -416,6 +418,25 @@
             $(".date").datepicker({
                 dateFormat: 'yy-mm-dd'
             });
+        });
+
+        $("#vehicle_type").select2({
+            theme:"classic",
+            allowClear: true,
+            placeholder: "Select Vehicle Type"
+
+        });
+        $("#year").select2({
+            theme:"classic",
+            allowClear: true,
+            placeholder: "Select Year"
+
+        });
+        $("#year_purchased").select2({
+            theme:"classic",
+            allowClear: true,
+            placeholder: "Select Purchased Year"
+
         });
     </script>
 @endsection

@@ -19,11 +19,11 @@
 
 
     <script type="text/javascript" language="javascript" src="{{url('/')}}/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.bxslider.min.js"></script>
 
     <!-- datetimepicker js  -->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.ui.timepicker.addon.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.ui.timepicker.addon.i18n.min.js"></script>

@@ -191,6 +191,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/manual/delete/{manual_id}', [
         'uses'=>'ManualsControllers@delete'
     ]);
+    Route::get('/manual/{manual_id}', [
+        'uses'=>'ManualsControllers@manualDetail'
+    ]);
 
 
     /**

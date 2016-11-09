@@ -36,7 +36,7 @@
                         <tr>
                             <td>{{$manual->title}}</td>
                             <td>{{$manual->description}}</td>
-                            <td><a href="#">View</a></td>
+                            <td><a href="{{url('/')}}/manual/{{$manual->id}}">View</a></td>
                             <td>
                                 <a href="{{url('/')}}/manual/update/{{$manual->id}}"><i class="fa fa-edit fa-fw"></i></a>
                                 <form method="post" action="{{url('/')}}/manual/delete/{{$manual->id}}">{{csrf_field()}}<button><i class="fa fa-trash fa-fw"></i></button></form>

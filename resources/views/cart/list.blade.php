@@ -20,7 +20,7 @@
                     </h4>
                 @endif
 
-                <form action="{{url('/cart/confirm')}}" method="post" onsubmit="return false">
+                <form action="{{url('/cart/confirm')}}" method="post" onsubmit="return true">
                     {{csrf_field()}}
                     <table id="tableStyle" class="display" cellspacing="0" width="100%">
                         <thead>

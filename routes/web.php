@@ -13,7 +13,8 @@
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [
-        'uses'=>'HomeController@index'
+        'uses'=>'HomeController@index',
+        'as'=>'home'
     ]);
 
     Route::get('/vehicles', [
@@ -208,8 +209,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/cart/confirm', [
         'uses'=>'CartController@confirmCart'
     ]);
-    Route::get('/cart/checkout', [
-        'uses'=>'CartController@myCart'
+    Route::post('/cart/checkout', [
+        'uses'=>'CartController@checkout'
     ]);
     /* ----------------------------------------------- */
 

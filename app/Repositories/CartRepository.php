@@ -27,6 +27,11 @@ class CartRepository extends Repository
         }])->where('user_id',$userId)->get();
     }
 
+    public function flush($userId)
+    {
+        return $this->getModel()->where('user_id',$userId)->delete();
+    }
+
     public function userProductIds($userId)
     {
         return Helper::propertyToArray($this->getModel()->where('user_id',$userId)->get()->all(), 'product_id');

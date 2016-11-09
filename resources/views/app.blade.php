@@ -49,13 +49,13 @@
     <nav class="main-nav">
         @if(Auth::check())
             <ul class="tab-list">
-                <li><a href="{{url('/')}}">Home </a></li>
+                <li class="@if(Request::segment(1) == '') active @endif"><a href="{{url('/')}}">Home </a></li>
 
-                @if($user->can('view','customers'))<li class=""><a href="{{url('/')}}/customers">Customers </a></li> @endif
-                @if($user->can('view','franchises'))<li class=""><a href="{{url('/')}}/franchises">Franchises </a></li> @endif
-                @if($user->can('view','vehicles'))<li class="active"><a href="{{url('/')}}/vehicles">Vehicles </a></li> @endif
+                @if($user->can('view','customers'))<li class="@if(Request::segment(1) == 'customers' || Request::segment(1) == 'customer') active @endif"><a href="{{url('/')}}/customers">Customers </a></li> @endif
+                @if($user->can('view','franchises'))<li class="@if(Request::segment(1) == 'franchises' || Request::segment(1) == 'franchise') active @endif"><a href="{{url('/')}}/franchises">Franchises </a></li> @endif
+                @if($user->can('view','vehicles'))<li class="@if(Request::segment(1) == 'vehicles' || Request::segment(1) == 'vehicle') active @endif"><a href="{{url('/')}}/vehicles">Vehicles </a></li> @endif
                 @if($user->can('view','products'))
-                    <li>
+                    <li class="@if(Request::segment(1) == 'products' || Request::segment(1) == 'product') active @endif">
                         <a href="{{url('/')}}/products">
                             @if($user->isCustomer())
                                 Online Store
@@ -65,16 +65,16 @@
                         </a>
                     </li>
                 @endif
-                @if($user->can('view','orders')) <li><a href="{{url('/')}}/orders">View Orders</a></li> @endif
+                @if($user->can('view','orders')) <li class="@if(Request::segment(1) == 'orders' || Request::segment(1) == 'order') active @endif"><a href="{{url('/')}}/orders">View Orders</a></li> @endif
                 @if($user->can('view','newsletters'))
-                    <li>
+                    <li class="@if(Request::segment(1) == 'newsletters' || Request::segment(1) == 'newsletter') active @endif">
                         <a href="{{url('/')}}/newsletters">
                             Newsletters
                         </a>
                     </li>
                 @endif
                 @if($user->can('view','serviceRequest'))
-                    <li>
+                    <li class="@if(Request::segment(1) == 'service_requests' || Request::segment(1) == 'service_request') active @endif">
                         <a href="{{url('/')}}/service_requests">
                             @if($user->isFranchise())
                                 Customers Service Requests
@@ -84,9 +84,9 @@
                         </a>
                     </li>
                 @endif
-                @if($user->can('view','manuals')) <li><a href="{{url('/')}}/manuals">Manuals</a></li> @endif
+                @if($user->can('view','manuals')) <li class="@if(Request::segment(1) == 'manuals' || Request::segment(1) == 'manual') active @endif"><a href="{{url('/')}}/manuals">Manuals</a></li> @endif
                 @if($user->can('view', 'messages'))
-                    <li>
+                    <li class="">
                         <a href="#">
                             @if($user->isCustomer())
                                 Contact a Franchise
@@ -95,13 +95,13 @@
                             @endif
                         </a>
                         <ul>
-                            <li><a href="{{url('/')}}/messages">Older Messages</a></li>
-                            <li><a href="{{url('/')}}/create-new-message">Create New Messages</a></li>
+                            <li class="@if(Request::segment(1) == 'messages') active @endif"><a href="{{url('/')}}/messages">Older Messages</a></li>
+                            <li class="@if(Request::segment(1) == 'create-new-message') active @endif"><a href="{{url('/')}}/create-new-message">Create New Messages</a></li>
                         </ul>
                     </li>
                 @endif
                 @if($user->can('view','cart'))
-                    <li>
+                    <li class="@if(Request::segment(1) == 'cart') active @endif">
                         <a href="{{url('/')}}/cart">
                             Cart
                         </a>

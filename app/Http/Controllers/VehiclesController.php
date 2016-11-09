@@ -88,7 +88,8 @@ class VehiclesController extends ParentController
     public function listVehicles(Requests\Vehicle\ListVehiclesRequest $request)
     {
         try{
-            return view('vehicle.list', ['vehicles'=> $this->vehiclesRepo->getByCustomerId(Auth::user()->id), 'vehicle_types'=>$this->vehicleTypesRepo->getIndexed()]);
+            $vehicles = (Auth::user()->isCustomer())?$this->vehiclesRepo->getByCustomerId(Auth::user()->id):$this->vehiclesRepo->all();
+            return view('vehicle.list', ['vehicles'=> $vehicles, 'vehicle_types'=>$this->vehicleTypesRepo->getIndexed()]);
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());
         }

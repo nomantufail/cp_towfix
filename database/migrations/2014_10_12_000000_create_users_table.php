@@ -24,6 +24,12 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('role')->default(3); //1: admin, 2: frenchise 3: customer
             $table->rememberToken();
             $table->timestamps();
+
+            /* stripe columns */
+            $table->string('stripe_id')->nullable();
+            $table->string('card_brand')->nullable();
+            $table->string('card_last_four')->nullable();
+            $table->timestamp('trial_ends_at')->nullable();
         });
     }
 

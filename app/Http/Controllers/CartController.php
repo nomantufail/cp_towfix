@@ -13,6 +13,7 @@ use App\Repositories\VehiclesRepository;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Response;
+use Stripe\Stripe;
 
 class CartController extends ParentController
 {
@@ -38,7 +39,34 @@ class CartController extends ParentController
 
     public function confirmCart(Requests\Cart\ConfirmCartRequest $request)
     {
-        dd($request->all());
+        if(sizeof($request->input('item') == 0))
+            return redirect()->back();
+        foreach($request->input('item') as $item){
+            $this->cart->updateWhere(['product_id'=>$item['product_id'], 'user_id'=>Auth::user()->id], [
+                'quantity' => $item['quantity']
+            ]);
+        }
+        return view('cart.cart-summery',[
+            'items'=>$this->cart->userCart($request->user()->id),
+            'total_price' => $this->cart->totalPrice($request->user()->id)
+        ]);
+    }
+
+    public function checkout(Requests\Cart\CheckoutRequest $request)
+    {
+        try{
+            $amount = $this->cart->totalPrice($request->user()->id);
+            if($amount <= 0){
+                return redirect()->back()->with(['error'=>'amount should be greater then 0']);
+            }
+            Auth::user()->charge($amount*100, ['source' => $request->Input('stripeToken')]);
+            $this->cart->flush(Auth::user()->id);
+            return view('cart.success',['data'=>[
+                'amount' => $amount
+            ]]);
+        }catch (\Exception $e){
+            return redirect()->route('home');
+        }
     }
 
     public function addProduct(Requests\Cart\AddToCartRequest $request)

@@ -13,7 +13,7 @@
     <section class="vehicles-list">
         <div class="vehicles-head">
             <h3>@if($user->isCustomer())My @else Customer @endif Service Requests</h3>
-            @if($user->can('add','serviceRequest'))<a href="{{url('/')}}/service_request/create" class="btn btn-primary pull-right">Add a New Service</a>@endif
+            @if($user->can('add','serviceRequest'))<a href="{{url('/')}}/service_request/create" class="btn btn-primary pull-right">Send A New Request</a>@endif
         </div>
         <div class="vehicles-list-content">
             <div class="vehicles-table">
@@ -39,7 +39,7 @@
                             <td>24574</td>
                         @if($user->isCustomer())<th>{{$request->franchise->f_name}} {{$request->franchise->l_name}}</th>@endif
                         @if($user->isCustomer())<th>Area</th>@endif
-                        <td>{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$request->suggested_date)->toFormattedDateString()}}
+                        <td>{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$request->suggested_date)->toFormattedDateString()}} <span style="font-size: 12px;">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$request->suggested_date)->toTimeString()}}</span>
                             @if($request->isPending())
                             <span style="color:@if($request->suggestedUser->id == $user->id) green @else red @endif; font-weight: bold;">
                                 By

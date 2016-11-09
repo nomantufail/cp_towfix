@@ -36,7 +36,7 @@
                     @foreach($manuals as $manual)
                         <tr>
                             <td>{{$manual->title}}</td>
-                            <td>{{$manual->description}}</td>
+                            <td>{{str_limit($manual->description)}}</td>
                             <td><a href="{{url('/')}}/manual/{{$manual->id}}">View</a></td>
                             <td>
                                 <a href="{{url('/')}}/manual/update/{{$manual->id}}"><i class="fa fa-edit fa-fw"></i></a>

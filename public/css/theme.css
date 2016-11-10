@@ -500,6 +500,15 @@ ul.tabs li.current{
 	color: #CCC;
 }
 
+.message-panel{
+	height: calc(100vh - 160px);
+}
+
+.message-panel .message-widget{
+	display: table;
+    height: 100%;		
+}
+
 .conversation-panel{
 	background: #eaeaea;
 	padding: 20px;
@@ -569,7 +578,7 @@ ul.tabs li.current{
 	height: 80px;
 }
 
-.conversation-sent input{
+.conversation-sent input[type="submit"]{
 	position: absolute;
     right: 10px;
     z-index: 5;
@@ -634,7 +643,7 @@ ul.tabs li.current{
 	margin: 0px;
 	padding: 20px 0;
 	list-style: none;
-	height: 440px;
+	height: calc(100vh - 320px);
 	overflow: auto;
 }
 

@@ -35,6 +35,7 @@
             <input type="hidden" value="{{$engagedUser->id}}" name="receiver">
             <textarea placeholder="Message" name="message"></textarea>
             <input type="submit" name="sentMessage" value="Send">
+            <input type="file">
         </form>
     </div>
 @endsection

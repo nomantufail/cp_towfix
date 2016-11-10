@@ -18,7 +18,19 @@ class OrdersController extends ParentController
 
     public function showOrders(Requests\Order\ShowOrdersRequest $request)
     {
-        return view('orders.orders', [ 'orders' => $this->orders->getWithDetails() ]);
+        $orders = ($request->user()->isCustomer())?$this->orders->getByUserId($request->user()->id):$this->orders->getWithDetails();
+        return view('orders.orders', [ 'orders' => $orders ]);
+    }
+
+    public function detail(Requests\Order\ShowOrderDetailRequest $request)
+    {
+        return view('orders.order-detail', [ 'order' => $this->orders->findById($request->route()->parameter('order_id')) ]);
+    }
+
+    public function shipped(Requests\Order\OrderShippedRequest $request)
+    {
+        $this->orders->updateWhere(['id'=>$request->route()->parameter('order_id')], ['is_done'=>1]);
+        return redirect()->back()->with(['success'=>"order #".$request->route()->parameter('order_id')." has been shipped."]);
     }
 
     public function delete(Requests\Order\DeleteOrderRequest $request)

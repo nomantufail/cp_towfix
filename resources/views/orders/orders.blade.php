@@ -21,11 +21,14 @@
                 <thead>
                 <tr>
                     <th>Order ID</th>
-                    <th>Customer Name</th>
-                    <th>Customer Number</th>
-                    <th>Product name</th>
-                    <th>Product Price</th>
-                    <th>Actions</th>
+                    @if($user->isAdmin())<th>Customer Name</th>@endif
+                    @if($user->isAdmin())<th>Customer Number</th>@endif
+                    <th>Total Price</th>
+                    @if($user->isAdmin())<th>Status</th>@endif
+                    <th>Detail</th>
+                    <th colspan="">Actions</th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,13 +36,27 @@
                 @foreach($orders as $order)
                 <tr>
                     <td>{{$order->id}}</td>
-                    <td>{{$order->user->f_name}} {{$order->user->l_name}}</td>
-                    <td>{{$order->user->phone_number}}</td>
-                    <td>{{$order->product->name}}</td>
-                    <td>${{$order->product->price}}</td>
+                    @if($user->isAdmin())<td>{{$order->user->f_name}} {{$order->user->l_name}}</td>@endif
+                    @if($user->isAdmin())<td>{{$order->user->phone_number}}</td>@endif
+                    <td>${{$order->total_price}}</td>
+                    @if($user->isAdmin())
+                        <td>
+                            @if($order->is_done)
+                                <span style="color:green">Shipped</span>
+                            @else
+                                <form action="{{url('/')}}/order/shipped/{{$order->id}}" method="post">
+                                    {{csrf_field()}}
+                                    <input type="submit" value="Ship Order">
+                                </form>
+                            @endif
+                        </td>
+                    @endif
+                    <td><a href="{{url('/')}}/order/detail/{{$order->id}}">View</a></td>
                     <td>
                         <form method="post" action="{{url('/')}}/order/delete/{{$order->id}}">{{csrf_field()}}<button><i class="fa fa-trash fa-fw"></i></button></form>
                     </td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 @endforeach
                 </tbody>

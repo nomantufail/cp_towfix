@@ -38,7 +38,7 @@
                         <td>{{$request->vehicle->make}} {{$request->vehicle->model}}</td>
                             <td>24574</td>
                         @if($user->isCustomer())<th>{{$request->franchise->f_name}} {{$request->franchise->l_name}}</th>@endif
-                        @if($user->isCustomer())<th>Area</th>@endif
+                        @if($user->isCustomer())<th>{{$request->franchise->address}}</th>@endif
                         <td>{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$request->suggested_date)->toFormattedDateString()}} <span style="font-size: 12px;">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$request->suggested_date)->toTimeString()}}</span>
                             @if($request->isPending())
                             <span style="color:@if($request->suggestedUser->id == $user->id) green @else red @endif; font-weight: bold;">
@@ -55,7 +55,13 @@
                             </span>
                             @endif
                         </td>
-                        <td><a href="{{url('/vehicle/')}}/{{$request->vehicle->id}}">View</a></td>
+                        <td>
+                            @if($request->franchise_id == $user->id && $request->isAccepted())
+                                <a class="btn btn-success" href="{{url('/vehicle/')}}/{{$request->vehicle->id}}?form=request_form_model_{{$request->id}}">Add Form</a>
+                            @else
+                                <a href="{{url('/vehicle/')}}/{{$request->vehicle->id}}">View</a>
+                            @endif
+                        </td>
                         <td>{{$request->getStatus()}}</td>
                         <td>
                             <span class="whats-happening"></span>

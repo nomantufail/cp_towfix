@@ -16,6 +16,8 @@ class EditVehicleRequest extends VehicleRequest
     public function authorize()
     {
         $vehicle = (new VehiclesRepository(new Vehicle()))->findById($this->route()->parameter('vehicle_id'));
+        if($vehicle == null)
+            return false;
         return ($this->user()->can('edit','vehicles',$vehicle));
     }
 

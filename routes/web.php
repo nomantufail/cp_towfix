@@ -111,6 +111,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/customers', [
         'uses'=>'UsersController@listCustomers'
     ]);
+    Route::get('/customer/{customer_id}', [
+        'uses'=>'UsersController@showCustomerDetails'
+    ]);
     Route::get('/customer/services', [
         'uses'=>'ServicesController@showNewsletters'
     ]);

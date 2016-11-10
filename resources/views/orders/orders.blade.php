@@ -24,6 +24,7 @@
                     @if($user->isAdmin())<th>Customer Name</th>@endif
                     @if($user->isAdmin())<th>Customer Number</th>@endif
                     <th>Total Price</th>
+                    <th>Order Date/Time</th>
                     @if($user->isAdmin())<th>Status</th>@endif
                     <th>Detail</th>
                     <th colspan="">Actions</th>
@@ -39,6 +40,7 @@
                     @if($user->isAdmin())<td>{{$order->user->f_name}} {{$order->user->l_name}}</td>@endif
                     @if($user->isAdmin())<td>{{$order->user->phone_number}}</td>@endif
                     <td>${{$order->total_price}}</td>
+                    <td>{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$order->created_at)->toFormattedDateString()}} <span style="font-size: 12px;">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$order->created_at)->toTimeString()}}</span></td>
                     @if($user->isAdmin())
                         <td>
                             @if($order->is_done)

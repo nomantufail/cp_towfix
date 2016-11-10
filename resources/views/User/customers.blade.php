@@ -23,6 +23,7 @@
                         <th>Membership Number</th>
                         <th>Email Address</th>
                         <th>Contact Number</th>
+                        <th>Detail</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -33,6 +34,7 @@
                             <td>{{$customer->id}}</td>
                             <td>{{$customer->email}}</td>
                             <td>{{$customer->phone_number}}</td>
+                            <td><a href="{{url('/')}}/customer/{{$customer->id}}">View</a></td>
                             <td>
                                 @if($user->can('delete','users',$customer))<form method="post" action="{{url('/')}}/customer/delete/{{$customer->id}}">{{csrf_field()}}<button><i class="fa fa-trash fa-fw"></i></button></form>@endif
                             </td>

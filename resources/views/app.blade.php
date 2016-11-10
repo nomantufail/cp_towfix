@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Vehicles</title>
+    <title>Towfix | If you can tow it, we can fix it.</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" href="{{url('/')}}/css/bootstrap.min.css" rel="stylesheet" />
@@ -51,7 +51,7 @@
             <ul class="tab-list">
                 <li class="@if(Request::segment(1) == '') active @endif"><a href="{{url('/')}}">Home </a></li>
 
-                @if($user->can('view','customers'))<li class="@if(Request::segment(1) == 'customers' || Request::segment(1) == 'customer') active @endif"><a href="{{url('/')}}/customers">Customers </a></li> @endif
+                @if($user->can('seeAll','customers'))<li class="@if(Request::segment(1) == 'customers' || Request::segment(1) == 'customer') active @endif"><a href="{{url('/')}}/customers">Customers </a></li> @endif
                 @if($user->can('view','franchises'))<li class="@if(Request::segment(1) == 'franchises' || Request::segment(1) == 'franchise') active @endif"><a href="{{url('/')}}/franchises">Franchises </a></li> @endif
                 @if($user->can('view','vehicles'))<li class="@if(Request::segment(1) == 'vehicles' || Request::segment(1) == 'vehicle') active @endif"><a href="{{url('/')}}/vehicles">Vehicles </a></li> @endif
                 @if($user->can('view','products'))

@@ -10,9 +10,8 @@ class UpdateVehicleRequest extends VehicleRequest
 
     public function updateableAttrs()
     {
-        return [
+        $attrs = [
             'vehicle_type_id' => $this->input('vehicle_type_id'),
-            //'customer_id' => Auth::user()->id,
             'make' => $this->input('make'),
             'model' => $this->input('model'),
             'year' => $this->input('year'),
@@ -25,6 +24,10 @@ class UpdateVehicleRequest extends VehicleRequest
             'number_axles' => $this->input('number_axles'),
             'details' => $this->input('details'),
         ];
+        if($this->input('customer_id') != null){
+            $attrs['customer_id'] = $this->input('customer_id');
+        }
+        return $attrs;
     }
     /**
      * Determine if the user is authorized to make this request.

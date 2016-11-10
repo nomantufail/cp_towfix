@@ -9,6 +9,7 @@ class AddVehicleRequest extends VehicleRequest
 
     public function storableAttrs()
     {
+
         return [
             'vehicle_type_id' => $this->input('vehicle_type_id'),
             'customer_id' => Auth::user()->id,
@@ -23,7 +24,10 @@ class AddVehicleRequest extends VehicleRequest
             'engine_capacity' => $this->input('engine_capacity'),
             'number_axles' => $this->input('number_axles'),
             'details' => $this->input('details'),
+
         ];
+
+
     }
     /**
      * Determine if the user is authorized to make this request.

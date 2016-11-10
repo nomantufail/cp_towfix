@@ -12,8 +12,5 @@ class OrdersTableSeeder extends Seeder
     public function run()
     {
         $orders = [];
-        for($i = 1; $i < 6; $i++)
-            $orders[] = ['product_id' => $i, 'user_id'=>3];
-        \Illuminate\Support\Facades\DB::table('orders')->insert($orders);
     }
 }

@@ -42,7 +42,7 @@ class CartController extends ParentController
 
     public function confirmCart(Requests\Cart\ConfirmCartRequest $request)
     {
-        if(sizeof($request->input('item') == 0))
+        if(sizeof($request->input('item')) == 0)
             return redirect()->back();
         foreach($request->input('item') as $item){
             $this->cart->updateWhere(['product_id'=>$item['product_id'], 'user_id'=>Auth::user()->id], [
@@ -63,8 +63,11 @@ class CartController extends ParentController
                 return redirect()->back()->with(['error'=>'amount should be greater then 0']);
             }
             Auth::user()->charge($amount*100, ['source' => $request->Input('stripeToken')]);
+            $this->orders->store([
+                'user_id' => Auth::user()->id,
+                'document' =>  ''
+            ]);
             $this->cart->flush(Auth::user()->id);
-
             return view('cart.success',['data'=>[
                 'amount' => $amount
             ]]);

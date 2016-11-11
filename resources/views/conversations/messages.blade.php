@@ -11,6 +11,7 @@
 @section('page')
     <section class="message-panel">
         <div class="message-widget">
+            <span>My Conversation <i class="fa fa-navicon mobile-conv"></i></span>
             <ul class="tabs users-list">
                 <div class="conversation-panel">
                     <label class="msg-search">

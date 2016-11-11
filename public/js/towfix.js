@@ -28,4 +28,7 @@ $(document).ready(function(){
     $(".nav-btn").click(function(){
         $(".sidebar").toggle('slide');
     });
+    $(".mobile-conv").click(function(){
+        $(".users-list").toggle('slide');
+    });
 });

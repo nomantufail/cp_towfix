@@ -60,7 +60,7 @@
                             @endif
                         </td>
                         <td>
-                            @if($request->franchise_id == $user->id && $request->isAccepted())
+                            @if($request->franchise_id == $user->id && $request->isAccepted() && $request->document == null)
                                 <a class="btn btn-success" href="{{url('/vehicle/')}}/{{$request->vehicle->id}}?form=request_form_model_{{$request->id}}">Add Form</a>
                             @else
                                 <a href="{{url('/vehicle/')}}/{{$request->vehicle->id}}">View</a>

@@ -78,6 +78,11 @@
 	color: #FFF;
 }
 
+.message-panel .message-widget > span,
+.user-info i.fa-user{
+	display: none;
+}
+
 .main-nav ul li a:hover:after, 
 .main-nav ul li.active a:after{
 	content: "";
@@ -428,6 +433,10 @@ table tr td form button{
 	display: block;
 	margin-bottom: 20px;
 	font-weight: normal;
+}
+
+.frenchies-widget .frenchies-form label.attachment input{
+	padding: 0px;
 }
 
 .frenchies-widget .frenchies-form label input{

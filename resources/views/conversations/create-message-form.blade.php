@@ -33,7 +33,9 @@
                     <span>Message</span>
                     <textarea placeholder="Message" name="message"></textarea>
                 </label>
-                <input type="file" name="images[]" multiple>
+                <label class="attachment">
+                    <input type="file" name="images[]" multiple>
+                </label>
                 <input type="submit" class="btn btn-primary" value="Send">
 
             </form>

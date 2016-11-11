@@ -138,6 +138,7 @@
                         <span>{{Auth::user()->f_name}} {{Auth::user()->l_name}}</span>
 
                         <i class="caret"></i>
+                        <i class="fa fa-user"></i>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                         <li><a href="{{url('/')}}/customer/edit/{{$user->id}}">Edit Profile</a></li>
@@ -154,7 +155,7 @@
                 </ul>
             @endif
             <div class="head-cart">
-            	<a href="{{url('/')}}/cart"><i class="fa fa fa-cart-arrow-down"></i> Cart</a>
+            	<a href="{{url('/')}}/cart"><i class="fa fa fa-cart-arrow-down"></i> <span>Cart</span></a>
             </div>
         </div>
     </div>

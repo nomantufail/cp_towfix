@@ -71,14 +71,82 @@
 		width: 80%;
 		font-size: 12px;
 	}
+	.user-info i.caret{
+		display: none;
+	}
 }
 
 @media (max-width: 500px){
-	.main-nav ul li a{
-		padding: 10px 15px;	
+	.user-info i.fa-user{
+		display: block;
+	}
+	.message-panel .message-widget{
+		display: block;
+		position: relative;
+	}
+	.message-panel .message-widget > span{
+		display: block;
+		background: #eaeaea;
+		padding: 15px;
+		overflow: hidden;
+	}
+	.message-panel .message-widget > span i {
+		float: right;
+		padding: 20px;
+		background: #0a4a8e;
+		color: #ffffff;
+		margin: -15px;
+	}
+	.message-panel .message-widget ul.tabs{
+		width: 100%;
+		display: none;
+		position: absolute;
+		left: 0px;
+		top: 54px;
+	}
+	.message-panel .message-widget .tab-content.current{
+		display: block;
+		width: 100%;
+		padding-top: 20px;
+	}
+	.conversation-list > li{
+		margin: 0px 0px 10px;
+		padding-bottom: 10px
+	}
+	.conversation-list li .user-conversation{
+		padding: 0px;
+	}
+	.conversation-sent textarea{
+		height: 50px;
+	}
+	.conversation-sent input[type="submit"]{
+		height: 52%;
+	}
+	.message-panel .message-widget .tab-content.current {
+		height: 100%;
+	}
+
+	.tablet-logo{
+		padding: 15px 15px;
+		width: 165px;
+	}
+	.head-cart a span{
+		display: none;
+	}
+	.user-info a, .head-cart a{
+		padding: 18px;
+	}
+	.mobile-nav .nav-btn {
+		padding: 4px;
+		width: 30px;
+		height: 30px;
+		font-size: 18px;
 	}
 	.main-content{
 		padding-top: 95px;	
+	}
+	.mobile-nav a img{
+		width: 80px;
 	}
 	.main-heading {
 		margin: 0px 0px 20px;

@@ -487,7 +487,6 @@ ul.tabs li.current{
 	display: table-cell;
 	vertical-align: top;
 	width: 100%;
-	height: 600px;
 	position: relative;
 }
 
@@ -506,7 +505,8 @@ ul.tabs li.current{
 
 .message-panel .message-widget{
 	display: table;
-    height: 100%;		
+    height: 100%;
+	width: 100%;
 }
 
 .conversation-panel{
@@ -669,6 +669,24 @@ ul.tabs li.current{
 .user-conversation em{
 	color: #888;
 	font-size: 12px;
+}
+
+.user-conversation .attachment{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+.user-conversation .attachment li{
+	width: 100px;
+	margin: 0px 5px;
+	border: 1px solid #CCC;
+	vertical-align: top;
+	display: inline-block;
+}
+
+.user-conversation .attachment li img{
+	max-width: 100%;	
 }
 
 .conversation-list li .msg-user-img figure{

@@ -25,6 +25,28 @@
             <div class="user-conversation">
                 <em>{{$message->created_at->toFormattedDateString()}}</em>
                 <p>{{$message->message}}</p>
+                <ul class="attachment">
+                	<li>
+                		<a class="fancybox" href="{{url('/')}}/images/store-img.jpg">
+                			<img src="{{url('/')}}/images/store-img.jpg" alt="">
+                		</a>
+                	</li>
+                	<li>
+                		<a class="fancybox" href="{{url('/')}}/images/profile.jpg.jpg">
+                			<img src="{{url('/')}}/images/profile.jpg.jpg" alt="">
+                		</a>
+                	</li>
+                	<li>
+                		<a class="fancybox" href="{{url('/')}}/images/store-img.jpg">
+                			<img src="{{url('/')}}/images/store-img.jpg" alt="">
+                		</a>
+                	</li>
+                	<li>
+                		<a class="fancybox" href="{{url('/')}}/images/profile.jpg">
+                			<img src="{{url('/')}}/images/profile.jpg" alt="">
+                		</a>
+                	</li>
+                </ul>
             </div>
         </li>
         @endforeach
@@ -38,4 +60,9 @@
             <input type="file">
         </form>
     </div>
+    <script>
+		$(document).ready(function() {
+            $(".fancybox").fancybox();
+        });
+	</script>
 @endsection

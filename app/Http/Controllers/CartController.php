@@ -62,12 +62,15 @@ class CartController extends ParentController
             if($amount <= 0){
                 return redirect()->back()->with(['error'=>'amount should be greater then 0']);
             }
-            Auth::user()->charge($amount*100, ['source' => $request->Input('stripeToken')]);
+
+            Auth::user()->charge($amount*100, ['source' => $request->input('stripeToken')]);
             $this->orders->store([
                 'user_id' => Auth::user()->id,
-                'document' =>  ''
+                'document' =>  $this->cart->userCart(Auth::user()->id)->toJson(),
+                'total_price' => $this->cart->totalPrice(Auth::user()->id)
             ]);
             $this->cart->flush(Auth::user()->id);
+
             return view('cart.success',['data'=>[
                 'amount' => $amount
             ]]);

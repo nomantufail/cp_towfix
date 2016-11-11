@@ -17,6 +17,8 @@ class OrdersTableMigration extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->text('document')->nullable();
+            $table->float('total_price')->default(0);
+            $table->tinyInteger('is_done')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')

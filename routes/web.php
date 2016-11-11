@@ -127,6 +127,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/orders', [
         'uses'=>'OrdersController@showOrders'
     ]);
+    Route::get('/order/detail/{order_id}', [
+        'uses'=>'OrdersController@detail'
+    ]);
+    Route::post('/order/shipped/{order_id}', [
+        'uses'=>'OrdersController@shipped'
+    ]);
     Route::post('/order/delete/{order_id}', [
         'uses'=>'OrdersController@delete'
     ]);

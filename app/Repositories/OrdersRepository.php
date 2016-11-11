@@ -19,6 +19,10 @@ class OrdersRepository extends Repository
 
     public function getWithDetails()
     {
-        return $this->getModel()->with('user')->with('product')->get();
+        return $this->getModel()->with('user')->get();
+    }
+    public function getByUserId($id)
+    {
+        return $this->getModel()->with('user')->where('user_id',$id)->get();
     }
 }

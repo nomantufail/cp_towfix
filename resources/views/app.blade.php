@@ -49,14 +49,15 @@
     <nav class="main-nav">
         @if(Auth::check())
             <ul class="tab-list">
-                <li class="@if(Request::segment(1) == '') active @endif"><a href="{{url('/')}}">Home </a></li>
+                <li class="@if(Request::segment(1) == '') active @endif"><a href="{{url('/')}}"><i class="fa fa-home fa-fw"></i> Home </a></li>
 
-                @if($user->can('seeAll','customers'))<li class="@if(Request::segment(1) == 'customers' || Request::segment(1) == 'customer') active @endif"><a href="{{url('/')}}/customers">Customers </a></li> @endif
-                @if($user->can('view','franchises'))<li class="@if(Request::segment(1) == 'franchises' || Request::segment(1) == 'franchise') active @endif"><a href="{{url('/')}}/franchises">Franchises </a></li> @endif
-                @if($user->can('view','vehicles'))<li class="@if(Request::segment(1) == 'vehicles' || Request::segment(1) == 'vehicle') active @endif"><a href="{{url('/')}}/vehicles">Vehicles </a></li> @endif
+                @if($user->can('seeAll','customers'))<li class="@if(Request::segment(1) == 'customers' || Request::segment(1) == 'customer') active @endif"><a href="{{url('/')}}/customers"><i class="fa fa-users fa-fw"></i> Customers</a></li> @endif
+                @if($user->can('view','franchises'))<li class="@if(Request::segment(1) == 'franchises' || Request::segment(1) == 'franchise') active @endif"><a href="{{url('/')}}/franchises"><i class="fa fa-building fa-fw"></i> Franchises</a></li> @endif
+                @if($user->can('view','vehicles'))<li class="@if(Request::segment(1) == 'vehicles' || Request::segment(1) == 'vehicle') active @endif"><a href="{{url('/')}}/vehicles"><i class="fa fa-car fa-fw"></i> Vehicles</a></li> @endif
                 @if($user->can('view','products'))
                     <li class="@if(Request::segment(1) == 'products' || Request::segment(1) == 'product') active @endif">
                         <a href="{{url('/')}}/products">
+                            <i class="fa fa-shopping-bag fa-fw"></i>
                             @if($user->isCustomer())
                                 Online Store
                             @else
@@ -65,10 +66,11 @@
                         </a>
                     </li>
                 @endif
-                @if($user->can('view','orders')) <li class="@if(Request::segment(1) == 'orders' || Request::segment(1) == 'order') active @endif"><a href="{{url('/')}}/orders">View Orders</a></li> @endif
+                @if($user->can('view','orders')) <li class="@if(Request::segment(1) == 'orders' || Request::segment(1) == 'order') active @endif"><a href="{{url('/')}}/orders"><i class="fa fa-newspaper-o fa-fw"></i> View Orders</a></li> @endif
                 @if($user->can('view','newsletters'))
                     <li class="@if(Request::segment(1) == 'newsletters' || Request::segment(1) == 'newsletter') active @endif">
                         <a href="{{url('/')}}/newsletters">
+                            <i class="fa fa-file-text fa-fw"></i>
                             Newsletters
                         </a>
                     </li>
@@ -76,6 +78,7 @@
                 @if($user->can('view','serviceRequest'))
                     <li class="@if(Request::segment(1) == 'service_requests' || Request::segment(1) == 'service_request') active @endif">
                         <a href="{{url('/')}}/service_requests">
+                            <i class="fa fa-newspaper-o fa-fw"></i>
                             @if($user->isFranchise())
                                 Customers Service Requests
                             @elseif($user->isCustomer())
@@ -84,10 +87,11 @@
                         </a>
                     </li>
                 @endif
-                @if($user->can('view','manuals')) <li class="@if(Request::segment(1) == 'manuals' || Request::segment(1) == 'manual') active @endif"><a href="{{url('/')}}/manuals">Manuals</a></li> @endif
+                @if($user->can('view','manuals')) <li class="@if(Request::segment(1) == 'manuals' || Request::segment(1) == 'manual') active @endif"><a href="{{url('/')}}/manuals"><i class="fa fa-file-word-o fa-fw"></i> Manuals</a></li> @endif
                 @if($user->can('view', 'messages'))
                     <li class="">
                         <a href="#">
+                            <i class="fa fa-wechat fa-fw"></i>
                             @if($user->isCustomer())
                                 Contact a Franchise
                             @elseif($user->isFranchise())
@@ -103,11 +107,12 @@
                 @if($user->can('view','cart'))
                     <li class="@if(Request::segment(1) == 'cart') active @endif">
                         <a href="{{url('/')}}/cart">
+                            <i class="fa fa-cart-arrow-down fa-fw"></i>
                             Cart
                         </a>
                     </li>
                 @endif
-                <li class=""><a href="{{url('/')}}/logout">Logout</a></li>
+                <li class=""><a href="{{url('/')}}/logout"><i class="fa fa-shopping-bag fa-fw"></i> Logout</a></li>
             </ul>
         @endif
     </nav>
@@ -166,8 +171,8 @@
                 targets: [ 1 ],
                 orderData: [ 1, 0 ]
             }, {
-                targets: [ 4 ],
-                orderData: [ 4, 0 ]
+                targets: [ 2 ],
+                orderData: [ 2, 0 ]
             } ]
         });
         $('header button').click(function(){

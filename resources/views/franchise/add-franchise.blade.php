@@ -11,7 +11,7 @@
             <form class="add-vehicle-form" role="form" method="POST" action="{{url('/')}}/franchise/add">
                 {{ csrf_field() }}
 
-                <label class="half-field {{ $errors->has('name') ? ' has-error' : '' }}">
+                <label class="clearfix {{ $errors->has('name') ? ' has-error' : '' }}">
                     <span>Name</span>
                     <input type="text" name="name" placeholder="Franchise Name" value="{{old('name')}}">
                     @if ($errors->has('name'))
@@ -56,7 +56,7 @@
                         </span>
                     @endif
                 </label>
-                <label class=" {{ $errors->has('address') ? ' has-error' : '' }}">
+                <label class="clearfix {{ $errors->has('address') ? ' has-error' : '' }}">
                     <span>Address</span>
                     <input type="text" name="address" placeholder="Address" value="{{old('address')}}">
                     @if ($errors->has('address'))

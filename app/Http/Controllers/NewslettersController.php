@@ -101,36 +101,40 @@ class NewslettersController extends ParentController
         }
     }
 
-    public function deleteImage(\Illuminate\Http\Request $request)
-    {
-        $imagePath = $request->input('path');
-
-        //File::delete($imagePath);
-        //dd($imagePath);
-       // unlink($imagePath);
-        $id = $request->input('id');
-        if($this->newsletters->updateWhere(['id'=>$id],['image'=>'']))
-        {
-
-            return Response::json(array(
-                'status' => 'success',
-
-
-            ), 200);
-        }
-        else{
-            return Response::json(array(
-                'status' => 'failure',
-
-
-            ), 200);
-
-        }
-    }
+//    public function deleteImage(\Illuminate\Http\Request $request)
+//    {
+//        $imagePath = $request->input('path');
+//
+//        //File::delete($imagePath);
+//        //dd($imagePath);
+//       // unlink($imagePath);
+//        $id = $request->input('id');
+//        if($this->newsletters->updateWhere(['id'=>$id],['image'=>'']))
+//        {
+//
+//            return Response::json(array(
+//                'status' => 'success',
+//
+//
+//            ), 200);
+//        }
+//        else{
+//            return Response::json(array(
+//                'status' => 'failure',
+//
+//
+//            ), 200);
+//
+//        }
+//    }
 
 
     public function deleteImageById(\Illuminate\Http\Request $request)
     {
+
+//        $id = $request->route()->parameter('image_id');
+//        $image_path = findById($id);
+//        unlink(public_path('file/to/delete'));
         return ($this->newsletterImages->deleteById($request->route()->parameter('image_id')))? Response::json(array('status' => 'success'), 200): Response::json(array('status' => 'success'), 200);
     }
 

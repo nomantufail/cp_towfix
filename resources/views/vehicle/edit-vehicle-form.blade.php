@@ -83,7 +83,7 @@
                     <select name="year" id="year">
                         @foreach($years as $year)
                             {
-                            <option value="{{$year}}" @if($year == $vehicle->year) selected @endif> {{$year}} </option>
+                            <option value="{{$year}}" @if($year == $vehicle->year) selected @endif>{{$year}}</option>
                             }
                         @endforeach
                     </select>
@@ -109,7 +109,7 @@
                     <select name="year_purchased" id="year_purchased">
                     @foreach($years as $year)
                     {
-                            <option value="{{$year}}" @if($year == $vehicle->year) selected @endif> {{$year}} </option>
+                            <option value="{{$year}}" @if($year == $vehicle->year_purchased) selected @endif>{{$year}}</option>
                     }
                     @endforeach
                     </select>

@@ -170,14 +170,27 @@
      color: #FFF;   
 }
 
-.user-info{
+.user-info, 
+.head-cart{
 	float: right;
 }
 
-.user-info a{
+.user-info a, 
+.head-cart a{
 	display: block;
 	cursor: pointer;
-	padding: 8px 16px;
+	padding: 26px;
+}
+
+.head-cart a{
+	color: #FFF;
+	font-size: 18px;
+	padding: 25px;
+}
+
+.head-cart a:hover{
+	background: #0a4a8e;
+	text-decoration: none;
 }
 
 .user-info a:hover{
@@ -266,6 +279,10 @@
 	margin-bottom: 30px;
 	padding: 25px 0px;
 	border-bottom: 1px dotted #CCC;
+}
+
+.vehicles-list .vehicles-head h2 i{
+	color: #0a4a8e;	
 }
 
 .vehicles-list .vehicles-head a{
@@ -584,7 +601,7 @@ ul.tabs li.current{
     z-index: 5;
     top: 10px;
     padding: 10px;
-    height: 76%;
+    height: 62%;
 	background: #0a4a8e;
 	color: #FFF;
 	cursor: pointer;
@@ -643,7 +660,7 @@ ul.tabs li.current{
 	margin: 0px;
 	padding: 20px 0;
 	list-style: none;
-	height: calc(100vh - 320px);
+	height: calc(100vh - 342px);
 	overflow: auto;
 }
 
@@ -963,6 +980,29 @@ ul.tabs li.current{
 	font-size: 25px;	
 }
 
+.product-list-images{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+.product-list-images li{
+	display: inline-block;
+	width: 120px;
+	height: 70px;
+	overflow: hidden;
+	margin: 0px 5px 10px;
+}
+
+.product-list-images li a{
+	display: block;
+	border: 1px solid #CCC;
+}
+
+.product-list-images li img{
+	max-width: 100%;	
+}
+
 .frenchise-contact label{
 	display: block;
 	font-weight: bold;
@@ -1113,4 +1153,179 @@ ul.tabs li.current{
 }
 .mobile-nav{
 	display: none;
+}
+
+.cart-page .vehicles-head{
+	border-bottom: 0px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+.cart-list{
+	display: table;
+	width: 100%;
+	border-left: 1px solid #CCC;
+	border-top: 1px solid #CCC;
+}
+
+.cart-list ul.cart-head li{
+	font-size: 16px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.cart-list ul{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	display: table-row;
+	width: 100%;
+}
+
+.cart-list ul li{
+	display: table-cell;
+	vertical-align: middle;
+	padding: 20px;
+	border-bottom: 1px solid #CCC;
+	border-right: 1px solid #CCC;
+}
+
+.cart-list ul li.product-name{
+	width: 60%;	
+}
+
+.cart-list ul li.product-price, 
+.cart-list ul li.remove-product{
+	width: 8%;
+	text-align: center;
+}
+
+.cart-list ul li.remove-product{
+	text-align: center;
+}
+
+.cart-list ul li.remove-product a{
+	font-size: 18px;
+	color: #d82121;
+}
+
+.cart-list ul li.computed_price{
+	width: 8%;
+	text-align: center;
+}
+.cart-list ul li.product-quantity{
+	width: 12%;
+	text-align: center;
+}
+
+.cart-list li figure{
+	display: inline-block;
+	width: 60px;
+	vertical-align: middle;
+}
+.cart-list li figure img{
+	max-width: 100%;	
+}
+
+.cart-list li span{
+	display: inline-block;
+	padding-left: 10px;
+	font-size: 14px;
+}
+.cart-list li input{
+	padding: 10px;
+	border: 1px solid #CCC;
+	width: 100%;
+}
+.cart-checkout{
+	text-align: right;
+	padding: 20px;
+	border: 1px solid #CCC;
+	border-top: 0px;
+}
+
+.cart-btn{
+	background: #77bc25;
+	padding: 10px 20px;
+	color: #FFF;
+	font-weight: bold;
+	font-size: 18px;
+	display: inline-block;
+	vertical-align: middle;
+	border: 0px;
+}
+
+.cart-checkout .cart-total{
+	display: inline-block;
+	margin-right: 20px;
+	vertical-align: middle;
+}
+	
+.cart-checkout .cart-total strong, 
+.cart-checkout .cart-total span{
+	display: inline-block;
+	margin-right: 10px;
+	font-size: 26px;
+	color: #0a4a8e;
+	text-transform: uppercase;
+}
+
+.cart-checkout .cart-total span{
+	margin-right: 0px;
+	color: #000;
+}
+
+.cart-summery{
+	overflow: hidden;
+}
+
+.cart-summery .summery-widget{
+	float: left;
+	width: 75%;
+}
+.cart-summery .payment-widget{
+	max-width: none;
+	width: 23%;
+	float: right;
+	background: #0a4a8e;
+	padding: 20px;
+}
+
+.cart-summery .payment-widget h4{
+	color: #FFF;
+	font-size: 18px;
+	text-transform: uppercase;
+	background: #d82121;
+	margin: -20px -20px 20px;
+	padding: 20px;
+}
+
+.cart-summery .payment-widget label{
+	display: block;
+	margin-bottom: 20px;
+}
+
+.cart-summery .payment-widget label span{
+	display: block;
+	color: #FFF;
+	margin-bottom: 5px;
+}
+
+.cart-summery .payment-widget label input{
+	width: 100%;	
+	padding: 10px;
+	border: 0px;
+	background: #FFF;
+}
+
+.cart-summery .payment-widget label.half-field input{
+	width: 48%;
+	display: inline-block;
+}
+
+.success-payment h2{
+	color: green;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }

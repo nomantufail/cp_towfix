@@ -8,9 +8,9 @@
 ?>
 @extends('app')
 @section('page')
-    <section class="vehicles-list">
+    <section class="vehicles-list cart-page">
         <div class="vehicles-head">
-            <h2>My Shopping Cart</h2>
+            <h2><i class="fa fa-cart-arrow-down"></i> My Shopping Cart</h2>
         </div>
         <div class="vehicles-list-content">
             <div class="vehicles-table">
@@ -19,15 +19,105 @@
                         {{\Session::get('success')}}
                     </h4>
                 @endif
-
+				
+               	<div class="cart-list">
+					<ul class="cart-head">
+						<li class="product-name">Product</li>
+						<li class="product-price">Price</li>
+						<li class="product-quantity">Quantity</li>
+						<li class="computed_price">Total</li>
+						<li class="remove-product">Action</li>
+					</ul>
+					<ul class="cart-content">
+						<li class="product-name">
+							<figure><img src="{{url('/')}}/images/profile.jpg" alt=""></figure>
+							<span>Product Name Here</span>
+						</li>
+						<li class="product-price">$500</li>
+						<li class="product-quantity">
+							<input type="text" name="quantity" placeholder="quantity">
+						</li>
+						<li class="computed_price">100</li>
+						<li class="remove-product">
+							<a href="#"><i class="fa fa-close"></i></a>
+						</li>
+					</ul>
+					<ul class="cart-content">
+						<li class="product-name">
+							<figure><img src="{{url('/')}}/images/profile.jpg" alt=""></figure>
+							<span>Product Name Here</span>
+						</li>
+						<li class="product-price">$500</li>
+						<li class="product-quantity">
+							<input type="text" name="quantity" placeholder="quantity">
+						</li>
+						<li class="computed_price">100</li>
+						<li class="remove-product">
+							<a href="#"><i class="fa fa-close"></i></a>
+						</li>
+					</ul>
+					<ul class="cart-content">
+						<li class="product-name">
+							<figure><img src="{{url('/')}}/images/profile.jpg" alt=""></figure>
+							<span>Product Name Here</span>
+						</li>
+						<li class="product-price">$500</li>
+						<li class="product-quantity">
+							<input type="text" name="quantity" placeholder="quantity">
+						</li>
+						<li class="computed_price">100</li>
+						<li class="remove-product">
+							<a href="#"><i class="fa fa-close"></i></a>
+						</li>
+					</ul>
+					<ul class="cart-content">
+						<li class="product-name">
+							<figure><img src="{{url('/')}}/images/profile.jpg" alt=""></figure>
+							<span>Product Name Here</span>
+						</li>
+						<li class="product-price">$500</li>
+						<li class="product-quantity">
+							<input type="text" name="quantity" placeholder="quantity">
+						</li>
+						<li class="computed_price">100</li>
+						<li class="remove-product">
+							<a href="#"><i class="fa fa-close"></i></a>
+						</li>
+					</ul>
+					<ul class="cart-content">
+						<li class="product-name">
+							<figure><img src="{{url('/')}}/images/profile.jpg" alt=""></figure>
+							<span>Product Name Here</span>
+						</li>
+						<li class="product-price">$500</li>
+						<li class="product-quantity">
+							<input type="text" name="quantity" placeholder="quantity">
+						</li>
+						<li class="computed_price">100</li>
+						<li class="remove-product">
+							<a href="#"><i class="fa fa-close"></i></a>
+						</li>
+					</ul>
+				</div>
+				<div class="cart-checkout">
+					<div class="cart-total">
+						<strong>Total:</strong>
+						<span>$855</span>
+					</div>
+					<input class="cart-btn" type="submit" value="Save & Continue">
+				</div>
+               
+               
                 <form action="{{url('/cart/confirm')}}" method="post" onsubmit="return true">
                     {{csrf_field()}}
+                    
                     <table id="tableStyle" class="display" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th>Product Name</th>
+                                <th>Price/Product</th>
                                 <th>quantity</th>
-                                <th>Price</th>
+                                <th>Computed Price</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -38,6 +128,7 @@
                             <input type="hidden" name="item[{{$item->id}}][product_id]" value="{{$item->product->id}}" class="product_id">
                             <input type="hidden" name="item[{{$item->id}}][price]" value="{{$item->product->price}}" class="product_price">
                             <td>{{$item->product->name}}</td>
+                            <td>{{$item->product->price}}</td>
                             <td><input type="number" name="item[{{$item->id}}][quantity]" value="{{$item->quantity}}" class="item_quantity"></td>
                             <td class="computed_price"></td>
                             <td>
@@ -48,7 +139,7 @@
                         </tbody>
                         <tfoot>
                         <tr style="font-weight: bold">
-                            <td colspan="2">Total Price</td>
+                            <td colspan="3">Total Price</td>
                             <td id="computed_total_price"></td>
                             <td></td>
                         </tr>
@@ -66,7 +157,7 @@
                 var quantity = $(this).val();
                 var price = $(this).closest('tr').find('.product_price').val();
                 var computed_price = parseFloat(quantity) * parseFloat(price);
-                $(this).closest('tr').find('.computed_price').html(computed_price);
+                $(this).closest('ul').find('.computed_price').html(computed_price);
                 total_price+=computed_price;
             });
             $("#computed_total_price").html(total_price);

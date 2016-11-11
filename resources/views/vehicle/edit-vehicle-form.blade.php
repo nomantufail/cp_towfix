@@ -20,6 +20,24 @@
         <div class="add-vehicle-widget">
             <form class="add-vehicle-form" method="post" action="{{url('/')}}/vehicle/update/{{$vehicle->id}}">
                 {{csrf_field()}}
+                @if($user->isFranchise())
+                <label class="half-field">
+                    <span>Change Customer</span>
+                    <select name="customer_id" id="customer_id">
+                        @foreach($customers as $customer)
+                            <option value="{{$customer->id}}" @if($customer->id == $vehicle->customer_id) selected @endif>{{$customer->f_name}} {{$customer->l_name}}</option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('make'))
+                        <div class="alert alert-danger">
+                            @foreach ($errors->get('make') as $message)
+                                {{ $message }}<br>
+                            @endforeach
+                        </div>
+                    @endif
+                </label>
+                @endif
+
                 <label class="half-field">
                     <span>Make</span>
                     <input type="text" name="make" placeholder="Make" value="{{$vehicle->make}}">

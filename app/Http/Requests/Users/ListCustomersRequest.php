@@ -14,7 +14,7 @@ class ListCustomersRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return ($this->user()->can('seeAll','customers'));
     }
 
     /**

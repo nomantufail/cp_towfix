@@ -20,6 +20,7 @@
                     <tr>
                         <th>Make</th>
                         <th>Model</th>
+                        <th>Customer Name</th>
                         <th>Year</th>
                         <th>Vehicle Type</th>
                         <th>Next Service</th>
@@ -34,6 +35,7 @@
                         <tr>
                             <td>{{$vehicle->make}}</td>
                             <td>{{$vehicle->model}}</td>
+                            <td>{{$vehicle->owner->f_name}} {{$vehicle->owner->l_name}}</td>
                             <td>{{$vehicle->year}}</td>
                             <td>{{$vehicle_types[$vehicle->vehicle_type_id]->vehicle_type}}</td>
                             <td>{{$vehicle->next_service}}</td>

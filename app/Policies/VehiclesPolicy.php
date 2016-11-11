@@ -24,7 +24,7 @@ class VehiclesPolicy extends Policy
     }
     public function edit(User $user , Vehicle $vehicle)
     {
-        return ($user->id == $vehicle->customer_id || $user->isAdmin());
+        return ($user->id == $vehicle->customer_id || $user->isAdmin() || $user->isFranchise());
     }
 
     public function delete(User $user , Vehicle $vehicle)

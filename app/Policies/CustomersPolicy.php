@@ -16,4 +16,10 @@ class CustomersPolicy extends Policy
     {
         return ($user->isFranchise() || $user->isAdmin());
     }
+
+    public function seeAll(User $user , User $customer=null)
+    {
+        return ($user->isFranchise() || $user->isAdmin());
+    }
+
 }

@@ -23,7 +23,7 @@
         @foreach($messages as $message)
         <li class="@if($message->sender_id == $user->id) my-message @endif">
             <div class="user-conversation">
-                <em>{{$message->created_at->toFormattedDateString()}}</em>
+                <em>{{$message->created_at->toFormattedDateString()}} {{$message->created_at->toTimeString()}}</em>
                 <p>{{$message->message}}</p>
                 <ul class="attachment">
                 	<li>
@@ -57,7 +57,7 @@
             <input type="hidden" value="{{$engagedUser->id}}" name="receiver">
             <textarea placeholder="Message" name="message"></textarea>
             <input type="submit" name="sentMessage" value="Send">
-            <input type="file">
+            <input type="file" name="">
         </form>
     </div>
     <script>

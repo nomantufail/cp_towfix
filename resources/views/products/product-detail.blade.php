@@ -22,7 +22,18 @@
 
             @if(count($product->images))
             <div class="product-slider">
-                <ul class="bxslider">
+               	<ul class="product-list-images">
+               		@foreach($product->images as $image)
+               		<li>
+               			<a class="fancybox" href="{{url('/')}}/{{$image->path}}">
+               				<img src="{{url('/')}}/{{$image->path}}" />
+               			</a>
+               		</li>
+               		@endforeach
+               	</ul>
+               
+               
+                <!--<ul class="bxslider">
                     @foreach($product->images as $image)
                         <li><img src="{{url('/')}}/{{$image->path}}" /></li>
                     @endforeach
@@ -38,7 +49,7 @@
                             $count++;
                     }
                     ?>
-                </div>
+                </div>-->
             </div>
             @endif
             <div class="product-info">
@@ -73,10 +84,14 @@
                 btn.html('Added To Cart');
             }
         });
-    })
-
-    $('.bxslider').bxSlider({
-        pagerCustom: '#bx-pager'
     });
+	$(document).ready(function() {
+		$(".fancybox").fancybox();
+	});
+
+    /*$('.bxslider').bxSlider({
+        pagerCustom: '#bx-pager',
+        adaptiveHeight: true
+    });*/
 </script>
 @endsection

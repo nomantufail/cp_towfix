@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Vehicles</title>
+    <title>Towfix | If you can tow it, we can fix it.</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" href="{{url('/')}}/css/bootstrap.min.css" rel="stylesheet" />
@@ -51,7 +51,7 @@
             <ul class="tab-list">
                 <li class="@if(Request::segment(1) == '') active @endif"><a href="{{url('/')}}"><i class="fa fa-home fa-fw"></i> Home </a></li>
 
-                @if($user->can('view','customers'))<li class="@if(Request::segment(1) == 'customers' || Request::segment(1) == 'customer') active @endif"><a href="{{url('/')}}/customers"><i class="fa fa-users fa-fw"></i> Customers</a></li> @endif
+                @if($user->can('seeAll','customers'))<li class="@if(Request::segment(1) == 'customers' || Request::segment(1) == 'customer') active @endif"><a href="{{url('/')}}/customers"><i class="fa fa-users fa-fw"></i> Customers</a></li> @endif
                 @if($user->can('view','franchises'))<li class="@if(Request::segment(1) == 'franchises' || Request::segment(1) == 'franchise') active @endif"><a href="{{url('/')}}/franchises"><i class="fa fa-building fa-fw"></i> Franchises</a></li> @endif
                 @if($user->can('view','vehicles'))<li class="@if(Request::segment(1) == 'vehicles' || Request::segment(1) == 'vehicle') active @endif"><a href="{{url('/')}}/vehicles"><i class="fa fa-car fa-fw"></i> Vehicles</a></li> @endif
                 @if($user->can('view','products'))
@@ -136,7 +136,7 @@
                 <div class="dropdown user-info">
                     <a class="dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">
                         <span>{{Auth::user()->f_name}} {{Auth::user()->l_name}}</span>
-                        <figure><img src="{{url('/')}}/images/profile.jpg" alt=""></figure>
+
                         <i class="caret"></i>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
@@ -153,6 +153,9 @@
                     <li><a href="{{url('/')}}/register"><i class="fa fa-lock fa-fw"></i> Register</a></li>
                 </ul>
             @endif
+            <div class="head-cart">
+            	<a href="#"><i class="fa fa fa-cart-arrow-down"></i> Cart</a>
+            </div>
         </div>
     </div>
     @yield('page')

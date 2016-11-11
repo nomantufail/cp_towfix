@@ -67,7 +67,8 @@ class VehiclesController extends ParentController
         try{
             $data = [
                 'vehicleTypes' => $this->vehicleTypesRepo->all(),
-                'vehicle' => $this->vehiclesRepo->findById($vehicle_id)
+                'vehicle' => $this->vehiclesRepo->findById($vehicle_id),
+                'customers' => $this->usersRepo->customers()
             ];
             return view('vehicle.edit-vehicle-form', $data);
         }catch (\Exception $e){

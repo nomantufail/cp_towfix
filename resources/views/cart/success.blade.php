@@ -10,7 +10,8 @@
 @section('page')
     <section class="success-payment">
         <h2 style="color:green">
-            Transaction of amount {{$data['amount']}} Successful
+            Transaction of amount {{$data['amount']}} Successful<br>
+            <span style="font-size: 14px;">Thank You for shopping at Towfix</span>
         </h2>
     </section>
 @endsection

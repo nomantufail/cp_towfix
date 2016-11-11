@@ -25,160 +25,51 @@
 								<li class="product-price">Price</li>
 								<li class="product-quantity">Quantity</li>
 								<li class="computed_price">Total</li>
-								<li class="remove-product">Action</li>
 							</ul>
-							<ul class="cart-content">
-								<li class="product-name">
-									<figure><img src="{{url('/')}}/images/profile.jpg" alt=""></figure>
-									<span>Product Name Here</span>
-								</li>
-								<li class="product-price">$500</li>
-								<li class="product-quantity">
-									<input type="text" name="quantity" placeholder="quantity">
-								</li>
-								<li class="computed_price">100</li>
-								<li class="remove-product">
-									<a href="#"><i class="fa fa-close"></i></a>
-								</li>
-							</ul>
-							<ul class="cart-content">
-								<li class="product-name">
-									<figure><img src="{{url('/')}}/images/profile.jpg" alt=""></figure>
-									<span>Product Name Here</span>
-								</li>
-								<li class="product-price">$500</li>
-								<li class="product-quantity">
-									<input type="text" name="quantity" placeholder="quantity">
-								</li>
-								<li class="computed_price">100</li>
-								<li class="remove-product">
-									<a href="#"><i class="fa fa-close"></i></a>
-								</li>
-							</ul>
-							<ul class="cart-content">
-								<li class="product-name">
-									<figure><img src="{{url('/')}}/images/profile.jpg" alt=""></figure>
-									<span>Product Name Here</span>
-								</li>
-								<li class="product-price">$500</li>
-								<li class="product-quantity">
-									<input type="text" name="quantity" placeholder="quantity">
-								</li>
-								<li class="computed_price">100</li>
-								<li class="remove-product">
-									<a href="#"><i class="fa fa-close"></i></a>
-								</li>
-							</ul>
-							<ul class="cart-content">
-								<li class="product-name">
-									<figure><img src="{{url('/')}}/images/profile.jpg" alt=""></figure>
-									<span>Product Name Here</span>
-								</li>
-								<li class="product-price">$500</li>
-								<li class="product-quantity">
-									<input type="text" name="quantity" placeholder="quantity">
-								</li>
-								<li class="computed_price">100</li>
-								<li class="remove-product">
-									<a href="#"><i class="fa fa-close"></i></a>
-								</li>
-							</ul>
-							<ul class="cart-content">
-								<li class="product-name">
-									<figure><img src="{{url('/')}}/images/profile.jpg" alt=""></figure>
-									<span>Product Name Here</span>
-								</li>
-								<li class="product-price">$500</li>
-								<li class="product-quantity">
-									<input type="text" name="quantity" placeholder="quantity">
-								</li>
-								<li class="computed_price">100</li>
-								<li class="remove-product">
-									<a href="#"><i class="fa fa-close"></i></a>
-								</li>
-							</ul>
+							@foreach($items as $item)
+								<ul class="cart-content">
+									<li class="product-name">
+										@if(sizeof($item->product->images))
+											<figure><img src="{{url('/')}}/{{$item->product->images[0]->path}}" alt=""></figure>
+										@endif
+										<span>{{$item->product->name}}</span>
+									</li>
+									<li class="product-price">${{$item->product->price}}</li>
+									<li class="product-quantity">
+										{{$item->quantity}}
+									</li>
+									<li class="computed_price">{{$item->product->price * $item->quantity}}</li>
+								</ul>
+							@endforeach
 						</div>
 						<div class="cart-checkout">
 							<div class="cart-total">
 								<strong>Total:</strong>
-								<span>$855</span>
+								<span>${{$total_price}}</span>
 							</div>
 						</div>
 					</div>
 					<div class="payment-widget">
 						<h4>Credit Card Information</h4>
-						<form>
+						<form action="{{url('/cart/checkout')}}" method="POST" id="payment-form">
+							{{csrf_field()}}
 							<label>
 								<span>Card Number</span>
-								<input type="text" name="" placeholder="Enter Your Card Number">
+								<input type="text" size="20" data-stripe="number" placeholder="Enter Your Card Number" value="4242424242424242">
 							</label>
 							<label class="half-field">
 								<span>Expiration (MM/YY)</span>
-								<input type="text" name="" placeholder="Month"> / 
-								<input type="text" name="" placeholder="Year">
+								<input type="text" name="" value="11" data-stripe="exp_month" placeholder="Month"> /
+								<input type="text" name="" value="18" data-stripe="exp_year" placeholder="Year">
 							</label>
 							<label>
 								<span>CVC Code</span>
-								<input type="text" name="" placeholder="Enter CVC Code">
+								<input type="text" name="" data-stripe="cvc" placeholder="Enter CVC Code" value="111">
 							</label>
 							<input class="cart-btn" type="submit" value="Check Out">
 						</form>
 					</div>
 				</div>
-				
-				<table id="tableStyle" class="display" cellspacing="0" width="100%">
-					<thead>
-						<tr>
-							<th>Product Name</th>
-							<th>quantity</th>
-							<th>Price</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($items as $item)
-						<tr>
-							<td>{{$item->product->name}}</td>
-							<td>{{$item->quantity}}</td>
-							<td class="computed_price">{{$item->product->price * $item->quantity}}</td>
-						</tr>
-						@endforeach
-					</tbody>
-					<tfoot>
-						<tr style="font-weight: bold">
-							<td colspan="2">Total Price</td>
-							<td id="computed_total_price">{{$total_price}}</td>
-						</tr>
-					</tfoot>
-				</table>
-
-				<form action="{{url('/cart/checkout')}}" method="POST" id="payment-form">
-					{{csrf_field()}}
-					<span class="payment-errors"></span>
-
-					<div class="form-row">
-						<label>
-							<span>Card Number</span>
-							<input type="text" size="20" data-stripe="number" value="4242424242424242">
-						</label>
-					</div>
-
-					<div class="form-row">
-						<label>
-							<span>Expiration (MM/YY)</span>
-							<input type="text" size="2" data-stripe="exp_month" value="11">
-						</label>
-						<span> / </span>
-						<input type="text" size="2" data-stripe="exp_year" value="18">
-					</div>
-
-					<div class="form-row">
-						<label>
-							<span>CVC</span>
-							<input type="text" size="4" data-stripe="cvc" value="111">
-						</label>
-					</div>
-					<input type="submit" class="submit" value="Submit Payment">
-				</form>
 			</div>
 		</div>
 	</section>

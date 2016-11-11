@@ -21,12 +21,14 @@
     </div>
     <ul class="conversation-list">
         @foreach($messages as $message)
+            <?php
+                $message = $message[0];
+            ?>
         <li class="@if($message->sender_id == $user->id) my-message @endif">
             <div class="user-conversation">
                 <em>{{$message->created_at->toFormattedDateString()}} {{$message->created_at->toTimeString()}}</em>
                 <p>{{$message->message}}</p>
                 {{--<img class="image_path" src="{{ url('/').$img->path}}"/>--}}
-
             </div>
         </li>
         @endforeach
@@ -38,8 +40,6 @@
             <textarea placeholder="Message" name="message"></textarea>
             <input type="submit" name="sentMessage" value="Send">
             <input type="file" name="images[]" multiple>
-
         </form>
-
     </div>
 @endsection

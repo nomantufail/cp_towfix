@@ -17,9 +17,4 @@ class MessageImagesRepository extends Repository
     {
         $this->setModel($image);
     }
-
-    public function getWithDetails()
-    {
-        return $this->getModel()->with('images')->get();
-    }
 }

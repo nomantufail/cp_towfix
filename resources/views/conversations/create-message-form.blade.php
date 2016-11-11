@@ -17,7 +17,7 @@
         @endif
         <h2 class="main-heading">Contact a @if(Auth::user()->isCustomer()) Franchise @else Customer @endif</h2>
         <div class="frenchies-widget">
-            <form class="frenchies-form" action="{{url('/')}}/message/send" method="post">
+            <form class="frenchies-form" action="{{url('/')}}/message/send" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <label>
                     <span>@if(Auth::user()->isCustomer()) Franchises @else Customers @endif:</span>
@@ -33,7 +33,9 @@
                     <span>Message</span>
                     <textarea placeholder="Message" name="message"></textarea>
                 </label>
+                <input type="file" name="images[]" multiple>
                 <input type="submit" class="btn btn-primary" value="Send">
+
             </form>
         </div>
     </section>

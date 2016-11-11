@@ -23,6 +23,8 @@
                         @if($user->isFranchise())<th>Customer Name</th>@endif
                         <th>Vehicle</th>
                         <th>Membership Number</th>
+                            @if($user->isFranchise())<th>Phone Number</th>@endif
+                            @if($user->isFranchise())<th>Email Address</th>@endif
                         @if($user->isCustomer())<th>Franchise Name</th>@endif
                         @if($user->isCustomer())<th>Franchise Area</th>@endif
                         <th>Date/Time</th>
@@ -36,7 +38,9 @@
                     <tr data-req-id="{{$request->id}}">
                         @if($user->isFranchise())<th>{{$request->customer->f_name}} {{$request->customer->l_name}}</th>@endif
                         <td>{{$request->vehicle->make}} {{$request->vehicle->model}}</td>
-                            <td>24574</td>
+                            <td>{{$request->customer_id}}</td>
+                            @if($user->isFranchise())<td>{{$request->customer->phone_number}}</td>@endif
+                            @if($user->isFranchise())<td>{{$request->customer->email}}</td>@endif
                         @if($user->isCustomer())<th>{{$request->franchise->f_name}} {{$request->franchise->l_name}}</th>@endif
                         @if($user->isCustomer())<th>{{$request->franchise->address}}</th>@endif
                         <td>{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$request->suggested_date)->toFormattedDateString()}} <span style="font-size: 12px;">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$request->suggested_date)->toTimeString()}}</span>

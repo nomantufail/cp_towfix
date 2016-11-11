@@ -136,7 +136,7 @@
                 <div class="dropdown user-info">
                     <a class="dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">
                         <span>{{Auth::user()->f_name}} {{Auth::user()->l_name}}</span>
-                        <figure><img src="{{url('/')}}/images/profile.jpg" alt=""></figure>
+
                         <i class="caret"></i>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">

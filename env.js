@@ -1,1 +1,0 @@
-var base_url = "http://localhost/towfix/app/public/";

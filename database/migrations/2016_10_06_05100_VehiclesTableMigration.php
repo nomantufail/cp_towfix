@@ -29,8 +29,8 @@ class VehiclesTableMigration extends Migration
             $table->string('model');
             $table->integer('year')->default(2005);
             $table->integer('year_purchased')->default(2005);
-            $table->date('last_service')->default('12-12-12');
-            $table->date('next_service')->default('12-12-12');
+            $table->dateTime('last_service')->default('12-12-12');
+            $table->dateTime('next_service')->default('12-12-12');
             $table->string('registration_number')->default('');
             $table->date('registration_expiry')->default('12-12-12');
             $table->string('engine_capacity')->default('');

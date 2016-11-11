@@ -114,7 +114,7 @@
 
                 <label class="half-field">
                     <span>Last Service</span>
-                    <input type="text" class="date" name="last_service" placeholder="Last Service" value="{{old('last_service')}}">
+                    <input type="datetime" class="dateTime" name="last_service" placeholder="Last Service" value="{{old('last_service')}}">
                     @if ($errors->has('last_service'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('last_service') as $message)
@@ -126,7 +126,7 @@
 
                 <label class="half-field">
                     <span>Next Service</span>
-                    <input type="text" class="date" name="next_service" placeholder="Next Service" value="{{old('next_service')}}">
+                    <input type="datetime" class="dateTime" name="next_service" placeholder="Next Service" value="{{old('next_service')}}">
                     @if ($errors->has('next_service'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('next_service') as $message)
@@ -207,6 +207,9 @@
             $(".date").datepicker({
                 dateFormat: 'yy-mm-dd'
             });
+        });
+        $('.dateTime').datetimepicker({
+            dateFormat:'yy-m-d'
         });
 
         $("#vehicle_type").select2({

@@ -82,11 +82,11 @@
         });
 
         $(document).on('click','.remove_item', function () {
-            var tr = $(this).closest('tr');
-            var product_id = $(this).closest('tr').find('.product_id').val();
+            var ul = $(this).closest('ul');
+            var product_id = $(this).closest('ul').find('.product_id').val();
             $.ajax({type: 'POST' , data: {'_token':"<?=csrf_token()?>" }, url: base_url + 'cart/remove/'+product_id ,
                 success: function (data){
-                    tr.remove();
+                    ul.remove();
                     quantityChanged();
                 },
                 error: function () {

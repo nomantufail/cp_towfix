@@ -154,7 +154,7 @@
                 </ul>
             @endif
             <div class="head-cart">
-            	<a href="#"><i class="fa fa fa-cart-arrow-down"></i> Cart</a>
+            	<a href="{{url('/')}}/cart"><i class="fa fa fa-cart-arrow-down"></i> Cart</a>
             </div>
         </div>
     </div>

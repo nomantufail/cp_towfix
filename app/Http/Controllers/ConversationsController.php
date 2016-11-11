@@ -30,7 +30,7 @@ class ConversationsController extends ParentController
 
     public function userMessages(Requests\Conversations\ListUserMessagesRequest $request, $engagedUserId)
     {
-            return view('conversations.list-user-messages', [
+        return view('conversations.list-user-messages', [
             'messages' => $this->conversationsRepo->userMessages($engagedUserId, Auth::user()->id),
             'users' => $this->usersRepo->getByIds($this->conversationsRepo->getEngagedUserIds(Auth::user()->id)),
             'engagedUser' => $this->usersRepo->findById($engagedUserId)

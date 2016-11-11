@@ -21,14 +21,10 @@
     </div>
     <ul class="conversation-list">
         @foreach($messages as $message)
-            <?php
-                $message = $message[0];
-            ?>
-        <li class="@if($message->sender_id == $user->id) my-message @endif">
+        <li class="@if($message[0]->sender_id == $user->id) my-message @endif">
             <div class="user-conversation">
-                <em>{{$message->created_at->toFormattedDateString()}} {{$message->created_at->toTimeString()}}</em>
-                <p>{{$message->message}}</p>
-                {{--<img class="image_path" src="{{ url('/').$img->path}}"/>--}}
+                <em>{{$message[0]->created_at->toFormattedDateString()}} {{$message[0]->created_at->toTimeString()}}</em>
+                <p>{{$message[0]->message}}</p>
             </div>
         </li>
         @endforeach

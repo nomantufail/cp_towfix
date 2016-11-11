@@ -40,7 +40,7 @@
 
                 <label style="clear: both">
                     <span>Detail</span>
-                    <textarea name="detail" placeholder="Detail">{{$newsletter->detail}}</textarea>
+                    <textarea name="detail" placeholder="Detail">{{str_limit($newsletter->detail , 150)}}</textarea>
                     @if ($errors->has('detail'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('detail') as $message)

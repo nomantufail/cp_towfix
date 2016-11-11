@@ -23,7 +23,7 @@
         @foreach($messages as $message)
         <li class="@if($message->sender_id == $user->id) my-message @endif">
             <div class="user-conversation">
-                <h4><span><i class="fa fa-paperclip"></i> {{$message->created_at->toFormattedDateString()}}</span></h4>
+                <em>{{$message->created_at->toFormattedDateString()}}</em>
                 <p>{{$message->message}}</p>
             </div>
         </li>

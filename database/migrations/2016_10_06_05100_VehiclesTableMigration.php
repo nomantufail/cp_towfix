@@ -27,8 +27,8 @@ class VehiclesTableMigration extends Migration
                 ->onDelete('cascade');
             $table->string('make');
             $table->string('model');
-            $table->string('year')->default('');
-            $table->string('year_purchased')->default('');
+            $table->integer('year')->default(2005);
+            $table->integer('year_purchased')->default(2005);
             $table->date('last_service')->default('12-12-12');
             $table->date('next_service')->default('12-12-12');
             $table->string('registration_number')->default('');

@@ -47,7 +47,7 @@ class ServicesController extends ParentController
     public function sendRequest(Requests\Service\AddServiceRequest $request)
     {
         $this->serviceRequestsRepo->store($request->getStorableAttrs());
-        return redirect()->back()->with(['success'=>'request added successfully']);
+        return redirect()->back()->with(['success'=>'Request added successfully']);
     }
 
     public function showEditRequestForm(Requests\Service\ShowEditRequestFormRequest $request)
@@ -58,19 +58,19 @@ class ServicesController extends ParentController
     public function updateRequest(Requests\Service\UpdateServiceRequest $request)
     {
         $this->serviceRequestsRepo->updateWhere(['id'=>$request->route()->parameter('request_id')], $request->getUpdateableAttrs());
-        return redirect()->route('service_requests')->with(['success'=>'request updated successfully']);
+        return redirect()->route('service_requests')->with(['success'=>'Request updated successfully']);
     }
 
     public function AcceptRequest(Requests\Service\AcceptServiceRequest $request)
     {
         $this->serviceRequestsRepo->updateWhere(['id'=>$request->route()->parameter('request_id')], $request->getUpdateableAttrs());
-        return redirect()->back()->with(['success'=>'request Accepted successfully']);
+        return redirect()->back()->with(['success'=>'Request accepted successfully']);
     }
 
     public function DeleteRequest(Requests\Service\DeleteServiceRequest $request)
     {
         $this->serviceRequestsRepo->deleteById($request->route()->parameter('request_id'));
-        return redirect()->back()->with(['success'=>'request Deleted successfully']);
+        return redirect()->back()->with(['success'=>'Request Deleted successfully']);
     }
 
 }

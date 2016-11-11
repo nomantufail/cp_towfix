@@ -11,6 +11,7 @@ namespace App\Repositories;
 
 use App\Libs\Helpers\Helper;
 use App\Models\Message;
+use App\Models\MessageImage;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
@@ -28,7 +29,8 @@ class ConversationsRepository extends Repository
 
     public function userMessages($userId1, $userId2)
     {
-        return $this->getModel()
+        $messageImagesTable = (new MessageImagesRepository(new MessageImage()))->getModel()->getTable();
+        $messagesCollection = $this->getModel()
             ->where(function ($query) use($userId1, $userId2) {
                 $query->where('sender_id', '=', $userId1)
                     ->where('receiver_id', '=', $userId2);
@@ -37,8 +39,13 @@ class ConversationsRepository extends Repository
                 $query->where('sender_id', '=', $userId2)
                     ->where('receiver_id', '=', $userId1);
             })
-            ->orderBy('id', 'asc')
+            ->leftJoin($messageImagesTable, $this->getModel()->getTable().".id", '=', $messageImagesTable.'.message_id')
+            ->orderBy($this->getModel()->getTable().".id", 'asc')
+            ->select($this->getModel()->getTable().".id",'sender_id','receiver_id','message',$this->getModel()->getTable().".created_at", $messageImagesTable.".path")
             ->get();
+
+        $grouped = $messagesCollection->groupBy('id');
+        return $grouped;
     }
 
     public function getEngagedUserIds($userId)

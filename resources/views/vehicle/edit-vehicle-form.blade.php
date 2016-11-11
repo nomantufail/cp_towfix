@@ -12,7 +12,7 @@
 
     <section class="add-vehicle">
         @if(\Session::has('success'))
-            <h4>
+            <h4 class="alert alert-success fade in">
                 {{\Session::get('success')}}
             </h4>
         @endif
@@ -124,7 +124,7 @@
 
                 <label class="half-field">
                     <span>Last Service</span>
-                    <input type="text" class="date1" name="last_service" placeholder="Last Service" value="{{$vehicle->last_service}}">
+                    <input type="datetime" class="dateTime" name="last_service" placeholder="Last Service" value="{{$vehicle->last_service}}">
                     @if ($errors->has('last_service'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('last_service') as $message)
@@ -136,7 +136,7 @@
 
                 <label class="half-field">
                     <span>Next Service</span>
-                    <input type="text" class="date1" name="next_service" placeholder="Next Service" value="{{$vehicle->next_service}}">
+                    <input type="datetime" class="dateTime" name="next_service" placeholder="Next Service" value="{{$vehicle->next_service}}">
                     @if ($errors->has('next_service'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('next_service') as $message)
@@ -210,6 +210,11 @@
                 dateFormat: 'yy-mm-dd'
             });
         });
+
+        $('.dateTime').datetimepicker({
+            dateFormat:'yy-m-d'
+        });
+
         $("#vehicle_type").select2({
             allowClear: true,
             placeholder: "Select Vehicle Type"

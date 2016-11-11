@@ -54,7 +54,6 @@ class UpdateVehicleRequest extends VehicleRequest
             'year' => 'required',
             'year_purchased' => 'required',
             'last_service' => 'required',
-            'next_service' => 'required',
             'registration_number' => 'required',
             'registration_expiry' => 'required',
             'engine_capacity' => 'required',

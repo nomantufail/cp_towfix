@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Repositories\ConversationsRepository;
+use App\Repositories\MessageImagesRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class ConversationsController extends ParentController
 {
     private $conversationsRepo = null;
-    public function __construct(ConversationsRepository $conversationsRepo)
+    private $messageImages = null;
+    public function __construct(ConversationsRepository $conversationsRepo , MessageImagesRepository $messageImagesRepo)
     {
         parent::__construct();
         $this->conversationsRepo = $conversationsRepo;
+        $this->messageImages = $messageImagesRepo;
     }
 
     public function users(Requests\Conversations\ShowMessagesPageRequest $request)
@@ -44,9 +47,26 @@ class ConversationsController extends ParentController
 
     public function send(Requests\Conversations\SendMessageRequest $request)
     {
+
         try{
-            $this->conversationsRepo->sendMessage($request->messageAttrs());
+            $message_id = $this->conversationsRepo->sendMessage($request->messageAttrs())->id;
+            $message_images = [];
+
+            if($request->file('images') != null) {
+                foreach ($request->file('images') as $file) {
+                    $public_path = '/images/messages/' . $message_id;
+                    $destinationPath = public_path($public_path);
+                    $filename = $file->getClientOriginalName();
+                    $file->move($destinationPath, $filename);
+                    $message_images[] = [
+                        'message_id' => $message_id,
+                        'path' => $public_path . '/' . $filename
+                    ];
+                }
+                $this->messageImages->insertMultiple($message_images);
+            }
         return redirect()->route('user_messages', array('user_id' => $request->messageAttrs()['receiver_id']))->with('success','Message sent successfully');
+
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());
         }

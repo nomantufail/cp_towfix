@@ -21,6 +21,9 @@
     </div>
     <ul class="conversation-list">
         @foreach($messages as $message)
+            <?php
+                $message = $message[0];
+            ?>
         <li class="@if($message->sender_id == $user->id) my-message @endif">
             <div class="user-conversation">
                 <em>{{$message->created_at->toFormattedDateString()}} {{$message->created_at->toTimeString()}}</em>
@@ -52,12 +55,12 @@
         @endforeach
     </ul>
     <div class="conversation-sent">
-        <form class="frenchies-form" action="{{url('/')}}/message/send" method="post">
+        <form class="frenchies-form" action="{{url('/')}}/message/send" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             <input type="hidden" value="{{$engagedUser->id}}" name="receiver">
             <textarea placeholder="Message" name="message"></textarea>
             <input type="submit" name="sentMessage" value="Send">
-            <input type="file" name="">
+            <input type="file" name="images[]" multiple>
         </form>
     </div>
     <script>

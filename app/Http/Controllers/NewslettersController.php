@@ -42,7 +42,7 @@ class NewslettersController extends ParentController
 
     public function addNewsletter(Requests\Newsletter\AddNewsletterRequest $request)
     {
-//        try{
+        try{
             $newsletter_images = [];
             $newsletterId = $this->newsletters->store([
                 'name' => $request->input('name'),
@@ -62,9 +62,9 @@ class NewslettersController extends ParentController
                 $this->newsletterImages->insertMultiple($newsletter_images);
             }
             return redirect()->back()->with('success','Newsletter Added Successfully');
-//        }catch (\Exception $e){
-//            return $this->handleInternalServerError($e->getMessage());
-//        }
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
     }
 
     public function showEditNewsletterForm(Requests\Newsletter\ShowEditNewsletterFormRequest $request)
@@ -95,7 +95,7 @@ class NewslettersController extends ParentController
                 $this->newsletterImages->insertMultiple($newsletter_images);
             }
 
-            return redirect()->back()->with('success','newsletter Updated Successfully');
+            return redirect()->back()->with('success','Newsletter Updated Successfully');
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());
         }

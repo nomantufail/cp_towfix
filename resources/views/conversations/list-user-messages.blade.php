@@ -35,11 +35,8 @@
             <input type="hidden" value="{{$engagedUser->id}}" name="receiver">
             <textarea placeholder="Message" name="message"></textarea>
             <input type="submit" name="sentMessage" value="Send">
-            <label style="clear: both">
-                <input type="file" name="images[]" multiple>
-            </label>
 
-
+            <input type="file">
         </form>
 
     </div>

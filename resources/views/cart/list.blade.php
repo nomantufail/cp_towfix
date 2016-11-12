@@ -26,8 +26,9 @@
                         <thead>
                             <tr>
                                 <th>Product Name</th>
+                                <th>Price/Product</th>
                                 <th>quantity</th>
-                                <th>Price</th>
+                                <th>Computed Price</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -38,6 +39,7 @@
                             <input type="hidden" name="item[{{$item->id}}][product_id]" value="{{$item->product->id}}" class="product_id">
                             <input type="hidden" name="item[{{$item->id}}][price]" value="{{$item->product->price}}" class="product_price">
                             <td>{{$item->product->name}}</td>
+                            <td>{{$item->product->price}}</td>
                             <td><input type="number" name="item[{{$item->id}}][quantity]" value="{{$item->quantity}}" class="item_quantity"></td>
                             <td class="computed_price"></td>
                             <td>
@@ -48,7 +50,7 @@
                         </tbody>
                         <tfoot>
                         <tr style="font-weight: bold">
-                            <td colspan="2">Total Price</td>
+                            <td colspan="3">Total Price</td>
                             <td id="computed_total_price"></td>
                             <td></td>
                         </tr>

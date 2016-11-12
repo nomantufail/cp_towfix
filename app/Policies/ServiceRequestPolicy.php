@@ -25,12 +25,12 @@ class ServiceRequestPolicy extends Policy
 
     public function delete(User $user , ServiceRequest $serviceRequest=null)
     {
-        return ($user->id == $serviceRequest->customer_id);
+        return ($user->id == $serviceRequest->customer_id && $serviceRequest->document == null);
     }
 
     public function edit(User $user , ServiceRequest $serviceRequest=null)
     {
-        return ($serviceRequest->suggested_by != $user->id);
+        return ($serviceRequest->document == null);
     }
 
     public function add(User $user , ServiceRequest $serviceRequest=null)

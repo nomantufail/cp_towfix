@@ -11,6 +11,7 @@ namespace App\Repositories;
 
 use App\Libs\Helpers\Helper;
 use App\Models\Message;
+use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
 class ConversationsRepository extends Repository

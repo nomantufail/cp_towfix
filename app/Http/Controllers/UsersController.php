@@ -21,6 +21,11 @@ class UsersController extends ParentController
         return view('user.customers', [ 'customers' => $this->users->customers() ]);
     }
 
+    public function showCustomerDetails(Requests\Users\ShowCustomerDetailsRequest $request)
+    {
+        return view('user.customer-details', [ 'customer' => $this->users->findById($request->route()->parameter('customer_id')) ]);
+    }
+
     public function delete(Requests\Users\DeleteUserRequest $request)
     {
         try{

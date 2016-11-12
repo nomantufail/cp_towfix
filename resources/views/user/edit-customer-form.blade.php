@@ -16,6 +16,7 @@
                 {{\Session::get('success')}}
             </h4>
         @endif
+        <h2 style="text-align: center;">Edit Profile</h2>
         <div class="add-vehicle-widget">
             <form class="add-vehicle-form" role="form" method="POST" action="{{ url('/customer/update/')}}/{{$customer->id}}">
                 {{ csrf_field() }}

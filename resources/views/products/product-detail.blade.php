@@ -73,10 +73,11 @@
                 btn.html('Added To Cart');
             }
         });
-    })
+    });
 
     $('.bxslider').bxSlider({
-        pagerCustom: '#bx-pager'
+        pagerCustom: '#bx-pager',
+        adaptiveHeight: true
     });
 </script>
 @endsection

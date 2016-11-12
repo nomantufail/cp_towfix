@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class SendMessageRequest extends ConversationsRequest
 {
 
-
+    protected $maxImages = 10;
     public function messageAttrs()
     {
         return [
@@ -31,6 +31,12 @@ class SendMessageRequest extends ConversationsRequest
             return false;
         }
     }
+    public function messages()
+    {
+        return [
+            'images.max'=>'Images should not be greater than '.$this->maxImages
+        ];
+    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -39,8 +45,14 @@ class SendMessageRequest extends ConversationsRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules = [
+            'images'=>'max:'.$this->maxImages,
         ];
+
+        foreach(range(0, (count($this->file('images')) - 1)) as $index) {
+            $rules['images.' . $index] = 'image|max:2000';
+        }
+        return $rules;
     }
+
 }

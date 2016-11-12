@@ -48,14 +48,14 @@ class AddVehicleRequest extends VehicleRequest
     {
         return [
             'vehicle_type_id' => 'required',
-            'make' => 'required',
-            'model' => 'required',
+            'make' => 'required|max:190',
+            'model' => 'required|max:190',
             'year' => 'required',
             'year_purchased' => 'required',
             'last_service' => 'required',
-            'registration_number' => 'required',
+            'registration_number' => 'required|max:190',
             'registration_expiry' => 'required',
-            'engine_capacity' => 'required',
+            'engine_capacity' => 'required|max:190',
             'number_axles' => 'required'
 
         ];

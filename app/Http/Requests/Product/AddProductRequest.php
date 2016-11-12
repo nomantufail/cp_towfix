@@ -51,16 +51,16 @@ class AddProductRequest extends Request
     {
         $rules = [
             'images'=>'max:'.$this->maxImages,
-            'name'=>'required',
+            'name'=>'required|max:190',
             'detail'=>'required'
         ];
 
         if($this->input('is_poster') == 1)
         {
 
-            $rules['contact'] = 'required';
+            $rules['contact'] = 'required|max:190';
             $rules['email'] = 'required|email';
-            $rules['address'] = 'required';
+            $rules['address'] = 'required|max:190';
         }
         else{
             $rules['price'] = 'required';

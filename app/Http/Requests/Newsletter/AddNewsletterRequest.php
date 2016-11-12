@@ -24,7 +24,7 @@ class AddNewsletterRequest extends Request
     public function rules()
     {
         $rules = [
-            'name' => 'required',
+            'name' => 'required|max:190',
             'images'=>'max:10',
             'detail' => 'required'
         ];

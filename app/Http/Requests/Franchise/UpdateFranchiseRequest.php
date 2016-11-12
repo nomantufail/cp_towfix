@@ -51,7 +51,7 @@ class UpdateFranchiseRequest extends Request
             $rules = [
                 'name' => 'required|max:255',
                 'phone_number' => 'required|max:255',
-                'address' => 'required',
+                'address' => 'required|max:190',
                 'email' => 'required|email|email|unique:users,email,'.$this->route()->parameter('franchise_id').'|max:255',
                 'password' => 'required|min:6|confirmed',
         ];

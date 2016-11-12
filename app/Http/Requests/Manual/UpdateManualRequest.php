@@ -41,7 +41,7 @@ class UpdateManualRequest extends Request
     {
         $rules = [
             'images'=>'max:'.$this->maxImages,
-            'name'=>'required',
+            'name'=>'required|max:190',
         ];
 
         foreach(range(0, (count($this->file('images')) - 1)) as $index) {

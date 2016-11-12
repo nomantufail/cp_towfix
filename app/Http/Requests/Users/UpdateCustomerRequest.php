@@ -45,9 +45,9 @@ class UpdateCustomerRequest extends Request
     {
         return [
             'customer_id' => 'required|exists:users,id',
-            'fName' => 'required|max:255',
-            'lName' => 'required|max:255',
-            'address' => 'required',
+            'fName' => 'required|max:190',
+            'lName' => 'required|max:190',
+            'address' => 'required|max:190',
             'email' => 'required|email|email|unique:users,email,'.$this->route()->parameter('customer_id').'|max:255',
             'password' => 'required|min:6|confirmed',
         ];

@@ -47,7 +47,7 @@ class ServicesController extends ParentController
     public function sendRequest(Requests\Service\AddServiceRequest $request)
     {
         $this->serviceRequestsRepo->store($request->getStorableAttrs());
-        return redirect()->back()->with(['success'=>'request added successfully']);
+        return redirect()->back()->with(['success'=>'Request added successfully']);
     }
 
     public function showEditRequestForm(Requests\Service\ShowEditRequestFormRequest $request)

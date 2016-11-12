@@ -60,7 +60,7 @@ class CartController extends ParentController
         try{
             $amount = $this->cart->totalPrice($request->user()->id);
             if($amount <= 0){
-                return redirect()->back()->with(['error'=>'amount should be greater then 0']);
+                return redirect()->back()->with(['error'=>'Amount should be greater then 0']);
             }
 
             Auth::user()->charge($amount*100, ['source' => $request->input('stripeToken')]);

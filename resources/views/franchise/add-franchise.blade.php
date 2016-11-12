@@ -2,7 +2,7 @@
 @section('page')
     <section class="home-page login-page">
         @if(\Session::has('success'))
-            <h4>
+            <h4 class="alert alert-success fade in">
                 {{\Session::get('success')}}
             </h4>
         @endif

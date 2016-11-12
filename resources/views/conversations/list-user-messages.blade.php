@@ -25,18 +25,20 @@
             <div class="user-conversation">
                 <em>{{$message->created_at->toFormattedDateString()}}</em>
                 <p>{{$message->message}}</p>
+                {{--<img class="image_path" src="{{ url('/').$img->path}}"/>--}}
+
             </div>
         </li>
         @endforeach
     </ul>
     <div class="conversation-sent">
-        <form class="frenchies-form" action="{{url('/')}}/message/send" method="post">
+        <form class="frenchies-form" action="{{url('/')}}/message/send" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             <input type="hidden" value="{{$engagedUser->id}}" name="receiver">
             <textarea placeholder="Message" name="message"></textarea>
             <input type="submit" name="sentMessage" value="Send">
 
-            <input type="file">
+            <input type="file" name="images[]" multiple>
         </form>
 
     </div>

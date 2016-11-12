@@ -30,7 +30,7 @@ class OrdersController extends ParentController
     public function shipped(Requests\Order\OrderShippedRequest $request)
     {
         $this->orders->updateWhere(['id'=>$request->route()->parameter('order_id')], ['is_done'=>1]);
-        return redirect()->back()->with(['success'=>"order #".$request->route()->parameter('order_id')." has been shipped."]);
+        return redirect()->back()->with(['success'=>"Order #".$request->route()->parameter('order_id')." has been shipped."]);
     }
 
     public function delete(Requests\Order\DeleteOrderRequest $request)

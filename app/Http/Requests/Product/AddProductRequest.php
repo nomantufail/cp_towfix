@@ -13,8 +13,6 @@ class AddProductRequest extends Request
             'name' => $this->input('name'),
             'detail' => $this->input('detail'),
         ];
-       // dd($this->input('contact_poster'));
-
 
         if($this->input('is_poster') == 1){
             $storableAttrs['contact'] = $this->input('contact');

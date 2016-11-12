@@ -153,6 +153,9 @@
                     <li><a href="{{url('/')}}/register"><i class="fa fa-lock fa-fw"></i> Register</a></li>
                 </ul>
             @endif
+            <div class="head-cart">
+            	<a href="#"><i class="fa fa fa-cart-arrow-down"></i> Cart</a>
+            </div>
         </div>
     </div>
     @yield('page')

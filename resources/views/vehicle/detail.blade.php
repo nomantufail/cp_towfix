@@ -305,6 +305,10 @@
                                 <span>Other observations to be advised to owner:</span>
                                 <textarea @if($document != null) disabled @endif placeholder="Observations" name="document[observations]"> @if($document != null) {{$document->observations}} @endif </textarea>
                             </label>
+                            <label>
+                                <span>Next Service Date/Time</span>
+                                <input @if($document != null) disabled @endif type="text" id="next_service_date_time" name="next_service" placeholder="next service" value="@if($document != null) {{$request->vehicle->next_service}} @endif">
+                            </label>
                             @if($document == null && $request->franchise_id == $user->id)<input type="submit" name="submit" value="Submit" class="btn btn-primary">@endif
                         </div>
                     </form>
@@ -315,12 +319,8 @@
     @endforeach
 
     <script>
-        $(document).ready(function () {
-            {{--var pre_load_form = "<?= request()->get('form') ?>";--}}
-            {{--if(pre_load_form != ""){--}}
-                {{--pre_load_form = "#"+pre_load_form;--}}
-                {{--$("button[data-target="+pre_load_form+"]").click();--}}
-            {{--}--}}
+        $('#next_service_date_time').datetimepicker({
+            dateFormat:'yy-m-d'
         });
     </script>
 @endsection

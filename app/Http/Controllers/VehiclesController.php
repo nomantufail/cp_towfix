@@ -37,6 +37,7 @@ class VehiclesController extends ParentController
 
     public function addDocument(Requests\Vehicle\AddVehicleServiceDocumentRequest $request)
     {
+        $this->vehiclesRepo->updateWhere(['id'=>$request->route()->parameter('vehicle_id')], ['next_service'=>$request->input('next_service')]);
         $this->serviceRequestFormsRepo->store([
             'cust_vehicle_srv_reqs_id'=>$request->input('cust_vehicle_srv_reqs_id'),
             'document'=>$request->document()

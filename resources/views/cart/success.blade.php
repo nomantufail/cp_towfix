@@ -8,7 +8,7 @@
 ?>
 @extends('app')
 @section('page')
-    <section class="vehicles-list">
+    <section class="success-payment">
         <h2 style="color:green">
             Transaction of amount {{$data['amount']}} Successful
         </h2>

@@ -47,6 +47,13 @@
             <textarea placeholder="Message" name="message"></textarea>
             <input type="submit" name="sentMessage" value="Send">
             <input type="file" name="images[]" multiple>
+            @if ($errors->has('images'))
+                <div class="alert alert-danger">
+                    @foreach ($errors->get('images') as $message)
+                        {{ $message }}<br>
+                    @endforeach
+                </div>
+            @endif
         </form>
     </div>
     <script>

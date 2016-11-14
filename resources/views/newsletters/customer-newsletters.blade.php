@@ -8,7 +8,6 @@
 ?>
 @extends('app')
 @section('page')
-    <? dd($newsletters); ?>
     <section class="news-panel">
         <h2 class="main-heading">Newsletters</h2>
         <div class="news-listing">

@@ -150,13 +150,16 @@
                 </div>
             @else
                 <ul class="account-list">
-                    <li class="active"><a href="{{url('/')}}/login"><i class="fa fa-user fa-fw"></i> Login</a></li>
-                    <li><a href="{{url('/')}}/register"><i class="fa fa-lock fa-fw"></i> Register</a></li>
+                    <li class="@if(Request::segment(1) == 'login') active @endif"><a href="{{url('/')}}/login"><i class="fa fa-user fa-fw"></i> Login</a></li>
+                    <li class="@if(Request::segment(1) == 'register') active @endif"><a href="{{url('/')}}/register"><i class="fa fa-lock fa-fw"></i> Register</a></li>
                 </ul>
             @endif
-            <div class="head-cart">
-            	<a href="{{url('/')}}/cart"><i class="fa fa fa-cart-arrow-down"></i> <span>Cart</span></a>
-            </div>
+
+            @if(Auth::check())
+                <div class="head-cart">
+                    <a href="{{url('/')}}/cart"><i class="fa fa fa-cart-arrow-down"></i> <span>Cart</span></a>
+                </div>
+            @endif
         </div>
     </div>
     @yield('page')

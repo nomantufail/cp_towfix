@@ -307,7 +307,7 @@
                             </label>
                             <label>
                                 <span>Next Service Date/Time</span>
-                                <input @if($document != null) disabled @endif type="text" id="next_service_date_time" name="next_service" placeholder="next service" value="@if($document != null) {{$request->vehicle->next_service}} @endif">
+                                <input required @if($document != null) disabled @endif type="text" class="next_service_date_time" name="next_service" placeholder="next service" value="@if($document != null) {{$request->vehicle->next_service}} @endif">
                             </label>
                             @if($document == null && $request->franchise_id == $user->id)<input type="submit" name="submit" value="Submit" class="btn btn-primary">@endif
                         </div>
@@ -319,8 +319,10 @@
     @endforeach
 
     <script>
-        $('#next_service_date_time').datetimepicker({
-            dateFormat:'yy-m-d'
+        $(document).ready(function () {
+            $('.next_service_date_time').datetimepicker({
+                dateFormat:'yy-m-d'
+            });
         });
     </script>
 @endsection

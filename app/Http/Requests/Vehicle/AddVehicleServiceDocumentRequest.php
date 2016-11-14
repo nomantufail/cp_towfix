@@ -27,7 +27,8 @@ class AddVehicleServiceDocumentRequest extends VehicleRequest
     public function rules()
     {
         return [
-            'vehicle_id'=>'required|exists:vehicles,id'
+            'vehicle_id'=>'required|exists:vehicles,id',
+            'next_service'=>'required'
         ];
     }
 }

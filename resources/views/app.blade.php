@@ -155,7 +155,7 @@
                 </ul>
             @endif
 
-            @if(Auth::check())
+            @if(Auth::check() && $user->can('view', 'cart'))
                 <div class="head-cart">
                     <a href="{{url('/')}}/cart"><i class="fa fa fa-cart-arrow-down"></i> <span>Cart</span></a>
                 </div>

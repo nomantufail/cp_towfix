@@ -75,7 +75,7 @@ class CartController extends ParentController
                 'amount' => $amount
             ]]);
         }catch (\Exception $e){
-            return redirect()->route('home');
+            return redirect()->route('mycart');
         }
     }
 

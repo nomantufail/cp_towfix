@@ -208,6 +208,7 @@
                 dateFormat: 'yy-mm-dd'
             });
         });
+
         $('.dateTime').datetimepicker({
             dateFormat:'yy-m-d'
         });

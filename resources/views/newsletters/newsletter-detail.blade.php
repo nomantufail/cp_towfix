@@ -9,38 +9,44 @@
 
 @extends('app')
 @section('page')
+    <style>
+        .adding_to_cart{
+            background-color: orange;
+        }
+        .added_to_cart{
+            background-color: green;
+        }
+    </style>
     <section class="product-detail">
         <div class="product-widget">
             @if(count($newsletter->images))
                 <div class="product-slider">
-                    <ul class="bxslider">
+                    <ul class="product-list-images">
                         @foreach($newsletter->images as $image)
-                            <li><img src="{{url('/')}}/{{$image->path}}" /></li>
+                            <li>
+                                <a class="fancybox" href="{{url('/')}}/{{$image->path}}">
+                                    <img src="{{url('/')}}/{{$image->path}}" />
+                                </a>
+                            </li>
                         @endforeach
                     </ul>
-
-                    <div id="bx-pager">
-                        <?php
-                        $count = 0;
-                        foreach($newsletter->images as $image){
-                        ?>
-                        <a data-slide-index="{{$count}}" href=""><img src="{{url('/')}}/{{$image->path}}" /></a>
-                        <?php
-                        $count++;
-                        }
-                        ?>
-                    </div>
                 </div>
             @endif
-            <div class="news-text">
-                <h3>{{$newsletter->name}}</h3>
+            <div class="product-info">
+                <h4>{{$newsletter->name}}</h4>
                 <p>{{$newsletter->detail}}</p>
             </div>
         </div>
     </section>
     <script>
-        $('.bxslider').bxSlider({
-            pagerCustom: '#bx-pager'
+
+        $(document).ready(function() {
+            $(".fancybox").fancybox();
         });
+
+        /*$('.bxslider').bxSlider({
+         pagerCustom: '#bx-pager',
+         adaptiveHeight: true
+         });*/
     </script>
 @endsection

@@ -19,7 +19,6 @@
     </style>
     <section class="product-detail">
         <div class="product-widget">
-
             @if(count($product->images))
             <div class="product-slider">
                	<ul class="product-list-images">
@@ -31,25 +30,6 @@
                		</li>
                		@endforeach
                	</ul>
-               
-               
-                <!--<ul class="bxslider">
-                    @foreach($product->images as $image)
-                        <li><img src="{{url('/')}}/{{$image->path}}" /></li>
-                    @endforeach
-                </ul>
-
-                <div id="bx-pager">
-                    <?php
-                        $count = 0;
-                    foreach($product->images as $image){
-                     ?>
-                        <a data-slide-index="{{$count}}" href=""><img src="{{url('/')}}/{{$image->path}}" /></a>
-                    <?php
-                            $count++;
-                    }
-                    ?>
-                </div>-->
             </div>
             @endif
             <div class="product-info">

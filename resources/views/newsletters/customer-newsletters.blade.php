@@ -8,6 +8,7 @@
 ?>
 @extends('app')
 @section('page')
+    <? dd($newsletters); ?>
     <section class="news-panel">
         <h2 class="main-heading">Newsletters</h2>
         <div class="news-listing">
@@ -16,7 +17,9 @@
                     <li class="col-md-4 col-sm-4 col-xm-12">
                         <div class="news-widget">
                             <figure>
-                                <img src="{{url('/')}}/{{$newsletter->image}}" alt="">
+                                @if(count($newsletter->images->all()))
+                                <img src="{{url('/')}}/{{$newsletter->images->all()[0]->path}}" alt="">
+                                @endif
                             </figure>
                             <div class="store-content">
                                 <h4>{{$newsletter->name}}</h4>
@@ -29,4 +32,9 @@
             </ul>
         </div>
     </section>
+    <script>
+        $(document).ready(function() {
+            $(".fancybox").fancybox();
+        });
+    </script>
 @endsection

@@ -25,8 +25,6 @@ class Repository
         return clone($this->model);
     }
 
-
-
     public function all()
     {
         return $this->getModel()->all();

@@ -17,4 +17,10 @@ class NewslettersRepository extends Repository
     {
         $this->setModel($newsletter);
     }
+
+    public function getWithDetails()
+    {
+        return $this->getModel()->with('images')->get();
+    }
+
 }

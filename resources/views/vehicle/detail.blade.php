@@ -50,7 +50,7 @@
                 </li>
             </ul>
             <div class="vehicle-history">
-                <h4>Vehicle History</h4>
+                <h4>Vehicle Service History</h4>
                 <table class="customer-table" cellspacing="0" width="100%">
                     <thead>
                     <tr>
@@ -106,8 +106,8 @@
                             </label>
 
                             <label class="half-field">
-                                <span>Tandem/Single</span>
-                                <input @if($document != null) disabled @endif type="text" name="document[simpleInformation][tendem_single]" placeholder="Tandem/Single" value="@if($document != null) {{$document->simpleInformation->tendem_single}} @endif">
+                                <span>Number Of Axles</span>
+                                <input @if($document != null) disabled @endif type="number" name="document[simpleInformation][tendem_single]" placeholder="Tandem/Single" value="@if($document != null) {{$document->simpleInformation->tendem_single}} @endif">
                             </label>
 
                             <label class="half-field">

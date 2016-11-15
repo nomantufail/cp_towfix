@@ -22,7 +22,8 @@ class NewslettersController extends ParentController
 
     public function showNewsletters(Requests\Newsletter\ViewNewslettersRequest $request)
     {
-        $newsletters = $this->newsletters->all();
+
+        $newsletters = $this->newsletters->getWithDetails();
         if(Auth::user()->isCustomer()){
             return view('newsletters.customer-newsletters', ['newsletters'=>$newsletters]);
         }else{

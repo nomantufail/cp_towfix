@@ -9,28 +9,27 @@
 
 @extends('app')
 @section('page')
+    <style>
+        .adding_to_cart{
+            background-color: orange;
+        }
+        .added_to_cart{
+            background-color: green;
+        }
+    </style>
     <section class="product-detail">
         <div class="product-widget">
-
             @if(count($manual->images))
                 <div class="product-slider">
-                    <ul class="bxslider">
+                    <ul class="product-list-images">
                         @foreach($manual->images as $image)
-                            <li><img src="{{url('/')}}/{{$image->image}}" /></li>
+                            <li>
+                                <a class="fancybox" href="{{url('/')}}/{{$image->image}}">
+                                    <img src="{{url('/')}}/{{$image->image}}" />
+                                </a>
+                            </li>
                         @endforeach
                     </ul>
-
-                    <div id="bx-pager">
-                        <?php
-                        $count = 0;
-                        foreach($manual->images as $image){
-                        ?>
-                        <a data-slide-index="{{$count}}" href=""><img src="{{url('/')}}/{{$image->image}}" /></a>
-                        <?php
-                        $count++;
-                        }
-                        ?>
-                    </div>
                 </div>
             @endif
             <div class="product-info">
@@ -40,8 +39,14 @@
         </div>
     </section>
     <script>
-        $('.bxslider').bxSlider({
-            pagerCustom: '#bx-pager'
+
+        $(document).ready(function() {
+            $(".fancybox").fancybox();
         });
+
+        /*$('.bxslider').bxSlider({
+         pagerCustom: '#bx-pager',
+         adaptiveHeight: true
+         });*/
     </script>
 @endsection

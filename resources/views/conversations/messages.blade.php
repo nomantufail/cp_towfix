@@ -19,7 +19,7 @@
                         <i class="fa fa-search"></i>
                     </label>
                     <a href="{{url('/')}}/create-new-message">Start a New Conversation</a>
-                    <span><i class="fa fa-trash"></i></span>
+
                 </div>
                 @foreach($users as $user)
                     <li class="tab-link current" data-tab="tab-1">

@@ -7,6 +7,7 @@ class AddVehicleServiceDocumentRequest extends VehicleRequest
 {
     public function document()
     {
+
         return collect($this->input('document'))->toJson();
     }
     /**

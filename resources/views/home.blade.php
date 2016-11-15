@@ -11,7 +11,7 @@
 @section('page')
 <section class="home-page">
     <div class="banner">
-        <img src="{{url('/')}}/images/banner.jpg" alt="">
+        <img src="{{url('/')}}/images/newBanner.jpg" alt="">
     </div>
     <div class="home-content">
         <h4>Lorem Ipsum is simply dummy text of the printing and typesetting industry</h4>

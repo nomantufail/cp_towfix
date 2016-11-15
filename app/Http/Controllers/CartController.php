@@ -34,6 +34,14 @@ class CartController extends ParentController
 
     public function myCart(Requests\Cart\ListMyCartRequest $request)
     {
+
+        $items = $this->cart->userCart($request->user()->id);
+        if (sizeof($items) == 0)
+        {
+            return view('cart.empty-cart');
+        }
+
+
         return view('cart.list',[
             'items'=>$this->cart->userCart($request->user()->id),
             'total_price' => $this->cart->totalPrice($request->user()->id)

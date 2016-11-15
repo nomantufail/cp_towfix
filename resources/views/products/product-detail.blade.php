@@ -42,10 +42,11 @@
                     <label>Product Price: <span>${{$product->price}}</span></label>
                 @endif
                 <p>{{$product->detail}}</p>
-
-                @if(!$product->is_poster)
-                    <span data-id="{{$product->id}}" class="btn btn-primary @if(in_array($product->id,$productsInCart)) added_to_cart @else add_to_cart @endif">@if(in_array($product->id,$productsInCart)) Added To Cart @else Add To Cart @endif</span>
-                @endif
+                @if($user->isCustomer())
+                    @if(!$product->is_poster)
+                        <span data-id="{{$product->id}}" class="btn btn-primary @if(in_array($product->id,$productsInCart)) added_to_cart @else add_to_cart @endif">@if(in_array($product->id,$productsInCart)) Added To Cart @else Add To Cart @endif</span>
+                    @endif
+                    @endif
             </div>
         </div>
     </section>

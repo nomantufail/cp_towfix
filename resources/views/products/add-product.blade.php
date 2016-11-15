@@ -34,8 +34,8 @@
 
                     <label>
                         <select name="is_poster" class="half-field" id="product_type">
-                            <option value="0">Direct Product</option>
-                            <option value="1">Contact Ad Poster</option>
+                            <option value="0" @if(old('is_poster') == 0) selected @endif>Direct Product</option>
+                            <option value="1" @if(old('is_poster') == 1) selected @endif>Contact Ad Poster</option>
                         </select>
                     </label>
 
@@ -115,6 +115,11 @@
             </div>
     </section>
     <script>
+
+        $(document).ready(function(){
+            $('#product_type').trigger('change');
+
+        });
         $(document).on("change","#product_type", function () {
             val = $("#product_type option:selected").val();
             if(val == 1){

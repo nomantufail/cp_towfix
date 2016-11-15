@@ -32,6 +32,11 @@
                         <div class="store-content">
                             <p>{{str_limit($product->detail, 150)}}</p>
                             <a href="{{url('/')}}/product/{{$product->id}}" class="btn btn-primary">View Product</a>
+                            @if($product->is_poster)<a class="btn btn-primary productContactInfo" data-info="{{json_encode([
+                                'address' => $product->address,
+                                'contact' => $product->contact,
+                                'email' => $product->email
+                            ])}}" data-toggle="modal" data-target="#addContactInfoModal">Contact Info</a>@endif
                             @if(!$product->is_poster)<span data-id="{{$product->id}}" class="btn btn-primary @if(in_array($product->id,$productsInCart)) added_to_cart @else add_to_cart @endif">@if(in_array($product->id,$productsInCart)) Added To Cart @else Add To Cart @endif</span>@endif
                         </div>
                     </div>
@@ -39,8 +44,41 @@
                 @endforeach
             </ul>
         </div>
+
+
+        <div id="addContactInfoModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Owner Information</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label>Contact: <span id="modal_product_contact">{{$product->contact}}</span></label><br>
+                    </div>
+                    <div class="modal-body">
+                        <label>Email: <span id="modal_product_email">{{$product->email}}</span></label><br>
+                    </div>
+                    <div class="modal-body">
+                        <label>Address: <span id="modal_product_address">{{$product->address}}</span></label><br><br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     <script>
+        $(document).on('click','.productContactInfo', function () {
+            var modal = $("#addContactInfoModal");
+            var contactInfo = JSON.parse($(this).attr('data-info'));
+            modal.find('#modal_product_contact').text(contactInfo.contact);
+            modal.find('#modal_product_address').text(contactInfo.address);
+            modal.find('#modal_product_email').text(contactInfo.email);
+        });
         $(document).on("click",'.add_to_cart', function () {
             var product_id = $(this).attr('data-id');
             var btn = $(this);

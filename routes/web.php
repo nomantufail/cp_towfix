@@ -210,7 +210,8 @@ Route::group(['middleware' => 'auth'], function () {
      * Cart routes ------------------------------>
      */
     Route::get('/cart', [
-        'uses'=>'CartController@myCart'
+        'uses'=>'CartController@myCart',
+        'as'=>'mycart'
     ]);
     Route::post('/cart/remove/{product_id}', [
         'uses' => 'CartController@removeItem'

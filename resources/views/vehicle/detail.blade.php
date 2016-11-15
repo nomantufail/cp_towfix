@@ -107,7 +107,7 @@
 
                             <label class="half-field">
                                 <span>Number Of Axles</span>
-                                <input @if($document != null) disabled @endif type="number" name="document[simpleInformation][tendem_single]" placeholder="Tandem/Single" value="@if($document != null) {{$document->simpleInformation->tendem_single}} @endif">
+                                <input @if($document != null) disabled @endif type="number" name="document[simpleInformation][tendem_single]" placeholder="Number Of Axles" value="@if($document != null) {{$document->simpleInformation->tendem_single}} @endif">
                             </label>
 
                             <label class="half-field">
@@ -116,7 +116,7 @@
                             </label>
                             <label class="half-field">
                                 <span>Date</span>
-                                <input @if($document != null) disabled @endif type="text" id="datetimepicker" placeholder="Date" name="document[simpleInformation][date]" value="@if($document != null){{$document->simpleInformation->date}} @endif">
+                                <input @if($document != null) disabled @endif type="text" class="datetimepicker" placeholder="Date" name="document[simpleInformation][date]" value="@if($document != null){{$document->simpleInformation->date}} @endif">
                             </label>
                         </div>
                         <div class="vehicles-service-list">

@@ -81,6 +81,8 @@
             quantityChanged();
         });
 
+
+
         $(document).on('click','.remove_item', function () {
             var ul = $(this).closest('ul');
             var product_id = $(this).closest('ul').find('.product_id').val();

@@ -164,6 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         \Laravel\Cashier\CashierServiceProvider::class,
+        \App\Providers\CustomValidationServiceProvider::class,
 
         /*
          * Package Service Providers...

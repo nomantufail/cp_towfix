@@ -8,7 +8,7 @@
 ?>
 @extends('app')
 @section('page')
-    <section class="vehicles-list cart-page">
+    <section id="cart-with-items" class="vehicles-list cart-page">
         <div class="vehicles-head">
             <h2><i class="fa fa-cart-arrow-down"></i> My Shopping Cart</h2>
         </div>
@@ -65,6 +65,10 @@
             </div>
         </div>
     </section>
+    <section class="empty-cart" style="display:none" id="empty-cart">
+        <h2>Akhtar Your Cart is Empty</h2>
+        <a href="{{url('/')}}/products" type="submit" class="btn btn btn-primary"><i class="fa fa-shopping-bag"></i> Online Store</a>
+    </section>
     <script>
         function quantityChanged(){
             var total_price = 0;
@@ -81,12 +85,19 @@
             quantityChanged();
         });
 
+
+
         $(document).on('click','.remove_item', function () {
             var ul = $(this).closest('ul');
             var product_id = $(this).closest('ul').find('.product_id').val();
             $.ajax({type: 'POST' , data: {'_token':"<?=csrf_token()?>" }, url: base_url + 'cart/remove/'+product_id ,
-                success: function (data){
+                success: function (data) {
                     ul.remove();
+                    if ($(".cart-content").length == 0)
+                    {
+                        $("#cart-with-items").hide();
+                        $("#empty-cart").show();
+                    }
                     quantityChanged();
                 },
                 error: function () {

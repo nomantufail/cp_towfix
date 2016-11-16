@@ -92,6 +92,7 @@ class CartController extends ParentController
     public function removeItem($product_id)
     {
         return $this->cart->removeProduct(request()->user()->id, $product_id);
+
     }
 
 }

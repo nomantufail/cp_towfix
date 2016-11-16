@@ -41,7 +41,9 @@ class AddFranchiseRequest extends Request
     public function messages()
     {
         return [
-            'images.max'=>'Images should not be greater than '.$this->maxImages
+            'images.max'=>'Images should not be greater than '.$this->maxImages,
+            'g-recaptcha-response.google_recapcha' => 'you are a robot',
+            'g-recaptcha-response.required' => 'Capcha field is required'
         ];
     }
     /**
@@ -57,6 +59,7 @@ class AddFranchiseRequest extends Request
             'address' => 'required|max:190',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+           // 'g-recaptcha-response'=>'required|google_recapcha'
         ];
 
         return $rules;

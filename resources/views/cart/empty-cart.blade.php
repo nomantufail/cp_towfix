@@ -8,10 +8,8 @@
 ?>
 @extends('app')
 @section('page')
-    <section class="success-payment">
-        <h2 style="color:green">
-            <span style="font-size: 50px;">Your Cart is Empty</span>
-            <a href="{{url('/')}}/products" type="submit" class="btn btn btn-primary">Online Store</a>
-        </h2>
+    <section class="empty-cart">
+        <h2>Akhtar Your Cart is Empty</h2>
+        <a href="{{url('/')}}/products" type="submit" class="btn btn btn-primary"><i class="fa fa-shopping-bag"></i> Online Store</a>
     </section>
 @endsection

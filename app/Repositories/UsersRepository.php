@@ -24,7 +24,7 @@ class UsersRepository extends Repository
 
     public function franchises()
     {
-        return $this->getModel()->where('role', 2)->get();
+        return $this->getModel()->where('role', 2)->with('info')->get();
     }
     public function customers()
     {

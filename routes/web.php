@@ -166,12 +166,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/franchises', [
         'uses'=>'FranchisesController@showFranchises'
     ]);
-    Route::get('/franchise/add', [
-        'uses'=>'FranchisesController@showAddFranchiseForm'
-    ]);
-    Route::post('/franchise/add', [
-        'uses'=>'FranchisesController@storeFranchise'
-    ]);
     Route::get('/franchise/update/{franchise_id}', [
         'uses'=>'FranchisesController@editFranchiseForm'
     ]);
@@ -181,6 +175,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/franchise/delete/{franchise_id}', [
         'uses'=>'FranchisesController@delete'
     ]);
+    Route::post('/franchise/approve/{franchise_id}', [
+        'uses'=>'FranchisesController@approve'
+    ]);
+
+
 
 
     Route::get('/manuals', [
@@ -248,7 +247,20 @@ Route::group(['middleware' => 'auth'], function () {
         return redirect('/');
     });
 
+    Route::get('/empty_cart', function ()    {
+        return view('cart.empty-cart');
+    });
+
 });
+
+
+Route::get('/franchise/register', [
+    'uses'=>'FranchisesController@showAddFranchiseForm'
+]);
+Route::post('/franchise/add', [
+    'uses'=>'FranchisesController@storeFranchise'
+]);
+
 Route::get('/internal-server-error', [
     'uses'=>'PagesController@internalServerError'
 ]);

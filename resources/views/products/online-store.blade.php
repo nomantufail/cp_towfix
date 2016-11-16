@@ -27,10 +27,11 @@
                             @if(count($product->images))
                                 <img src="{{url('/')}}/{{$product->images[0]->path}}" alt="">
                             @endif
-                            <h4>{{$product->title}}</h4>
                         </figure>
                         <div class="store-content">
-                            <p>{{str_limit($product->detail, 150)}}</p>
+                            <h4>{{$product->name}}</h4>
+                            <h4>Price : {{$product->price}}$</h4>
+                            <p>{{str_limit($product->detail, 60)}}</p>
                             <a href="{{url('/')}}/product/{{$product->id}}" class="btn btn-primary">View Product</a>
                             @if($product->is_poster)<a class="btn btn-primary productContactInfo" data-info="{{json_encode([
                                 'address' => $product->address,

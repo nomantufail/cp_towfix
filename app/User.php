@@ -33,6 +33,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Order');
     }
+    public function info()
+    {
+        return $this->hasOne('App\Models\FranchiseInfo','user_id');
+    }
 
     public function vehicles()
     {
@@ -53,4 +57,5 @@ class User extends Authenticatable
     public function isCustomer(){
         return ($this->role == 3);
     }
+
 }

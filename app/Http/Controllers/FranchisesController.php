@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Repositories\FranchiseInfoRepository;
 use App\Repositories\UsersRepository;
 use Illuminate\Support\Facades\Auth;
 use Response;
@@ -10,11 +11,13 @@ use Response;
 class FranchisesController extends ParentController
 {
     private $franchises = null;
+    private  $franchiseInfo = null;
 
-    public function __construct(UsersRepository $franchises)
+    public function __construct(UsersRepository $franchises , FranchiseInfoRepository $franchise_info)
     {
         parent::__construct();
         $this->franchises = $franchises;
+        $this->franchiseInfo = $franchise_info;
     }
 
     public function showFranchises(Requests\Franchise\ViewFranchisesRequest $request)
@@ -28,6 +31,8 @@ class FranchisesController extends ParentController
     }
     public function showAddFranchiseForm(Requests\Franchise\ShowAddFranchiseFormRequest $request)
     {
+        if(Auth::user() != null)
+            return redirect()->route('home');
         return view('franchise.add-franchise');
     }
     public function editFranchiseForm(Requests\Franchise\EditFranchiseRequest $request, $franchise_id)
@@ -55,13 +60,18 @@ class FranchisesController extends ParentController
 
     public function storeFranchise(Requests\Franchise\AddFranchiseRequest $request)
     {
-        try{
-            $this->franchises->store($request->storableAttrs());
-
-            return redirect()->back()->with('success', 'Franchise Stored Successfully');
-        }catch (\Exception $e){
-            return $this->handleInternalServerError($e->getMessage());
-        }
+        if(Auth::user() != null)
+            return redirect()->route('home');
+//        try{
+            $franchise = $this->franchises->store($request->storableAttrs());
+            $this->franchiseInfo->store([
+                'user_id' => $franchise->id,
+                'address' => $franchise->address
+            ]);
+            return redirect()->back()->with('success', 'Your request has been sent to admin for approval');
+//        }catch (\Exception $e){
+//            return $this->handleInternalServerError($e->getMessage());
+//        }
     }
     public function delete(Requests\Franchise\DeleteFranchiseRequest $request , $franchise_id)
     {
@@ -72,5 +82,17 @@ class FranchisesController extends ParentController
             return $this->handleInternalServerError($e->getMessage());
         }
     }
+
+    public function approve(Requests\Franchise\FranchiseApproveRequest $request , $franchise_id)
+    {
+        try{
+            $this->franchiseInfo->updateWhere(['user_id' => $franchise_id], ['status'=>1]);
+            return redirect()->back()->with('success','Franchise Approved successfully');
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
+    }
+
+
 
 }

@@ -55,7 +55,6 @@ class FranchisesController extends ParentController
 
     public function storeFranchise(Requests\Franchise\AddFranchiseRequest $request)
     {
-
         try{
             $this->franchises->store($request->storableAttrs());
 

@@ -65,10 +65,19 @@
                         </span>
                     @endif
                 </label>
+                <label class="clearfix">
+                    <div class="g-recaptcha" data-sitekey="6LfvFAwUAAAAAMgked1YI1NJtFoISN_LpJ2LcJef"></div>
+                    @if ($errors->has('g-recaptcha-response'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                        </span>
+                    @endif
+                </label>
                 <label class="submit">
                     <input type="submit" class="btn btn btn-primary" name="submit" value="Submit">
                 </label>
             </form>
         </div>
+
     </section>
 @endsection

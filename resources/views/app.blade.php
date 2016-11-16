@@ -23,6 +23,8 @@
     <script type="text/javascript" src="{{url('/')}}/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.bxslider.min.js"></script>
 
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
     <!-- datetimepicker js  -->
     <script type="text/javascript" src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
     <script type="text/javascript" src="{{url('/')}}/js/jquery.ui.timepicker.addon.js"></script>

@@ -183,6 +183,9 @@ Route::group(['middleware' => 'auth'], function () {
     ]);
 
 
+    
+
+
     Route::get('/manuals', [
         'uses'=>'ManualsControllers@showManuals'
     ]);
@@ -246,6 +249,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/logout', function ()    {
         Auth::logout();
         return redirect('/');
+    });
+
+    Route::get('/empty_cart', function ()    {
+        return view('cart.empty-cart');
     });
 
 });

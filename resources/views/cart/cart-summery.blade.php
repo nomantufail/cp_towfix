@@ -75,7 +75,7 @@
 	</section>
 	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 	<script type="text/javascript">
-		Stripe.setPublishableKey('pk_test_O7ZJNRdOZiR1UG0kCO9QEEE9');
+		Stripe.setPublishableKey('<?= env('STRIPE_PUBLISHABLE_KEY') ?>');
 
 		function stripeResponseHandler(status, response) {
 			// Grab the form:

@@ -62,16 +62,16 @@ class FranchisesController extends ParentController
     {
         if(Auth::user() != null)
             return redirect()->route('home');
-//        try{
+        try{
             $franchise = $this->franchises->store($request->storableAttrs());
             $this->franchiseInfo->store([
                 'user_id' => $franchise->id,
                 'address' => $franchise->address
             ]);
             return redirect()->back()->with('success', 'Your request has been sent to admin for approval');
-//        }catch (\Exception $e){
-//            return $this->handleInternalServerError($e->getMessage());
-//        }
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
     }
     public function delete(Requests\Franchise\DeleteFranchiseRequest $request , $franchise_id)
     {

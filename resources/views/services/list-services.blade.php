@@ -43,7 +43,7 @@
                             @if($user->isFranchise())<td>{{$request->customer->email}}</td>@endif
                         @if($user->isCustomer())<th>{{$request->franchise->f_name}} {{$request->franchise->l_name}}</th>@endif
                         @if($user->isCustomer())<th>{{$request->franchise->address}}</th>@endif
-                        <td>{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$request->suggested_date)->toFormattedDateString()}} <span style="font-size: 12px;">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$request->suggested_date)->toTimeString()}}</span>
+                        <td>{!! \App\Libs\Helpers\Helper::towfixDateFormat($request->suggested_date) !!} <span style="font-size: 12px;">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$request->suggested_date)->toTimeString()}}</span>
                             @if($request->isPending())
                             <span style="color:@if($request->suggestedUser->id == $user->id) green @else red @endif; font-weight: bold;">
                                 By

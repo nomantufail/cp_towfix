@@ -97,6 +97,19 @@
 	margin-top: -9px;
 }
 
+.reset-password,
+.empty-widget{
+	position: absolute;
+	width: 700px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.empty-widget {
+	width: auto;
+	text-align: center;
+}
+
 .main-content{
     max-width: 100%;
     padding: 100px 30px 30px;

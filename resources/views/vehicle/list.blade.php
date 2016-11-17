@@ -38,9 +38,9 @@
                             <td>{{$vehicle->owner->f_name}} {{$vehicle->owner->l_name}}</td>
                             <td>{{$vehicle->year}}</td>
                             <td>{{$vehicle_types[$vehicle->vehicle_type_id]->vehicle_type}}</td>
-                            <td>{{$vehicle->next_service}}</td>
+                            <td>{!! \App\Libs\Helpers\Helper::towfixDateFormat($vehicle->next_service) !!}</td>
                             <td>{{$vehicle->registration_number}}</td>
-                            <td>{{$vehicle->registration_expiry}}</td>
+                            <td>{!! \App\Libs\Helpers\Helper::towfixDateFormat($vehicle->registration_expiry) !!}</td>
                             <td><a href="{{url('/vehicle/')}}/{{$vehicle->id}}">View</a></td>
                             <td>
                                 @if($user->can('edit','vehicles',$vehicle))<a href="{{url('/')}}/vehicle/update/{{$vehicle->id}}"><i class="fa fa-edit fa-fw"></i></a>@endif

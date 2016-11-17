@@ -126,6 +126,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/customer/delete/{user_id}', [
         'uses'=>'UsersController@delete'
     ]);
+    Route::get('register/customer' , [
+        'uses' => 'UsersController@showAddCustomerForm'
+    ]);
+    Route::post('customer/add' , [
+
+        'uses' => 'UsersController@addCustomer'
+    ]);
 
     Route::get('/orders', [
         'uses'=>'OrdersController@showOrders'
@@ -178,13 +185,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/franchise/approve/{franchise_id}', [
         'uses'=>'FranchisesController@approve'
     ]);
-
-
-
-
-    
-
-
     Route::get('/manuals', [
         'uses'=>'ManualsControllers@showManuals'
     ]);

@@ -9,6 +9,8 @@
 namespace App\Libs\Helpers;
 
 
+use Carbon\Carbon;
+
 class Helper
 {
     public static function propertyToArray(array $objects, $property)
@@ -28,5 +30,16 @@ class Helper
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString;
+    }
+
+    public static function towfixDateFormat($date)
+    {
+        $date = explode(' ',$date)[0];
+        //return Carbon::createFromFormat('Y-m-d H:i:s',$date)->toFormattedDateString();
+        $months = config('constants.MONTHS');
+        $day_symbol = config('constants.DAY_SYMBOL');
+        $dateArray = explode('-', $date);
+        $formattedDate = $dateArray[2]."<sup>".$day_symbol[$dateArray[2]]."</sup> ".ucfirst($months[$dateArray[1]-1])." ".$dateArray[0];
+        return $formattedDate;
     }
 }

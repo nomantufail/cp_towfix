@@ -13,6 +13,7 @@
     <section class="vehicles-list">
         <div class="vehicles-head">
             <h3>Customers</h3>
+            <a href="{{url('/')}}/register/customer" class="btn btn-primary pull-right">Add a New Customer</a>
         </div>
         <div class="vehicles-list-content">
             <div class="vehicles-table">

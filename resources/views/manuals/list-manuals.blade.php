@@ -51,7 +51,7 @@
             </div>
         </div>
         @else
-            <h2 class="main-heading">Newsletters</h2>
+            <h2 class="main-heading">Manuals</h2>
             <div class="news-listing">
                 <ul class="row">
                     @foreach($manuals as $manual)

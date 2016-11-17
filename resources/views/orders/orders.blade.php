@@ -40,7 +40,7 @@
                     @if($user->isAdmin())<td>{{$order->user->f_name}} {{$order->user->l_name}}</td>@endif
                     @if($user->isAdmin())<td>{{$order->user->phone_number}}</td>@endif
                     <td>${{$order->total_price}}</td>
-                    <td>{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$order->created_at)->toFormattedDateString()}} <span style="font-size: 12px;">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$order->created_at)->toTimeString()}}</span></td>
+                    <td>{!! \App\Libs\Helpers\Helper::towfixDateFormat($order->created_at) !!} <span style="font-size: 12px;">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$order->created_at)->toTimeString()}}</span></td>
                     @if($user->isAdmin())
                         <td>
                             @if($order->is_done)

@@ -37,7 +37,6 @@ class FranchisesController extends ParentController
     }
     public function editFranchiseForm(Requests\Franchise\EditFranchiseRequest $request, $franchise_id)
     {
-
         try{
             $data = [
                 'franchise' => $this->franchises->findById($franchise_id)

@@ -182,6 +182,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
+    
+
+
     Route::get('/manuals', [
         'uses'=>'ManualsControllers@showManuals'
     ]);

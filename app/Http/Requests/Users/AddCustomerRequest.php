@@ -3,12 +3,13 @@
 namespace App\Http\Requests\Users;
 
 use App\Http\Requests\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AddCustomerRequest extends Request
 {
     public function storableAttrs()
     {
-        $role = 2;
+        $role = 3;
         $storableAttrs = [
             'f_name' => $this->input('fname'),
             'l_name' => $this->input('lname'),
@@ -29,7 +30,7 @@ class AddCustomerRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return (Auth::user()->can('add','customers'));
     }
 
     public function messages()

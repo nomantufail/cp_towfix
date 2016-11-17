@@ -45,6 +45,13 @@ class VehiclesController extends ParentController
         return redirect()->back()->with(['success'=>'Document added successfully !']);
     }
 
+    public function updateDocument(Requests\Vehicle\UpdateVehicleServiceDocumentRequest $request)
+    {
+        $this->vehiclesRepo->updateWhere(['id'=>$request->route()->parameter('vehicle_id')], ['next_service'=>$request->input('next_service')]);
+        $this->serviceRequestFormsRepo->updateWhere(['cust_vehicle_srv_reqs_id'=>$request->input('cust_vehicle_srv_reqs_id'),],['document'=>$request->document()]);
+        return redirect()->back()->with(['success'=>'Document updated successfully !']);
+    }
+
     public function showAddVehicleForm(Requests\Vehicle\AddVehicleFormRequest $request)
     {
         $data = [

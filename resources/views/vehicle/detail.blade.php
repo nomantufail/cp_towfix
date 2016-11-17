@@ -10,6 +10,11 @@
 @extends('app')
 @section('page')
     <section class="vehicle-detail">
+        @if(\Session::has('success'))
+            <h4 class="alert alert-success fade in">
+                {{\Session::get('success')}}
+            </h4>
+        @endif
         <h2 class="main-heading">Vehicle Detail</h2>
         <div class="vehicle-widget">
             <div class="vehicle-edit-btns">
@@ -135,106 +140,262 @@
                                 <tbody>
                                 <tr>
                                     <td>Lh indicator</td>
+                                    @if(!$user->isCustomer())
                                     <td><input type="radio" name="document[condition][lh_indicator]" value="1" @if($document != null && isset($document->condition->lh_indicator) && $document->condition->lh_indicator == "1") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][lh_indicator]" value="2" @if($document != null && isset($document->condition->lh_indicator) && $document->condition->lh_indicator == "2") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][lh_indicator]" value="3" @if($document != null && isset($document->condition->lh_indicator) && $document->condition->lh_indicator == "3") checked="checked" @endif > </td>
-                                    <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][lh_indicator]" value="@if($document != null) {{$document->comment->lh_indicator}} @endif" > </td>
+                                    @else
+                                        <td>
+                                            @if( isset($document->condition->lh_indicator) && $document->condition->lh_indicator == "1") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->lh_indicator) && $document->condition->lh_indicator == "2") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->lh_indicator) && $document->condition->lh_indicator == "3") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                    @endif
+                                        <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][lh_indicator]" value="@if($document != null) {{$document->comment->lh_indicator}} @endif" > </td>
                                 </tr>
 
                                 <tr>
                                     <td>Rh indicator</td>
+                                    @if(!$user->isCustomer())
                                     <td><input type="radio" name="document[condition][rh_indicator]" value="1" @if($document != null && isset($document->condition->rh_indicator) && $document->condition->rh_indicator == "1") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][rh_indicator]" value="2" @if($document != null && isset($document->condition->rh_indicator) && $document->condition->rh_indicator == "2") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][rh_indicator]" value="3" @if($document != null && isset($document->condition->rh_indicator) && $document->condition->rh_indicator == "3") checked="checked" @endif > </td>
-                                    <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][rh_indicator]" value="@if($document != null) {{$document->comment->rh_indicator}} @endif" > </td>
+                                    @else
+                                        <td>
+                                            @if( isset($document->condition->rh_indicator) && $document->condition->rh_indicator == "1") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->rh_indicator) && $document->condition->rh_indicator == "2") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->rh_indicator) && $document->condition->rh_indicator == "3") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                    @endif
+                                        <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][rh_indicator]" value="@if($document != null) {{$document->comment->rh_indicator}} @endif" > </td>
                                 </tr>
 
                                 <tr>
                                     <td>No plate light</td>
+                                    @if(!$user->isCustomer())
                                     <td><input type="radio" name="document[condition][no_plate_light]" value="1" @if($document != null && isset($document->condition->no_plate_light) && $document->condition->no_plate_light == "1") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][no_plate_light]" value="2" @if($document != null && isset($document->condition->no_plate_light) && $document->condition->no_plate_light == "2") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][no_plate_light]" value="3" @if($document != null && isset($document->condition->no_plate_light) && $document->condition->no_plate_light == "3") checked="checked" @endif > </td>
-                                    <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][no_plate_light]" value="@if($document != null) {{$document->comment->no_plate_light}} @endif" > </td>
+                                    @else
+                                        <td>
+                                            @if( isset($document->condition->no_plate_light) && $document->condition->no_plate_light == "1") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->no_plate_light) && $document->condition->no_plate_light == "2") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->no_plate_light) && $document->condition->no_plate_light == "3") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                    @endif
+                                        <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][no_plate_light]" value="@if($document != null) {{$document->comment->no_plate_light}} @endif" > </td>
                                 </tr>
 
                                 <tr>
                                     <td>Water tank mounts</td>
+                                    @if(!$user->isCustomer())
                                     <td><input type="radio" name="document[condition][water_tank_mounts]" value="1" @if($document != null && isset($document->condition->water_tank_mounts) && $document->condition->water_tank_mounts == "1") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][water_tank_mounts]" value="2" @if($document != null && isset($document->condition->water_tank_mounts) && $document->condition->water_tank_mounts == "2") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][water_tank_mounts]" value="3" @if($document != null && isset($document->condition->water_tank_mounts) && $document->condition->water_tank_mounts == "3") checked="checked" @endif > </td>
-                                    <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][water_tank_mounts]" value="@if($document != null) {{$document->comment->water_tank_mounts}} @endif" > </td>
+                                    @else
+                                        <td>
+                                            @if( isset($document->condition->water_tank_mounts) && $document->condition->water_tank_mounts == "1") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->water_tank_mounts) && $document->condition->water_tank_mounts == "2") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->water_tank_mounts) && $document->condition->water_tank_mounts == "3") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                    @endif
+                                        <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][water_tank_mounts]" value="@if($document != null) {{$document->comment->water_tank_mounts}} @endif" > </td>
                                 </tr>
 
                                 <tr>
                                     <td>Hand brake </td>
+                                    @if(!$user->isCustomer())
                                     <td><input type="radio" name="document[condition][hand_brake]" value="1" @if($document != null && isset($document->condition->hand_brake) && $document->condition->hand_brake == "1") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][hand_brake]" value="2" @if($document != null && isset($document->condition->hand_brake) && $document->condition->hand_brake == "2") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][hand_brake]" value="3" @if($document != null && isset($document->condition->hand_brake) && $document->condition->hand_brake == "3") checked="checked" @endif > </td>
-                                    <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][hand_brake]" value="@if($document != null) {{$document->comment->hand_brake}} @endif" > </td>
+                                    @else
+                                        <td>
+                                            @if( isset($document->condition->hand_brake) && $document->condition->hand_brake == "1") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->hand_brake) && $document->condition->hand_brake == "2") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->hand_brake) && $document->condition->hand_brake == "3") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                    @endif
+                                        <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][hand_brake]" value="@if($document != null) {{$document->comment->hand_brake}} @endif" > </td>
                                 </tr>
 
                                 <tr>
                                     <td>Trailer plug</td>
+                                    @if(!$user->isCustomer())
                                     <td><input type="radio" name="document[condition][trailer_plug]" value="1" @if($document != null && isset($document->condition->trailer_plug) && $document->condition->trailer_plug == "1") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][trailer_plug]" value="2" @if($document != null && isset($document->condition->trailer_plug) && $document->condition->trailer_plug == "2") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][trailer_plug]" value="3" @if($document != null && isset($document->condition->trailer_plug) && $document->condition->trailer_plug == "3") checked="checked" @endif > </td>
-                                    <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][trailer_plug]" value="@if($document != null) {{$document->comment->trailer_plug}} @endif" > </td>
+                                    @else
+                                        <td>
+                                            @if( isset($document->condition->trailer_plug) && $document->condition->trailer_plug == "1") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->trailer_plug) && $document->condition->trailer_plug == "2") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->trailer_plug) && $document->condition->trailer_plug == "3") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                    @endif
+                                        <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][trailer_plug]" value="@if($document != null) {{$document->comment->trailer_plug}} @endif" > </td>
                                 </tr>
 
                                 <tr>
                                     <td>Wiring loom</td>
+                                    @if(!$user->isCustomer())
                                     <td><input type="radio" name="document[condition][wiring_loom]" value="1" @if($document != null && isset($document->condition->wiring_loom) && $document->condition->wiring_loom == "1") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][wiring_loom]" value="2" @if($document != null && isset($document->condition->wiring_loom) && $document->condition->wiring_loom == "2") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][wiring_loom]" value="3" @if($document != null && isset($document->condition->wiring_loom) && $document->condition->wiring_loom == "3") checked="checked" @endif > </td>
-                                    <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][wiring_loom]" value="@if($document != null) {{$document->comment->wiring_loom}} @endif" > </td>
+                                    @else
+                                        <td>
+                                            @if( isset($document->condition->wiring_loom) && $document->condition->wiring_loom == "1") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->wiring_loom) && $document->condition->wiring_loom == "2") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->wiring_loom) && $document->condition->wiring_loom == "3") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                    @endif
+                                        <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][wiring_loom]" value="@if($document != null) {{$document->comment->wiring_loom}} @endif" > </td>
                                 </tr>
 
                                 <tr>
                                     <td>Springs/hangers</td>
+                                    @if(!$user->isCustomer())
                                     <td><input type="radio" name="document[condition][springs_hangers]" value="1" @if($document != null && isset($document->condition->springs_hangers) && $document->condition->springs_hangers == "1") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][springs_hangers]" value="2" @if($document != null && isset($document->condition->springs_hangers) && $document->condition->springs_hangers == "2") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][springs_hangers]" value="3" @if($document != null && isset($document->condition->springs_hangers) && $document->condition->springs_hangers == "3") checked="checked" @endif > </td>
-                                    <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][springs_hangers]" value="@if($document != null) {{$document->comment->springs_hangers}} @endif" > </td>
+                                    @else
+                                        <td>
+                                            @if( isset($document->condition->springs_hangers) && $document->condition->springs_hangers == "1") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->springs_hangers) && $document->condition->springs_hangers == "2") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->springs_hangers) && $document->condition->springs_hangers == "3") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                    @endif
+                                        <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][springs_hangers]" value="@if($document != null) {{$document->comment->springs_hangers}} @endif" > </td>
                                 </tr>
 
                                 <tr>
                                     <td>U-bolts</td>
+                                    @if(!$user->isCustomer())
                                     <td><input type="radio" name="document[condition][u_bolts]" value="1" @if($document != null && isset($document->condition->u_bolts) && $document->condition->u_bolts == "1") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][u_bolts]" value="2" @if($document != null && isset($document->condition->u_bolts) && $document->condition->u_bolts == "2") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][u_bolts]" value="3" @if($document != null && isset($document->condition->u_bolts) && $document->condition->u_bolts == "3") checked="checked" @endif > </td>
-                                    <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][u_bolts]" value="@if($document != null) {{$document->comment->u_bolts}} @endif" > </td>
+                                    @else
+                                        <td>
+                                            @if( isset($document->condition->u_bolts) && $document->condition->u_bolts == "1") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->u_bolts) && $document->condition->u_bolts == "2") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->u_bolts) && $document->condition->u_bolts == "3") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                    @endif
+                                        <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][u_bolts]" value="@if($document != null) {{$document->comment->u_bolts}} @endif" > </td>
                                 </tr>
 
                                 <tr>
                                     <td>A-frame</td>
+                                    @if(!$user->isCustomer())
                                     <td><input type="radio" name="document[condition][a_frame]" value="1" @if($document != null && isset($document->condition->a_frame) && $document->condition->u_bolts == "1") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][a_frame]" value="2" @if($document != null && isset($document->condition->a_frame) && $document->condition->u_bolts == "2") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][a_frame]" value="3" @if($document != null && isset($document->condition->a_frame) && $document->condition->u_bolts == "3") checked="checked" @endif > </td>
-                                    <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][a_frame]" value="@if($document != null) {{$document->comment->a_frame}} @endif" > </td>
+                                    @else
+                                        <td>
+                                            @if( isset($document->condition->a_frame) && $document->condition->u_bolts == "1") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->a_frame) && $document->condition->u_bolts == "2") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->a_frame) && $document->condition->u_bolts == "3") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                    @endif
+                                        <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][a_frame]" value="@if($document != null) {{$document->comment->a_frame}} @endif" > </td>
                                 </tr>
 
                                 <tr>
                                     <td>Stabiliser Jacks</td>
+                                    @if(!$user->isCustomer())
                                     <td><input type="radio" name="document[condition][stabiliser_jacks]" value="1" @if($document != null && isset($document->condition->stabiliser_jacks) && $document->condition->stabiliser_jacks == "1") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][stabiliser_jacks]" value="2" @if($document != null && isset($document->condition->stabiliser_jacks) && $document->condition->stabiliser_jacks == "2") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][stabiliser_jacks]" value="3" @if($document != null && isset($document->condition->stabiliser_jacks) && $document->condition->stabiliser_jacks == "3") checked="checked" @endif > </td>
-                                    <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][stabiliser_jacks]" value="@if($document != null) {{$document->comment->stabiliser_jacks}} @endif" > </td>
+                                    @else
+                                        <td>
+                                            @if( isset($document->condition->stabiliser_jacks) && $document->condition->stabiliser_jacks == "1") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->stabiliser_jacks) && $document->condition->stabiliser_jacks == "2") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->stabiliser_jacks) && $document->condition->stabiliser_jacks == "3") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                    @endif
+                                        <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][stabiliser_jacks]" value="@if($document != null) {{$document->comment->stabiliser_jacks}} @endif" > </td>
                                 </tr>
 
                                 <tr>
                                     <td>Chassis Welds</td>
+                                    @if(!$user->isCustomer())
                                     <td><input type="radio" name="document[condition][chassis_welds]" value="1" @if($document != null && isset($document->condition->chassis_welds) && $document->condition->chassis_welds == "1") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][chassis_welds]" value="2" @if($document != null && isset($document->condition->chassis_welds) && $document->condition->chassis_welds == "2") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][chassis_welds]" value="3" @if($document != null && isset($document->condition->chassis_welds) && $document->condition->chassis_welds == "3") checked="checked" @endif > </td>
-                                    <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][chassis_welds]" value="@if($document != null) {{$document->comment->chassis_welds}} @endif"> </td>
+                                    @else
+                                        <td>
+                                            @if( isset($document->condition->chassis_welds) && $document->condition->chassis_welds == "1") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->chassis_welds) && $document->condition->chassis_welds == "2") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->chassis_welds) && $document->condition->chassis_welds == "3") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                    @endif
+                                        <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][chassis_welds]" value="@if($document != null) {{$document->comment->chassis_welds}} @endif"> </td>
                                 </tr>
 
                                 <tr>
                                     <td>Safety chains</td>
+                                    @if(!$user->isCustomer())
                                     <td><input type="radio" name="document[condition][safety_chains]" value="1" @if($document != null && isset($document->condition->safety_chains) && $document->condition->safety_chains == "1") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][safety_chains]" value="2" @if($document != null && isset($document->condition->safety_chains) && $document->condition->safety_chains == "2") checked="checked" @endif > </td>
                                     <td><input type="radio" name="document[condition][safety_chains]" value="3" @if($document != null && isset($document->condition->safety_chains) && $document->condition->safety_chains == "3") checked="checked" @endif > </td>
-                                    <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][safety_chains]" value="@if($document != null) {{$document->comment->safety_chains}} @endif" > </td>
+                                    @else
+                                        <td>
+                                            @if( isset($document->condition->safety_chains) && $document->condition->safety_chains == "1") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->safety_chains) && $document->condition->safety_chains == "2") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                        <td>
+                                            @if( isset($document->condition->safety_chains) && $document->condition->safety_chains == "3") <img src="{{url('/')}}/images/tick.png"> @endif
+                                        </td>
+                                    @endif
+                                        <td><input @if($document != null && $user->isCustomer()) disabled @endif type="text" name="document[comment][safety_chains]" value="@if($document != null) {{$document->comment->safety_chains}} @endif" > </td>
                                 </tr>
                                 </tbody>
                             </table>

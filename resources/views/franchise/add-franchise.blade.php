@@ -6,7 +6,7 @@
                 {{\Session::get('success')}}
             </h4>
         @endif
-            <h2 class="main-heading">Add A Franchise</h2>
+        <h2 class="main-heading" style="text-align: center">Franchise Registration</h2>
         <div class="add-vehicle-widget">
             <form class="add-vehicle-form" role="form" method="POST" action="{{url('/')}}/franchise/add">
                 {{ csrf_field() }}

@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Requests\Users;
+namespace App\Http\Requests\Vehicle;
 
-use App\Http\Requests\Request;
-use Illuminate\Support\Facades\Auth;
 
-class ShowAddCustomerFormRequest extends Request
+class UpdateVehicleServiceDocumentRequest extends VehicleRequest
 {
+    public function document()
+    {
+
+        return collect($this->input('document'))->toJson();
+    }
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -14,7 +17,7 @@ class ShowAddCustomerFormRequest extends Request
      */
     public function authorize()
     {
-        return (Auth::user()->can('add','customers'));
+        return true;
     }
 
     /**
@@ -25,7 +28,8 @@ class ShowAddCustomerFormRequest extends Request
     public function rules()
     {
         return [
-            //
+            'vehicle_id'=>'required|exists:vehicles,id',
+            'next_service'=>'required'
         ];
     }
 }

@@ -35,7 +35,6 @@ class Helper
     public static function towfixDateFormat($date)
     {
         $date = explode(' ',$date)[0];
-        //return Carbon::createFromFormat('Y-m-d H:i:s',$date)->toFormattedDateString();
         $months = config('constants.MONTHS');
         $day_symbol = config('constants.DAY_SYMBOL');
         $dateArray = explode('-', $date);

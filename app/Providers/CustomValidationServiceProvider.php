@@ -20,7 +20,7 @@ class CustomValidationServiceProvider extends ServiceProvider
             if(isset($_POST['g-recaptcha-response'])){
                 $captcha=$_POST['g-recaptcha-response'];
             }
-            $secretKey = "6LfvFAwUAAAAAGcBdbd0iJHwZUPGCkQMfAQQrLCT";
+            $secretKey = env('GOOGLE_RECAPCHA_SECRET_KEY');
             $ip = $_SERVER['REMOTE_ADDR'];
             $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
             $responseKeys = json_decode($response,true);

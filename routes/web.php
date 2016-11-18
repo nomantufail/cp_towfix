@@ -10,7 +10,13 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+
+Route::get('/crone_test', [
+    'uses'=>'CronsController@run'
+]);
+
 Route::group(['middleware' => 'auth'], function () {
+
 
     Route::get('/', [
         'uses'=>'HomeController@index',

@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Requests\Franchise;
+namespace App\Http\Requests\Users;
 
 use App\Http\Requests\Request;
 
-class AddFranchiseRequest extends Request
+class AddCustomerRequest extends Request
 {
     public function storableAttrs()
     {
-        $names = explode(" ", $this->input('name'));
         $role = 2;
-
         $storableAttrs = [
-            'f_name' => $names[0],
+            'f_name' => $this->input('fname'),
+            'l_name' => $this->input('lname'),
             'phone_number' => $this->input('phone_number'),
             'email' => $this->input('email'),
             'password' => bcrypt($this->input('password')),
@@ -20,12 +19,7 @@ class AddFranchiseRequest extends Request
             'role' => $role,
 
         ];
-        if(count($names) > 1)
-        {
-            (array_shift($names));
-            $names = implode(" " , $names);
-            $storableAttrs['l_name'] = $names;
-        }
+
         return $storableAttrs;
     }
     /**
@@ -54,7 +48,8 @@ class AddFranchiseRequest extends Request
     public function rules()
     {
         $rules = [
-            'name' => 'required|max:255',
+            'fname' => 'required|max:255',
+            'lname' => 'required|max:255',
             'phone_number' => 'required|max:255',
             'address' => 'required|max:190',
             'email' => 'required|email|max:255|unique:users',

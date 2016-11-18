@@ -1,34 +1,40 @@
 @extends('app')
 @section('page')
     <section class="home-page login-page">
+        @if(\Session::has('success'))
+            <h4 class="alert alert-success fade in">
+                {{\Session::get('success')}}
+            </h4>
+        @endif
+            <h2 class="main-heading">Add A Customer</h2>
         <div class="add-vehicle-widget">
-            <form class="add-vehicle-form" role="form" method="POST" action="{{ url('/register') }}">
+            <form class="add-vehicle-form" role="form" method="POST" action="{{url('/')}}/customer/add">
                 {{ csrf_field() }}
 
-                <label class="half-field {{ $errors->has('fName') ? ' has-error' : '' }}">
+                <label class="clearfix {{ $errors->has('fname') ? ' has-error' : '' }}">
                     <span>First Name</span>
-                    <input type="text" name="fName" placeholder="First Name" value="{{old('fName')}}">
-                    @if ($errors->has('fName'))
+                    <input type="text" name="fname" placeholder="First Name" value="{{old('fname')}}">
+                    @if ($errors->has('fname'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('fName') }}</strong>
+                            <strong>{{ $errors->first('fname') }}</strong>
                         </span>
                     @endif
                 </label>
-                <label class="half-field {{ $errors->has('lName') ? ' has-error' : '' }}">
+                <label class="clearfix {{ $errors->has('lname') ? ' has-error' : '' }}">
                     <span>Last Name</span>
-                    <input type="text" name="lName" placeholder="Last Name" value="{{old('lName')}}">
-                    @if ($errors->has('lName'))
+                    <input type="text" name="lname" placeholder="Last Name" value="{{old('lname')}}">
+                    @if ($errors->has('lname'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('lName') }}</strong>
+                            <strong>{{ $errors->first('lname') }}</strong>
                         </span>
                     @endif
                 </label>
                 <label class="half-field {{ $errors->has('phoneNumber') ? ' has-error' : '' }}">
                     <span>Phone Number</span>
-                    <input type="text" name="phoneNumber" placeholder="Phone Number" value="{{old('phoneNumber')}}">
-                    @if ($errors->has('fName'))
+                    <input type="text" name="phone_number" placeholder="Phone Number" value="{{old('phone_number')}}">
+                    @if ($errors->has('phone_number'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('phoneNumber') }}</strong>
+                            <strong>{{ $errors->first('phone_number') }}</strong>
                         </span>
                     @endif
                 </label>
@@ -59,7 +65,7 @@
                         </span>
                     @endif
                 </label>
-                <label class=" {{ $errors->has('address') ? ' has-error' : '' }}">
+                <label class="clearfix {{ $errors->has('address') ? ' has-error' : '' }}">
                     <span>Address</span>
                     <input type="text" name="address" placeholder="Address" value="{{old('address')}}">
                     @if ($errors->has('address'))
@@ -81,5 +87,6 @@
                 </label>
             </form>
         </div>
+
     </section>
 @endsection

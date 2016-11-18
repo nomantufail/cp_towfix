@@ -55,4 +55,19 @@ class UsersController extends ParentController
             return $this->handleInternalServerError($e->getMessage());
         }
     }
+
+    public function showAddCustomerForm(Requests\Users\ShowAddCustomerFormRequest $request)
+    {
+        return view('user.add-customer');
+    }
+    public function addCustomer(Requests\Users\AddCustomerRequest $request)
+    {
+//        try{
+            $this->usersRepo->store($request->storableAttrs());
+            return redirect()->back()->with('success', 'Customer Has Been Added Successfully');
+//        }catch (\Exception $e){
+//            return $this->handleInternalServerError($e->getMessage());
+//        }
+    }
+
 }

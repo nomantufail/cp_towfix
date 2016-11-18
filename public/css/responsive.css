@@ -213,4 +213,8 @@
 		margin-bottom: 0px;
 		padding: 15px 0px;
 	}
+	.user-widget ul.account-list li a{
+		padding: 21px 10px;
+		font-size: 12px;
+	}
 }

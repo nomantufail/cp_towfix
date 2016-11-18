@@ -126,6 +126,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/customer/delete/{user_id}', [
         'uses'=>'UsersController@delete'
     ]);
+    Route::get('register/customer' , [
+        'uses' => 'UsersController@showAddCustomerForm'
+    ]);
+    Route::post('customer/add' , [
+
+        'uses' => 'UsersController@addCustomer'
+    ]);
 
     Route::get('/orders', [
         'uses'=>'OrdersController@showOrders'

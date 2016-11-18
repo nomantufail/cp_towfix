@@ -9,7 +9,11 @@
 @extends('app')
 @section('page')
     <section class="empty-cart">
-        <h2>Akhtar Your Cart is Empty</h2>
-        <a href="{{url('/')}}/products" type="submit" class="btn btn btn-primary"><i class="fa fa-shopping-bag"></i> Online Store</a>
+        <div class="container">
+            <div class="empty-widget">
+                <h2>Your Cart is Empty</h2>
+                <a href="{{url('/')}}/products" type="submit" class="btn btn btn-primary"><i class="fa fa-shopping-bag"></i> Online Store</a></div>
+            </div>
+        </div>
     </section>
 @endsection

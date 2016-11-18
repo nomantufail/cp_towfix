@@ -34,7 +34,8 @@
                 </li>
                 <li>
                     <strong>Next Service</strong>
-                    <span>{{$vehicle->next_service}}</span>
+                    <span>{!! \App\Libs\Helpers\Helper::towfixDateFormat($vehicle->next_service) !!}</span>
+
                 </li>
                 <li>
                     <strong>Registration Number</strong>
@@ -42,7 +43,7 @@
                 </li>
                 <li>
                     <strong>Registration Expiry</strong>
-                    <span>{{$vehicle->registration_expiry}}</span>
+                    <span>{!! \App\Libs\Helpers\Helper::towfixDateFormat($vehicle->registration_expiry) !!}</span>
                 </li>
                 <li>
                     <strong>Details</strong>
@@ -61,7 +62,7 @@
                     <tbody>
                     @foreach($services as $request)
                     <tr>
-                        <td>{{$request->created_at->toFormattedDateString()}}</td>
+                        <td>{!! \App\Libs\Helpers\Helper::towfixDateFormat($request->created_at) !!}</td>
                         <td>
                             @if($request->form == null)
                                 @if($request->franchise_id == $user->id && $request->isAccepted())
@@ -117,6 +118,7 @@
                             <label class="half-field">
                                 <span>Date</span>
                                 <input @if($document != null && $user->isCustomer()) disabled @endif type="text" class="datetimepicker" placeholder="Date" name="document[simpleInformation][date]" value="@if($document != null){{$document->simpleInformation->date}} @endif">
+
                             </label>
                         </div>
                         <div class="vehicles-service-list">
@@ -308,6 +310,7 @@
                             <label>
                                 <span>Next Service Date/Time</span>
                                 <input required @if($document != null && $user->isCustomer()) disabled @endif type="text" class="next_service_date_time" name="next_service" placeholder="next service" value="@if($document != null) {{$request->vehicle->next_service}} @endif">
+
                             </label>
                             @if(($document == null && $request->franchise_id == $user->id) || ($document != null && !$user->isCustomer()))<input type="submit" name="submit" value="Submit" class="btn btn-primary">@endif
                         </div>

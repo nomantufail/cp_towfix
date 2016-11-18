@@ -185,10 +185,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/franchise/approve/{franchise_id}', [
         'uses'=>'FranchisesController@approve'
     ]);
-
-
-
-
     Route::get('/manuals', [
         'uses'=>'ManualsControllers@showManuals'
     ]);

@@ -35,7 +35,7 @@ class UsersController extends ParentController
             return $this->handleInternalServerError();
         }
     }
-    public function editCustomer(Requests\Users\editUserRequest $request)
+    public function editCustomer(Requests\Users\EditUserRequest $request)
     {
         try{
             $data = [
@@ -46,7 +46,7 @@ class UsersController extends ParentController
             return $this->handleInternalServerError($e->getMessage());
         }
     }
-    public function updateCustomer(Requests\Users\updateCustomerRequest $request)
+    public function updateCustomer(Requests\Users\UpdateCustomerRequest $request)
     {
         try{
             $this->usersRepo->updateWhere(['id'=>$request->route()->parameter('customer_id')], $request->updateableAttrs());
@@ -62,12 +62,12 @@ class UsersController extends ParentController
     }
     public function addCustomer(Requests\Users\AddCustomerRequest $request)
     {
-//        try{
+        try{
             $this->usersRepo->store($request->storableAttrs());
             return redirect()->back()->with('success', 'Customer Has Been Added Successfully');
-//        }catch (\Exception $e){
-//            return $this->handleInternalServerError($e->getMessage());
-//        }
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
     }
 
 }

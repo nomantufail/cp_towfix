@@ -66,7 +66,7 @@
                     @endif
                 </label>
                 <label class="clearfix">
-                    <div class="g-recaptcha" data-sitekey="6LfvFAwUAAAAAMgked1YI1NJtFoISN_LpJ2LcJef"></div>
+                    <div class="g-recaptcha" data-sitekey="{{env('GOOGLE_RECAPCHA_SITE_KEY')}}"></div>
                     @if ($errors->has('g-recaptcha-response'))
                         <span class="help-block">
                             <strong>{{ $errors->first('g-recaptcha-response') }}</strong>

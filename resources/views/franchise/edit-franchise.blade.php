@@ -65,10 +65,32 @@
                         </span>
                     @endif
                 </label>
+                <label class="clearfix {{ $errors->has('address') ? ' has-error' : '' }}">
+                    <span>Area</span>
+                    <select name="area" id="area">
+                        <option value=newyork @if($franchise->info->area == 'NEWYORK') selected @endif >New York</option>
+                        <option value=california @if($franchise->info->area == 'CALIFORNIA') selected @endif >California</option>
+                        <option value=losvegas @if($franchise->info->area == 'LOSVEGAS') selected @endif >Los Vegas</option>
+                        <option value=brroklyn @if($franchise->info->area == 'BRROKLYN') selected @endif >Los Angles</option>
+                    </select>
+                    @if ($errors->has('Area'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('Area') }}</strong>
+                        </span>
+                    @endif
+                </label>
                 <label class="submit">
                     <input type="submit" class="btn btn btn-primary" name="submit" value="Submit">
                 </label>
             </form>
         </div>
     </section>
+    <script>
+        $("#area").select2({
+            allowClear: true,
+            placeholder: "Select Area"
+
+        });
+
+    </script>
 @endsection

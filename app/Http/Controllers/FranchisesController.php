@@ -49,23 +49,31 @@ class FranchisesController extends ParentController
     public function updateFranchise(Requests\Franchise\UpdateFranchiseRequest $request, $franchise_id)
     {
 
-        try{
-            $this->franchises->updateWhere(['id' => $franchise_id], $request->updateableAttrs());
+//        try{
+            $franchise = $this->franchises->updateWhere(['id' => $franchise_id], $request->updateableAttrs());
+//            $this->franchiseInfo->updateWhere(['user_id' => $franchise_id],
+//            [
+//                'user_id' => $franchise->id,
+//                'address' => $franchise->address,
+//                'area'    => $request->input('area')
+//            ]);
             return redirect()->back()->with('success','Franchise updated Successfully');
-        }catch (\Exception $e){
-            return $this->handleInternalServerError($e->getMessage());
-        }
+//        }catch (\Exception $e){
+//            return $this->handleInternalServerError($e->getMessage());
+//        }
     }
 
     public function storeFranchise(Requests\Franchise\AddFranchiseRequest $request)
     {
+
         if(Auth::user() != null)
             return redirect()->route('home');
         try{
             $franchise = $this->franchises->store($request->storableAttrs());
             $this->franchiseInfo->store([
                 'user_id' => $franchise->id,
-                'address' => $franchise->address
+                'address' => $franchise->address,
+                'area'    => $request->input('area')
             ]);
             return redirect()->back()->with('success', 'Your request has been sent to admin for approval');
         }catch (\Exception $e){

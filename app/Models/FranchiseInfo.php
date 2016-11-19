@@ -8,7 +8,7 @@ class FranchiseInfo extends Model
 {
     protected $table = "franchises_info";
 
-    protected $fillable = ['user_id' ,'address', 'status'];
+    protected $fillable = ['user_id' ,'address', 'status' , 'area'];
     /**
      * Get the images for the product.
      */

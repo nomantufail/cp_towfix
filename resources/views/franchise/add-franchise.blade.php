@@ -65,6 +65,20 @@
                         </span>
                     @endif
                 </label>
+                <label class="clearfix {{ $errors->has('address') ? ' has-error' : '' }}">
+                    <span>Area</span>
+                    <select name="area" id="area">
+                        <option value=newyork>New York</option>
+                        <option value=california>California</option>
+                        <option value=losvegas>Los Vegas</option>
+                        <option value=brroklyn>Los Angles</option>
+                    </select>
+                    @if ($errors->has('Area'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('Area') }}</strong>
+                        </span>
+                    @endif
+                </label>
                 <label class="clearfix">
                     <div class="g-recaptcha" data-sitekey="{{env('GOOGLE_RECAPCHA_SITE_KEY')}}"></div>
                     @if ($errors->has('g-recaptcha-response'))
@@ -80,4 +94,12 @@
         </div>
 
     </section>
+    <script>
+        $("#area").select2({
+            allowClear: true,
+            placeholder: "Select Area"
+
+        });
+
+    </script>
 @endsection

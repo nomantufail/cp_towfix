@@ -271,6 +271,10 @@ Route::get('/internal-server-error', [
     'uses'=>'PagesController@internalServerError'
 ]);
 
+Route::get('/franchises/{franchise_area}', [
+    'uses'=>'ApiController@displayFranchisesByArea'
+]);
+
 Route::post('/deleteImage', 'NewslettersController@deleteImage');
 
 Auth::routes();

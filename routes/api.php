@@ -13,9 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-
-
-
-Route::get('/user', function (Request $request) {
-    return 'yahooooooo!';
-});
+Route::get('/franchises/{franchise_area}', [
+    'uses'=>'ApiController@displayFranchisesByArea'
+]);

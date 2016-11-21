@@ -31,7 +31,7 @@ class UsersRepository extends Repository
     {
         $franchiseInfoTable = (new FranchiseInfoRepository(new FranchiseInfo()))->getModel()->getTable();
         $franchisesTable = $this->getModel()->getTable();
-        return $this->getModel()->select($franchisesTable.".f_name", $franchisesTable.".l_name", $franchiseInfoTable.".status")
+        return $this->getModel()->select($franchisesTable.".f_name", $franchisesTable.".l_name", $franchisesTable.".email", $franchisesTable.".phone_number", $franchisesTable.".address")
             ->leftJoin($franchiseInfoTable, $franchisesTable.".id", "=", $franchiseInfoTable.".user_id")
             ->where($franchiseInfoTable.".area",$area)
             ->where($franchiseInfoTable.".status" , 1)

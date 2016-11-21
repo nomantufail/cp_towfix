@@ -8,6 +8,7 @@ class AddFranchiseRequest extends Request
 {
     public function storableAttrs()
     {
+
         $names = explode(" ", $this->input('name'));
         $role = 2;
 
@@ -41,7 +42,6 @@ class AddFranchiseRequest extends Request
     public function messages()
     {
         return [
-            'images.max'=>'Images should not be greater than '.$this->maxImages,
             'g-recaptcha-response.google_recapcha' => 'you are a robot',
             'g-recaptcha-response.required' => 'Capcha field is required'
         ];

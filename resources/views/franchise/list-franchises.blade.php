@@ -24,6 +24,7 @@
                     <tr>
                         <th>Franchise Name</th>
                         <th>Address</th>
+                        <th>Area</th>
                         <th>Phone Number</th>
                         <th>Email</th>
                         <th>Actions</th>
@@ -34,8 +35,10 @@
                         <tr>
                             <td>{{$franchise->f_name}} {{$franchise->l_name}}</td>
                             <td>{{$franchise->address}}</td>
+                            <td>{{strtoupper($franchise->info->area)}}</td>
                             <td>{{$franchise->phone_number}}</td>
                             <td>{{$franchise->email}}</td>
+
 
                             <td>
                                 @if($franchise->info->status == 0)

@@ -30,10 +30,10 @@ class CronsController extends ParentController
 
     private function serviceReminder()
     {
-        $this->servicesWithPendingReminder()->each(function($service){
+        return $this->servicesWithPendingReminder()->each(function($service){
             $days_remaing_for_next_service = Carbon::createFromFormat('Y-m-d h:i:s',$service->vehicle->next_service)->diffInDays(Carbon::createFromFormat('Y-m-d',date('Y-m-d')));
             $next_service_date = Helper::towfixDateFormat($service->vehicle->next_service);
-            dd($service->vehicle->owner->mail('home', $service));
+            $service->vehicle->owner->mail('home', $service);
         });
     }
 

@@ -18,6 +18,7 @@ class FranchisesInfoTableMigration extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('address');
             $table->integer('status')->default(0);
+            $table->string('area')->default('');
             $table->timestamps();
 
 

@@ -62,7 +62,7 @@ class User extends Authenticatable
     public function mail($view, $data=null)
     {
         $user = clone($this);
-        Mail::send($view, ['data' => $data], function ($m) use ($user) {
+        return Mail::send($view, ['data' => $data], function ($m) use ($user) {
             $m->from(env('MAIL_FROM_ADDRESS'), env('APPLICATION_DISPLAY_NAME'));
             $m->to($user->email, $user->f_name." ".$user->l_name)->subject('Next Service Reminder');
         });

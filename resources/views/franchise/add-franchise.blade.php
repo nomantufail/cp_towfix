@@ -68,10 +68,12 @@
                 <label class="clearfix {{ $errors->has('address') ? ' has-error' : '' }}">
                     <span>Area</span>
                     <select name="area" id="area">
-                        <option value=newyork>New York</option>
-                        <option value=california>California</option>
-                        <option value=arizona>Arizona</option>
-                        <option value=texas>Texas</option>
+                        <option value="South Australia">South Australia</option>
+                        <option value="Western Australia">Western Australia</option>
+                        <option value="Northern Territory">Northern Territory</option>
+                        <option value="New South Wales">New South Wales</option>
+                        <option value="Victoria">Victoria</option>
+                        <option value="Tasmania">Tasmania</option>
                     </select>
                     @if ($errors->has('Area'))
                         <span class="help-block">

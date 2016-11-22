@@ -68,10 +68,12 @@
                 <label class="clearfix {{ $errors->has('address') ? ' has-error' : '' }}">
                     <span>Area</span>
                     <select name="area" id="area">
-                        <option value=newyork @if($franchise->info->area == 'newyork') selected @endif>New York</option>
-                        <option value=california @if($franchise->info->area == 'california') selected @endif>California</option>
-                        <option value=arizona @if($franchise->info->area == 'arizona') selected @endif>Arizona</option>
-                        <option value=texas @if($franchise->info->area == 'texas') selected @endif>Texas</option>
+                        <option value="South Australia" @if($franchise->info->area == 'South Australia') selected @endif>South Australia</option>
+                        <option value="Western Australia" @if($franchise->info->area == 'Western Australia') selected @endif>Western Australia</option>
+                        <option value="Northern Territory"@if($franchise->info->area == 'Northern Territory') selected @endif>Northern Territory</option>
+                        <option value="New South Wales"@if($franchise->info->area == 'New South Wales') selected @endif>New South Wales</option>
+                        <option value="Victoria"@if($franchise->info->area == 'Victoria') selected @endif>Victoria</option>
+                        <option value="Tasmania"@if($franchise->info->area == 'Tasmania') selected @endif>Tasmania</option>
                     </select>
                     @if ($errors->has('Area'))
                         <span class="help-block">

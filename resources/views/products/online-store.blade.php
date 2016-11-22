@@ -20,6 +20,8 @@
         <h2 class="main-heading">Online Store</h2>
         <div class="store-listing">
             <ul class="row">
+                @if(sizeof($products) != 0)
+
                 @foreach($products as $product)
                 <li class="col-md-3 col-sm-3 col-xm-12">
                     <div class="store-widget">
@@ -30,7 +32,7 @@
                         </figure>
                         <div class="store-content">
                             <h4>{{$product->name}}</h4>
-                            <h4>Price : {{$product->price}}$</h4>
+                            @if(!$product->is_poster)<h4>Price : {{$product->price}} $</h4>@endif
                             <p>{{str_limit($product->detail, 60)}}</p>
                             <a href="{{url('/')}}/product/{{$product->id}}" class="btn btn-primary">View Product</a>
                             @if($product->is_poster)<a class="btn btn-primary productContactInfo" data-info="{{json_encode([
@@ -43,6 +45,9 @@
                     </div>
                 </li>
                 @endforeach
+                    @else
+                    <h3>Products are Coming Soon</h3>
+                    @endif
             </ul>
         </div>
 
@@ -57,13 +62,13 @@
                         <h4 class="modal-title">Owner Information</h4>
                     </div>
                     <div class="modal-body">
-                        <label>Contact: <span id="modal_product_contact">{{$product->contact}}</span></label><br>
+                        <label>Contact: <span id="modal_product_contact"></span></label><br>
                     </div>
                     <div class="modal-body">
-                        <label>Email: <span id="modal_product_email">{{$product->email}}</span></label><br>
+                        <label>Email: <span id="modal_product_email"></span></label><br>
                     </div>
                     <div class="modal-body">
-                        <label>Address: <span id="modal_product_address">{{$product->address}}</span></label><br><br>
+                        <label>Address: <span id="modal_product_address"></span></label><br><br>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

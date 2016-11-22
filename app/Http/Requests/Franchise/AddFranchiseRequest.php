@@ -59,7 +59,8 @@ class AddFranchiseRequest extends Request
             'address' => 'required|max:190',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-            'g-recaptcha-response'=>'required|google_recapcha'
+            'g-recaptcha-response'=>'required|google_recapcha',
+            'area' => 'required'
         ];
 
         return $rules;

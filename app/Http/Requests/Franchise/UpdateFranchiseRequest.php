@@ -54,6 +54,7 @@ class UpdateFranchiseRequest extends Request
                 'address' => 'required|max:190',
                 'email' => 'required|email|email|unique:users,email,'.$this->route()->parameter('franchise_id').'|max:255',
                 'password' => 'required|min:6|confirmed',
+                'area' => 'required'
 
         ];
     }

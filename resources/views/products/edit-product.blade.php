@@ -16,7 +16,7 @@
             </h4>
         @endif
         <h2 class="main-heading">Edit A Product</h2>
-        <li class="add-vehicle-widget">
+        <div class="add-vehicle-widget">
             <form class="add-vehicle-form" method="post" action="{{url('/')}}/product/update/{{$product->id}}" enctype="multipart/form-data">
                 {{csrf_field()}}
 

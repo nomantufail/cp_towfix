@@ -59,12 +59,12 @@ class User extends Authenticatable
         return ($this->role == 3);
     }
 
-    public function mail($view, $data=null)
+    public function mail($view, $subject, $data=null)
     {
         $user = clone($this);
-        return Mail::send($view, ['data' => $data], function ($m) use ($user) {
+        return Mail::send($view, ['data' => $data], function ($m) use ($user, $subject) {
             $m->from(env('MAIL_FROM_ADDRESS'), env('APPLICATION_DISPLAY_NAME'));
-            $m->to($user->email, $user->f_name." ".$user->l_name)->subject('Next Service Reminder');
+            $m->to($user->email, $user->f_name." ".$user->l_name)->subject($subject);
         });
     }
 }

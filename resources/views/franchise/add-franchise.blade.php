@@ -70,8 +70,8 @@
                     <select name="area" id="area">
                         <option value=newyork>New York</option>
                         <option value=california>California</option>
-                        <option value=losvegas>Los Vegas</option>
-                        <option value=brroklyn>Los Angles</option>
+                        <option value=arizona>Arizona</option>
+                        <option value=texas>Texas</option>
                     </select>
                     @if ($errors->has('Area'))
                         <span class="help-block">

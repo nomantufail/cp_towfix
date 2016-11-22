@@ -49,18 +49,17 @@ class FranchisesController extends ParentController
     public function updateFranchise(Requests\Franchise\UpdateFranchiseRequest $request, $franchise_id)
     {
 
-//        try{
-            $franchise = $this->franchises->updateWhere(['id' => $franchise_id], $request->updateableAttrs());
-//            $this->franchiseInfo->updateWhere(['user_id' => $franchise_id],
-//            [
-//                'user_id' => $franchise->id,
-//                'address' => $franchise->address,
-//                'area'    => $request->input('area')
-//            ]);
+        try{
+            $this->franchises->updateWhere(['id' => $franchise_id], $request->updateableAttrs());
+            $this->franchiseInfo->updateWhere(['user_id' => $franchise_id],
+            [
+                'address' =>$request->input('address'),
+                'area'    => $request->input('area')
+            ]);
             return redirect()->back()->with('success','Franchise updated Successfully');
-//        }catch (\Exception $e){
-//            return $this->handleInternalServerError($e->getMessage());
-//        }
+        }catch (\Exception $e){
+            return $this->handleInternalServerError($e->getMessage());
+        }
     }
 
     public function storeFranchise(Requests\Franchise\AddFranchiseRequest $request)

@@ -18,7 +18,6 @@ class AddCustomerRequest extends Request
             'password' => bcrypt($this->input('password')),
             'address' => $this->input('address'),
             'role' => $role,
-
         ];
 
         return $storableAttrs;

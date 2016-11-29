@@ -11,7 +11,7 @@ class UpdateVehicleRequest extends VehicleRequest
     public function updateableAttrs()
     {
         $attrs = [
-            'vehicle_type_id' => $this->input('vehicle_type_id'),
+            'vehicle_type' => $this->input('vehicle_type'),
             'make' => $this->input('make'),
             'model' => $this->input('model'),
             'year' => $this->input('year'),
@@ -48,7 +48,7 @@ class UpdateVehicleRequest extends VehicleRequest
     public function rules()
     {
         return [
-            'vehicle_type_id' => 'required',
+            'vehicle_type' => 'required',
             'make' => 'required|max:190',
             'model' => 'required|max:190',
             'year' => 'required',

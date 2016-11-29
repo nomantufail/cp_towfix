@@ -11,7 +11,7 @@ class AddVehicleRequest extends VehicleRequest
     {
 
         return [
-            'vehicle_type_id' => $this->input('vehicle_type_id'),
+            'vehicle_type' => $this->input('vehicle_type'),
             'customer_id' => Auth::user()->id,
             'make' => $this->input('make'),
             'model' => $this->input('model'),
@@ -47,7 +47,7 @@ class AddVehicleRequest extends VehicleRequest
     public function rules()
     {
         return [
-            'vehicle_type_id' => 'required',
+            'vehicle_type' => 'required',
             'make' => 'required|max:190',
             'model' => 'required|max:190',
             'year' => 'required',

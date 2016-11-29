@@ -46,12 +46,7 @@
 
                 <label class="full-field">
                     <span>Vehicle Type</span>
-                    <select name="vehicle_type_id" id="vehicle_type">
-                        <option value="">Select Vehicle Type</option>
-                        @foreach($vehicleTypes as $vehicleType)
-                            <option value="{{$vehicleType->id}}">{{$vehicleType->vehicle_type}}</option>
-                        @endforeach
-                    </select>
+                    <input type="text" name="vehicle_type" id="vehicle_type">
                     @if ($errors->has('vehicle_type_id'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('vehicle_type_id') as $message)
@@ -208,15 +203,8 @@
                 dateFormat: 'yy-mm-dd'
             });
         });
-
         $('.dateTime').datetimepicker({
             dateFormat:'yy-m-d'
-        });
-
-        $("#vehicle_type").select2({
-            allowClear: true,
-            placeholder: "Select Vehicle Type"
-
         });
         $("#year").select2({
             allowClear: true,

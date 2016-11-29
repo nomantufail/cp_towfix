@@ -35,7 +35,7 @@
                 </li>
                 <li>
                     <strong>Vehicle Type</strong>
-                    <span>{{$vehicle->type->vehicle_type}}</span>
+                    <span>{{$vehicle->vehicle_type}}</span>
                 </li>
                 <li>
                     <strong>Next Service</strong>

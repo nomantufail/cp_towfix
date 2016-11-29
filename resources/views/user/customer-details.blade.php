@@ -53,7 +53,7 @@
                             <td data-title="Model">{{$vehicle->model}}</td>
                             <td data-title="Customer Name">{{$vehicle->owner->f_name}} {{$vehicle->owner->l_name}}</td>
                             <td data-title="Year">{{$vehicle->year}}</td>
-                            <td data-title="Vehicle Type">{{$vehicle->type->vehicle_type}}</td>
+                            <td data-title="Vehicle Type">{{$vehicle->vehicle_type}}</td>
                             <td data-title="Next Service">{{$vehicle->next_service}}</td>
                             <td data-title="Registration #">{{$vehicle->registration_number}}</td>
                             <td data-title="Registration exp">{{$vehicle->registration_expiry}}</td>

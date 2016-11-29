@@ -8,7 +8,7 @@ class Vehicle extends Model
 {
     protected $table = 'vehicles';
 
-    protected $fillable = ['vehicle_type_id', 'customer_id', 'make', 'model', 'year', 'year_purchased', 'last_service', 'next_service', 'registration_number', 'registration_expiry', 'engine_capacity', 'number_axles', 'details'];
+    protected $fillable = ['vehicle_type', 'customer_id', 'make', 'model', 'year', 'year_purchased', 'last_service', 'next_service', 'registration_number', 'registration_expiry', 'engine_capacity', 'number_axles', 'details'];
 
     public function owner()
     {
@@ -18,10 +18,5 @@ class Vehicle extends Model
     public function serviceRequests()
     {
         return $this->hasMany('App\Models\ServiceRequest');
-    }
-
-    public function type()
-    {
-        return $this->belongsTo('App\Models\VehicleType','vehicle_type_id');
     }
 }

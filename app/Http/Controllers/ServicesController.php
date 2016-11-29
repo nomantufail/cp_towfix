@@ -64,7 +64,6 @@ class ServicesController extends ParentController
         else
             $service->customer->mail('mail.suggested-date-changed','Service Date Changed', $service->suggested_date);
 
-        $this->serviceRequestsRepo->vehicle->owner->mail('mail.service-reminder', $this->serviceRequestsRepo->suggested_date, 'Date Change');
         return redirect()->route('service_requests')->with(['success'=>'Request updated successfully']);
     }
 

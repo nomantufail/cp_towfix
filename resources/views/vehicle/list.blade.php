@@ -11,7 +11,7 @@
     <section class="vehicles-list">
         <div class="vehicles-head">
             <h3>Your Vehicles</h3>
-            @if($user->can('add', 'vehicles'))<a href="{{url('/')}}/vehicle/add" class="btn btn-primary pull-right">Add a Vehicles</a>@endif
+            @if($user->can('add', 'vehicles'))<a href="{{url('/')}}/vehicle/add" class="btn btn-primary pull-right">Add a Vehicle</a>@endif
         </div>
         <div class="vehicles-list-content">
             <div class="vehicles-table">
@@ -37,7 +37,7 @@
                             <td>{{$vehicle->model}}</td>
                             <td>{{$vehicle->owner->f_name}} {{$vehicle->owner->l_name}}</td>
                             <td>{{$vehicle->year}}</td>
-                            <td>{{$vehicle_types[$vehicle->vehicle_type_id]->vehicle_type}}</td>
+                            <td>{{$vehicle->vehicle_type}}</td>
                             <td>{!! \App\Libs\Helpers\Helper::towfixDateFormat($vehicle->next_service) !!}</td>
                             <td>{{$vehicle->registration_number}}</td>
                             <td>{!! \App\Libs\Helpers\Helper::towfixDateFormat($vehicle->registration_expiry) !!}</td>

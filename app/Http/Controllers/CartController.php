@@ -75,7 +75,7 @@ class CartController extends ParentController
                 'total_price' => $this->cart->totalPrice(Auth::user()->id)
             ]);
             $this->cart->flush(Auth::user()->id);
-
+            Auth::user()->mail('mail.customer-checkout.blade','Your Total Shopping Expense', $amount);
             return view('cart.success',['data'=>[
                 'amount' => $amount
             ]]);

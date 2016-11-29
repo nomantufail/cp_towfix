@@ -1,15 +1,7 @@
-<html>
 
+@extends('mail.mail')
 
-/**
- * Created by PhpStorm.
- * User: Mobeen
- * Date: 11/22/2016
- * Time: 10:38 PM
- */
-
-
-<body>
+@section('page')
 <h3>
     Vehicle Service Reminder Of Your Vehicle
 </h3>
@@ -19,11 +11,9 @@
     So next time you require a service or repair on your van, trailer or float, don't have the hassle of hooking up and taking it to a workshop….let our workshop come to you!
 </p>
 
-<span> Franchises Now Available</span>
+@endsection
 
 
-<img src="{{url('/')}}/images/maillogo.png" alt="">
-</body>
 
 
-</html>
+

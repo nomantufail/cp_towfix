@@ -30,7 +30,6 @@ class ServicesController extends ParentController
     {
         $data = [
             'vehicles' => $this->vehiclesRepo->getByCustomerId(Auth::user()->id),
-            'work_types' => $this->workTypesRepo->all(),
             'franchises' => $this->usersRepo->franchises(),
         ];
         return view('services.create-service-form', $data);

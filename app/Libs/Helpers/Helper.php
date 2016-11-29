@@ -38,7 +38,7 @@ class Helper
         $months = config('constants.MONTHS');
         $day_symbol = config('constants.DAY_SYMBOL');
         $dateArray = explode('-', $date);
-        $formattedDate = $dateArray[2]."<sup>".$day_symbol[$dateArray[2]]."</sup> ".ucfirst($months[$dateArray[1]-1])." ".$dateArray[0];
+        $formattedDate = $dateArray[2]."<sup>".$day_symbol[intval($dateArray[2])]."</sup> ".ucfirst($months[intval($dateArray[1])-1])." ".$dateArray[0];
         return $formattedDate;
     }
 }

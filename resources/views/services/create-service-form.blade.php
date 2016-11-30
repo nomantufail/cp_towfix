@@ -59,13 +59,7 @@
 
                 <label class="half-field">
                     <span>Type Of Work Required</span>
-                    <select name="work_type_id" id="work_type">
-                        @foreach($work_types as $work_type)
-                            <option value="{{$work_type->id}}">
-                                {{$work_type->work_type}}
-                            </option>
-                        @endforeach
-                    </select>
+                    <input type="text" name="work_type" id="work_type">
                     @if ($errors->has('work_type_id'))
                         <div class="alert alert-danger">
                             @foreach ($errors->get('work_type_id') as $message)
@@ -115,12 +109,5 @@
             placeholder: "Select Franchise"
 
         });
-        $("#work_type").select2({
-
-            allowClear: true,
-            placeholder: "Select Work Type"
-
-        });
-
     </script>
 @endsection

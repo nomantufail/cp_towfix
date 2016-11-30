@@ -24,7 +24,6 @@ class ServiceRequestsRepository extends Repository
             ->with('customer')
             ->with('franchise')
             ->with('suggestedUser')
-            ->with('workType')
             ->with('vehicle')
             ->with('document')->where('customer_id',$customerId)->get();
     }
@@ -35,7 +34,6 @@ class ServiceRequestsRepository extends Repository
             ->with('customer')
             ->with('franchise')
             ->with('suggestedUser')
-            ->with('workType')
             ->with('vehicle')
             ->with('document')->where('franchise_id',$franchiseId)->get();
     }

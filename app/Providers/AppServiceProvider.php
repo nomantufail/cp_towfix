@@ -15,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        header("Access-Control-Allow-Origin: *");
         View::composer('*', function($view){
             $view->with('user', Auth::user());
         });

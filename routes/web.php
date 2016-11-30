@@ -279,4 +279,5 @@ Route::get('/internal-server-error', [
 
 Route::post('/deleteImage', 'NewslettersController@deleteImage');
 
+
 Auth::routes();

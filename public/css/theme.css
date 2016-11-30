@@ -1,3 +1,26 @@
+.home-content{
+	max-width: 900px;
+	margin: auto;
+}
+
+.home-content h4 {
+	font-size: 25px;
+}
+.home-content p {
+	margin-top: 20px;
+}
+.home-content span {
+	text-align: center;
+	display: block;
+	margin: 20px 0;
+	color: #d82121;
+}
+.home-content .homelogo {
+	text-align: center;
+	margin: auto;
+	display: block;
+}
+
 .home-page .banner{
 	height: 400px;
 	margin-bottom: 30px;

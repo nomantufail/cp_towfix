@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<style>
+    body{
+        font-family: Arial;
+    }
+
+</style>
+
 <body>
 
 
@@ -8,10 +15,18 @@
 
 @yield('page')
 
-<span> Franchises Now Available </span>
-
-
-<img src="{{url('/')}}/images/maillogo.png" alt="">
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td align="center">
+                <span style="color: #d82121;">Franchises Now Available</span>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" style="padding-top: 50px">
+                <img src="http://codingpixel.com/towfix/wp-content/uploads/2016/09/logo.jpg" alt="">
+            </td>
+        </tr>
+    </table>
 </body>
 
 

@@ -279,5 +279,9 @@ Route::get('/internal-server-error', [
 
 Route::post('/deleteImage', 'NewslettersController@deleteImage');
 
+Route::get('/test', function ()    {
+
+    return view('mail.service-reminder');
+});
 
 Auth::routes();

@@ -63,7 +63,8 @@ class UsersController extends ParentController
     public function addCustomer(Requests\Users\AddCustomerRequest $request)
     {
         try{
-            $this->usersRepo->store($request->storableAttrs());
+            $customer = $this->usersRepo->store($request->storableAttrs());
+           // $customer->mail('mail.customer-register','Welcome Valued customer', $customer->f_name);
             return redirect()->back()->with('success', 'Customer Has Been Added Successfully');
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());

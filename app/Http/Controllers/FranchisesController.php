@@ -74,6 +74,7 @@ class FranchisesController extends ParentController
                 'address' => $franchise->address,
                 'area'    => $request->input('area')
             ]);
+            //$franchise->mail('mail.franchise-register-request','TowFix Franchise Request', $franchise->f_name);
             return redirect()->back()->with('success', 'Your request has been sent to admin for approval');
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());
@@ -93,7 +94,9 @@ class FranchisesController extends ParentController
     {
         try{
             $this->franchiseInfo->updateWhere(['user_id' => $franchise_id], ['status'=>1]);
-            return redirect()->back()->with('success','Franchise Approved successfully');
+            $franchise = $this->franchises->findById($franchise_id);
+//            $franchise->mail('mail.franchise-register-accept','TowFix Franchise Acceptance',$franchise->f_name);
+           return redirect()->back()->with('success','Franchise Approved successfully');
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());
         }

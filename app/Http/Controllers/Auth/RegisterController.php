@@ -72,7 +72,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'f_name' => $data['fName'],
             'l_name' => $data['lName'],
             'phone_number' => $data['phoneNumber'],
@@ -81,5 +81,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        //$user->mail('mail.customer-register','Welcome Valued customer',$user->f_name);
+        return $user;
     }
 }

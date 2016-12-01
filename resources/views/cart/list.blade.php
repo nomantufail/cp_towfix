@@ -66,7 +66,7 @@
         </div>
     </section>
     <section class="empty-cart" style="display:none" id="empty-cart">
-        <h2>Akhtar Your Cart is Empty</h2>
+
         <a href="{{url('/')}}/products" type="submit" class="btn btn btn-primary"><i class="fa fa-shopping-bag"></i> Online Store</a>
     </section>
     <script>

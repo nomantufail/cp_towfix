@@ -62,26 +62,26 @@ class CartController extends ParentController
 
     public function checkout(Requests\Cart\CheckoutRequest $request)
     {
-        try{
+//        try{
             $amount = $this->cart->totalPrice($request->user()->id);
             if($amount <= 0){
                 return redirect()->back()->with(['error'=>'Amount should be greater then 0']);
             }
 
             Auth::user()->charge($amount*100, ['source' => $request->input('stripeToken')]);
-            $this->orders->store([
+            $order = $this->orders->store([
                 'user_id' => Auth::user()->id,
                 'document' =>  $this->cart->userCart(Auth::user()->id)->toJson(),
                 'total_price' => $this->cart->totalPrice(Auth::user()->id)
             ]);
+
             $this->cart->flush(Auth::user()->id);
-            Auth::user()->mail('mail.customer-checkout.blade','Your Total Shopping Expense', $amount);
-            return view('cart.success',['data'=>[
-                'amount' => $amount
-            ]]);
-        }catch (\Exception $e){
-            return redirect()->route('mycart');
-        }
+            Auth::user()->mail('mail.customer-checkout','Thank you for your order',['order' => $order , 'user' =>  Auth::user()]);
+            return view('cart.success', [
+                'amount' => $amount]);
+//        }catch (\Exception $e){
+//            return redirect()->route('mycart');
+//        }
     }
 
     public function addProduct(Requests\Cart\AddToCartRequest $request)

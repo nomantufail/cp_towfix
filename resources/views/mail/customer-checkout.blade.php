@@ -29,9 +29,9 @@
     </table>
     <h1>Total Amount {{$total}}</h1>
     <p>Your order will be shipped in 2-4 working days.
-    Click here to view your orders (Orders link.
+    Click here to view your orders <a href="http://towfix.com.au/admin/public/orders"></a>.
     If you want any assistance regarding our services, franchise or anything feel free to contact us </p> <a href="http://towfix.com.au/?page_id=63">Contact Us</a>
-    <P>Regards ?
+    <P>Regards
         Team TowFix.</P>
 
 

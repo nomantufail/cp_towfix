@@ -17,6 +17,10 @@
                     <h4>{{\Session::get('success')}}</h4>
                 @endif
 
+                    <?php $total = 0;
+                    foreach(json_decode($order->document) as $item)
+                        $total +=  $item->product->price * $item->quantity;
+                    ?>
                 <div class="cart-summery">
                     <div class="summery-widget">
                         <div class="cart-list">
@@ -41,6 +45,12 @@
                                     <li class="computed_price">{{$item->product->price * $item->quantity}}</li>
                                 </ul>
                             @endforeach
+                        </div>
+                        <div class="cart-checkout">
+                            <div class="cart-total">
+                                <strong>Total:</strong>
+                                <span>${{$total}}</span>
+                            </div>
                         </div>
 
                     </div>

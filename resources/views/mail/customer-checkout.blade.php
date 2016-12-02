@@ -1,5 +1,6 @@
 
 <div style="width: 100%; text-align: center">
+    <h1 style="color: #0a4a8e">Thank you for your order </h1>
 
     <strong>Dear customer, your order has been received to Towfix admin. Here are the products you ordered. Order No#  {{$data['order']->id}}</strong>
 
@@ -27,16 +28,16 @@
         @endforeach
         </tbody>
     </table>
-    <h1>Total Amount {{$total}}</h1>
+    <h1>Total Amount {{$total}} <strong>USD</strong></h1>
     <p>Your order will be shipped in 2-4 working days.
-    Click here to view your orders <a href="http://towfix.com.au/admin/public/orders"></a>.
-    If you want any assistance regarding our services, franchise or anything feel free to contact us </p> <a href="http://towfix.com.au/?page_id=63">Contact Us</a>
+    Click <a href="http://towfix.com.au/admin/public/orders">Your Orders</a> to view your orders.
+    If you want any assistance regarding our services, franchise or anything feel free to </p> <a href="http://towfix.com.au/?page_id=63">Contact Us</a>
     <P>Regards
         Team TowFix.</P>
 
 
     <span style="display: block; margin-bottom: 20px; color: #d82121;">Franchises Now Available</span>
-    <img src="http://towfix.com.au/wp-content/uploads/2016/09/logo.jpg" alt="">
+    <a href="http://towfix.com.au/"><img src="http://towfix.com.au/wp-content/uploads/2016/09/logo.jpg" alt="" ></a>
 </div>
 
 

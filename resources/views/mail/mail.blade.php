@@ -23,7 +23,7 @@
         </tr>
         <tr>
             <td align="center" style="padding-top: 50px">
-                <img src="http://codingpixel.com/towfix/wp-content/uploads/2016/09/logo.jpg" alt="">
+                <a href="http://towfix.com.au/"><img src="http://towfix.com.au/wp-content/uploads/2016/09/logo.jpg" alt="" ></a>
             </td>
         </tr>
     </table>

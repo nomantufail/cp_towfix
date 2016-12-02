@@ -60,9 +60,9 @@ class ServicesController extends ParentController
         $service = $this->serviceRequestsRepo->findById($request->route()->parameter('request_id'));
 
         if(Auth::user()->isCustomer())
-            $service->franchise->mail('mail.suggested-date-changed-by-customer','Service Date Changed', ['date' => $service->suggested_date, 'user' => Auth::user()]);
+            $service->franchise->mail('mail.suggested-date-changed-by-customer','Service Date Changed', ['date' => $service->suggested_date, 'name' => $service->franchise->f_name]);
         else
-            $service->customer->mail('mail.suggested-date-changed-by-franchise','Service Date Changed', ['date' => $service->suggested_date, 'user' => Auth::user()]);
+            $service->customer->mail('mail.suggested-date-changed-by-franchise','Service Date Changed', ['date' => $service->suggested_date, 'name' =>$service->customer->f_name]);
         return redirect()->route('service_requests')->with(['success'=>'Request updated successfully']);
     }
 

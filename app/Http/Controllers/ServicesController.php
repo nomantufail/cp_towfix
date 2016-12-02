@@ -59,10 +59,10 @@ class ServicesController extends ParentController
         $this->serviceRequestsRepo->updateWhere(['id'=>$request->route()->parameter('request_id')], $request->getUpdateableAttrs());
         $service = $this->serviceRequestsRepo->findById($request->route()->parameter('request_id'));
 
-//        if(Auth::user()->isCustomer())
-//            //$service->franchise->mail('mail.suggested-date-changed-by-customer','Service Date Changed', ['date' => $service->suggested_date, 'user' => Auth::user()]);
-//        else
-//            //$service->customer->mail('mail.suggested-date-changed-by-franchise','Service Date Changed', ['date' => $service->suggested_date, 'user' => Auth::user()]);
+        if(Auth::user()->isCustomer())
+            $service->franchise->mail('mail.suggested-date-changed-by-customer','Service Date Changed', ['date' => $service->suggested_date, 'user' => Auth::user()]);
+        else
+            $service->customer->mail('mail.suggested-date-changed-by-franchise','Service Date Changed', ['date' => $service->suggested_date, 'user' => Auth::user()]);
         return redirect()->route('service_requests')->with(['success'=>'Request updated successfully']);
     }
 

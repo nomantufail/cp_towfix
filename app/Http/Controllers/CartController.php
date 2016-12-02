@@ -62,7 +62,7 @@ class CartController extends ParentController
 
     public function checkout(Requests\Cart\CheckoutRequest $request)
     {
-//        try{
+        try{
             $amount = $this->cart->totalPrice($request->user()->id);
             if($amount <= 0){
                 return redirect()->back()->with(['error'=>'Amount should be greater then 0']);
@@ -79,9 +79,9 @@ class CartController extends ParentController
             Auth::user()->mail('mail.customer-checkout','Thank you for your order',['order' => $order , 'user' =>  Auth::user()]);
             return view('cart.success', [
                 'amount' => $amount]);
-//        }catch (\Exception $e){
-//            return redirect()->route('mycart');
-//        }
+        }catch (\Exception $e){
+            return redirect()->route('mycart');
+        }
     }
 
     public function addProduct(Requests\Cart\AddToCartRequest $request)

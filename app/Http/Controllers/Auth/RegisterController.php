@@ -81,7 +81,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-        //$user->mail('mail.customer-register','Welcome Valued customer',$user->f_name);
+        $user->mail('mail.customer-register','Welcome Valued customer',$user->f_name);
         return $user;
     }
 }

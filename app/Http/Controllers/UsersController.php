@@ -60,11 +60,17 @@ class UsersController extends ParentController
     {
         return view('user.add-customer');
     }
+
+    /**
+     * @param Requests\Users\AddCustomerRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @description franchise will add this customer.
+     */
     public function addCustomer(Requests\Users\AddCustomerRequest $request)
     {
         try{
             $customer = $this->usersRepo->store($request->storableAttrs());
-           // $customer->mail('mail.customer-register','Welcome Valued customer', $customer->f_name);
+            $customer->mail('mail.customer-register','Welcome Valued customer', $customer->f_name);
             return redirect()->back()->with('success', 'Customer Has Been Added Successfully');
         }catch (\Exception $e){
             return $this->handleInternalServerError($e->getMessage());

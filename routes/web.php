@@ -17,6 +17,9 @@ Route::get('/crone_test', [
 
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('mail_test', function(){
+        return \Illuminate\Support\Facades\Auth::user()->mail('mail.customer-register','Welcome Valued customer', 'noman');
+    });
 
     Route::get('/', [
         'uses'=>'HomeController@index',

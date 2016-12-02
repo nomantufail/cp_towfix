@@ -13,8 +13,7 @@
                     you made an appointment for a service will not be available at that time. We know that you are valuable
                     to us thus the franchise has proposed a new time and date for service, please visit the <a href="http://towfix.com.au/admin/public/service_requests">Services Page</a> to accept the proposal or to propose a new appointment. You can always change the
                     appointment for we come at your convenience.
-                    If you want any assistance regarding our services, franchise or anything feel free to contact us (link to
-                    contact us page).
+                    If you want any assistance regarding our services, franchise or anything feel free to <a href="http://towfix.com.au/?page_id=63">Contact Us</a>
                     Thank you and TowFix team is sincerely looking forward to welcoming you for the service.
 
                     Regards,

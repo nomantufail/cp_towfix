@@ -10,6 +10,7 @@
 @extends('app')
 
 @section('page')
+
     <section class="vehicles-list">
         <div class="vehicles-head">
             <h3>@if($user->isCustomer())My @else Customer @endif Service Requests</h3>

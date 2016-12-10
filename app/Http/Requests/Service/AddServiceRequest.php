@@ -9,13 +9,12 @@ class AddServiceRequest extends ServiceRequest
 
     public function getStorableAttrs()
     {
-        $date = ($this->input('suggested_date'));
         return [
             'customer_id' => $this->user()->id,
             'vehicle_id' => $this->input('vehicle_id'),
             'franchise_id' => $this->input('franchise_id'),
             'work_type' => $this->input('work_type'),
-            'suggested_date' => $date,
+            'suggested_date' => $this->input('suggested_date'),
             'suggested_by' => $this->user()->id,
             'message' => ''
         ];

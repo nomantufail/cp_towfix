@@ -40,7 +40,7 @@ class ConversationsController extends ParentController
     public function create()
     {
         $data = [
-            'receivers' => (Auth::user()->isCustomer())?$this->usersRepo->franchises():$this->usersRepo->customers()
+            'receivers' => (Auth::user()->isCustomer())?$this->usersRepo->approvedFranchises():$this->usersRepo->customers()
         ];
         return view('conversations.create-message-form', $data);
     }

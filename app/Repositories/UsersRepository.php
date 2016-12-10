@@ -10,6 +10,7 @@ namespace App\Repositories;
 
 use App\Models\FranchiseInfo;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class UsersRepository extends Repository
 {
@@ -25,8 +26,22 @@ class UsersRepository extends Repository
 
     public function franchises()
     {
-        return $this->getModel()->where('role', 2)->with('info')->get();
+
+        return $this->getModel()->where('role', 2)
+            ->with('info')->get();
     }
+    public function approvedFranchises()
+    {
+        $franchiseInfoTable = (new FranchiseInfoRepository(new FranchiseInfo()))->getModel()->getTable();
+        $franchisesTable = $this->getModel()->getTable();
+        return $this->getModel()->where($franchisesTable.".role",2)
+            ->select('users.*',$franchiseInfoTable.".status")
+            ->where($franchiseInfoTable.".status" , 1)
+            ->leftJoin($franchiseInfoTable, $franchiseInfoTable.".user_id", "=", $franchisesTable.".id")
+            ->get();
+    }
+
+
     public function getFranchiseByArea($area)
     {
         $franchiseInfoTable = (new FranchiseInfoRepository(new FranchiseInfo()))->getModel()->getTable();

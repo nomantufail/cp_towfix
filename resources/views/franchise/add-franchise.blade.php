@@ -74,6 +74,7 @@
                         <option value="New South Wales">New South Wales</option>
                         <option value="Victoria">Victoria</option>
                         <option value="Tasmania">Tasmania</option>
+                        <option value="QLD">QLD (Queensland)</option>
                     </select>
                     @if ($errors->has('Area'))
                         <span class="help-block">

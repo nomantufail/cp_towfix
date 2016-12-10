@@ -33,7 +33,7 @@ class CronsController extends ParentController
         $this->servicesWithPendingReminder()->each(function($service){
             $days_remaing_for_next_service = Carbon::createFromFormat('Y-m-d h:i:s',$service->vehicle->next_service)->diffInDays(Carbon::createFromFormat('Y-m-d',date('Y-m-d')));
             $next_service_date = Helper::towfixDateFormat($service->vehicle->next_service);
-            $service->vehicle->owner->mail('mail.service-reminder', 'Service Reminder' , ['date' => $service->suggested_date ,'user'=> $service->vehicle->owner]);
+            $service->vehicle->owner->mail('mail.service-reminder', 'Service Reminder' , ['date' =>  $service->vehicle->next_service ,'user'=> $service->vehicle->owner]);
         });
     }
 

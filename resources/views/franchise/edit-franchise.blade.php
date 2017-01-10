@@ -74,6 +74,7 @@
                         <option value="New South Wales"@if($franchise->info->area == 'New South Wales') selected @endif>New South Wales</option>
                         <option value="Victoria"@if($franchise->info->area == 'Victoria') selected @endif>Victoria</option>
                         <option value="Tasmania"@if($franchise->info->area == 'Tasmania') selected @endif>Tasmania</option>
+                        <option value="QLD" @if($franchise->info->area == 'QLD') selected @endif>QLD (Queensland)</option>
                     </select>
                     @if ($errors->has('Area'))
                         <span class="help-block">
